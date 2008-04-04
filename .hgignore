@@ -1,0 +1,10 @@
+
+syntax: glob
+
+*~
+~*
+.*.swp
+
+bin/Debug/*
+obj/*
+
