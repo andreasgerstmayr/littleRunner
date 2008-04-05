@@ -1,36 +1,10 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
 using System.Drawing;
 
 namespace littleRunner
 {
-    abstract class MovingImageElement : MovingElement
-    {
-        protected Image curimg;
-
-        public override void Draw(Graphics g)
-        {
-            g.DrawImage(curimg, Left, Top, Width, Height);
-        }
-
-        public MovingImageElement()
-        {
-        }
-        public MovingImageElement(Image img, int top, int left)
-        {
-            Top = top;
-            Left = left;
-
-            Width = img.Width;
-            Height = img.Height;
-
-            curimg = img;
-        }
-    }
-
-
     enum MushroomType
     {
         Good,
@@ -44,7 +18,7 @@ namespace littleRunner
         GameRunDirection direction;
 
         public Mushroom(MushroomType mtype, int top, int left)
-            : base(mtype == MushroomType.Good ? Image.FromFile(Properties.Resources.mushroom_green) : Image.FromFile(Properties.Resources.mushroom_poison), top - Image.FromFile(Properties.Resources.mushroom_green).Height, left)
+            : base(mtype == MushroomType.Good ? Image.FromFile(Files.f[gFile.mushroom_green]) : Image.FromFile(Files.f[gFile.mushroom_poison]), top - Image.FromFile(Files.f[gFile.mushroom_green]).Height, left)
         {
             this.mtype = mtype;
             checks = 0;
@@ -80,7 +54,7 @@ namespace littleRunner
 
             // check if direction is ok
             GamePhysics.CrashDetection(this, World.MovingElements, World.StickyElements, getEvent, ref newtop, ref newleft);
-            bool crashedInEnemy = GamePhysics.CrashEnemy(this, World.Enemies, getEvent, ref newtop, ref newleft)==null?false:true;
+            bool crashedInEnemy = GamePhysics.CrashEnemy(this, World.Enemies, getEvent, ref newtop, ref newleft) == null ? false : true;
 
 
             // run in standing mgo?
@@ -99,13 +73,13 @@ namespace littleRunner
                 Top += newtop;
             if (newleft != 0)
                 Left += newleft;
-            
+
             if (!falling && (newleft == 0 || crashedInEnemy))
                 direction = direction == GameRunDirection.Left ? GameRunDirection.Right : GameRunDirection.Left;
 
 
             // away?
-            if (Top > World.Height)
+            if (Top > World.Settings.LevelHeight)
                 World.MovingElements.Remove(this);
         }
 

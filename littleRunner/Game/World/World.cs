@@ -18,8 +18,7 @@ namespace littleRunner
  
         public string fileName;
         MainGameObject mainGameObject;
-        public int Width;
-        public int Height;
+        public LevelSettings Settings;
         public MyInvalidateEventHandler Invalidate;
         public bool playMode;
 
@@ -44,8 +43,10 @@ namespace littleRunner
         // new world with the editor
         public World(int width, int height, MyInvalidateEventHandler invalidate, bool playMode)
         {
-            this.Width = width;
-            this.Height = height;
+            Settings = new LevelSettings();
+            Settings.LevelWidth = width;
+            Settings.GameWindowWidth = width;
+            Settings.LevelHeight = height;
             this.Invalidate = invalidate;
 
             enemies = new List<Enemy>();
@@ -67,8 +68,9 @@ namespace littleRunner
 
         public void Draw(Graphics g)
         {
-            if (playMode)
-                ImageAnimator.UpdateFrames();
+            if (Settings.BackgroundImg != null)
+                g.DrawImage(Settings.BackgroundImg, 0, 0, Settings.GameWindowWidth, Settings.LevelHeight);
+
             foreach (GameObject go in AllElements)
             {
                 go.Draw(g);
@@ -140,64 +142,119 @@ namespace littleRunner
 
         public void Serialize(string filename)
         {
-            fileName = filename;
-            object[] save = new object[stickyelements.Count+enemies.Count+1];
-            save[0] = Width.ToString() + "x" + Height.ToString();
-
-            for (int i = 0; i < enemies.Count; i++)
-            {
-                object[] arr = new object[2];
-                arr[0] = enemies[i].GetType();
-                arr[1] = enemies[i].Serialize();
-
-                save[i+1] = arr;
-            }
-            for (int i = 0; i < stickyelements.Count; i++)
-            {
-                object[] arr = new object[2];
-                arr[0] = stickyelements[i].GetType();
-                arr[1] = stickyelements[i].Serialize();
-
-                save[i+enemies.Count+1] = arr;
-            }
-
-            FileStream fs = new FileStream(fileName, FileMode.Create);
-            BinaryFormatter bf = new BinaryFormatter();
-
-            bf.Serialize(fs, save);
-            fs.Close();
+            WorldSerialization.Serialize(filename, stickyelements, enemies, Settings);
         }
 
-        public void Deserialize()//string filename)
+        public void Deserialize()
         {
-            enemies = new List<Enemy>();
-            stickyelements = new List<StickyElement>();
+            WorldSerialization.Deserialize(fileName, out Settings, out enemies, out stickyelements, this);
             movingelements = new List<MovingElement>();
+        }
+    }
 
-            FileStream fs = new FileStream(fileName, FileMode.Open);
-            BinaryFormatter bf = new BinaryFormatter();
+    enum Backgrounds
+    {
+        Blue_Hills,
+        Green_Hills,
+        None
+    }
+    delegate void Changed_Setting();
+    class LevelSettings
+    {
+        private int gameWindowWidth;
+        private int levelWidth;
+        private int levelHeight;
+        private Backgrounds background;
+        private Image backgroundImg;
 
-            object[] elements = (object[])bf.Deserialize(fs);
-            fs.Close();
+        public Changed_Setting cLevelWidth;
+        public Changed_Setting cLevelHeight;
+        public Changed_Setting cGameWindowWidth;
 
-            string[] dimension = elements[0].ToString().Split(new char[] { 'x' });
-            Width = Convert.ToInt32(dimension[0]);
-            Height = Convert.ToInt32(dimension[1]);
+        public LevelSettings()
+        {
+            background = Backgrounds.None;
+        }
 
-            for (int i = 1; i < elements.Length; i++)
+
+        public int GameWindowWidth
+        {
+            get { return gameWindowWidth; }
+            set
             {
-                object[] arr = (object[])elements[i];
-
-                Type objtype = (Type)arr[0];
-                GameObject go = (GameObject)Activator.CreateInstance(objtype);
-                go.Deserialize((Dictionary<string, object>)arr[1]);
-
-                go.Init(this);
-                if (typeof(Enemy).IsAssignableFrom(objtype))
-                    enemies.Add((Enemy)go);
-                else if (typeof(StickyElement).IsAssignableFrom(objtype))
-                    stickyelements.Add((StickyElement)go);
+                gameWindowWidth = value;
+                if (cGameWindowWidth != null) cGameWindowWidth();
             }
+        }
+        public int LevelWidth
+        {
+            get { return levelWidth; }
+            set
+            {
+                levelWidth = value;
+                if (cLevelWidth != null) cLevelWidth();
+            }
+        }
+        public int LevelHeight
+        {
+            get { return levelHeight; }
+            set
+            {
+                levelHeight = value;
+                if (cLevelHeight != null) cLevelHeight();
+            }
+        }
+        public Backgrounds Background
+        {
+            get { return background; }
+            set
+            {
+                background = value;
+                switch (background)
+                {
+                    case Backgrounds.None:
+                        BackgroundImg = null;
+                        break;
+                    case Backgrounds.Blue_Hills:
+                        BackgroundImg = Image.FromFile(Files.f[gFile.background_blue_hills]);
+                        break;
+                    case Backgrounds.Green_Hills:
+                        BackgroundImg = Image.FromFile(Files.f[gFile.background_green_hills]);
+                        break;
+                }
+            }
+        }
+
+        private bool ThumbnailCallback()
+        {
+            return false;
+        }
+        internal Image BackgroundImg
+        {
+            get { return backgroundImg; }
+            set
+            {
+                // create Thumbnail & keep in Cache (RAM)
+                backgroundImg = value.GetThumbnailImage(gameWindowWidth, LevelHeight, ThumbnailCallback, IntPtr.Zero);
+            }
+        }
+
+
+        public Dictionary<string, object> Serialize()
+        {
+            Dictionary<string, object> ser = new Dictionary<string, object>();
+            ser["gameWindowWidth"] = gameWindowWidth;
+            ser["levelWidth"] = levelWidth;
+            ser["levelHeight"] = levelHeight;
+            ser["Background"] = background;
+            return ser;
+        }
+        public void Deserialize(Dictionary<string, object> ser)
+        {
+            gameWindowWidth = (int)ser["gameWindowWidth"];
+            levelWidth = (int)ser["levelWidth"];
+            levelHeight = (int)ser["levelHeight"];
+            Background = (Backgrounds)ser["Background"];
         }
     }
 }

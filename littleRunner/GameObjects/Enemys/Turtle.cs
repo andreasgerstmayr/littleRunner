@@ -13,16 +13,40 @@ namespace littleRunner
         Small,
         SmallRunning
     }
-
+    enum TurtleStyle
+    {
+        Green
+    }
     class Turtle : Enemy
     {
         private GameRunDirection direction;
         private int jumping;
-        private Image imgL, imgR;
-        private Image curimg;
+        private AnimateImage imgL, imgR, imgD;
+        private AnimateImage curimg;
         private TurtleMode turtleMode;
         private int speed;
         private DateTime startSmall;
+        private TurtleStyle style;
+
+        public TurtleStyle Style
+        {
+            get { return style; }
+            set
+            {
+                style = value;
+                switch (style)
+                {
+                    case TurtleStyle.Green:
+                        imgL = new AnimateImage(Files.f[gFile.turtle_green], 200, GameDirection.Left);
+                        imgR = new AnimateImage(Files.f[gFile.turtle_green], 200, GameDirection.Right);
+                        imgD = new AnimateImage(Files.f[gFile.turtle_green_down], 200, GameDirection.None);
+                        break;
+                }
+
+                Width = imgR.CurImage.Width;
+                Height = imgR.CurImage.Height;
+            }
+        }
 
         public override bool canFire
         {
@@ -30,7 +54,7 @@ namespace littleRunner
         }
         public override void Draw(Graphics g)
         {
-            g.DrawImage(curimg, Left, Top, Width, Height);
+            curimg.Draw(g, Left, Top, curimg.CurImage.Width, Height);
         }
 
         public GameRunDirection Direction
@@ -49,7 +73,7 @@ namespace littleRunner
         public Turtle()
             : base()
         {
-            curimg = imgR;
+            //curimg = imgR;
 
             jumping = 0;
             speed = 1;
@@ -59,17 +83,13 @@ namespace littleRunner
             turtleMode = TurtleMode.Normal;
         }
 
-        public Turtle(int top, int left, Image imgL, Image imgR)
+        public Turtle(int top, int left)
             : base()
         {
             Top = top;
             Left = left;
 
-            Width = imgR.Width;
-            Height = imgR.Height;
-
-            this.imgL = imgL;
-            this.imgR = imgR;
+            Style = TurtleStyle.Green;
             curimg = imgR;
 
             jumping = 0;
@@ -78,22 +98,6 @@ namespace littleRunner
 
             Direction = GameRunDirection.Right;
             turtleMode = TurtleMode.Normal;
-        }
-
-        public override void Init(World world)
-        {
-            base.Init(world);
-            if (world.playMode)
-            {
-                ImageAnimator.Animate(imgL, new EventHandler(FrameChanged));
-                ImageAnimator.Animate(imgR, new EventHandler(FrameChanged));
-            }
-        }
-
-        public void FrameChanged(object o, EventArgs e)
-        {
-            if (World != null)
-                World.Invalidate();
         }
 
         public override void Check()
@@ -171,7 +175,7 @@ namespace littleRunner
 
 
             // dead?
-            if (Top > World.Height)
+            if (Top > World.Settings.LevelHeight)
                 World.Enemies.Remove(this);
         }
 
@@ -184,7 +188,7 @@ namespace littleRunner
             {
                 if (turtleMode == TurtleMode.Normal)
                 {
-                    curimg = Image.FromFile(Properties.Resources.turtle_green_down);
+                    curimg = imgD;
                     turtleMode = TurtleMode.Small;
                     World.MGO.Move(true);
                     speed = 0;
@@ -230,16 +234,14 @@ namespace littleRunner
         public override Dictionary<string, object> Serialize()
         {
             Dictionary<string, object> ser = new Dictionary<string, object>(base.Serialize());
-            ser["imgL"] = imgL;
-            ser["imgR"] = imgR;
+            ser["TurtleStyle"] = style;
             ser["Direction"] = Direction;
             return ser;
         }
         public override void Deserialize(Dictionary<string, object> ser)
         {
             base.Deserialize(ser);
-            imgL = (Image)ser["imgL"];
-            imgR = (Image)ser["imgR"];
+            Style = (TurtleStyle)ser["TurtleStyle"];
             Direction = (GameRunDirection)ser["Direction"];
         }
     }

@@ -6,14 +6,35 @@ using System.Drawing;
 
 namespace littleRunner
 {
+    enum SpikaColor
+    {
+        Orange,
+        Green,
+        Grey
+    }
     class Spika : Enemy
     {
         private Image curimg;
-
+        private SpikaColor color;
         public override bool canFire
         {
             get { return false; }
         }
+        public SpikaColor Color
+        {
+            get { return color; }
+            set
+            {
+                color = value;
+                switch (color)
+                {
+                    case SpikaColor.Orange: curimg = Image.FromFile(Files.f[gFile.spika_orange]); break;
+                    case SpikaColor.Green: curimg = Image.FromFile(Files.f[gFile.spika_green]); break;
+                    case SpikaColor.Grey: curimg = Image.FromFile(Files.f[gFile.spika_grey]); break;
+                }
+            }
+        }
+
         public override void Draw(Graphics g)
         {
             g.DrawImage(curimg, Left, Top, Width, Height);
@@ -22,19 +43,19 @@ namespace littleRunner
         public Spika()
             : base()
         {
-            curimg = new Bitmap(1, 1);
+            Color = SpikaColor.Green;
         }
 
-        public Spika(int top, int left, Image img)
+        public Spika(int top, int left)
             : base()
         {
             Top = top;
             Left = left;
 
-            Width = img.Width;
-            Height = img.Height;
+            Color = SpikaColor.Green;
 
-            curimg = img;
+            Width = curimg.Width;
+            Height = curimg.Height; 
         }
 
         public override void Init(World world)
@@ -51,13 +72,13 @@ namespace littleRunner
         public override Dictionary<string, object> Serialize()
         {
             Dictionary<string, object> ser = new Dictionary<string, object>(base.Serialize());
-            ser["img"] = curimg;
+            ser["Color"] = color;
             return ser;
         }
         public override void Deserialize(Dictionary<string, object> ser)
         {
             base.Deserialize(ser);
-            curimg = (Image)ser["img"];
+            Color = (SpikaColor)ser["Color"];
         }
     }
 }

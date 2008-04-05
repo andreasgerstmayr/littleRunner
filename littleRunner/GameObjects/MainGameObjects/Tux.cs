@@ -9,8 +9,7 @@ namespace littleRunner
 {
     class Tux : MainGameObject
     {
-        private Image imgT, imgB, imgL, imgR;
-        private Image curimg;
+        private AnimateImage curimg;
         private GameRunDirection direction;
         private int jumping;
         private bool firePressed;
@@ -18,11 +17,12 @@ namespace littleRunner
         private DateTime immortializeStart; 
         private bool immortialize;
         private int blink;
+        private AnimateImage imgL, imgR;
 
         public override void Draw(Graphics g)
         {
             if (!immortialize || blink % 8 == 0)
-                g.DrawImage(curimg, Left, Top, Width, Height);
+                curimg.Draw(g, Left, Top, Width, Height);
 
             if (immortialize)
                 blink++;
@@ -36,19 +36,20 @@ namespace littleRunner
                 mode = value;
                 if (value == GameMainObjectMode.NormalFire)
                 {
-                    Height = imgL.Height;
+                    Height = curimg.CurImage.Height;
                 }
                 else if (value == GameMainObjectMode.Normal)
                 {
-                    Height = imgL.Height;
-                    blink = 0;
+                    if (Height == 44)
+                        Top -= curimg.CurImage.Height - 44;
+                    Height = curimg.CurImage.Height;
                 }
                 else if (value == GameMainObjectMode.Small)
                 {
-                    Top += imgL.Height - 44;
+                    Top += curimg.CurImage.Height - 44;
                     Height = 44;
-                    blink = 0;
                 }
+                blink = 0;
             }
         }
 
@@ -57,14 +58,12 @@ namespace littleRunner
             Top = top;
             Left = left;
 
-            imgT = Image.FromFile(Properties.Resources.tux_left);
-            imgB = Image.FromFile(Properties.Resources.tux_right);
-            imgL = Image.FromFile(Properties.Resources.tux_left);
-            imgR = Image.FromFile(Properties.Resources.tux_right);
+            imgL = new AnimateImage(Files.f[gFile.tux], 200, GameDirection.Left);
+            imgR = new AnimateImage(Files.f[gFile.tux], 200, GameDirection.Right);
 
 
-            Width = imgR.Width;
-            Height = imgR.Height;
+            Width = imgR.CurImage.Width;
+            Height = imgR.CurImage.Height;
 
             curimg = imgR;
             direction = GameRunDirection.Right;
@@ -75,17 +74,8 @@ namespace littleRunner
             immortialize = false;
 
             blink = 0;
-
-            ImageAnimator.Animate(imgT, new EventHandler(FrameChanged));
-            ImageAnimator.Animate(imgB, new EventHandler(FrameChanged));
-            ImageAnimator.Animate(imgL, new EventHandler(FrameChanged));
-            ImageAnimator.Animate(imgR, new EventHandler(FrameChanged));
         }
 
-        public void FrameChanged(object o, EventArgs e)
-        {
-            World.Invalidate();
-        }
 
         public override void Check(List<GameKey> pressedKeys)
         {
@@ -109,7 +99,7 @@ namespace littleRunner
 
 
             // key pressed?
-            if (pressedKeys.Contains(GameKey.goLeft))
+            if (pressedKeys.Contains(GameKey.goLeft) && (jumping == 0 || (jumping >= 100 && jumping <= 140)))
             {
                 newleft -= 7;
                 if (direction != GameRunDirection.Left)
@@ -118,7 +108,7 @@ namespace littleRunner
                     curimg = imgL;
                 }
             }
-            if (pressedKeys.Contains(GameKey.goRight))
+            if (pressedKeys.Contains(GameKey.goRight) && (jumping == 0 || (jumping >= 100 && jumping <= 140)))
             {
                 newleft += 7;
                 if (direction != GameRunDirection.Right)
