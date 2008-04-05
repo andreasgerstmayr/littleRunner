@@ -36,12 +36,12 @@
             this.trayIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.startGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closelittleRunner = new System.Windows.Forms.Button();
             this.openhelp = new System.Windows.Forms.Button();
             this.openabout = new System.Windows.Forms.Button();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trayIconMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,28 +89,42 @@
             // startGameToolStripMenuItem
             // 
             this.startGameToolStripMenuItem.Name = "startGameToolStripMenuItem";
-            this.startGameToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.startGameToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.startGameToolStripMenuItem.Text = "Start game";
             this.startGameToolStripMenuItem.Click += new System.EventHandler(this.startGameToolStripMenuItem_Click);
             // 
             // startEditorToolStripMenuItem
             // 
             this.startEditorToolStripMenuItem.Name = "startEditorToolStripMenuItem";
-            this.startEditorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.startEditorToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.startEditorToolStripMenuItem.Text = "Start editor";
             this.startEditorToolStripMenuItem.Click += new System.EventHandler(this.startEditorToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // closelittleRunner
             // 
             this.closelittleRunner.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closelittleRunner.Location = new System.Drawing.Point(138, 164);
+            this.closelittleRunner.Location = new System.Drawing.Point(141, 164);
             this.closelittleRunner.Name = "closelittleRunner";
             this.closelittleRunner.Size = new System.Drawing.Size(132, 36);
             this.closelittleRunner.TabIndex = 2;
@@ -140,20 +154,6 @@
             this.openabout.UseVisualStyleBackColor = true;
             this.openabout.Click += new System.EventHandler(this.openabout_Click);
             // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.helpToolStripMenuItem.Text = "Help";
-            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
             // ProgramSwitcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -167,6 +167,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ProgramSwitcher";
             this.Text = "littleRunner - Start program";
+            this.SizeChanged += new System.EventHandler(this.ProgramSwitcher_SizeChanged);
+            this.Shown += new System.EventHandler(this.ProgramSwitcher_Shown);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProgramSwitcher_FormClosing);
             this.trayIconMenu.ResumeLayout(false);
             this.ResumeLayout(false);

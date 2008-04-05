@@ -48,8 +48,8 @@ namespace littleRunner
                 // The world
                 World world = new World(filename, Invalidate, true);
 
-                Width = world.Width+5;
-                Height = world.Height+29;
+                Width = world.Settings.GameWindowWidth+5;
+                Height = world.Settings.LevelHeight+29;
 
                 // all enemys need special things
                 foreach (Enemy enemie in world.Enemies)
@@ -109,7 +109,7 @@ namespace littleRunner
                 {
                     ai.Quit();
 
-                    MessageBox.Show("Congrulations!\nYou 've played all predefined littleRunner levels.\n\nNow start making your own level with the level-editor :-).", "Congratulations");
+                    MessageBox.Show("Congratulations!\nYou 've played all predefined littleRunner levels.\n\nNow start making your own level with the level-editor :-).", "Congratulations");
                     Close();
                 }
             }

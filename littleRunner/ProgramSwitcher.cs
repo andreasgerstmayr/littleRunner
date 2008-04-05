@@ -6,6 +6,9 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
+using System.IO;
+
+
 namespace littleRunner
 {
     public partial class ProgramSwitcher : Form
@@ -20,8 +23,33 @@ namespace littleRunner
 
             canClose = false;
 
-            // check all files in resources
+            
         }
+
+        private void ProgramSwitcher_Shown(object sender, EventArgs e)
+        {
+            // fill the Files.f-Dictionary
+            Files.fill();
+
+
+            // check all files
+            foreach (KeyValuePair<gFile, string> pair in Files.f)
+            {
+                string filename = pair.Value;
+                List<string> files = AnimateImage.getFiles(filename);
+
+                foreach (string file in files)
+                {
+                    if (!File.Exists(file))
+                    {
+                        MessageBox.Show("File " + file + " not found!\n\nClosing ...", "Fatal error");
+                        closeToolStripMenuItem_Click(sender, e);
+                        break;
+                    }
+                }
+            }
+        }
+
 
         private void startgame_Click(object sender, EventArgs e)
         {
@@ -65,6 +93,7 @@ namespace littleRunner
         private void trayIcon_DoubleClick(object sender, EventArgs e)
         {
             Show();
+            this.WindowState = FormWindowState.Normal;
         }
 
         private void startGameToolStripMenuItem_Click(object sender, EventArgs e)
@@ -102,5 +131,10 @@ namespace littleRunner
             }
         }
 
+        private void ProgramSwitcher_SizeChanged(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+                Hide();
+        }
     }
 }

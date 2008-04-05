@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.50727</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{36578D35-24D5-42EC-95B5-4B9258BF9A6B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -63,16 +63,27 @@
     <Compile Include="Editor\Help.Designer.cs">
       <DependentUpon>Help.cs</DependentUpon>
     </Compile>
+    <Compile Include="Files.cs" />
+    <Compile Include="GameObjects\AnimateImage.cs" />
     <Compile Include="GameObjects\Enemys\Spika.cs" />
     <Compile Include="GameObjects\Enemys\Gumba.cs" />
-    <Compile Include="GameObjects\Fire.cs">
+    <Compile Include="GameObjects\MovingElements\Mushroom.cs" />
+    <Compile Include="GameObjects\Objects\Fire.cs">
     </Compile>
-    <Compile Include="GameObjects\MainGameObject.cs">
+    <Compile Include="GameObjects\Objects\Box.cs" />
+    <Compile Include="GameObjects\Objects\Brick.cs" />
+    <Compile Include="GameObjects\Objects\DesignElement.cs" />
+    <Compile Include="GameObjects\Objects\FireFlower.cs" />
+    <Compile Include="GameObjects\Objects\Floor.cs" />
+    <Compile Include="GameObjects\Objects\LevelEnd.cs" />
+    <Compile Include="GameObjects\Objects\Pipe.cs" />
+    <Compile Include="GameObjects\MainGameObjects\MainGameObject.cs">
     </Compile>
-    <Compile Include="GameObjects\MovingElement.cs" />
-    <Compile Include="GameObjects\MovingElements.cs" />
+    <Compile Include="GameObjects\Objects\Star.cs" />
+    <Compile Include="GameObjects\MovingElements\MovingElement.cs" />
+    <Compile Include="GameObjects\MovingElements\MovingImageElement.cs" />
     <Compile Include="Game\Debug.cs" />
-    <Compile Include="GameObjects\Enemy.cs" />
+    <Compile Include="GameObjects\Enemys\Enemy.cs" />
     <Compile Include="GameObjects\Enemys\Turtle.cs" />
     <Compile Include="Game\Game.cs">
       <SubType>Form</SubType>
@@ -84,10 +95,11 @@
     </Compile>
     <Compile Include="Game\GameAI.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
-    <Compile Include="GameObjects\GameObjects.cs" />
+    <Compile Include="GameObjects\Objects\StickyImageElement.cs" />
     <Compile Include="GameObjects\MainGameObjects\Tux.cs">
     </Compile>
     <Compile Include="Game\GamePhysics.cs" />
+    <Compile Include="Game\World\World.Serialization.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramSwitcher.cs">
       <SubType>Form</SubType>
@@ -117,12 +129,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Data\Images\Enemie\Turtle\Green\turtle_right.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\Images\Enemie\Turtle\Green\turtle_left.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Data\Images\GameElement\fire.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -132,7 +138,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="GameObjects\StickyElement.cs" />
-    <Compile Include="Game\World.cs" />
+    <Compile Include="Game\World\World.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Images\GameElement\tree.png">
@@ -201,9 +207,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\Images\Enemie\Gumba\brown.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Data\Images\Enemie\Spika\green.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -211,14 +214,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\Images\Enemie\Spika\orange.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Data\Images\MainGameObject\Tux\tux_left.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\Images\MainGameObject\Tux\tux_right.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -261,6 +256,69 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\Images\Floor\floor_right.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\Images\MainGameObject\Tux\tux_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\MainGameObject\Tux\tux_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\MainGameObject\Tux\tux_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\MainGameObject\Tux\tux_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\MainGameObject\Tux\tux_4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\MainGameObject\Tux\tux_5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\Images\Enemie\Gumba\Brown\walk_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\Enemie\Gumba\Brown\walk_10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\Enemie\Gumba\Brown\walk_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\Enemie\Gumba\Brown\walk_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\Enemie\Gumba\Brown\walk_4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\Enemie\Gumba\Brown\walk_5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\Enemie\Gumba\Brown\walk_6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\Enemie\Gumba\Brown\walk_7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\Enemie\Gumba\Brown\walk_8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\Enemie\Gumba\Brown\walk_9.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\Images\Enemie\Turtle\Green\walk_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\Enemie\Turtle\Green\walk_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\Enemie\Turtle\Green\walk_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

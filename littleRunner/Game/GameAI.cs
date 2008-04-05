@@ -125,7 +125,7 @@ namespace littleRunner
                 }
                 mgo.Left += 15;
             }
-            else if (form.Width - mgo.Right < 100)
+            else if (world.Settings.GameWindowWidth - mgo.Right < 100)
             {
                 foreach (GameObject go in world.AllElements)
                 {

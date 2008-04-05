@@ -6,16 +6,38 @@ using System.Drawing;
 
 namespace littleRunner
 {
+    enum GumbaColor
+    {
+        Brown
+    }
     class Gumba : Enemy
     {
         private GameRunDirection direction;
         private int jumping;
-        private Image curimg;
+        private AnimateImage curimg;
         private int small;
+        private GumbaColor color;
 
         public override bool canFire
         {
             get { return true; }
+        }
+        public GumbaColor Color
+        {
+            get { return color; }
+            set
+            {
+                color = value;
+                switch (color)
+                {
+                    case GumbaColor.Brown:
+                        curimg = new AnimateImage (Files.f[gFile.gumba_brown], 100, GameDirection.Left);
+                        break;
+
+                }
+                Width = curimg.CurImage.Width;
+                Height = curimg.CurImage.Height;
+            }
         }
         public override void Draw(Graphics g)
         {
@@ -29,7 +51,7 @@ namespace littleRunner
             if (Height <= 2)
                 World.Enemies.Remove(this);
 
-            g.DrawImage(curimg, Left, Top, Width, Height);
+            curimg.Draw(g, Left, Top, Width, Height);
         }
 
         public GameRunDirection Direction
@@ -41,34 +63,22 @@ namespace littleRunner
         public Gumba()
             : base()
         {
-            curimg = new Bitmap(1, 1);
-
             jumping = 0;
             Direction = GameRunDirection.Right;
             small = 1;
         }
 
-        public Gumba(int top, int left, Image img)
+        public Gumba(int top, int left)
             : base()
         {
             Top = top;
             Left = left;
 
-            Width = img.Width;
-            Height = img.Height;
-
-            curimg = img;
+            Color = GumbaColor.Brown;
 
             jumping = 0;
             Direction = GameRunDirection.Right;
             small = 1;
-        }
-
-        public override void Init(World world)
-        {
-            base.Init(world);
-            if (world.playMode)
-                ImageAnimator.Animate(curimg, new EventHandler(FrameChanged));
         }
 
         public void FrameChanged(object o, EventArgs e)
@@ -123,7 +133,7 @@ namespace littleRunner
 
 
             // dead?
-            if (Top > World.Height)
+            if (Top > World.Settings.LevelHeight)
                 World.Enemies.Remove(this);
         }
 
@@ -146,14 +156,14 @@ namespace littleRunner
         public override Dictionary<string, object> Serialize()
         {
             Dictionary<string, object> ser = new Dictionary<string, object>(base.Serialize());
-            ser["img"] = curimg;
+            ser["Color"] = color;
             ser["Direction"] = Direction;
             return ser;
         }
         public override void Deserialize(Dictionary<string, object> ser)
         {
             base.Deserialize(ser);
-            curimg = (Image)ser["img"];
+            Color = (GumbaColor)ser["Color"];
             Direction = (GameRunDirection)ser["Direction"];
         }
     }

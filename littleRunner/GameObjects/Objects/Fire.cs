@@ -25,7 +25,7 @@ namespace littleRunner
 
         public Fire(GameRunDirection direction, int top, int left)
         {
-            curimg = Image.FromFile(Properties.Resources.fire);
+            curimg = Image.FromFile(Files.f[gFile.fire]);
             this.direction = direction;
             onBottom = false;
             checkIfBottom = false;
@@ -103,7 +103,7 @@ namespace littleRunner
                 World.MovingElements.Remove(this);
 
             // away?
-            if (Top > World.Height)
+            if (Top > World.Settings.LevelHeight)
             {
                 World.MovingElements.Remove(this);
             }

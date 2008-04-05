@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-using littleRunner.GameObjects;
+using littleRunner.GameObjects.Objects;
 
 
 namespace littleRunner
@@ -25,18 +25,6 @@ namespace littleRunner
         World world;
         string curfile;
 
-        private int[] getValues()
-        {
-            int[] values = new int[2];
-
-            if (!Int32.TryParse(txtRealWidth.Text, out values[0]))
-                values[0] = 0;
-            if (!Int32.TryParse(txtHeight.Text, out values[1]))
-                values[1] = 0;
-
-            return values;
-        }
-
         public Editor(ProgramSwitcher programSwitcher)
         {
             InitializeComponent();
@@ -48,47 +36,36 @@ namespace littleRunner
             mouseY = 0;
             scrolled = 0;
 
-            int[] dimension = getValues();
-            world = new World(dimension[0], dimension[1], level.Invalidate, false);
-            curfile = "";
 
             // Images
-            floorToolStripMenuItem.Image = Image.FromFile(Properties.Resources.floor_middle);
-            floor2ToolStripMenuItem.Image = Image.FromFile(Properties.Resources.floor_middle);
+            floorToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.floor_middle]);
 
-            designElementToolStripMenuItem.Image = Image.FromFile(Properties.Resources.tree);
-            treeToolStripMenuItem.Image = Image.FromFile(Properties.Resources.tree);
+            designElementToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.tree]);
+            treeToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.tree]);
 
-            brickToolStripMenuItem.Image = Image.FromFile(Properties.Resources.brick_blue);
-            yellowToolStripMenuItem.Image = Image.FromFile(Properties.Resources.brick_yellow);
-            blueToolStripMenuItem.Image = Image.FromFile(Properties.Resources.brick_blue);
-            redToolStripMenuItem.Image = Image.FromFile(Properties.Resources.brick_red);
-            iceToolStripMenuItem.Image = Image.FromFile(Properties.Resources.brick_ice);
+            brickToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.brick_blue]);
 
-            boxToolStripMenuItem.Image = Image.FromFile(Properties.Resources.box1);
-            boxToolStripMenuItem1.Image = Image.FromFile(Properties.Resources.box1);
+            boxToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.box1]);
 
-            pipeToolStripMenuItem.Image = Image.FromFile(Properties.Resources.pipe_green_up);
-            upToolStripMenuItem.Image = Image.FromFile(Properties.Resources.pipe_green_up);
-            mainToolStripMenuItem.Image = Image.FromFile(Properties.Resources.pipe_green_main);
+            pipeToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.pipe_green_up]);
 
-            pointStarToolStripMenuItem.Image = Image.FromFile(Properties.Resources.star);
+            pointStarToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.star]);
 
-            enemyToolStripMenuItem.Image = Image.FromFile(Properties.Resources.turtle_green_right);
-            turtleToolStripMenuItem.Image = Image.FromFile(Properties.Resources.turtle_green_right);
+            enemyToolStripMenuItem.Image = AnimateImage.FirstImage(Files.f[gFile.turtle_green]);
+            turtleToolStripMenuItem.Image = AnimateImage.FirstImage(Files.f[gFile.turtle_green]);
 
-            spikaToolStripMenuItem.Image = Image.FromFile(Properties.Resources.spika_green);
-            greenToolStripMenuItem.Image = Image.FromFile(Properties.Resources.spika_green);
-            orangeToolStripMenuItem.Image = Image.FromFile(Properties.Resources.spika_orange);
-            greyToolStripMenuItem.Image = Image.FromFile(Properties.Resources.spika_grey);
+            spikaToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.spika_green]);
 
-            gumbaToolStripMenuItem.Image = Image.FromFile(Properties.Resources.gumba_brown);
-            brownToolStripMenuItem.Image = Image.FromFile(Properties.Resources.gumba_brown);
+            gumbaToolStripMenuItem.Image = AnimateImage.FirstImage(Files.f[gFile.gumba_brown]);
 
-            levelEndToolStripMenuItem.Image = Image.FromFile(Properties.Resources.levelend_house);
-            houseToolStripMenuItem.Image = Image.FromFile(Properties.Resources.levelend_house);
+            levelEndToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.levelend_house]);
+            houseToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.levelend_house]);
 
-            startGameToolStripMenuItem.Image = Image.FromFile(Properties.Resources.icon_png);
+            startGameToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.icon_png]);
+
+
+            curfile = "";
+            newToolStripMenuItem_Click(new object(), new EventArgs());
         }
 
 
@@ -144,10 +121,28 @@ namespace littleRunner
         }
 
 
+        private void showGameSettings_Click(object sender, EventArgs e)
+        {
+            propertys.SelectedObject = world.Settings;
+            actualFocus.Text = "Focus: " + world.Settings.GetType().Name;
+        }
+
+        private void setDelegateHandlers()
+        {
+            world.Settings.cGameWindowWidth = changedGameWindowWidth;
+            world.Settings.cLevelWidth = changedLevelWidth;
+            world.Settings.cLevelHeight = changedLevelHeight;
+            changedGameWindowWidth();
+            changedLevelWidth();
+            changedLevelHeight();
+        }
+
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int[] dimension = getValues();
-            world = new World(dimension[0], dimension[1], level.Invalidate, false);
+            curfile = "";
+            this.Text = "littleRunner Game Editor";
+            world = new World(700, 550, level.Invalidate, false);
+            setDelegateHandlers();
 
             level.Invalidate();
         }
@@ -155,11 +150,14 @@ namespace littleRunner
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             newToolStripMenuItem_Click(sender, e);
+            trackBar.Value = 0;
 
             if (openFile.ShowDialog() == DialogResult.OK)
             {
                 curfile = openFile.FileName;
+                this.Text = "littleRunner Game Editor - " + curfile;
                 world = new World(curfile, level.Invalidate, false);
+                setDelegateHandlers();
 
                 level.Invalidate();
             }
@@ -173,11 +171,11 @@ namespace littleRunner
             }
             else
             {
-                scrollAll(-scrolled);
+                scrollAll(scrolled);
 
                 world.Serialize(curfile);
 
-                scrollAll(scrolled);
+                scrollAll(-scrolled);
                 return true;
             }
         }
@@ -191,6 +189,7 @@ namespace littleRunner
             if (saveFile.ShowDialog() == DialogResult.OK)
             {
                 curfile = saveFile.FileName;
+                this.Text = "littleRunner Game Editor - " + curfile;
                 return save();
             }
             else
@@ -224,112 +223,66 @@ namespace littleRunner
         }
 
 
-        private void plainFloorToolStripMenuItem_Click(object sender, EventArgs e)
+        private void floorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PlainFloor f = new PlainFloor(Color.Black, 0, 0, 400, 20);
-            addElement(f);
-        }
-        private void floor2ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Floor f = new Floor(Image.FromFile(Properties.Resources.floor_left),
-                                Image.FromFile(Properties.Resources.floor_middle),
-                                Image.FromFile(Properties.Resources.floor_right),
-                                0, 0);
+            Floor f = new Floor(0, 0, FloorColor.Green);
             addElement(f);
         }
 
 
         private void treeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DesignElement tree = new DesignElement(0, 0, Image.FromFile(Properties.Resources.tree));
+            DesignElements tree = new DesignElements(0, 0, DesignElement.Tree);
             addElement(tree);
         }
 
-
-        private void yellowToolStripMenuItem_Click(object sender, EventArgs e)
+        private void boxToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Brick b = new Brick(0, 0, Image.FromFile(Properties.Resources.brick_yellow));
+            Box b = new Box(0, 0);
             addElement(b);
         }
 
-        private void blueToolStripMenuItem_Click(object sender, EventArgs e)
+        private void brickToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Brick b = new Brick(0, 0, Image.FromFile(Properties.Resources.brick_blue));
+            Brick b = new Brick(0, 0, BrickColor.Blue);
             addElement(b);
         }
 
-        private void redToolStripMenuItem_Click(object sender, EventArgs e)
+        private void pipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Brick b = new Brick(0, 0, Image.FromFile(Properties.Resources.brick_red));
-            addElement(b);
-        }
-
-        private void iceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Brick b = new Brick(0, 0, Image.FromFile(Properties.Resources.brick_ice));
-            addElement(b);
-        }
-
-
-        private void boxToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            Box b = new Box(0, 0, Image.FromFile(Properties.Resources.box1));
-            addElement(b);
-        }
-
-        private void upToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Pipe p = new Pipe(0, 0, Image.FromFile(Properties.Resources.pipe_green_up));
-            addElement(p);
-        }
-
-        private void mainToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Pipe p = new Pipe(0, 0, Image.FromFile(Properties.Resources.pipe_green_main));
+            Pipe p = new Pipe(0, 0, PipeColor.Green);
             addElement(p);
         }
 
         private void pointStarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Star p = new Star(0, 0, Image.FromFile(Properties.Resources.star));
+            Star p = new Star(0, 0);
             addElement(p);
         }
 
         private void turtleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Turtle t = new Turtle(0, 0, Image.FromFile(Properties.Resources.turtle_green_left),
-                                        Image.FromFile(Properties.Resources.turtle_green_right));
+            Turtle t = new Turtle(0, 0);
             addElement(t);
         }
 
-        private void greenToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void spikaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Spika s = new Spika(0, 0, Image.FromFile(Properties.Resources.spika_green));
+            Spika s = new Spika(0, 0);
             addElement(s);
         }
 
-        private void orangeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void gumbaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Spika s = new Spika(0, 0, Image.FromFile(Properties.Resources.spika_orange));
-            addElement(s);
-        }
-
-        private void greyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Spika s = new Spika(0, 0, Image.FromFile(Properties.Resources.spika_grey));
-            addElement(s);
-        }
-
-        private void brownToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Gumba g = new Gumba(0, 0, Image.FromFile(Properties.Resources.gumba_brown));
+            Gumba g = new Gumba(0, 0);
             addElement(g);
         }
 
         private void houseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            House h = new House(0, 0, Image.FromFile(Properties.Resources.levelend_house));
-            addElement(h);
+            LevelEnd l = new LevelEnd(0, 0, LevelEndImg.House);
+            addElement(l);
         }
 
 
@@ -395,37 +348,21 @@ namespace littleRunner
             level.Invalidate();
         }
 
-        private void txtViewWidth_KeyUp(object sender, KeyEventArgs e)
+
+        private void changedGameWindowWidth()
         {
-            int res;
-            if (Int32.TryParse(txtViewWidth.Text, out res) && res >= 622)
-            {
-                world.Width = res;
-            }
+            this.Width = 44 + world.Settings.GameWindowWidth + propertys.Width;
+        }
+        private void changedLevelWidth()
+        {
+            trackBar.Maximum = world.Settings.LevelWidth;
+            trackBar_ValueChanged(new object(), new EventArgs());
+        }
+        private void changedLevelHeight()
+        {
+            this.Height = 148 + world.Settings.LevelHeight;
         }
 
-        private void txtRealWidth_KeyUp(object sender, KeyEventArgs e)
-        {
-            int res;
-            if (Int32.TryParse(txtRealWidth.Text, out res) && res >= 622)
-            {
-                scrollBar.Maximum = res;
-            }
-        }
-
-        private void txtHeight_KeyUp(object sender, KeyEventArgs e)
-        {
-            int res;
-            if (Int32.TryParse(txtHeight.Text, out res))
-            {
-                world.Height = res;
-
-                level.Height = res;
-
-                this.Height = level.Top + level.Height + scrollBar.Height + 44;
-                propertys.Height = level.Height - 58;
-            }
-        }
 
         private void scrollAll(int val)
         {
@@ -435,10 +372,11 @@ namespace littleRunner
             }
         }
 
-        private void scrollBar_Scroll(object sender, ScrollEventArgs e)
+        private void trackBar_ValueChanged(object sender, EventArgs e)
         {
-            scrollAll(-(e.NewValue - e.OldValue) * 10);
-            scrolled += -(e.NewValue - e.OldValue) * 10;
+            scrollAll(-(trackBar.Value-scrolled));
+            curScrolling.Text = trackBar.Value.ToString();
+            scrolled = trackBar.Value;
 
             level.Invalidate();
         }
