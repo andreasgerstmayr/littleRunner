@@ -190,24 +190,22 @@ namespace littleRunner
                 {
                     curimg = imgD;
                     turtleMode = TurtleMode.Small;
-                    World.MGO.Move(true);
                     speed = 0;
                     startSmall = DateTime.Now;
                 }
                 else if (turtleMode == TurtleMode.Small)
                 {
                     turtleMode = TurtleMode.SmallRunning;
-                    World.MGO.Move(true);
                     speed = 20;
                     startSmall = DateTime.Now;
                 }
                 else if (turtleMode == TurtleMode.SmallRunning)
                 {
                     turtleMode = TurtleMode.Small;
-                    World.MGO.Move(true);
                     speed = 0;
                     startSmall = DateTime.Now;
                 }
+                World.MGO.Move(MoveType.Jump);
 
                 return true;
             }

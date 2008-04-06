@@ -52,8 +52,8 @@
     </Compile>
     <Compile Include="Files.cs" />
     <Compile Include="GameObjects\AnimateImage.cs" />
-    <Compile Include="GameObjects\Enemys\Spika.cs" />
-    <Compile Include="GameObjects\Enemys\Gumba.cs" />
+    <Compile Include="GameObjects\Enemies\Spika.cs" />
+    <Compile Include="GameObjects\Enemies\Gumba.cs" />
     <Compile Include="GameObjects\MovingElements\Mushroom.cs" />
     <Compile Include="GameObjects\Objects\Fire.cs">
     </Compile>
@@ -70,8 +70,8 @@
     <Compile Include="GameObjects\MovingElements\MovingElement.cs" />
     <Compile Include="GameObjects\MovingElements\MovingImageElement.cs" />
     <Compile Include="Game\Debug.cs" />
-    <Compile Include="GameObjects\Enemys\Enemy.cs" />
-    <Compile Include="GameObjects\Enemys\Turtle.cs" />
+    <Compile Include="GameObjects\Enemies\Enemy.cs" />
+    <Compile Include="GameObjects\Enemies\Turtle.cs" />
     <Compile Include="Game\Game.cs">
       <SubType>Form</SubType>
     </Compile>

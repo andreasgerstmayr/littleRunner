@@ -55,7 +55,7 @@ namespace littleRunner
                 Width = world.Settings.GameWindowWidth+5;
                 Height = world.Settings.LevelHeight+29;
 
-                // all enemys need special things
+                // all enemies need special things
                 foreach (Enemy enemie in world.Enemies)
                 {
                     enemie.Init(world);

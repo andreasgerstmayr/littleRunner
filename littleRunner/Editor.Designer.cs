@@ -58,16 +58,16 @@
             this.levelEndToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.houseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startGamecurrentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.objectContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toForegroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actualFocus = new System.Windows.Forms.Label();
-            this.showGameSettings = new System.Windows.Forms.Button();
+            this.showlevelSettings = new System.Windows.Forms.Button();
             this.trackBar = new System.Windows.Forms.TrackBar();
             this.curScrolling = new System.Windows.Forms.Label();
             this.tableLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.startGamecurrentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.objectContext.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar)).BeginInit();
@@ -229,7 +229,7 @@
             // 
             this.treeToolStripMenuItem.Name = "treeToolStripMenuItem";
             this.treeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
-            this.treeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.treeToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.treeToolStripMenuItem.Text = "Tree";
             this.treeToolStripMenuItem.Click += new System.EventHandler(this.treeToolStripMenuItem_Click);
             // 
@@ -322,6 +322,14 @@
             this.startGameToolStripMenuItem.Text = "Start Game (beginning)";
             this.startGameToolStripMenuItem.Click += new System.EventHandler(this.startGameToolStripMenuItem_Click);
             // 
+            // startGamecurrentToolStripMenuItem
+            // 
+            this.startGamecurrentToolStripMenuItem.Name = "startGamecurrentToolStripMenuItem";
+            this.startGamecurrentToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F10;
+            this.startGamecurrentToolStripMenuItem.Size = new System.Drawing.Size(118, 20);
+            this.startGamecurrentToolStripMenuItem.Text = "Start game (current)";
+            this.startGamecurrentToolStripMenuItem.Click += new System.EventHandler(this.startGamecurrentToolStripMenuItem_Click);
+            // 
             // objectContext
             // 
             this.objectContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -364,16 +372,16 @@
             this.actualFocus.TabIndex = 14;
             this.actualFocus.Text = "Focus: nothing";
             // 
-            // showGameSettings
+            // showlevelSettings
             // 
-            this.showGameSettings.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showGameSettings.Location = new System.Drawing.Point(685, 3);
-            this.showGameSettings.Name = "showGameSettings";
-            this.showGameSettings.Size = new System.Drawing.Size(197, 36);
-            this.showGameSettings.TabIndex = 16;
-            this.showGameSettings.Text = "Show Game settings";
-            this.showGameSettings.UseVisualStyleBackColor = true;
-            this.showGameSettings.Click += new System.EventHandler(this.showGameSettings_Click);
+            this.showlevelSettings.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showlevelSettings.Location = new System.Drawing.Point(685, 3);
+            this.showlevelSettings.Name = "showlevelSettings";
+            this.showlevelSettings.Size = new System.Drawing.Size(197, 36);
+            this.showlevelSettings.TabIndex = 16;
+            this.showlevelSettings.Text = "Show level settings";
+            this.showlevelSettings.UseVisualStyleBackColor = true;
+            this.showlevelSettings.Click += new System.EventHandler(this.showlevelSettings_Click);
             // 
             // trackBar
             // 
@@ -415,7 +423,7 @@
             this.tableLayout.Controls.Add(this.actualFocus, 1, 1);
             this.tableLayout.Controls.Add(this.curScrolling, 1, 3);
             this.tableLayout.Controls.Add(this.propertys, 1, 2);
-            this.tableLayout.Controls.Add(this.showGameSettings, 1, 0);
+            this.tableLayout.Controls.Add(this.showlevelSettings, 1, 0);
             this.tableLayout.Controls.Add(this.level, 0, 0);
             this.tableLayout.Location = new System.Drawing.Point(12, 52);
             this.tableLayout.Name = "tableLayout";
@@ -426,14 +434,6 @@
             this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayout.Size = new System.Drawing.Size(885, 614);
             this.tableLayout.TabIndex = 19;
-            // 
-            // startGamecurrentToolStripMenuItem
-            // 
-            this.startGamecurrentToolStripMenuItem.Name = "startGamecurrentToolStripMenuItem";
-            this.startGamecurrentToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F10;
-            this.startGamecurrentToolStripMenuItem.Size = new System.Drawing.Size(118, 20);
-            this.startGamecurrentToolStripMenuItem.Text = "Start game (current)";
-            this.startGamecurrentToolStripMenuItem.Click += new System.EventHandler(this.startGamecurrentToolStripMenuItem_Click);
             // 
             // Editor
             // 
@@ -497,7 +497,7 @@
         private System.Windows.Forms.ToolStripMenuItem gumbaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem levelEndToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem houseToolStripMenuItem;
-        private System.Windows.Forms.Button showGameSettings;
+        private System.Windows.Forms.Button showlevelSettings;
         private System.Windows.Forms.TrackBar trackBar;
         private System.Windows.Forms.Label curScrolling;
         private System.Windows.Forms.TableLayoutPanel tableLayout;

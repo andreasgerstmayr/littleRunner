@@ -58,14 +58,16 @@ namespace littleRunner
             Height = curimg.Height; 
         }
 
-        public override void Init(World world)
-        {
-            base.Init(world);
-        }
-
-
         public override bool getCrashEvent(GameObject go, GameDirection cidirection)
         {
+            switch (cidirection)
+            {
+                case GameDirection.Left: World.MGO.Move(MoveType.goLeft); break;
+                case GameDirection.Right: World.MGO.Move(MoveType.goRight); break;
+                case GameDirection.Top: World.MGO.Move(MoveType.goTop); break;
+                case GameDirection.Bottom: World.MGO.Move(MoveType.goBottom); break;
+            }
+
             return false;
         }
 

@@ -13,6 +13,6 @@ namespace littleRunner
         public abstract bool fireCanDelete { get; }
 
         virtual public void Check() { }
-        abstract public bool getCrashEvent(GameObject go, GameDirection cidirection);
+        abstract public bool getCrashEvent(GameObject go, GameDirection cidirection); // true: survived, false: loose one livepoint
     }
 }
