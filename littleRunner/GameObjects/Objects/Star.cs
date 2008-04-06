@@ -34,8 +34,11 @@ namespace littleRunner.GameObjects.Objects
         {
             base.onOver(geventhandler, who, direction);
 
-            geventhandler(GameEvent.gotPoint, new Dictionary<GameEventArg, object>());
-            World.StickyElements.Remove(this);
+            if (who == GameElement.MGO)
+            {
+                geventhandler(GameEvent.gotPoint, new Dictionary<GameEventArg, object>());
+                World.StickyElements.Remove(this);
+            }
         }
 
 

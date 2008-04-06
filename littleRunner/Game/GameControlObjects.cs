@@ -15,7 +15,7 @@ namespace littleRunner
 
         public override void Draw(Graphics g)
         {
-            g.DrawString(points.ToString(), new Font(font, size), Brushes.Black, Left, Top);
+            g.DrawString("Points: " + points.ToString().PadLeft(7), new Font(font, size, FontStyle.Bold), Brushes.Black, Left, Top);
         }
 
         public int Points
@@ -27,6 +27,32 @@ namespace littleRunner
         public GameControl_Points(int top, int left, string font, float size)
         {
             points = 0;
+            Top = top;
+            Left = left;
+            this.font = font;
+            this.size = size;
+        }
+    }
+    class GameControl_Lives : GameObject
+    {
+        int lives;
+        string font;
+        float size;
+
+        public override void Draw(Graphics g)
+        {
+            g.DrawString("Lives: " + lives.ToString().PadLeft(9), new Font(font, size, FontStyle.Bold), Brushes.Black, Left, Top);
+        }
+
+        public int Lives
+        {
+            get { return lives; }
+            set { lives = value; }
+        }
+
+        public GameControl_Lives(int lives, int top, int left, string font, float size)
+        {
+            this.lives = lives;
             Top = top;
             Left = left;
             this.font = font;
@@ -88,11 +114,13 @@ namespace littleRunner
     class GameControlObjects
     {
         private GameControl_Points points;
+        private GameControl_Lives lives;
         private GameControl_Sound sound;
 
         public void Draw(Graphics g)
         {
             points.Draw(g);
+            lives.Draw(g);
         }
 
         public int Points
@@ -100,15 +128,21 @@ namespace littleRunner
             get { return points.Points; }
             set { points.Points = value; }
         }
+        public int Lives
+        {
+            get { return lives.Lives; }
+            set { lives.Lives = value; }
+        }
         public GameControl_Sound Sound
         {
             get { return sound; }
         }
 
 
-        public GameControlObjects(GameControl_Points points, GameControl_Sound sound)
+        public GameControlObjects(GameControl_Points points, GameControl_Lives lives, GameControl_Sound sound)
         {
             this.points = points;
+            this.lives = lives;
             this.sound = sound;
         }
 

@@ -37,12 +37,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(504, 483);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "Game";
             this.Text = "littleRunner";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Game_Paint);
+            this.SizeChanged += new System.EventHandler(this.Game_SizeChanged);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Game_FormClosed);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Game_KeyPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Game_KeyUp);

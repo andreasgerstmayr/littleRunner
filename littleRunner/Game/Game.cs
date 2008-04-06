@@ -17,6 +17,10 @@ namespace littleRunner
         GameControlObjects gameControlObjs;
         bool editorOpened;
 
+        internal GameAI AI
+        {
+            get { return ai; }
+        }
 
         public Game(ProgramSwitcher programSwitcher)
         {
@@ -40,7 +44,7 @@ namespace littleRunner
             // check if file exists
             if (!File.Exists(filename))
             {
-                MessageBox.Show("Can't load " + filename + "!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Can't load " + filename + "!", "Error - File not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Close();
             }
             else
@@ -66,12 +70,13 @@ namespace littleRunner
 
 
                 // GameControls
-                if (gameControlObjs == null) // first run
+                if (gameControlObjs == null) // first run or complete new run (after game over)
                 {
-                    GameControl_Points gameControlObjPoints = new GameControl_Points(18, Width - 55, "Verdana", 15);
+                    GameControl_Points gameControlObjPoints = new GameControl_Points(18, Width - 140, "Verdana", 12);
+                    GameControl_Lives gameControlObjLives = new GameControl_Lives(4, 40, Width - 140, "Verdana", 12);
                     GameControl_Sound gameControlObjSound = new GameControl_Sound();
 
-                    gameControlObjs = new GameControlObjects(gameControlObjPoints, gameControlObjSound);
+                    gameControlObjs = new GameControlObjects(gameControlObjPoints, gameControlObjLives, gameControlObjSound);
                 }
 
                 // main game AI
@@ -85,16 +90,26 @@ namespace littleRunner
         {
             if (gevent == GameEvent.dead || gevent == GameEvent.outOfRange)
             {
-                DialogResult dr = MessageBox.Show("Play again?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-
-                if (dr == DialogResult.Yes)
+                if (gameControlObjs.Lives > 0)
                 {
-                    ai.Quit();
-
+                    ai.Stop();
+                    gameControlObjs.Lives--;
                     StartGame(ai.world.fileName);
                 }
-                else if (dr == DialogResult.No)
-                    Close();
+                else
+                {
+                    DialogResult dr = MessageBox.Show("Game Over.\n\nPlay again?", "Game Over", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+
+                    if (dr == DialogResult.Yes)
+                    {
+                        ai.Quit();
+                        gameControlObjs = null; // set new points+sound!
+
+                        StartGame(ai.world.fileName);
+                    }
+                    else if (dr == DialogResult.No)
+                        Close();
+                }
             }
             else if (gevent == GameEvent.finishedLevel)
             {
@@ -102,8 +117,8 @@ namespace littleRunner
                 if (nextLevel != null && nextLevel != "")
                 {
                     ai.Stop();
- 
-                    StartGame((string)args[GameEventArg.nextLevel]);
+
+                    StartGame("Data/Levels/" + nextLevel);
                 }
                 else
                 {
@@ -165,7 +180,22 @@ namespace littleRunner
 
         private void Game_Paint(object sender, PaintEventArgs e)
         {
-            ai.Draw(e.Graphics);
+            if (ai != null)
+                ai.Draw(e.Graphics);
+        }
+
+        private void Game_SizeChanged(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                if (ai != null)
+                    ai.Stop();
+            }
+            else if (WindowState == FormWindowState.Normal)
+            {
+                if (ai != null)
+                    ai.PlayAgain();
+            }
         }
     }
 }
