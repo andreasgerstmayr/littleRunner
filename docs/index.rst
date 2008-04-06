@@ -14,10 +14,3 @@ Welcome to littleRunner's documentation!
    editor/editor
 
 
-Shortlinks
-==========
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
