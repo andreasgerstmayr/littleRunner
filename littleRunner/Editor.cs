@@ -123,7 +123,7 @@ namespace littleRunner
         }
 
 
-        private void showGameSettings_Click(object sender, EventArgs e)
+        private void showlevelSettings_Click(object sender, EventArgs e)
         {
             propertys.SelectedObject = world.Settings;
             actualFocus.Text = "Focus: " + world.Settings.GetType().Name;
@@ -146,7 +146,7 @@ namespace littleRunner
             world = new World(700, 550, level.Invalidate, false);
             setDelegateHandlers();
 
-            showGameSettings_Click(sender, e);
+            showlevelSettings_Click(sender, e);
             level.Invalidate();
         }
 
@@ -162,7 +162,7 @@ namespace littleRunner
                 world = new World(curfile, level.Invalidate, false);
                 setDelegateHandlers();
 
-                showGameSettings_Click(sender, e);
+                showlevelSettings_Click(sender, e);
                 level.Invalidate();
             }
         }

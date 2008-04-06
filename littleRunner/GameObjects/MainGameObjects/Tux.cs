@@ -14,10 +14,12 @@ namespace littleRunner
         private int jumping;
         private bool firePressed;
         private GameMainObjectMode mode;
-        private DateTime immortializeStart; 
+        private DateTime immortializeStart;
         private bool immortialize;
         private int blink;
         private AnimateImage imgL, imgR;
+        private MoveType wantNextMove;
+
 
         public override void Draw(Graphics g)
         {
@@ -74,6 +76,7 @@ namespace littleRunner
             immortialize = false;
 
             blink = 0;
+            wantNextMove = MoveType.Nothing;
         }
 
 
@@ -82,6 +85,30 @@ namespace littleRunner
             int newtop = 0;
             int newleft = 0;
 
+
+            if (wantNextMove != MoveType.Nothing)
+            {
+                switch (wantNextMove)
+                {
+                    case MoveType.Jump:
+                        jumping = 100;
+                        break;
+                    case MoveType.goLeft:
+                        newleft = -20;
+                        break;
+                    case MoveType.goRight:
+                        newleft = 20;
+                        break;
+                    case MoveType.goTop:
+                        newtop -= 20;
+                        break;
+                    case MoveType.goBottom:
+                        newtop = 20;
+                        break;
+                }
+
+                wantNextMove = MoveType.Nothing;
+            }
 
             // falling? (need for jumping-if)
             bool falling = GamePhysics.Falling(World.StickyElements, this);
@@ -155,7 +182,6 @@ namespace littleRunner
             else
                 firePressed = false;
 
-
             // jumping?
             GamePhysics.Jumping(ref jumping, ref newtop, ref newleft);
 
@@ -176,10 +202,9 @@ namespace littleRunner
                 Left += newleft;
         }
 
-        public override void Move(bool jump)
+        public override void Move(MoveType mtype)
         {
-            if (jump)
-                jumping = 100;
+            wantNextMove = mtype;
         }
 
         public override void getEvent(GameEvent gevent, Dictionary<GameEventArg, object> args)

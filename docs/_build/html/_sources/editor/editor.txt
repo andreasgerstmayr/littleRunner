@@ -8,7 +8,7 @@ How do I make a new level?
 
 That's very simple. Click File -> New.
 
-If you want a background, or change the default width/height of the level, click the *Show Game settings*-Button.
+If you want a background, or change the default width/height of the level, click the *Show level settings*-button.
 
 
 How do I save it?
