@@ -40,8 +40,6 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closelittleRunner = new System.Windows.Forms.Button();
-            this.openhelp = new System.Windows.Forms.Button();
-            this.openabout = new System.Windows.Forms.Button();
             this.trayIconMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,14 +103,12 @@
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.helpToolStripMenuItem.Text = "Help";
-            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
@@ -124,7 +120,7 @@
             // closelittleRunner
             // 
             this.closelittleRunner.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closelittleRunner.Location = new System.Drawing.Point(141, 164);
+            this.closelittleRunner.Location = new System.Drawing.Point(141, 103);
             this.closelittleRunner.Name = "closelittleRunner";
             this.closelittleRunner.Size = new System.Drawing.Size(132, 36);
             this.closelittleRunner.TabIndex = 2;
@@ -132,38 +128,15 @@
             this.closelittleRunner.UseVisualStyleBackColor = true;
             this.closelittleRunner.Click += new System.EventHandler(this.closelittleRunner_Click);
             // 
-            // openhelp
-            // 
-            this.openhelp.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.openhelp.Location = new System.Drawing.Point(93, 88);
-            this.openhelp.Name = "openhelp";
-            this.openhelp.Size = new System.Drawing.Size(112, 27);
-            this.openhelp.TabIndex = 3;
-            this.openhelp.Text = "Help";
-            this.openhelp.UseVisualStyleBackColor = true;
-            this.openhelp.Click += new System.EventHandler(this.openhelp_Click);
-            // 
-            // openabout
-            // 
-            this.openabout.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.openabout.Location = new System.Drawing.Point(211, 88);
-            this.openabout.Name = "openabout";
-            this.openabout.Size = new System.Drawing.Size(112, 27);
-            this.openabout.TabIndex = 4;
-            this.openabout.Text = "About";
-            this.openabout.UseVisualStyleBackColor = true;
-            this.openabout.Click += new System.EventHandler(this.openabout_Click);
-            // 
             // ProgramSwitcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 214);
-            this.Controls.Add(this.openabout);
-            this.Controls.Add(this.openhelp);
+            this.ClientSize = new System.Drawing.Size(414, 151);
             this.Controls.Add(this.starteditor);
-            this.Controls.Add(this.closelittleRunner);
             this.Controls.Add(this.startgame);
+            this.Controls.Add(this.closelittleRunner);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ProgramSwitcher";
             this.Text = "littleRunner - Start program";
@@ -185,8 +158,6 @@
         private System.Windows.Forms.ToolStripMenuItem startEditorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.Button closelittleRunner;
-        private System.Windows.Forms.Button openhelp;
-        private System.Windows.Forms.Button openabout;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }

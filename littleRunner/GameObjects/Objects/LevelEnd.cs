@@ -11,11 +11,11 @@ namespace littleRunner.GameObjects.Objects
     class LevelEnd : StickyImageElement
     {
         LevelEndImg image;
-        string nextWorld;
-        public string NextWorld
+        string nextLevel;
+        public string NextLevel
         {
-            get { return nextWorld; }
-            set { nextWorld = value; }
+            get { return nextLevel; }
+            set { nextLevel = value; }
         }
         public override bool canStandOn
         {
@@ -43,7 +43,7 @@ namespace littleRunner.GameObjects.Objects
             if (who == GameElement.MGO)
             {
                 Dictionary<GameEventArg, object> args = new Dictionary<GameEventArg, object>();
-                args[GameEventArg.nextLevel] = nextWorld;
+                args[GameEventArg.nextLevel] = nextLevel;
 
                 geventhandler(GameEvent.finishedLevel, args);
             }
@@ -63,14 +63,14 @@ namespace littleRunner.GameObjects.Objects
         public override Dictionary<string, object> Serialize()
         {
             Dictionary<string, object> ser = new Dictionary<string, object>(base.Serialize());
-            ser["NextWorld"] = nextWorld;
+            ser["NextLevel"] = nextLevel;
             ser["Image"] = image;
             return ser;
         }
         public override void Deserialize(Dictionary<string, object> ser)
         {
             base.Deserialize(ser);
-            nextWorld = (string)ser["NextWorld"];
+            nextLevel = (string)ser["NextLevel"];
             Image = (LevelEndImg)ser["Image"];
         }
     }

@@ -16,7 +16,7 @@ namespace littleRunner
     {
         private Image curimg;
         private SpikaColor color;
-        public override bool canFire
+        public override bool fireCanDelete
         {
             get { return false; }
         }

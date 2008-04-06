@@ -18,7 +18,7 @@ namespace littleRunner
         private int small;
         private GumbaColor color;
 
-        public override bool canFire
+        public override bool fireCanDelete
         {
             get { return true; }
         }

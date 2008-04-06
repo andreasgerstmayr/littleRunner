@@ -48,7 +48,7 @@ namespace littleRunner
             }
         }
 
-        public override bool canFire
+        public override bool  fireCanDelete
         {
             get { return true; }
         }

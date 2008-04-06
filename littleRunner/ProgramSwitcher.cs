@@ -71,18 +71,6 @@ namespace littleRunner
             }
         }
 
-        private void openhelp_Click(object sender, EventArgs e)
-        {
-            Help h = new Help();
-            h.ShowDialog(); 
-        }
-
-        private void openabout_Click(object sender, EventArgs e)
-        {
-            About a = new About();
-            a.ShowDialog();
-        }
-
 
         private void closelittleRunner_Click(object sender, EventArgs e)
         {
@@ -104,16 +92,6 @@ namespace littleRunner
         private void startEditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             starteditor_Click(sender, e);
-        }
-
-        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            openhelp_Click(sender, e);
-        }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            openabout_Click(sender, e);
         }
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)

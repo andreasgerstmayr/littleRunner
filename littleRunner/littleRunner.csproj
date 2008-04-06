@@ -9,8 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>littleRunner</RootNamespace>
     <AssemblyName>littleRunner</AssemblyName>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>TuxIcon.ico</ApplicationIcon>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -45,23 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Editor\About.cs">
+    <Compile Include="Editor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Editor\About.Designer.cs">
-      <DependentUpon>About.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Editor\Editor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Editor\Editor.Designer.cs">
+    <Compile Include="Editor.Designer.cs">
       <DependentUpon>Editor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Editor\Help.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Editor\Help.Designer.cs">
-      <DependentUpon>Help.cs</DependentUpon>
     </Compile>
     <Compile Include="Files.cs" />
     <Compile Include="GameObjects\AnimateImage.cs" />
@@ -122,9 +109,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="Data\Levels\level1.lrl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -170,16 +154,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Editor\About.resx">
-      <DependentUpon>About.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Editor\Editor.resx">
+    <EmbeddedResource Include="Editor.resx">
       <DependentUpon>Editor.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Editor\Help.resx">
-      <DependentUpon>Help.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Data\Images\Box\box1.png">
@@ -321,6 +297,12 @@
     <None Include="Data\Images\Enemie\Turtle\Green\walk_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Data\Levels\level1.lrl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TuxIcon.ico" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Sound\" />

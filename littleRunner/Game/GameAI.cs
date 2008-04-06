@@ -71,7 +71,6 @@ namespace littleRunner
         internal World world;
         private GameControlObjects gameControlObj;
         private List<Keys> curkeys;
-        
 
         public void Init()
         {
@@ -83,11 +82,15 @@ namespace littleRunner
 
         public void Draw(Graphics g)
         {
-            world.Draw(g);
+            world.Draw(g, true);
             gameControlObj.Draw(g);
             mgo.Draw(g);
         }
 
+        public void PlayAgain()
+        {
+            mainTimer.Enabled = true;
+        }
         public void Stop()
         {
             mainTimer.Enabled = false;
@@ -114,25 +117,23 @@ namespace littleRunner
             this.debug = debug;
         }
 
+        public void Scroll(int value, bool moveMGO)
+        {
+            foreach (GameObject go in world.AllElements)
+            {
+                go.Left += value;
+            }
+            if (moveMGO)
+                mgo.Left += value;
+        }
+
         public void Check(object sender, EventArgs e)
         {
             // scrolling?
             if (mgo.Left < 100)
-            {
-                foreach (GameObject go in world.AllElements)
-                {
-                    go.Left += 15;
-                }
-                mgo.Left += 15;
-            }
+                Scroll(15, true); // scroll left
             else if (world.Settings.GameWindowWidth - mgo.Right < 100)
-            {
-                foreach (GameObject go in world.AllElements)
-                {
-                    go.Left -= 15;
-                }
-                mgo.Left -= 15;
-            }
+                Scroll(-15, true); // scroll right
 
 
             List<GameKey> pressedKeys = new List<GameKey>();
@@ -192,7 +193,7 @@ namespace littleRunner
             }
             else if (gevent == GameEvent.outOfRange || gevent == GameEvent.dead)
             {
-                mainTimer.Enabled = false;
+                Stop();
                 forminteract(gevent, args);
             }
             else if (gevent == GameEvent.finishedLevel)

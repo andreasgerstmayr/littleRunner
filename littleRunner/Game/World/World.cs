@@ -66,9 +66,9 @@ namespace littleRunner
             this.mainGameObject = mainGameObject;
         }
 
-        public void Draw(Graphics g)
+        public void Draw(Graphics g, bool drawBackground)
         {
-            if (Settings.BackgroundImg != null)
+            if (drawBackground && Settings.BackgroundImg != null)
                 g.DrawImage(Settings.BackgroundImg, 0, 0, Settings.GameWindowWidth, Settings.LevelHeight);
 
             foreach (GameObject go in AllElements)
@@ -173,7 +173,7 @@ namespace littleRunner
 
         public LevelSettings()
         {
-            background = Backgrounds.None;
+            Background = Backgrounds.None;
         }
 
 
@@ -234,8 +234,15 @@ namespace littleRunner
             get { return backgroundImg; }
             set
             {
-                // create Thumbnail & keep in Cache (RAM)
-                backgroundImg = value.GetThumbnailImage(gameWindowWidth, LevelHeight, ThumbnailCallback, IntPtr.Zero);
+                if (value == null)
+                {
+                    backgroundImg = null;
+                }
+                else
+                {
+                    // create Thumbnail & keep in Cache (RAM)
+                    backgroundImg = value.GetThumbnailImage(gameWindowWidth, LevelHeight, ThumbnailCallback, IntPtr.Zero);
+                }
             }
         }
 
