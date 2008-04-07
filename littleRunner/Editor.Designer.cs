@@ -131,21 +131,22 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -178,21 +179,21 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveAsToolStripMenuItem.Text = "Save as";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(120, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // insertToolStripMenuItem
             // 
@@ -213,7 +214,7 @@
             // 
             this.floorToolStripMenuItem.Name = "floorToolStripMenuItem";
             this.floorToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.floorToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.floorToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.floorToolStripMenuItem.Text = "Floor";
             this.floorToolStripMenuItem.Click += new System.EventHandler(this.floorToolStripMenuItem_Click);
             // 
@@ -222,14 +223,14 @@
             this.designElementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.treeToolStripMenuItem});
             this.designElementToolStripMenuItem.Name = "designElementToolStripMenuItem";
-            this.designElementToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.designElementToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.designElementToolStripMenuItem.Text = "Design Element";
             // 
             // treeToolStripMenuItem
             // 
             this.treeToolStripMenuItem.Name = "treeToolStripMenuItem";
             this.treeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
-            this.treeToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.treeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.treeToolStripMenuItem.Text = "Tree";
             this.treeToolStripMenuItem.Click += new System.EventHandler(this.treeToolStripMenuItem_Click);
             // 
@@ -237,7 +238,7 @@
             // 
             this.boxToolStripMenuItem.Name = "boxToolStripMenuItem";
             this.boxToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
-            this.boxToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.boxToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.boxToolStripMenuItem.Text = "Box";
             this.boxToolStripMenuItem.Click += new System.EventHandler(this.boxToolStripMenuItem_Click);
             // 
@@ -245,7 +246,7 @@
             // 
             this.brickToolStripMenuItem.Name = "brickToolStripMenuItem";
             this.brickToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-            this.brickToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.brickToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.brickToolStripMenuItem.Text = "Brick";
             this.brickToolStripMenuItem.Click += new System.EventHandler(this.brickToolStripMenuItem_Click);
             // 
@@ -253,15 +254,15 @@
             // 
             this.pipeToolStripMenuItem.Name = "pipeToolStripMenuItem";
             this.pipeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.pipeToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.pipeToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.pipeToolStripMenuItem.Text = "Pipe";
             this.pipeToolStripMenuItem.Click += new System.EventHandler(this.pipeToolStripMenuItem_Click);
             // 
             // pointStarToolStripMenuItem
             // 
             this.pointStarToolStripMenuItem.Name = "pointStarToolStripMenuItem";
-            this.pointStarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.pointStarToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.pointStarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+            this.pointStarToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.pointStarToolStripMenuItem.Text = "Star (Point)";
             this.pointStarToolStripMenuItem.Click += new System.EventHandler(this.pointStarToolStripMenuItem_Click);
             // 
@@ -272,7 +273,7 @@
             this.spikaToolStripMenuItem,
             this.gumbaToolStripMenuItem});
             this.enemyToolStripMenuItem.Name = "enemyToolStripMenuItem";
-            this.enemyToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.enemyToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.enemyToolStripMenuItem.Text = "Enemy";
             // 
             // turtleToolStripMenuItem
@@ -286,7 +287,7 @@
             // spikaToolStripMenuItem
             // 
             this.spikaToolStripMenuItem.Name = "spikaToolStripMenuItem";
-            this.spikaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.spikaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.K)));
             this.spikaToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.spikaToolStripMenuItem.Text = "Spika";
             this.spikaToolStripMenuItem.Click += new System.EventHandler(this.spikaToolStripMenuItem_Click);
@@ -304,7 +305,7 @@
             this.levelEndToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.houseToolStripMenuItem});
             this.levelEndToolStripMenuItem.Name = "levelEndToolStripMenuItem";
-            this.levelEndToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.levelEndToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.levelEndToolStripMenuItem.Text = "Level End";
             // 
             // houseToolStripMenuItem
@@ -318,6 +319,7 @@
             // startGameToolStripMenuItem
             // 
             this.startGameToolStripMenuItem.Name = "startGameToolStripMenuItem";
+            this.startGameToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F9;
             this.startGameToolStripMenuItem.Size = new System.Drawing.Size(130, 20);
             this.startGameToolStripMenuItem.Text = "Start Game (beginning)";
             this.startGameToolStripMenuItem.Click += new System.EventHandler(this.startGameToolStripMenuItem_Click);
