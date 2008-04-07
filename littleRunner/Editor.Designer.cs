@@ -107,7 +107,6 @@
             // openFile
             // 
             this.openFile.DefaultExt = "lrl";
-            this.openFile.FileName = "level.lrl";
             this.openFile.Filter = "littleRunner Levels (*.lrl)|*.lrl";
             this.openFile.InitialDirectory = "./Levels";
             this.openFile.RestoreDirectory = true;
