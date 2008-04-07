@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel;
 
 namespace littleRunner.GameObjects.Objects
 {
@@ -15,6 +16,7 @@ namespace littleRunner.GameObjects.Objects
         {
             get { return false; }
         }
+        [Category("Design element")]
         public DesignElement Element
         {
             get { return element; }
@@ -38,6 +40,19 @@ namespace littleRunner.GameObjects.Objects
             : base(top, left)
         {
             Element = element;
+        }
+
+
+        public override Dictionary<string, object> Serialize()
+        {
+            Dictionary<string, object> ser = new Dictionary<string, object>(base.Serialize());
+            ser["Element"] = element;
+            return ser;
+        }
+        public override void Deserialize(Dictionary<string, object> ser)
+        {
+            base.Deserialize(ser);
+            Element = (DesignElement)ser["Element"];
         }
     }
 }

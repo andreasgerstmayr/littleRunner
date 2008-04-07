@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.ComponentModel;
 using System.Drawing;
-using System.Windows.Forms;
 
 namespace littleRunner
 {
@@ -28,6 +27,16 @@ namespace littleRunner
         private DateTime startSmall;
         private TurtleStyle style;
 
+        public override bool fireCanDelete
+        {
+            get { return true; }
+        }
+        public override bool turtleCanRemove
+        {
+            get { return true; }
+        }
+
+        [Category("Turtle")]
         public TurtleStyle Style
         {
             get { return style; }
@@ -47,28 +56,26 @@ namespace littleRunner
                 Height = imgR.CurImage.Height;
             }
         }
-
-        public override bool  fireCanDelete
-        {
-            get { return true; }
-        }
-        public override void Draw(Graphics g)
-        {
-            curimg.Draw(g, Left, Top, curimg.CurImage.Width, Height);
-        }
-
+        [Category("Turtle")]
         public GameRunDirection Direction
         {
             get { return direction; }
             set
             {
                 direction = value;
-                if (value == GameRunDirection.Left)
-                    curimg = imgL;
-                else if (value == GameRunDirection.Right)
-                    curimg = imgR;
+                switch (direction)
+                {
+                    case GameRunDirection.Left: curimg = imgL; break;
+                    case GameRunDirection.Right: curimg = imgR; break;
+                }
             }
         }
+
+        public override void Draw(Graphics g)
+        {
+            curimg.Draw(g, Left, Top, curimg.CurImage.Width, Height);
+        }
+
 
         public Turtle()
             : base()
@@ -116,10 +123,11 @@ namespace littleRunner
                 speed = 1;
                 turtleMode = TurtleMode.Normal;
 
-                if (direction == GameRunDirection.Left)
-                    curimg = imgL;
-                else if (direction == GameRunDirection.Right)
-                    curimg = imgR;
+                switch (direction)
+                {
+                    case GameRunDirection.Left: curimg = imgL; break;
+                    case GameRunDirection.Right: curimg = imgR; break;
+                }
             }
 
 
@@ -140,7 +148,7 @@ namespace littleRunner
             Enemy crashedInEnemy = GamePhysics.CrashEnemy(this, World.Enemies, getEvent, ref newtop, ref newleft);
 
             bool removedEnemy = false;
-            if (turtleMode == TurtleMode.SmallRunning && crashedInEnemy != null)
+            if (turtleMode == TurtleMode.SmallRunning && crashedInEnemy != null && crashedInEnemy.turtleCanRemove)
             {
                 World.Enemies.Remove(crashedInEnemy);
                 removedEnemy = true;
@@ -158,17 +166,18 @@ namespace littleRunner
             if (newleft != 0)
                 Left += newleft;
 
-            if (!falling && (newleft == 0 || (crashedInEnemy!=null && !removedEnemy)))
+            if (!falling && (newleft == 0 || (crashedInEnemy != null && !removedEnemy)))
             {
                 if (turtleMode == TurtleMode.Normal || turtleMode == TurtleMode.SmallRunning)
                 {
                     direction = direction == GameRunDirection.Left ? GameRunDirection.Right : GameRunDirection.Left;
                     if (turtleMode == TurtleMode.Normal)
                     {
-                        if (direction == GameRunDirection.Left)
-                            curimg = imgL;
-                        else if (direction == GameRunDirection.Right)
-                            curimg = imgR;
+                        switch (direction)
+                        {
+                            case GameRunDirection.Left: curimg = imgL; break;
+                            case GameRunDirection.Right: curimg = imgR; break;
+                        }
                     }
                 }
             }
@@ -182,28 +191,28 @@ namespace littleRunner
         public override bool getCrashEvent(GameObject go, GameDirection cidirection)
         {
             if ((go is Enemy && go != this) || go is Mushroom)
-               return true;
+                return true;
 
             if (cidirection == GameDirection.Top)
             {
-                if (turtleMode == TurtleMode.Normal)
+                switch (turtleMode)
                 {
-                    curimg = imgD;
-                    turtleMode = TurtleMode.Small;
-                    speed = 0;
-                    startSmall = DateTime.Now;
-                }
-                else if (turtleMode == TurtleMode.Small)
-                {
-                    turtleMode = TurtleMode.SmallRunning;
-                    speed = 20;
-                    startSmall = DateTime.Now;
-                }
-                else if (turtleMode == TurtleMode.SmallRunning)
-                {
-                    turtleMode = TurtleMode.Small;
-                    speed = 0;
-                    startSmall = DateTime.Now;
+                    case TurtleMode.Normal:
+                        curimg = imgD;
+                        turtleMode = TurtleMode.Small;
+                        speed = 0;
+                        startSmall = DateTime.Now;
+                        break;
+                    case TurtleMode.Small:
+                        turtleMode = TurtleMode.SmallRunning;
+                        speed = 20;
+                        startSmall = DateTime.Now;
+                        break;
+                    case TurtleMode.SmallRunning:
+                        turtleMode = TurtleMode.Small;
+                        speed = 0;
+                        startSmall = DateTime.Now;
+                        break;
                 }
                 World.MGO.Move(MoveType.Jump);
 
@@ -214,7 +223,7 @@ namespace littleRunner
                 if (turtleMode == TurtleMode.Small)
                 {
                     turtleMode = TurtleMode.SmallRunning;
-                    direction = cidirection==GameDirection.Left ? GameRunDirection.Right: GameRunDirection.Left;
+                    direction = cidirection == GameDirection.Left ? GameRunDirection.Right : GameRunDirection.Left;
                     speed = 20;
 
                     return true;

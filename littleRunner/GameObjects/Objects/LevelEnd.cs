@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel;
 
 namespace littleRunner.GameObjects.Objects
 {
@@ -12,6 +13,7 @@ namespace littleRunner.GameObjects.Objects
     {
         LevelEndImg image;
         string nextLevel;
+        [Category("Next level")]
         public string NextLevel
         {
             get { return nextLevel; }
@@ -21,6 +23,7 @@ namespace littleRunner.GameObjects.Objects
         {
             get { return false; }
         }
+        [Category("LevelEnd image")]
         public LevelEndImg Image
         {
             get { return image; }
@@ -56,7 +59,7 @@ namespace littleRunner.GameObjects.Objects
         public LevelEnd(int top, int left, LevelEndImg img)
             : base(top, left)
         {
-            Image = image;
+            Image = img;
         }
 
 

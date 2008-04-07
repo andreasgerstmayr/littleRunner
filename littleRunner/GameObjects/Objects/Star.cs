@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel;
 
 namespace littleRunner.GameObjects.Objects
 {
@@ -16,6 +17,7 @@ namespace littleRunner.GameObjects.Objects
         {
             get { return false; }
         }
+        [Category("Star")]
         public StarStyle Style
         {
             get { return style; }

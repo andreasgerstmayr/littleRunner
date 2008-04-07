@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
+using System.ComponentModel;
 
 namespace littleRunner.GameObjects.Objects
 {
@@ -39,6 +40,7 @@ namespace littleRunner.GameObjects.Objects
         {
             get { return true; }
         }
+        [Category("Floor")]
         public FloorColor Color
         {
             get { return color; }

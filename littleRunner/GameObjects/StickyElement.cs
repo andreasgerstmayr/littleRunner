@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel;
+
 
 namespace littleRunner
 {
     abstract class StickyElement : GameObject
     {
+        [Browsable(false), Category("Object")]
         abstract public bool canStandOn { get; }
 
         public StickyElement()

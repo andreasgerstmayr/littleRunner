@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel;
 
 using System.Drawing;
 using System.IO;
@@ -177,6 +178,7 @@ namespace littleRunner
         }
 
 
+        [Category("Level settings")]
         public int GameWindowWidth
         {
             get { return gameWindowWidth; }
@@ -186,6 +188,7 @@ namespace littleRunner
                 if (cGameWindowWidth != null) cGameWindowWidth();
             }
         }
+        [Category("Level settings")]
         public int LevelWidth
         {
             get { return levelWidth; }
@@ -195,6 +198,7 @@ namespace littleRunner
                 if (cLevelWidth != null) cLevelWidth();
             }
         }
+        [Category("Level settings")]
         public int LevelHeight
         {
             get { return levelHeight; }
@@ -204,6 +208,7 @@ namespace littleRunner
                 if (cLevelHeight != null) cLevelHeight();
             }
         }
+        [Category("Level settings")]
         public Backgrounds Background
         {
             get { return background; }
