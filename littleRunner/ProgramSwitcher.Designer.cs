@@ -36,8 +36,6 @@
             this.trayIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.startGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closelittleRunner = new System.Windows.Forms.Button();
             this.trayIconMenu.SuspendLayout();
@@ -78,11 +76,9 @@
             this.trayIconMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.startGameToolStripMenuItem,
             this.startEditorToolStripMenuItem,
-            this.helpToolStripMenuItem,
-            this.aboutToolStripMenuItem,
             this.closeToolStripMenuItem});
             this.trayIconMenu.Name = "trayIconMenu";
-            this.trayIconMenu.Size = new System.Drawing.Size(141, 114);
+            this.trayIconMenu.Size = new System.Drawing.Size(141, 70);
             // 
             // startGameToolStripMenuItem
             // 
@@ -98,18 +94,6 @@
             this.startEditorToolStripMenuItem.Text = "Start editor";
             this.startEditorToolStripMenuItem.Click += new System.EventHandler(this.startEditorToolStripMenuItem_Click);
             // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.aboutToolStripMenuItem.Text = "About";
-            // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
@@ -120,7 +104,7 @@
             // closelittleRunner
             // 
             this.closelittleRunner.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closelittleRunner.Location = new System.Drawing.Point(141, 103);
+            this.closelittleRunner.Location = new System.Drawing.Point(141, 96);
             this.closelittleRunner.Name = "closelittleRunner";
             this.closelittleRunner.Size = new System.Drawing.Size(132, 36);
             this.closelittleRunner.TabIndex = 2;
@@ -132,7 +116,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 151);
+            this.ClientSize = new System.Drawing.Size(414, 144);
             this.Controls.Add(this.starteditor);
             this.Controls.Add(this.startgame);
             this.Controls.Add(this.closelittleRunner);
@@ -158,7 +142,5 @@
         private System.Windows.Forms.ToolStripMenuItem startEditorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.Button closelittleRunner;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }

@@ -256,7 +256,7 @@ namespace littleRunner
 
         private void boxToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Box b = new Box(0, 0);
+            Box b = new Box(0, 0, BoxStyle.Yellow);
             addElement(b);
         }
 

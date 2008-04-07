@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.ComponentModel;
 using System.Drawing;
 
 namespace littleRunner
@@ -20,6 +20,7 @@ namespace littleRunner
         {
             get { return false; }
         }
+        [Category("Spika")]
         public SpikaColor Color
         {
             get { return color; }
@@ -35,6 +36,10 @@ namespace littleRunner
             }
         }
 
+        public override bool turtleCanRemove
+        {
+            get { return false; }
+        }
         public override void Draw(Graphics g)
         {
             g.DrawImage(curimg, Left, Top, Width, Height);
@@ -60,12 +65,15 @@ namespace littleRunner
 
         public override bool getCrashEvent(GameObject go, GameDirection cidirection)
         {
-            switch (cidirection)
+            if (go is MainGameObject)
             {
-                case GameDirection.Left: World.MGO.Move(MoveType.goLeft); break;
-                case GameDirection.Right: World.MGO.Move(MoveType.goRight); break;
-                case GameDirection.Top: World.MGO.Move(MoveType.goTop); break;
-                case GameDirection.Bottom: World.MGO.Move(MoveType.goBottom); break;
+                switch (cidirection)
+                {
+                    case GameDirection.Left: World.MGO.Move(MoveType.goLeft); break;
+                    case GameDirection.Right: World.MGO.Move(MoveType.goRight); break;
+                    case GameDirection.Top: World.MGO.Move(MoveType.goTop); break;
+                    case GameDirection.Bottom: World.MGO.Move(MoveType.goBottom); break;
+                }
             }
 
             return false;

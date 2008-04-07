@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel;
+
 
 namespace littleRunner.GameObjects.Objects
 {
@@ -38,6 +40,7 @@ namespace littleRunner.GameObjects.Objects
                 }
             }
         }
+        [Category("Box")]
         public BoxType BoxType
         {
             get { return btype; }
@@ -76,11 +79,11 @@ namespace littleRunner.GameObjects.Objects
         {
             got = false;
         }
-        public Box(int top, int left)
+        public Box(int top, int left, BoxStyle style)
             : base(top, left)
         {
             got = false;
-            Style = BoxStyle.Yellow;
+            Style = style;
         }
 
 

@@ -142,10 +142,6 @@
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/Brick/brick_blue.png</value>
-        </ImageFilename>
         <Color>
           <type>littleRunner.GameObjects.Objects.BrickColor</type>
           <value>Blue</value>
@@ -168,10 +164,6 @@
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/Box/box1.png</value>
-        </ImageFilename>
         <BoxType>
           <type>littleRunner.GameObjects.Objects.BoxType</type>
           <value>GoodMushroom</value>
@@ -198,10 +190,6 @@
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/GameItem/star.png</value>
-        </ImageFilename>
         <StarStyle>
           <type>littleRunner.GameObjects.Objects.StarStyle</type>
           <value>Yellow</value>
@@ -224,10 +212,6 @@
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/GameItem/star.png</value>
-        </ImageFilename>
         <StarStyle>
           <type>littleRunner.GameObjects.Objects.StarStyle</type>
           <value>Yellow</value>
@@ -250,10 +234,6 @@
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/GameItem/star.png</value>
-        </ImageFilename>
         <StarStyle>
           <type>littleRunner.GameObjects.Objects.StarStyle</type>
           <value>Yellow</value>
@@ -276,10 +256,6 @@
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/GameItem/star.png</value>
-        </ImageFilename>
         <StarStyle>
           <type>littleRunner.GameObjects.Objects.StarStyle</type>
           <value>Yellow</value>
@@ -302,10 +278,10 @@
           <type>System.Int32</type>
           <value>200</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/GameElement/tree.png</value>
-        </ImageFilename>
+        <Element>
+          <type>littleRunner.GameObjects.Objects.DesignElement</type>
+          <value>Tree</value>
+        </Element>
       </littleRunner.GameObjects.Objects.DesignElements>
       <littleRunner.GameObjects.Objects.Pipe>
         <Top>
@@ -346,10 +322,6 @@
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/GameItem/star.png</value>
-        </ImageFilename>
         <StarStyle>
           <type>littleRunner.GameObjects.Objects.StarStyle</type>
           <value>Yellow</value>
@@ -372,10 +344,6 @@
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/Brick/brick_ice.png</value>
-        </ImageFilename>
         <Color>
           <type>littleRunner.GameObjects.Objects.BrickColor</type>
           <value>Ice</value>
@@ -398,10 +366,6 @@
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/Brick/brick_ice.png</value>
-        </ImageFilename>
         <Color>
           <type>littleRunner.GameObjects.Objects.BrickColor</type>
           <value>Ice</value>
@@ -424,10 +388,6 @@
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/Brick/brick_red.png</value>
-        </ImageFilename>
         <Color>
           <type>littleRunner.GameObjects.Objects.BrickColor</type>
           <value>Red</value>
@@ -450,10 +410,6 @@
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/Brick/brick_blue.png</value>
-        </ImageFilename>
         <Color>
           <type>littleRunner.GameObjects.Objects.BrickColor</type>
           <value>Blue</value>
@@ -476,10 +432,6 @@
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/Brick/brick_ice.png</value>
-        </ImageFilename>
         <Color>
           <type>littleRunner.GameObjects.Objects.BrickColor</type>
           <value>Ice</value>
@@ -532,11 +484,11 @@
       <littleRunner.GameObjects.Objects.Star>
         <Top>
           <type>System.Int32</type>
-          <value>79</value>
+          <value>28</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>1449</value>
+          <value>1446</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -546,10 +498,6 @@
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/GameItem/star.png</value>
-        </ImageFilename>
         <StarStyle>
           <type>littleRunner.GameObjects.Objects.StarStyle</type>
           <value>Yellow</value>
@@ -558,11 +506,11 @@
       <littleRunner.GameObjects.Objects.Star>
         <Top>
           <type>System.Int32</type>
-          <value>47</value>
+          <value>13</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>1404</value>
+          <value>1400</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -572,10 +520,6 @@
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/GameItem/star.png</value>
-        </ImageFilename>
         <StarStyle>
           <type>littleRunner.GameObjects.Objects.StarStyle</type>
           <value>Yellow</value>
@@ -584,11 +528,11 @@
       <littleRunner.GameObjects.Objects.Star>
         <Top>
           <type>System.Int32</type>
-          <value>29</value>
+          <value>6</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>1349</value>
+          <value>1350</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -598,10 +542,6 @@
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/GameItem/star.png</value>
-        </ImageFilename>
         <StarStyle>
           <type>littleRunner.GameObjects.Objects.StarStyle</type>
           <value>Yellow</value>
@@ -610,11 +550,11 @@
       <littleRunner.GameObjects.Objects.Star>
         <Top>
           <type>System.Int32</type>
-          <value>27</value>
+          <value>0</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>1286</value>
+          <value>1298</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -624,10 +564,6 @@
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/GameItem/star.png</value>
-        </ImageFilename>
         <StarStyle>
           <type>littleRunner.GameObjects.Objects.StarStyle</type>
           <value>Yellow</value>
@@ -650,10 +586,6 @@
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/Brick/brick_blue.png</value>
-        </ImageFilename>
         <Color>
           <type>littleRunner.GameObjects.Objects.BrickColor</type>
           <value>Blue</value>
@@ -676,10 +608,6 @@
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/GameItem/star.png</value>
-        </ImageFilename>
         <StarStyle>
           <type>littleRunner.GameObjects.Objects.StarStyle</type>
           <value>Yellow</value>
@@ -702,10 +630,6 @@
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/GameItem/star.png</value>
-        </ImageFilename>
         <StarStyle>
           <type>littleRunner.GameObjects.Objects.StarStyle</type>
           <value>Yellow</value>
@@ -728,10 +652,6 @@
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/GameItem/star.png</value>
-        </ImageFilename>
         <StarStyle>
           <type>littleRunner.GameObjects.Objects.StarStyle</type>
           <value>Yellow</value>
@@ -776,10 +696,10 @@
           <type>System.Int32</type>
           <value>200</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/GameElement/tree.png</value>
-        </ImageFilename>
+        <Element>
+          <type>littleRunner.GameObjects.Objects.DesignElement</type>
+          <value>Tree</value>
+        </Element>
       </littleRunner.GameObjects.Objects.DesignElements>
       <littleRunner.GameObjects.Objects.Box>
         <Top>
@@ -798,10 +718,6 @@
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/Box/box1.png</value>
-        </ImageFilename>
         <BoxType>
           <type>littleRunner.GameObjects.Objects.BoxType</type>
           <value>FireFlower</value>
@@ -894,10 +810,6 @@
           <type>System.Int32</type>
           <value>128</value>
         </Height>
-        <ImageFilename>
-          <type>System.String</type>
-          <value>Data/Images/LevelEnd/house.png</value>
-        </ImageFilename>
         <NextLevel>
           <type>System.String</type>
           <value>level2.lrl</value>

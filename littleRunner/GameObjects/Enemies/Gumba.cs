@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.ComponentModel;
 using System.Drawing;
 
 namespace littleRunner
@@ -22,6 +22,11 @@ namespace littleRunner
         {
             get { return true; }
         }
+        public override bool turtleCanRemove
+        {
+            get { return true; }
+        }
+        [Category("Gumba")]
         public GumbaColor Color
         {
             get { return color; }
@@ -39,6 +44,12 @@ namespace littleRunner
                 Height = curimg.CurImage.Height;
             }
         }
+        [Category("Gumba")]
+        public GameRunDirection Direction
+        {
+            get { return direction; }
+            set { direction = value; }
+        }
         public override void Draw(Graphics g)
         {
             if (small > 1)
@@ -54,11 +65,6 @@ namespace littleRunner
             curimg.Draw(g, Left, Top, Width, Height);
         }
 
-        public GameRunDirection Direction
-        {
-            get { return direction; }
-            set { direction = value; }
-        }
 
         public Gumba()
             : base()
@@ -139,7 +145,7 @@ namespace littleRunner
 
         public override bool getCrashEvent(GameObject go, GameDirection cidirection)
         {
-            if (cidirection == GameDirection.Top)
+            if (go is MainGameObject && cidirection == GameDirection.Top)
             {
                 small = 2;
                 return true;

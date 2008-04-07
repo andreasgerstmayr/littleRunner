@@ -50,7 +50,7 @@ namespace littleRunner
         Left,
         Right
     }
-    enum GameMainObjectMode
+    enum MainGameObjectMode
     {
         NormalFire,
         Normal,

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 
 using System.Drawing;
-using System.Windows.Forms;
 
 namespace littleRunner
 {
@@ -13,7 +12,7 @@ namespace littleRunner
         private GameRunDirection direction;
         private int jumping;
         private bool firePressed;
-        private GameMainObjectMode mode;
+        private MainGameObjectMode mode;
         private DateTime immortializeStart;
         private bool immortialize;
         private int blink;
@@ -30,30 +29,35 @@ namespace littleRunner
                 blink++;
         }
 
-        private GameMainObjectMode Mode
+        private MainGameObjectMode Mode
         {
             get { return mode; }
             set
             {
                 mode = value;
-                if (value == GameMainObjectMode.NormalFire)
+                switch (mode)
                 {
-                    Height = curimg.CurImage.Height;
-                }
-                else if (value == GameMainObjectMode.Normal)
-                {
-                    if (Height == 44)
-                        Top -= curimg.CurImage.Height - 44;
-                    Height = curimg.CurImage.Height;
-                }
-                else if (value == GameMainObjectMode.Small)
-                {
-                    Top += curimg.CurImage.Height - 44;
-                    Height = 44;
+                    case MainGameObjectMode.NormalFire:
+                        Height = curimg.CurImage.Height;
+                        break;
+                    case MainGameObjectMode.Normal:
+                        if (Height == 44)
+                            Top -= curimg.CurImage.Height - 44;
+                        Height = curimg.CurImage.Height;
+                        break;
+                    case MainGameObjectMode.Small:
+                        Top += curimg.CurImage.Height - 44;
+                        Height = 44;
+                        break;
                 }
                 blink = 0;
             }
         }
+        public override MainGameObjectMode currentMode
+        {
+            get { return Mode; }
+            set { Mode = value; }
+        } 
 
         public Tux(int top, int left)
         {
@@ -71,7 +75,7 @@ namespace littleRunner
             direction = GameRunDirection.Right;
 
             firePressed = false;
-            mode = GameMainObjectMode.Normal;
+            mode = MainGameObjectMode.Normal;
             immortializeStart = DateTime.Now;
             immortialize = false;
 
@@ -167,7 +171,7 @@ namespace littleRunner
                 jumping = 100;
             }
 
-            if (pressedKeys.Contains(GameKey.fire) && mode == GameMainObjectMode.NormalFire)
+            if (pressedKeys.Contains(GameKey.fire) && mode == MainGameObjectMode.NormalFire)
             {
                 if (!firePressed)
                 {
@@ -212,30 +216,36 @@ namespace littleRunner
             base.getEvent(gevent, args);
             if (gevent == GameEvent.crashInEnemy && !immortialize)
             {
-                if (mode == GameMainObjectMode.NormalFire)
-                    Mode = GameMainObjectMode.Normal;
-                else if (mode == GameMainObjectMode.Normal)
-                    Mode = GameMainObjectMode.Small;
-                else if (mode == GameMainObjectMode.Small)
-                    aiEventHandler(GameEvent.dead, args);
+                switch (mode)
+                {
+                    case MainGameObjectMode.NormalFire:
+                        Mode = MainGameObjectMode.Normal;
+                        break;
+                    case MainGameObjectMode.Normal:
+                        Mode = MainGameObjectMode.Small;
+                        break;
+                    case MainGameObjectMode.Small:
+                        aiEventHandler(GameEvent.dead, args);
+                        break;
+                }
                 immortialize = true;
                 immortializeStart = DateTime.Now;
             }
             else if (gevent == GameEvent.gotGoodMushroom)
             {
-                if (mode == GameMainObjectMode.Small)
-                    Mode = GameMainObjectMode.Normal;
+                if (mode == MainGameObjectMode.Small)
+                    Mode = MainGameObjectMode.Normal;
             }
             else if (gevent == GameEvent.gotPoisonMushroom)
             {
-                if (mode == GameMainObjectMode.NormalFire || mode == GameMainObjectMode.Normal)
-                    Mode = GameMainObjectMode.Small;
-                else if (mode == GameMainObjectMode.Small)
+                if (mode == MainGameObjectMode.NormalFire || mode == MainGameObjectMode.Normal)
+                    Mode = MainGameObjectMode.Small;
+                else if (mode == MainGameObjectMode.Small)
                     aiEventHandler(GameEvent.dead, args);
             }
             else if (gevent == GameEvent.gotFireFlower)
             {
-                Mode = GameMainObjectMode.NormalFire;
+                Mode = MainGameObjectMode.NormalFire;
             }
             else if (gevent == GameEvent.finishedLevel)
             {

@@ -35,6 +35,12 @@ How do I make one object more visible (give to foreground or background)?
 Right-Click on the object, and select that what you want.
 
 
+How do I delete some object/enemy?
+-----------------------------------
+
+Right-Click on the object/enemy, and select delete.
+
+
 I want a box with a good/poison mushroom / fireflower, how can I make one?
 --------------------------------------------------------------------------
 

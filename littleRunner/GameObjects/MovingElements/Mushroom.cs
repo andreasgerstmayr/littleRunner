@@ -61,10 +61,15 @@ namespace littleRunner
             GameDirection _direction;
             if (GamePhysics.SingleCrashDetection(this, World.MGO, out _direction, ref newtop, ref newleft, true))
             {
-                if (mtype == MushroomType.Good)
-                    World.MGO.getEvent(GameEvent.gotGoodMushroom, new Dictionary<GameEventArg, object>());
-                else if (mtype == MushroomType.Poison)
-                    World.MGO.getEvent(GameEvent.gotPoisonMushroom, new Dictionary<GameEventArg, object>());
+                switch (mtype)
+                {
+                    case MushroomType.Good:
+                        World.MGO.getEvent(GameEvent.gotGoodMushroom, new Dictionary<GameEventArg, object>());
+                        break;
+                    case MushroomType.Poison:
+                        World.MGO.getEvent(GameEvent.gotPoisonMushroom, new Dictionary<GameEventArg, object>());
+                        break;
+                }
                 World.MovingElements.Remove(this);
             }
 
@@ -89,10 +94,15 @@ namespace littleRunner
 
             if (who == GameElement.MGO)
             {
-                if (mtype == MushroomType.Good)
-                    World.MGO.getEvent(GameEvent.gotGoodMushroom, new Dictionary<GameEventArg, object>());
-                else if (mtype == MushroomType.Poison)
-                    World.MGO.getEvent(GameEvent.gotPoisonMushroom, new Dictionary<GameEventArg, object>());
+                switch (mtype)
+                {
+                    case MushroomType.Good:
+                        World.MGO.getEvent(GameEvent.gotGoodMushroom, new Dictionary<GameEventArg, object>());
+                        break;
+                    case MushroomType.Poison:
+                        World.MGO.getEvent(GameEvent.gotPoisonMushroom, new Dictionary<GameEventArg, object>());
+                        break;
+                }
                 World.MovingElements.Remove(this);
             }
         }

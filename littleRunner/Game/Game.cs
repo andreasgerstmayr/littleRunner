@@ -14,8 +14,11 @@ namespace littleRunner
     {
         ProgramSwitcher programSwitcher;
         GameAI ai;
+        MainGameObjectMode lastMode;
+        bool lastModeIsNull;
         GameControlObjects gameControlObjs;
         bool editorOpened;
+
 
         internal GameAI AI
         {
@@ -28,6 +31,8 @@ namespace littleRunner
 
             editorOpened = false;
             this.programSwitcher = programSwitcher;
+
+            lastModeIsNull = true;
             StartGame("Data/Levels/level1.lrl");
         }
         public Game(ProgramSwitcher programSwitcher, string filename)
@@ -36,6 +41,8 @@ namespace littleRunner
 
             editorOpened = true;
             this.programSwitcher = programSwitcher;
+
+            lastModeIsNull = true;
             StartGame(filename);
         }
 
@@ -49,6 +56,24 @@ namespace littleRunner
             }
             else
             {
+                // set form title
+                string title = "";
+
+                int lastBackslash = filename.LastIndexOf("/");
+                if (lastBackslash == -1)
+                    title = filename.Substring(0);
+                else
+                    title = filename.Substring(lastBackslash+1);
+
+                int lastDot = title.LastIndexOf(".");
+                if (lastDot != -1)
+                {
+                    title = title.Substring(0, lastDot);
+                }
+
+                Text = "littleRunner - " + title;
+
+
                 // The world
                 World world = new World(filename, Invalidate, true);
 
@@ -82,6 +107,10 @@ namespace littleRunner
                 // main game AI
                 ai = new GameAI(this, GameAIInteract, world, tux, gameControlObjs);
                 ai.Init();
+
+                if (!lastModeIsNull)
+                   ai.world.MGO.currentMode = lastMode;
+
                 gameControlObjs.Sound.Start();
             }
         }
@@ -93,22 +122,31 @@ namespace littleRunner
                 if (gameControlObjs.Lives > 0)
                 {
                     ai.Stop();
+                    string lastFileName = ai.world.fileName;
+                    ai = null;
+                    lastModeIsNull = true; // start with standard mode after death
+
                     gameControlObjs.Lives--;
-                    StartGame(ai.world.fileName);
+                    StartGame(lastFileName);
                 }
                 else
                 {
                     DialogResult dr = MessageBox.Show("Game Over.\n\nPlay again?", "Game Over", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                    lastModeIsNull = true; // start normal.
 
                     if (dr == DialogResult.Yes)
                     {
                         ai.Quit();
+                        ai = null;
                         gameControlObjs = null; // set new points+sound!
 
-                        StartGame(ai.world.fileName);
+                        StartGame("Data/Levels/level1.lrl");
                     }
                     else if (dr == DialogResult.No)
+                    {
+                        ai = null;
                         Close();
+                    }
                 }
             }
             else if (gevent == GameEvent.finishedLevel)
@@ -116,13 +154,19 @@ namespace littleRunner
                 string nextLevel = (string)args[GameEventArg.nextLevel];
                 if (nextLevel != null && nextLevel != "")
                 {
-                    ai.Stop();
+                    ai.Stop(); // play again, so save last MGO mode
+                    lastMode = ai.world.MGO.currentMode;
+                    lastModeIsNull = false; // it's set to the last mode
+
+                    ai = null;
 
                     StartGame("Data/Levels/" + nextLevel);
                 }
                 else
                 {
                     ai.Quit();
+                    ai = null;
+                    lastModeIsNull = true;
 
                     MessageBox.Show("Congratulations!\nYou 've played all predefined littleRunner levels.\n\nNow start making your own level with the level-editor :-).", "Congratulations");
                     Close();

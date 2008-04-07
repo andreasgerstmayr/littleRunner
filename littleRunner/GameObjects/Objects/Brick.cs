@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel;
 
 namespace littleRunner.GameObjects.Objects
 {
@@ -14,6 +15,7 @@ namespace littleRunner.GameObjects.Objects
     class Brick : StickyImageElement
     {
         BrickColor color;
+        [Category("Brick")]
         public BrickColor Color
         {
             get { return color; }

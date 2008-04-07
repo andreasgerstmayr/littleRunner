@@ -33,24 +33,10 @@ namespace littleRunner.GameObjects.Objects
         {
             Top = top;
             Left = left;
-            curimg = new Bitmap(1, 1);
         }
         public StickyImageElement(int top, int left, string imgfn) : this(top, left)
         {
             CurImgFilename = imgfn;
-        }
-
-
-        public override Dictionary<string, object> Serialize()
-        {
-            Dictionary<string, object> ser = new Dictionary<string, object>(base.Serialize());
-            ser["ImageFilename"] = curimgfn;
-            return ser;
-        }
-        public override void Deserialize(Dictionary<string, object> ser)
-        {
-            base.Deserialize(ser);
-            CurImgFilename = (string)ser["ImageFilename"];
         }
     }
 }

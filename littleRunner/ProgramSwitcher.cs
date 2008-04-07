@@ -22,8 +22,6 @@ namespace littleRunner
             InitializeComponent();
 
             canClose = false;
-
-            
         }
 
         private void ProgramSwitcher_Shown(object sender, EventArgs e)
