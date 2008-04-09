@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
 
+using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+
 
 namespace littleRunner
 {
@@ -16,12 +18,13 @@ namespace littleRunner
         List<Enemy> enemies;
         List<StickyElement> stickyelements;
         List<MovingElement> movingelements;
- 
+
         public string fileName;
         MainGameObject mainGameObject;
         public LevelSettings Settings;
         public MyInvalidateEventHandler Invalidate;
         public bool playMode;
+        public Script Script;
 
         public List<Enemy> Enemies
         {
@@ -55,6 +58,7 @@ namespace littleRunner
             movingelements = new List<MovingElement>();
             this.playMode = playMode;
         }
+        // new world with the game
         public World(string filename, MyInvalidateEventHandler invalidate, bool playMode)
         {
             this.Invalidate = invalidate;
@@ -65,6 +69,28 @@ namespace littleRunner
         public void Init(MainGameObject mainGameObject)
         {
             this.mainGameObject = mainGameObject;
+
+            // Script
+            if (Settings.Script.Length > 0)
+            {
+                Script = new Script(this);
+
+                foreach (GameObject go in this.AllElements)
+                {
+                    if (go.Name != null && go.Name != "")
+                    {
+                        Script.GlobalsAdd(go.Name, go);
+                    }
+                }
+
+                string code = "";
+                for (int i = 0; i < Settings.Script.Length; i++)
+                {
+                    code += Settings.Script[i] + (i + 1 == Settings.Script.Length ? "" : "\n");
+                }
+
+                Script.Execute(code);
+            }
         }
 
         public void Draw(Graphics g, bool drawBackground)
@@ -167,6 +193,7 @@ namespace littleRunner
         private int levelHeight;
         private Backgrounds background;
         private Image backgroundImg;
+        private string[] script = new string[0];
 
         public Changed_Setting cLevelWidth;
         public Changed_Setting cLevelHeight;
@@ -230,6 +257,14 @@ namespace littleRunner
             }
         }
 
+        [Category("Script")]
+        public string[] Script
+        {
+            get { return script; }
+            set { script = value; }
+        }
+
+
         private bool ThumbnailCallback()
         {
             return false;
@@ -259,6 +294,7 @@ namespace littleRunner
             ser["levelWidth"] = levelWidth;
             ser["levelHeight"] = levelHeight;
             ser["Background"] = background;
+            ser["Script"] = script;
             return ser;
         }
         public void Deserialize(Dictionary<string, object> ser)
@@ -267,6 +303,7 @@ namespace littleRunner
             levelWidth = (int)ser["levelWidth"];
             levelHeight = (int)ser["levelHeight"];
             Background = (Backgrounds)ser["Background"];
+            script = (string[])ser["Script"];
         }
     }
 }

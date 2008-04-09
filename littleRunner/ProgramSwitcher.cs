@@ -8,7 +8,6 @@ using System.Windows.Forms;
 
 using System.IO;
 
-
 namespace littleRunner
 {
     public partial class ProgramSwitcher : Form
@@ -26,7 +25,7 @@ namespace littleRunner
 
         private void ProgramSwitcher_Shown(object sender, EventArgs e)
         {
-            // fill the Files.f-Dictionary
+             // fill the Files.f-Dictionary
             Files.fill();
 
 
