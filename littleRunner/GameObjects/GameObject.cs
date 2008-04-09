@@ -21,12 +21,20 @@ namespace littleRunner
         private int left;
         private int width;
         private int height;
+        private string name;
 
         [Browsable(false)]
         public World World
         {
             get { return world; }
         }
+        [Category("Script")]
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
         [Category("Position")]
         public int Top
         {
@@ -80,6 +88,7 @@ namespace littleRunner
         public virtual Dictionary<string, object> Serialize()
         {
             Dictionary<string, object> ser = new Dictionary<string,object>();
+            ser["Name"] = name; 
             ser["Top"] = top;
             ser["Left"] = left;
             ser["Width"] = width;
@@ -88,6 +97,7 @@ namespace littleRunner
         }
         public virtual void Deserialize(Dictionary<string, object> ser)
         {
+            name = (string)ser["Name"];
             top = (int)ser["Top"];
             left = (int)ser["Left"];
             width = (int)ser["Width"];

@@ -14,9 +14,20 @@ namespace littleRunner
 
             if (o == null)
                 s = "null";
-            else if (o.GetType().FullName == "System.String")
+            else if (o.GetType() == typeof(bool))
+                s = o.ToString();
+            else if (o.GetType() == typeof(string))
                 s = (string)o;
-            else if (o.GetType().FullName == "System.Int32")
+            else if (o.GetType() == typeof(string[]))
+            {
+                s = "";
+                string[] array = (string[])o;
+                for(int i=0; i<array.Length; i++)
+                {
+                    s += array[i] + (i+1 == array.Length ? "" : "\n");
+                }
+            }
+            else if (o.GetType() == typeof(int))
                 s = o.ToString();
             else if (o.GetType().IsEnum)
                 s = Enum.GetName(o.GetType(), o);
@@ -26,12 +37,16 @@ namespace littleRunner
         private static object StrToObj(Type t, string s)
         {
             object o = null;
-
-            if (s == "null")
+            
+            if (t == null && s == "null")
                 o = null;
-            else if (t.FullName == "System.String")
+            else if (t == typeof(bool))
+                o = bool.Parse(s);
+            else if (t == typeof(string))
                 o = (string)s;
-            else if (t.FullName == "System.Int32")
+            else if (t == typeof(string[]))
+                o = s.Trim('\n').Split(new char[] { '\n' });
+            else if (t == typeof(int))
                 o = Convert.ToInt32(s);
             else if (t.IsEnum)
                 o = Enum.Parse(t, s);
@@ -49,7 +64,16 @@ namespace littleRunner
 
                 xmlWriter.WriteStartElement(keypair.Key);
                 xmlWriter.WriteElementString("type", xmlType);
-                xmlWriter.WriteElementString("value", xmlValue);
+                if (xmlType.IndexOf("[]") == -1)
+                    xmlWriter.WriteElementString("value", xmlValue);
+                else
+                {
+                    xmlWriter.WriteStartElement("value");
+                    if (xmlValue != "")
+                        xmlValue = "\n" + xmlValue + "\n";
+                    xmlWriter.WriteCData(xmlValue);
+                    xmlWriter.WriteEndElement();
+                }
                 xmlWriter.WriteEndElement();
             }
             xmlWriter.WriteEndElement();
@@ -108,7 +132,7 @@ namespace littleRunner
                 string value = xmlReader.ReadElementString("value");
                 xmlReader.ReadEndElement();
 
-               
+
                 object oValue = StrToObj(type=="NULL"?null:Type.GetType(type), value);
                 serialized[name] = oValue;
             }

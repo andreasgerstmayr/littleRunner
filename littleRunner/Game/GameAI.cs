@@ -158,7 +158,8 @@ namespace littleRunner
             // check of all enemies
             for (int i = 0; i < world.Enemies.Count; i++)
             {
-                world.Enemies[i].Check();
+                if (!world.Enemies[i].StartAtViewpoint || world.Enemies[i].Left < world.Settings.GameWindowWidth)
+                    world.Enemies[i].Check();
             }
             // check of all moving elements
             for (int i = 0; i < world.MovingElements.Count; i++)

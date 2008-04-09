@@ -399,6 +399,8 @@
             this.trackBar.TabIndex = 17;
             this.trackBar.TickFrequency = 50;
             this.trackBar.ValueChanged += new System.EventHandler(this.trackBar_ValueChanged);
+            this.trackBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.trackBar_MouseDown);
+            this.trackBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trackBar_MouseUp);
             // 
             // curScrolling
             // 
@@ -452,7 +454,7 @@
             this.MaximizeBox = false;
             this.Name = "Editor";
             this.Text = "littleRunner Game Editor";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Editor_FormClosed);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Editor_FormClosing);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.objectContext.ResumeLayout(false);

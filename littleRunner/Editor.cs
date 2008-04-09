@@ -20,6 +20,7 @@ namespace littleRunner
         Game g;
         GameObject focus;
         bool moving;
+        bool enableBG;
         int mouseX, mouseY;
         int scrolled;
 
@@ -36,7 +37,7 @@ namespace littleRunner
             mouseX = 0;
             mouseY = 0;
             scrolled = 0;
-
+            enableBG = true;
 
             // Images
             floorToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.floor_middle]);
@@ -70,12 +71,15 @@ namespace littleRunner
         }
 
 
+
         private void level_MouseDown(object sender, MouseEventArgs e)
         {
             base.OnMouseDown(e);
-
-            foreach (GameObject go in world.AllElements)
+            
+            List<GameObject> gos = world.AllElements;
+            for (int i = gos.Count - 1; i >= 0; i--)
             {
+                GameObject go = gos[i];
                 if (go.Hit(e.Y, e.X))
                 {
                     focus = go;
@@ -109,6 +113,7 @@ namespace littleRunner
 
         private void level_MouseClick(object sender, MouseEventArgs e)
         {
+            base.OnMouseClick(e);
             if (focus != null)
             {
                 propertys.SelectedObject = focus;
@@ -335,18 +340,30 @@ namespace littleRunner
             }
         }
 
-        private void Editor_FormClosed(object sender, FormClosedEventArgs e)
+        private void Editor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult res = MessageBox.Show("Do you want to save your changes?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            bool ok = false;
+            while (!ok)
+            {
+                DialogResult res = MessageBox.Show("Do you want to save your changes?", "Question", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
 
-            if (res == DialogResult.Yes)
-                saveAs();
+                if (res == DialogResult.Yes)
+                    ok = saveAs();
+                else if (res == DialogResult.No)
+                    ok = true;
+                else if (res == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                    ok = true;
+                    return;
+                }
+            }
             programSwitcher.Show();
         }
 
         private void level_Paint(object sender, PaintEventArgs e)
         {
-            world.Draw(e.Graphics, !moving);
+            world.Draw(e.Graphics, enableBG ? (!moving) : false);
         }
 
         private void propertys_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
@@ -384,6 +401,19 @@ namespace littleRunner
             scrolled = trackBar.Value;
             curScrolling.Text = trackBar.Value.ToString();
 
+            level.Invalidate();
+        }
+
+        private void trackBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            // disable background
+            enableBG = false;
+        }
+
+        private void trackBar_MouseUp(object sender, MouseEventArgs e)
+        {
+            // enable background
+            enableBG = true;
             level.Invalidate();
         }
     }

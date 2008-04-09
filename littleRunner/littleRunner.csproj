@@ -36,6 +36,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IronPython, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Dokumente und Einstellungen\Andi\Desktop\IronPython-1.1.1-Bin\IronPython-1.1.1\IronPython.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -123,6 +127,7 @@
     </Compile>
     <Compile Include="GameObjects\StickyElement.cs" />
     <Compile Include="Game\World\World.cs" />
+    <Compile Include="Game\Script.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Images\GameElement\tree.png">
