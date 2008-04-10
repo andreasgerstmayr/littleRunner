@@ -11,9 +11,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace littleRunner
 {
-    delegate void MyInvalidateEventHandler();
+    public delegate void MyInvalidateEventHandler();
 
-    class World
+    public class World
     {
         List<Enemy> enemies;
         List<StickyElement> stickyelements;
@@ -80,6 +80,7 @@ namespace littleRunner
                     if (go.Name != null && go.Name != "")
                     {
                         Script.GlobalsAdd(go.Name, go);
+                        Script.Execute("handler." + go.Name + " = AttrDict()");
                     }
                 }
 
@@ -179,14 +180,15 @@ namespace littleRunner
         }
     }
 
-    enum Backgrounds
+    public enum Backgrounds
     {
         Blue_Hills,
         Green_Hills,
         None
     }
-    delegate void Changed_Setting();
-    class LevelSettings
+
+    public delegate void Changed_Setting();
+    public class LevelSettings
     {
         private int gameWindowWidth;
         private int levelWidth;

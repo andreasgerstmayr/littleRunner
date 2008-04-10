@@ -38,7 +38,7 @@
   <ItemGroup>
     <Reference Include="IronPython, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Dokumente und Einstellungen\Andi\Desktop\IronPython-1.1.1-Bin\IronPython-1.1.1\IronPython.dll</HintPath>
+      <HintPath>C:\Dokumente und Einstellungen\Andreas\Desktop\IronPython-1.1.1-Bin\IronPython-1.1.1\IronPython.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -319,6 +319,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Script.py" />
     <Content Include="TuxIcon.ico" />
   </ItemGroup>
   <ItemGroup>

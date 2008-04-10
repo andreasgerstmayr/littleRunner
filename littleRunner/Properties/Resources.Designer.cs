@@ -59,5 +59,12 @@ namespace littleRunner.Properties {
                 resourceCulture = value;
             }
         }
+        
+        internal static byte[] Script {
+            get {
+                object obj = ResourceManager.GetObject("Script", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

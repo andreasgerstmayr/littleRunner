@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace littleRunner
 {
-    abstract class StickyElement : GameObject
+    public abstract class StickyElement : GameObject
     {
         [Browsable(false), Category("Object")]
         abstract public bool canStandOn { get; }
@@ -19,7 +19,7 @@ namespace littleRunner
         {
             if (base.Name != null && base.Name != "" && World.Script != null)
             {
-                World.Script.callFunction(base.Name, "onOver", geventhandler,
+                World.Script.callFunction(base.Name, "onOver", this, geventhandler,
                     who, direction);
             }
         }
