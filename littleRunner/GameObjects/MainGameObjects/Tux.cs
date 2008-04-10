@@ -214,6 +214,7 @@ namespace littleRunner
         public override void getEvent(GameEvent gevent, Dictionary<GameEventArg, object> args)
         {
             base.getEvent(gevent, args);
+
             if (gevent == GameEvent.crashInEnemy && !immortialize)
             {
                 switch (mode)
@@ -252,7 +253,7 @@ namespace littleRunner
                 aiEventHandler(gevent, args);
             }
             else
-                aiEventHandler(gevent, args);
+                base.aiEventHandler(gevent, args);
         }
     }
 }

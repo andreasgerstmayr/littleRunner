@@ -14,11 +14,12 @@ namespace littleRunner
     {
         ProgramSwitcher programSwitcher;
         GameAI ai;
+        World world;
         MainGameObjectMode lastMode;
         bool lastModeIsNull;
         GameControlObjects gameControlObjs;
         bool editorOpened;
-
+        int top, left;
 
         public GameAI AI
         {
@@ -33,9 +34,9 @@ namespace littleRunner
             this.programSwitcher = programSwitcher;
 
             lastModeIsNull = true;
-            StartGame("Data/Levels/level1.lrl");
+            StartGame("Data/Levels/level1.lrl", PlayMode.Game);
         }
-        public Game(ProgramSwitcher programSwitcher, string filename)
+        public Game(ProgramSwitcher programSwitcher, string filename, PlayMode playMode)
         {
             InitializeComponent();
 
@@ -43,10 +44,27 @@ namespace littleRunner
             this.programSwitcher = programSwitcher;
 
             lastModeIsNull = true;
-            StartGame(filename);
+            StartGame(filename, playMode);
+        }
+        public Game(ProgramSwitcher programSwitcher, string filename, PlayMode playMode, int top, int left)
+            : this(programSwitcher, filename, playMode)
+        {
+            this.top = top;
+            this.left = left;
+            this.FormBorderStyle = FormBorderStyle.None;
         }
 
-        private void StartGame(string filename)
+        private void Game_Shown(object sender, EventArgs e)
+        {
+            if (world.PlayMode == PlayMode.EditorCurrent)
+            {
+                this.Top = top+3;
+                this.Left = left+4;
+            }
+        }
+
+
+        private void StartGame(string filename, PlayMode playMode)
         {
             // check if file exists
             if (!File.Exists(filename))
@@ -56,6 +74,16 @@ namespace littleRunner
             }
             else
             {
+                /* set loading-label
+                Label loading = new Label();
+                loading.Top = this.Height/2 - 70;
+                loading.Left = this.Width/2 + 40;
+                loading.Text = "Loading ...";
+                loading.Font = new Font("Verdana", 10, FontStyle.Bold);
+                Controls.Add(loading);
+                */
+
+
                 // set form title
                 string title = "";
 
@@ -75,7 +103,7 @@ namespace littleRunner
 
 
                 // The world
-                World world = new World(filename, Invalidate, true);
+                world = new World(filename, Invalidate, playMode);
 
                 Width = world.Settings.GameWindowWidth+5;
                 Height = world.Settings.LevelHeight+29;
@@ -112,6 +140,9 @@ namespace littleRunner
                    ai.world.MGO.currentMode = lastMode;
 
                 gameControlObjs.Sound.Start();
+
+
+                // Controls.Remove(loading);
             }
         }
 
@@ -127,23 +158,39 @@ namespace littleRunner
                     lastModeIsNull = true; // start with standard mode after death
 
                     gameControlObjs.Lives--;
-                    StartGame(lastFileName);
+                    if (world.PlayMode == PlayMode.Game || world.PlayMode == PlayMode.Editor)
+                        StartGame(lastFileName, world.PlayMode);
+                    else if (world.PlayMode == PlayMode.EditorCurrent)
+                    {
+                        ai = null;
+                        Close();
+                    }
                 }
                 else
                 {
-                    DialogResult dr = MessageBox.Show("Game Over.\n\nPlay again?", "Game Over", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-                    lastModeIsNull = true; // start normal.
+                    if (world.PlayMode == PlayMode.Game || world.PlayMode == PlayMode.Editor)
+                    {
+                        DialogResult dr = MessageBox.Show("Game Over.\n\nPlay again?", "Game Over", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                        lastModeIsNull = true; // start normal.
 
-                    if (dr == DialogResult.Yes)
+                        if (dr == DialogResult.Yes)
+                        {
+                            ai.Quit();
+                            ai = null;
+                            gameControlObjs = null; // set new points+sound!
+
+                            StartGame("Data/Levels/level1.lrl", world.PlayMode);
+                        }
+                        else if (dr == DialogResult.No)
+                        {
+                            ai.Quit();
+                            ai = null;
+                            Close();
+                        }
+                    }
+                    else if (world.PlayMode == PlayMode.EditorCurrent)
                     {
                         ai.Quit();
-                        ai = null;
-                        gameControlObjs = null; // set new points+sound!
-
-                        StartGame("Data/Levels/level1.lrl");
-                    }
-                    else if (dr == DialogResult.No)
-                    {
                         ai = null;
                         Close();
                     }
@@ -151,25 +198,32 @@ namespace littleRunner
             }
             else if (gevent == GameEvent.finishedLevel)
             {
-                string nextLevel = (string)args[GameEventArg.nextLevel];
-                if (nextLevel != null && nextLevel != "")
+                if (world.PlayMode == PlayMode.Game || world.PlayMode == PlayMode.Editor)
                 {
-                    ai.Stop(); // play again, so save last MGO mode
-                    lastMode = ai.world.MGO.currentMode;
-                    lastModeIsNull = false; // it's set to the last mode
+                    string nextLevel = (string)args[GameEventArg.nextLevel];
+                    if (nextLevel != null && nextLevel != "")
+                    {
+                        ai.Stop(); // play again, so save last MGO mode
+                        lastMode = ai.world.MGO.currentMode;
+                        lastModeIsNull = false; // it's set to the last mode
 
-                    ai = null;
+                        ai = null;
+                        StartGame("Data/Levels/" + nextLevel, world.PlayMode);
+                    }
+                    else
+                    {
+                        ai.Quit();
+                        ai = null;
+                        lastModeIsNull = true;
 
-                    StartGame("Data/Levels/" + nextLevel);
+                        MessageBox.Show("Congratulations!\nYou 've played all predefined littleRunner levels.\n\nNow start making your own level with the level-editor :-).", "Congratulations", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Close();
+                    }
                 }
-                else
+                else if (world.PlayMode == PlayMode.EditorCurrent)
                 {
                     ai.Quit();
                     ai = null;
-                    lastModeIsNull = true;
-
-                    MessageBox.Show("Congratulations!\nYou 've played all predefined littleRunner levels.\n\nNow start making your own level with the level-editor :-).", "Congratulations");
-                    Close();
                 }
             }
         }
@@ -196,6 +250,10 @@ namespace littleRunner
 
         private void Game_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (ai != null && world != null && world.PlayMode == PlayMode.EditorCurrent
+                && e.KeyChar == (char)Keys.Escape)
+                Close();
+
             if (gameControlObjs != null)
                 gameControlObjs.OnKeyPress(e.KeyChar);
         }

@@ -10,6 +10,7 @@ namespace littleRunner
 {
     public abstract class GameObject
     {
+        public GameEventHandler aiEventHandler;
         public abstract void Draw(Graphics g);
 
         public virtual void onKeyPress(GameKey gkey)

@@ -95,8 +95,11 @@ namespace littleRunner
 
         public override void Check()
         {
-            int newtop = 0;
-            int newleft = 0;
+            Dictionary<string, int> newpos;
+            base.Check(out newpos);
+            int newtop = newpos["top"];
+            int newleft = newpos["left"];
+
 
             // falling?
             bool falling = GamePhysics.Falling(World.StickyElements, this);
@@ -156,6 +159,7 @@ namespace littleRunner
 
         public void getEvent(GameEvent gevent, Dictionary<GameEventArg, object> args)
         {
+            base.aiEventHandler(gevent, args);
         }
 
 

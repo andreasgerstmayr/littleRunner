@@ -39,7 +39,7 @@ namespace littleRunner
                 {
                     if (!File.Exists(file))
                     {
-                        MessageBox.Show("File " + file + " not found!\n\nClosing ...", "Fatal error");
+                        MessageBox.Show("File " + file + " not found!\n\nClosing ...", "Fatal error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         closeToolStripMenuItem_Click(sender, e);
                         break;
                     }

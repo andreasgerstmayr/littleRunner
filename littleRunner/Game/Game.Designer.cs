@@ -45,6 +45,7 @@
             this.Text = "littleRunner";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Game_Paint);
             this.SizeChanged += new System.EventHandler(this.Game_SizeChanged);
+            this.Shown += new System.EventHandler(this.Game_Shown);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Game_FormClosed);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Game_KeyPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Game_KeyUp);

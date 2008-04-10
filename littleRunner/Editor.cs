@@ -63,7 +63,7 @@ namespace littleRunner
             levelEndToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.levelend_house]);
             houseToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.levelend_house]);
 
-            startGameToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.icon_png]);
+            gameLevelbeginToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.icon_png]);
             startGamecurrentToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.icon_png]);
 
             curfile = "";
@@ -148,7 +148,7 @@ namespace littleRunner
         {
             curfile = "";
             this.Text = "littleRunner Game Editor";
-            world = new World(700, 550, level.Invalidate, false);
+            world = new World(700, 550, level.Invalidate, PlayMode.Editor);
             setDelegateHandlers();
 
             showlevelSettings_Click(sender, e);
@@ -164,7 +164,7 @@ namespace littleRunner
             {
                 curfile = openFile.FileName;
                 this.Text = "littleRunner Game Editor - " + curfile;
-                world = new World(curfile, level.Invalidate, false);
+                world = new World(curfile, level.Invalidate, PlayMode.Editor);
                 setDelegateHandlers();
 
                 showlevelSettings_Click(sender, e);
@@ -215,24 +215,31 @@ namespace littleRunner
             Close();
         }
 
-        private void startGameToolStripMenuItem_Click(object sender, EventArgs e)
+        private void gameLevelbeginToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (save())
             {
-                g = new Game(programSwitcher, curfile);
+                g = new Game(programSwitcher, curfile, PlayMode.Editor);
+
                 g.ShowDialog();
                 g = null;
             }
         }
+
         private void startGamecurrentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (save())
             {
-                g = new Game(programSwitcher, curfile);
+                int levelTop = this.Top + menu.Top + menubar.Top + tableLayout.Top + level.Top;
+                int levelLeft = this.Left + tableLayout.Left + level.Left;
+                g = new Game(programSwitcher, curfile, PlayMode.EditorCurrent, levelTop, levelLeft);
                 g.AI.Scroll(-trackBar.Value, false);
 
+                string oldtext = this.Text;
+                this.Text = "littleRunner Game Editor [press ESC to quit game]";
                 g.ShowDialog();
                 g = null;
+                this.Text = oldtext;
             }
         }
 
@@ -415,6 +422,18 @@ namespace littleRunner
             // enable background
             enableBG = true;
             level.Invalidate();
+        }
+
+        private void scriptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (world != null)
+            {
+                string exception = world.InitScript();
+                if (exception == "")
+                    MessageBox.Show("Script seems to be OK!", "Script check", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("Script is not OK, exception traced:\n\n"+exception, "Script check", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

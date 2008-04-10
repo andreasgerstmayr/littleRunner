@@ -50,6 +50,7 @@ namespace littleRunner.GameObjects.Objects
         public override void onOver(GameEventHandler geventhandler, GameElement who, GameDirection direction)
         {
             base.onOver(geventhandler, who, direction);
+
             if (!got && direction == GameDirection.Bottom && who == GameElement.MGO)
             {
                 if (btype == BoxType.GoodMushroom)

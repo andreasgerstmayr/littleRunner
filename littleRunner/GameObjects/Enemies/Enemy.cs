@@ -24,8 +24,18 @@ namespace littleRunner
             set { startAtViewpoint = value; }
         }
 
+        virtual public void Check()
+        {
+        }
+        virtual public void Check(out Dictionary<string, int> newpos)
+        {
+            newpos = new Dictionary<string, int>();
+            newpos["top"] = 0;
+            newpos["left"] = 0;
 
-        virtual public void Check() { }
+            if (base.Name != null && base.Name != "" && World.Script != null)
+                World.Script.callFunction(base.Name, "Check", newpos);
+        }
         abstract public bool getCrashEvent(GameObject go, GameDirection cidirection); // true: survived, false: loose one livepoint
 
 

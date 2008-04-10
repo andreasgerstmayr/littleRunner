@@ -15,8 +15,6 @@ namespace littleRunner
     }
     public abstract class MainGameObject : GameObject
     {
-        public GameEventHandler aiEventHandler;
-
         public virtual void Check(List<GameKey> pressedKeys)
         {
         }
@@ -26,6 +24,7 @@ namespace littleRunner
 
         public virtual void getEvent(GameEvent gevent, Dictionary<GameEventArg, object> args)
         {
+            base.aiEventHandler(gevent, args);
         }
     }
 }

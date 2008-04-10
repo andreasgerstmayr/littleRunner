@@ -8,10 +8,19 @@ using System.Drawing;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
+using IronPython.Runtime.Exceptions;
+
 
 namespace littleRunner
 {
     public delegate void MyInvalidateEventHandler();
+
+    public enum PlayMode
+    {
+        Game,
+        Editor,
+        EditorCurrent
+    }
 
     public class World
     {
@@ -23,7 +32,7 @@ namespace littleRunner
         MainGameObject mainGameObject;
         public LevelSettings Settings;
         public MyInvalidateEventHandler Invalidate;
-        public bool playMode;
+        public PlayMode PlayMode;
         public Script Script;
 
         public List<Enemy> Enemies
@@ -45,7 +54,12 @@ namespace littleRunner
 
 
         // new world with the editor
-        public World(int width, int height, MyInvalidateEventHandler invalidate, bool playMode)
+        private World(PlayMode playMode)
+        {
+            this.PlayMode = playMode;
+        }
+        public World(int width, int height, MyInvalidateEventHandler invalidate, PlayMode playMode)
+            : this(playMode)
         {
             Settings = new LevelSettings();
             Settings.LevelWidth = width;
@@ -56,21 +70,17 @@ namespace littleRunner
             enemies = new List<Enemy>();
             stickyelements = new List<StickyElement>();
             movingelements = new List<MovingElement>();
-            this.playMode = playMode;
         }
         // new world with the game
-        public World(string filename, MyInvalidateEventHandler invalidate, bool playMode)
+        public World(string filename, MyInvalidateEventHandler invalidate, PlayMode playMode)
+            : this(playMode)
         {
             this.Invalidate = invalidate;
-            this.playMode = playMode;
             this.fileName = filename;
             Deserialize();
         }
-        public void Init(MainGameObject mainGameObject)
+        public string InitScript()
         {
-            this.mainGameObject = mainGameObject;
-
-            // Script
             if (Settings.Script.Length > 0)
             {
                 Script = new Script(this);
@@ -90,8 +100,25 @@ namespace littleRunner
                     code += Settings.Script[i] + (i + 1 == Settings.Script.Length ? "" : "\n");
                 }
 
-                Script.Execute(code);
+
+                try
+                {
+                    Script.Execute(code);
+                }
+                catch (Exception e)
+                {
+                    return e.Message;
+                }
             }
+
+            return "";
+        }
+        public void Init(MainGameObject mainGameObject)
+        {
+            this.mainGameObject = mainGameObject;
+
+            if (InitScript() != "")
+                MessageBox.Show("Can't load script!", "Scripterror", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         public void Draw(Graphics g, bool drawBackground)
