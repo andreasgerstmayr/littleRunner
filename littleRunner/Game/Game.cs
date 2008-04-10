@@ -20,7 +20,7 @@ namespace littleRunner
         bool editorOpened;
 
 
-        internal GameAI AI
+        public GameAI AI
         {
             get { return ai; }
         }

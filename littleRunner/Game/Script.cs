@@ -7,7 +7,7 @@ using IronPython.Compiler;
 
 namespace littleRunner
 {
-    class Script
+    public class Script
     {
         private PythonEngine engine;
         private World world;
@@ -42,41 +42,35 @@ namespace littleRunner
             }
             else
             {
-                engine.Execute("x = '" + name + "' in handler and '" + function + "' in handler['" + name + "']");
+                engine.Execute("x = '" + name + "' in handler and '" + function + "' in handler." + name);
                 if ((bool)engine.Globals["x"])
                     call = true;
                 else
                     call = false;
 
-                // add to cache
+                // name in cache, add function
                 if (containName)
                     hasFunction[name][function] = call;
-                else
+                else // nothing in cache, add everything
                 {
                     Dictionary<string, bool> funcList = new Dictionary<string, bool>();
-                    funcList.Add(function, false);
+                    funcList.Add(function, call);
                     hasFunction.Add(name, funcList);
                 }
             }
 
             if (call)
-                engine.Execute("handler['"+name+"']['"+function + "'](*args)");
+            {
+                engine.Globals["args"] = args;
+                engine.Execute("handler." + name + "." + function + "(*args)");
+            }
         }
 
         void InitializePythonEngine()
         {
             engine = new PythonEngine();
-
-            engine.Execute("handler = {}");
-            /*
-            engine.Globals.Add("en", x);
-            engine.Execute("import clr");
-            engine.Execute("clr.AddReference(\"Test\")");
-            engine.Execute("from Test import BlaNum");
-            engine.Execute("print type(BlaNum.Blau)");
-            engine.Execute("print type(en)");
-            engine.Execute("print BlaNum.Gruen == en");
-            */
+            string script = Encoding.UTF8.GetString(Properties.Resources.Script);
+            engine.Execute(script);
         }
     }
 }

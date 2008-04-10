@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 
 namespace littleRunner
 {
-    class GameControl_Points : GameObject
+    public class GameControl_Points : GameObject
     {
         int points;
         string font;
@@ -33,7 +33,7 @@ namespace littleRunner
             this.size = size;
         }
     }
-    class GameControl_Lives : GameObject
+    public class GameControl_Lives : GameObject
     {
         int lives;
         string font;
@@ -59,7 +59,7 @@ namespace littleRunner
             this.size = size;
         }
     }
-    class GameControl_Sound
+    public class GameControl_Sound
     {
         [DllImport("winmm.dll")]
         private static extern int mciSendString(string cmd, StringBuilder ret, int retLen, IntPtr hwnd);
@@ -111,7 +111,7 @@ namespace littleRunner
 
 
 
-    class GameControlObjects
+    public class GameControlObjects
     {
         private GameControl_Points points;
         private GameControl_Lives lives;

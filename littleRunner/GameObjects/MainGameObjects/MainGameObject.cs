@@ -4,7 +4,7 @@ using System.Text;
 
 namespace littleRunner
 {
-    enum MoveType
+    public enum MoveType
     {
         Jump,
         goLeft,
@@ -13,7 +13,7 @@ namespace littleRunner
         goBottom,
         Nothing
     }
-    abstract class MainGameObject : GameObject
+    public abstract class MainGameObject : GameObject
     {
         public GameEventHandler aiEventHandler;
 

@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace littleRunner
 {
-    enum GameEvent
+    public enum GameEvent
     {
         crashInEnemy,
         outOfRange,
@@ -17,7 +17,7 @@ namespace littleRunner
         gotFireFlower,
         finishedLevel
     }
-    enum GameDirection
+    public enum GameDirection
     {
         Left,
         Right,
@@ -25,18 +25,18 @@ namespace littleRunner
         Bottom,
         None
     }
-    enum GameElement
+    public enum GameElement
     {
         MGO,
         Enemy,
         MovingElement,
         Unknown
     }
-    enum GameEventArg
+    public enum GameEventArg
     {
         nextLevel
     }
-    enum GameKey
+    public enum GameKey
     {
         goLeft,
         goRight,
@@ -50,7 +50,7 @@ namespace littleRunner
         Left,
         Right
     }
-    enum MainGameObjectMode
+    public enum MainGameObjectMode
     {
         NormalFire,
         Normal,
@@ -58,17 +58,17 @@ namespace littleRunner
     }
 
 
-    delegate void GameEventHandler(GameEvent gevent, Dictionary<GameEventArg, object> args);
-    delegate void GameCrashHandler(GameEvent gevent, GameDirection cidirection);
+    public delegate void GameEventHandler(GameEvent gevent, Dictionary<GameEventArg, object> args);
+    public delegate void GameCrashHandler(GameEvent gevent, GameDirection cidirection);
 
-    class GameAI
+    public class GameAI
     {
         private Form form;
         private Debug debug;
         private GameEventHandler forminteract;
         private Timer mainTimer;
         private MainGameObject mgo;
-        internal World world;
+        public World world;
         private GameControlObjects gameControlObj;
         private List<Keys> curkeys;
 

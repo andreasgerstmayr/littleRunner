@@ -4,7 +4,7 @@ using System.Text;
 
 namespace littleRunner
 {
-    abstract class MovingElement : StickyElement
+    public abstract class MovingElement : StickyElement
     {
         public override bool canStandOn
         {

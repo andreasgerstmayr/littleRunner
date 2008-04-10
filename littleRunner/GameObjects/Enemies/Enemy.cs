@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace littleRunner
 {
-    abstract class Enemy : GameObject
+    public abstract class Enemy : GameObject
     {
         public Enemy()
         {

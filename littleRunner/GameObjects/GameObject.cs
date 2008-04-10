@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace littleRunner
 {
-    abstract class GameObject
+    public abstract class GameObject
     {
         public abstract void Draw(Graphics g);
 
