@@ -106,10 +106,16 @@ namespace littleRunner
             this.form = form;
             this.forminteract = forminteract;
             this.mgo = maingameobject;
-            this.mgo.aiEventHandler = getEvent;
             this.world = world;
             this.gameControlObj = gameControlObj;
             this.curkeys = new List<Keys>();
+
+            // add GameEventHandler
+            foreach (GameObject go in world.AllElements)
+            {
+                go.aiEventHandler = getEvent;
+            }
+            this.mgo.aiEventHandler = getEvent;
         }
         public GameAI(Form form, Debug debug, GameEventHandler forminteract, World world, MainGameObject maingameobject, GameControlObjects gameControlObj)
             : this(form, forminteract, world, maingameobject, gameControlObj)

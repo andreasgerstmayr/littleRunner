@@ -18,4 +18,5 @@ class AttrDict(dict):
 
 
 handler = AttrDict()
+cache = AttrDict()
 args = []

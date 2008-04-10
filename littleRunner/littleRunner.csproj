@@ -320,6 +320,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Script.py" />
+    <None Include="Data\Levelscripts\MovingPlatform.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\document-save.png" />
+    <None Include="Resources\document-save-as.png" />
+    <None Include="Resources\document-new.png" />
+    <None Include="Resources\document-open.png" />
+    <None Include="Resources\system-log-out.png" />
+    <None Include="Resources\system-shutdown.png" />
+    <None Include="Resources\text-x-script.png" />
     <Content Include="TuxIcon.ico" />
   </ItemGroup>
   <ItemGroup>

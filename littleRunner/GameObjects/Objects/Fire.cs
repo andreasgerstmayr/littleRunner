@@ -42,6 +42,8 @@ namespace littleRunner
 
         public override void Check()
         {
+            base.Check();
+
             int newtop = 0;
             int newleft = 0;
 
@@ -111,6 +113,7 @@ namespace littleRunner
 
         public void getEvent(GameEvent gevent, Dictionary<GameEventArg, object> args)
         {
+            base.aiEventHandler(gevent, args);
         }
     }
 }

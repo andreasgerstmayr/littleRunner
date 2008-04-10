@@ -60,10 +60,52 @@ namespace littleRunner.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap document_new {
+            get {
+                object obj = ResourceManager.GetObject("document-new", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap document_open {
+            get {
+                object obj = ResourceManager.GetObject("document-open", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap document_save {
+            get {
+                object obj = ResourceManager.GetObject("document-save", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap document_save_as {
+            get {
+                object obj = ResourceManager.GetObject("document-save-as", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static byte[] Script {
             get {
                 object obj = ResourceManager.GetObject("Script", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap system_shutdown {
+            get {
+                object obj = ResourceManager.GetObject("system-shutdown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap text_x_script {
+            get {
+                object obj = ResourceManager.GetObject("text-x-script", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

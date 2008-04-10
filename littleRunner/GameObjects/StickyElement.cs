@@ -18,10 +18,7 @@ namespace littleRunner
         public virtual void onOver(GameEventHandler geventhandler, GameElement who, GameDirection direction)
         {
             if (base.Name != null && base.Name != "" && World.Script != null)
-            {
-                World.Script.callFunction(base.Name, "onOver", this, geventhandler,
-                    who, direction);
-            }
+                World.Script.callFunction(base.Name, "onOver", geventhandler, who, direction);
         }
 
         public override Dictionary<string, object> Serialize()
