@@ -9,6 +9,9 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 using IronPython.Runtime.Exceptions;
+using littleRunner.GameObjects;
+using littleRunner.Worlddata;
+using littleRunner.GameObjects.MainGameObjects;
 
 
 namespace littleRunner
@@ -18,8 +21,8 @@ namespace littleRunner
     public enum PlayMode
     {
         Game,
-        Editor,
-        EditorCurrent
+        GameInEditor,
+        Editor
     }
 
     public class World
@@ -57,6 +60,9 @@ namespace littleRunner
         private World(PlayMode playMode)
         {
             this.PlayMode = playMode;
+
+            if (playMode == PlayMode.Editor)
+               mainGameObject = new NullMGO();
         }
         public World(int width, int height, MyInvalidateEventHandler invalidate, PlayMode playMode)
             : this(playMode)
@@ -94,20 +100,17 @@ namespace littleRunner
                     }
                 }
 
-                string code = "";
-                for (int i = 0; i < Settings.Script.Length; i++)
-                {
-                    code += Settings.Script[i] + (i + 1 == Settings.Script.Length ? "" : "\n");
-                }
+                //if (PlayMode == PlayMode.Game || PlayMode == PlayMode.EditorCurrent)
+                    Script.GlobalsAdd("MGO", MGO);
 
 
                 try
                 {
-                    Script.Execute(code);
+                    Script.Execute(Settings.Script);
                 }
                 catch (Exception e)
                 {
-                    return e.Message;
+                    return e.GetType().FullName + ":\n" + e.Message;
                 }
             }
 
@@ -134,17 +137,21 @@ namespace littleRunner
 
         public void Add(GameObject go)
         {
-            if (go is Enemy)
-                enemies.Add((Enemy)go);
+            if (go is MovingElement) // check first, because MovingElement inherits from StickyElement!
+                movingelements.Add((MovingElement)go);
             else if (go is StickyElement)
                 stickyelements.Add((StickyElement)go);
+            else if (go is Enemy)
+                enemies.Add((Enemy)go);
         }
         public void Remove(GameObject go)
         {
-            if (go is Enemy)
-                enemies.Remove((Enemy)go);
+            if (go is MovingElement) // check first, because MovingElement inherits from StickyElement!
+                movingelements.Remove((MovingElement)go);
             else if (go is StickyElement)
                 stickyelements.Remove((StickyElement)go);
+            else if (go is Enemy)
+                enemies.Remove((Enemy)go);
         }
         public List<GameObject> AllElements
         {
@@ -156,14 +163,15 @@ namespace littleRunner
                 {
                     ret.Add(se);
                 }
-                foreach (Enemy e in enemies)
-                {
-                    ret.Add(e);
-                }
                 foreach (MovingElement me in movingelements)
                 {
                     ret.Add(me);
                 }
+                foreach (Enemy e in enemies)
+                {
+                    ret.Add(e);
+                }
+                
                 return ret;
             }
         }
@@ -197,13 +205,17 @@ namespace littleRunner
 
         public void Serialize(string filename)
         {
-            WorldSerialization.Serialize(filename, stickyelements, enemies, Settings);
+            WorldSerialization.Serialize(filename, stickyelements, movingelements, enemies, Settings);
         }
 
         public void Deserialize()
         {
-            WorldSerialization.Deserialize(fileName, out Settings, out enemies, out stickyelements, this);
-            movingelements = new List<MovingElement>();
+            WorldSerialization.Deserialize(fileName,
+                out Settings,
+                out stickyelements,
+                out movingelements, 
+                out enemies,
+                this);
         }
     }
 
@@ -222,7 +234,7 @@ namespace littleRunner
         private int levelHeight;
         private Backgrounds background;
         private Image backgroundImg;
-        private string[] script = new string[0];
+        private string script;
 
         public Changed_Setting cLevelWidth;
         public Changed_Setting cLevelHeight;
@@ -231,6 +243,7 @@ namespace littleRunner
         public LevelSettings()
         {
             Background = Backgrounds.None;
+            script = "";
         }
 
 
@@ -286,8 +299,8 @@ namespace littleRunner
             }
         }
 
-        [Category("Script")]
-        public string[] Script
+        [Browsable(false), Category("Script")]
+        public string Script
         {
             get { return script; }
             set { script = value; }
@@ -298,7 +311,8 @@ namespace littleRunner
         {
             return false;
         }
-        internal Image BackgroundImg
+        [Browsable(false)]
+        public Image BackgroundImg
         {
             get { return backgroundImg; }
             set
@@ -332,7 +346,7 @@ namespace littleRunner
             levelWidth = (int)ser["levelWidth"];
             levelHeight = (int)ser["levelHeight"];
             Background = (Backgrounds)ser["Background"];
-            script = (string[])ser["Script"];
+            script = (string)ser["Script"];
         }
     }
 }

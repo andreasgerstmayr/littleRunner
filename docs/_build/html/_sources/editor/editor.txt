@@ -2,6 +2,11 @@
 Editor
 ======
 
+.. toctree::
+   :maxdepth: 2
+
+   levelscripts/levelscripts
+
 
 How do I make a new level?
 --------------------------

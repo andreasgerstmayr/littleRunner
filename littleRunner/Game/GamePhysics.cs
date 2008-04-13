@@ -2,11 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+using littleRunner.GameObjects;
+using System.Diagnostics;
+
 namespace littleRunner
 {
     static class GamePhysics
     {
-        static public bool Falling(List<StickyElement> stickyelements, GameObject go)
+        static public bool Falling(List<StickyElement> stickyelements,
+            List<MovingElement> movingelements,
+            GameObject go)
         {
             bool falling = true;
 
@@ -22,6 +27,18 @@ namespace littleRunner
                     }
                 }
             }
+            foreach (MovingElement me in movingelements)
+            {
+                if (me.canStandOn)
+                {
+                    if (go.Right > me.Left && go.Left < me.Right && // left+right ok?
+                        go.Bottom == me.Top)
+                    {
+                        falling = false;
+                        break;
+                    }
+                }
+            }
 
             return falling;
         }
@@ -29,44 +46,44 @@ namespace littleRunner
         static public void Jumping(ref int jumping, ref int newtop, ref int newleft)
         {
             // jump left
-            if (jumping >= 1 && jumping <= 20)
+            if (jumping >= 0 && jumping < 20)
             {
                 newleft -= 5;
-                newtop -= 15;
+                newtop -= 10;
             }
-            else if (jumping > 20 && jumping <= 40)
+            else if (jumping >= 20 && jumping < 40)
             {
                 newleft -= 5;
-                newtop += 15;
+                newtop += 10;
             }
             
-           // jump top
-            else if (jumping >= 100 && jumping <= 120)
+            // jump top
+            else if (jumping >= 100 && jumping < 120)
             {
-                newtop -= 14;
+                newtop -= 10;
             }
-            else if (jumping > 120 && jumping <= 140)
+            else if (jumping >= 120 && jumping < 140)
             {
-                newtop += 14;
+                newtop += 10;
             }
 
             // jump right
-            else if (jumping >= 200 && jumping <= 220)
+            else if (jumping >= 200 && jumping < 220)
             {
                 newleft += 5;
-                newtop -= 15;
+                newtop -= 10;
             }
-            else if (jumping > 220 && jumping <= 240)
+            else if (jumping >= 220 && jumping < 240)
             {
                 newleft += 5;
-                newtop += 15;
+                newtop += 10;
             }
 
 
-            if (jumping != 0)
+            if (jumping != -1)
                 jumping++;
             if (jumping == 40 || jumping == 140 || jumping == 240)
-                jumping = 0;
+                jumping = -1;
         }
 
 
@@ -118,11 +135,11 @@ namespace littleRunner
         }
 
 
-        static public void CrashDetection(GameObject go, List<MovingElement> movingelements, List<StickyElement> stickyelements, GameEventHandler geventhandler, ref int newtop, ref int newleft)
+        static public void CrashDetection(GameObject go, List<StickyElement> stickyelements, List<MovingElement> movingelements, GameEventHandler geventhandler, ref int newtop, ref int newleft)
         {
-            for (int i = 0; i < movingelements.Count; i++)
+            for (int i = 0; i < stickyelements.Count; i++)
             {
-                MovingElement se = movingelements[i];
+                StickyElement se = stickyelements[i];
                 if (se != go)
                 {
                     GameDirection direction = GameDirection.None;
@@ -133,9 +150,9 @@ namespace littleRunner
                 }
             }
 
-            for (int i = 0; i < stickyelements.Count; i++)
+            for (int i = 0; i < movingelements.Count; i++)
             {
-                StickyElement se = stickyelements[i];
+                MovingElement se = movingelements[i];
                 if (se != go)
                 {
                     GameDirection direction = GameDirection.None;

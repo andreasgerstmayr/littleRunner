@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace littleRunner
+namespace littleRunner.GameObjects
 {
     public enum MoveType
     {

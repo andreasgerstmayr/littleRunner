@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
 
-namespace littleRunner
+namespace littleRunner.GameObjects
 {
     public abstract class Enemy : GameObject
     {
@@ -24,9 +24,6 @@ namespace littleRunner
             set { startAtViewpoint = value; }
         }
 
-        virtual public void Check()
-        {
-        }
         virtual public void Check(out Dictionary<string, int> newpos)
         {
             newpos = new Dictionary<string, int>();

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 
 using System.Drawing;
+using littleRunner.GameObjects.MovingElements;
 
-namespace littleRunner
+
+namespace littleRunner.GameObjects.MainGameObjects
 {
     class Tux : MainGameObject
     {
@@ -78,6 +80,7 @@ namespace littleRunner
             mode = MainGameObjectMode.Normal;
             immortializeStart = DateTime.Now;
             immortialize = false;
+            jumping = -1;
 
             blink = 0;
             wantNextMove = MoveType.Nothing;
@@ -115,10 +118,10 @@ namespace littleRunner
             }
 
             // falling? (need for jumping-if)
-            bool falling = GamePhysics.Falling(World.StickyElements, this);
+            bool falling = GamePhysics.Falling(World.StickyElements, World.MovingElements, this);
 
             if (falling)
-                newtop += 6;
+                newtop += 7;
 
 
             // immortialize end?
@@ -130,7 +133,7 @@ namespace littleRunner
 
 
             // key pressed?
-            if (pressedKeys.Contains(GameKey.goLeft) && (jumping == 0 || (jumping >= 100 && jumping <= 140)))
+            if (pressedKeys.Contains(GameKey.goLeft) && (jumping == -1 || (jumping >= 100 && jumping <= 140)))
             {
                 newleft -= 7;
                 if (direction != GameRunDirection.Left)
@@ -139,7 +142,7 @@ namespace littleRunner
                     curimg = imgL;
                 }
             }
-            if (pressedKeys.Contains(GameKey.goRight) && (jumping == 0 || (jumping >= 100 && jumping <= 140)))
+            if (pressedKeys.Contains(GameKey.goRight) && (jumping == -1 || (jumping >= 100 && jumping <= 140)))
             {
                 newleft += 7;
                 if (direction != GameRunDirection.Right)
@@ -150,7 +153,7 @@ namespace littleRunner
             }
             if (pressedKeys.Contains(GameKey.jumpLeft) && !falling)
             {
-                jumping = 1;
+                jumping = 0;
                 if (direction != GameRunDirection.Left)
                 {
                     direction = GameRunDirection.Left;
@@ -180,6 +183,7 @@ namespace littleRunner
 
                     Fire f = new Fire(direction, Top + 20, startFireLeft);
                     f.Init(World);
+                    f.aiEventHandler = aiEventHandler;
                     World.MovingElements.Add(f);
                 }
             }
@@ -190,8 +194,13 @@ namespace littleRunner
             GamePhysics.Jumping(ref jumping, ref newtop, ref newleft);
 
 
+            // falling & jumping? no! balance it.
+            if (falling && jumping != -1)
+                newtop -= 7;
+
+
             // check if direction is ok
-            GamePhysics.CrashDetection(this, World.MovingElements, World.StickyElements, getEvent, ref newtop, ref newleft);
+            GamePhysics.CrashDetection(this, World.StickyElements, World.MovingElements, getEvent, ref newtop, ref newleft);
             bool crashedInEnemy = GamePhysics.CrashEnemy(this, World.Enemies, getEvent, ref newtop, ref newleft) == null ? false : true;
 
             if (crashedInEnemy)
@@ -199,9 +208,6 @@ namespace littleRunner
 
             if (newtop != 0)
                 Top += newtop;
-            else if (jumping >= 100 && jumping <= 120)
-                jumping = 121;
-
             if (newleft != 0)
                 Left += newleft;
         }

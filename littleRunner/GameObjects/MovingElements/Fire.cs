@@ -4,7 +4,7 @@ using System.Text;
 
 using System.Drawing;
 
-namespace littleRunner
+namespace littleRunner.GameObjects.MovingElements
 {
     delegate void DeleteFire(Fire fire);
 
@@ -21,6 +21,10 @@ namespace littleRunner
         public override void Draw(Graphics g)
         {
             g.DrawImage(curimg, Left, Top, Width, Height);
+        }
+        public override bool canStandOn
+        {
+            get { return false; }
         }
 
         public Fire(GameRunDirection direction, int top, int left)
@@ -40,12 +44,12 @@ namespace littleRunner
             Height = curimg.Height;
         }
 
-        public override void Check()
+        public override void Check(out Dictionary<string, int> newpos)
         {
-            base.Check();
+            base.Check(out newpos);
+            int newtop = newpos["top"];
+            int newleft = newpos["left"];
 
-            int newtop = 0;
-            int newleft = 0;
 
             newleft += direction == GameRunDirection.Right ? 5 : -5;
 
@@ -79,7 +83,7 @@ namespace littleRunner
 
 
             // check if direction is ok
-            GamePhysics.CrashDetection(this, World.MovingElements, World.StickyElements, getEvent, ref newtop, ref newleft);
+            GamePhysics.CrashDetection(this, World.StickyElements, World.MovingElements, getEvent, ref newtop, ref newleft);
             Enemy crashedInEnemy = GamePhysics.CrashEnemy(this, World.Enemies, getEvent, ref newtop, ref newleft);
             if (GamePhysics.SimpleCrashDetections(this, World.StickyElements, true, newtop, newleft))
             {

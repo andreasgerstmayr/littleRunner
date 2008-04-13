@@ -45,12 +45,13 @@ The programmers (especially the designers) of:
 
 * Secret Maryo Chronicles [#]_
 * SuperTux [#]_
+* Dropline Neu! [#]_
 
-for licensing their games under the GPL, which allows me to use their images.
+for licensing their games/icon sets under GPL, which allows me to use their images/icons.
 
 
 .. rubric:: Footnotes
 
 .. [#] `Secret Maryo Chronicles <http://www.secretmaryo.org>`_
 .. [#] `SuperTux <http://supertux.lethargik.org>`_
-
+.. [#] `Silvestre Herrera <http://www.silvestre.com.ar>`_

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 
-namespace littleRunner
+
+namespace littleRunner.GameObjects.MovingElements
 {
     enum MushroomType
     {
@@ -25,13 +26,15 @@ namespace littleRunner
             direction = GameRunDirection.Right;
         }
 
-
-        public override void Check()
+        public override bool canStandOn
         {
-            int[] newpos;
+            get { return false; }
+        }
+        public override void Check(out Dictionary<string, int> newpos)
+        {
             base.Check(out newpos);
-            int newtop = newpos[0];
-            int newleft = newpos[1];
+            int newtop = newpos["top"];
+            int newleft = newpos["left"];
 
 
             bool falling = false;
@@ -43,7 +46,7 @@ namespace littleRunner
             else
             {
                 // falling?
-                falling = GamePhysics.Falling(World.StickyElements, this);
+                falling = GamePhysics.Falling(World.StickyElements, World.MovingElements, this);
 
                 if (falling)
                     newtop += 4;
@@ -56,7 +59,7 @@ namespace littleRunner
 
 
             // check if direction is ok
-            GamePhysics.CrashDetection(this, World.MovingElements, World.StickyElements, getEvent, ref newtop, ref newleft);
+            GamePhysics.CrashDetection(this, World.StickyElements, World.MovingElements, getEvent, ref newtop, ref newleft);
             bool crashedInEnemy = GamePhysics.CrashEnemy(this, World.Enemies, getEvent, ref newtop, ref newleft) == null ? false : true;
 
 

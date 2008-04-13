@@ -4,7 +4,7 @@ using System.Text;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace littleRunner
+namespace littleRunner.GameObjects
 {
     public abstract class StickyElement : GameObject
     {

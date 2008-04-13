@@ -4,7 +4,8 @@ using System.Text;
 
 using System.Drawing;
 
-namespace littleRunner
+
+namespace littleRunner.GameObjects.MovingElements
 {
     abstract class MovingImageElement : MovingElement
     {

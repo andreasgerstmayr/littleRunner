@@ -58,8 +58,10 @@
     <Compile Include="GameObjects\AnimateImage.cs" />
     <Compile Include="GameObjects\Enemies\Spika.cs" />
     <Compile Include="GameObjects\Enemies\Gumba.cs" />
+    <Compile Include="GameObjects\MainGameObjects\NullMGO.cs" />
     <Compile Include="GameObjects\MovingElements\Mushroom.cs" />
-    <Compile Include="GameObjects\Objects\Fire.cs">
+    <Compile Include="GameObjects\MovingElements\Bricks.cs" />
+    <Compile Include="GameObjects\MovingElements\Fire.cs">
     </Compile>
     <Compile Include="GameObjects\Objects\Box.cs" />
     <Compile Include="GameObjects\Objects\Brick.cs" />
@@ -73,7 +75,7 @@
     <Compile Include="GameObjects\Objects\Star.cs" />
     <Compile Include="GameObjects\MovingElements\MovingElement.cs" />
     <Compile Include="GameObjects\MovingElements\MovingImageElement.cs" />
-    <Compile Include="Game\Debug.cs" />
+    <Compile Include="Game\SimpleDebug.cs" />
     <Compile Include="GameObjects\Enemies\Enemy.cs" />
     <Compile Include="GameObjects\Enemies\Turtle.cs" />
     <Compile Include="Game\Game.cs">
@@ -90,7 +92,7 @@
     <Compile Include="GameObjects\MainGameObjects\Tux.cs">
     </Compile>
     <Compile Include="Game\GamePhysics.cs" />
-    <Compile Include="Game\World\World.Serialization.cs" />
+    <Compile Include="Game\Worlddata\World.Serialization.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramSwitcher.cs">
       <SubType>Form</SubType>
@@ -126,8 +128,17 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="GameObjects\StickyElement.cs" />
-    <Compile Include="Game\World\World.cs" />
-    <Compile Include="Game\Script.cs" />
+    <Compile Include="Game\Worlddata\World.cs" />
+    <Compile Include="Script\Script.cs" />
+    <Compile Include="Script\Scripteditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Script\Scripteditor.Designer.cs">
+      <DependentUpon>Scripteditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Script\SimpleEditor.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Images\GameElement\tree.png">
@@ -161,6 +172,10 @@
   <ItemGroup>
     <EmbeddedResource Include="Editor.resx">
       <DependentUpon>Editor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Script\Scripteditor.resx">
+      <DependentUpon>Scripteditor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Data\Images\Box\box1.png">
@@ -330,6 +345,16 @@
     <None Include="Resources\system-log-out.png" />
     <None Include="Resources\system-shutdown.png" />
     <None Include="Resources\text-x-script.png" />
+    <None Include="Resources\text-x-generic.png" />
+    <None Include="Script\start.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Levelscripts\__init__.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\Brick\brick_invisible.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="TuxIcon.ico" />
   </ItemGroup>
   <ItemGroup>

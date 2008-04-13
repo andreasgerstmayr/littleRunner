@@ -1,11 +1,13 @@
 
 import clr
-clr.AddReference("littleRunner")
-from littleRunner import GameDirection, GameElement, GameEvent, GameEventArg, GameObject
+clr.AddReference('littleRunner')
+from littleRunner import GameDirection, GameElement, GameEvent, GameEventArg
+from littleRunner.GameObjects import GameObject
 
-import System
+import sys
+sys.path.append('Data/Levelscripts')
 
-            
+    
 class AttrDict(dict):
    def __getattr__(self, key):
       return self[key]

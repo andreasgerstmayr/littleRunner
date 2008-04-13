@@ -4,6 +4,9 @@ using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 
+using littleRunner.GameObjects;
+
+
 namespace littleRunner
 {
     public enum GameEvent
@@ -64,7 +67,7 @@ namespace littleRunner
     public class GameAI
     {
         private Form form;
-        private Debug debug;
+        private SimpleDebug debug;
         private GameEventHandler forminteract;
         private Timer mainTimer;
         private MainGameObject mgo;
@@ -117,7 +120,7 @@ namespace littleRunner
             }
             this.mgo.aiEventHandler = getEvent;
         }
-        public GameAI(Form form, Debug debug, GameEventHandler forminteract, World world, MainGameObject maingameobject, GameControlObjects gameControlObj)
+        public GameAI(Form form, SimpleDebug debug, GameEventHandler forminteract, World world, MainGameObject maingameobject, GameControlObjects gameControlObj)
             : this(form, forminteract, world, maingameobject, gameControlObj)
         {
             this.debug = debug;
@@ -165,12 +168,16 @@ namespace littleRunner
             for (int i = 0; i < world.Enemies.Count; i++)
             {
                 if (!world.Enemies[i].StartAtViewpoint || world.Enemies[i].Left < world.Settings.GameWindowWidth)
-                    world.Enemies[i].Check();
+                {
+                    Dictionary<string, int> newpos;
+                    world.Enemies[i].Check(out newpos);
+                }
             }
             // check of all moving elements
             for (int i = 0; i < world.MovingElements.Count; i++)
             {
-                world.MovingElements[i].Check();
+                Dictionary<string, int> newpos;
+                world.MovingElements[i].Check(out newpos);
             }
 
             // mgo out of range?

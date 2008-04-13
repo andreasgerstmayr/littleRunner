@@ -62,8 +62,15 @@ namespace littleRunner
 
             if (call)
             {
-                engine.Globals["args"] = args;
-                engine.Execute("handler." + name + "." + function + "(*args)");
+                try
+                {
+                    engine.Globals["args"] = args;
+                    engine.Execute("handler." + name + "." + function + "(*args)");
+                }
+                catch (Exception)
+                {
+                    throw new Exception("Script error!");
+                }
             }
         }
 

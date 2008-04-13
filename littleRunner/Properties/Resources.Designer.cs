@@ -102,6 +102,13 @@ namespace littleRunner.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap text_x_generic {
+            get {
+                object obj = ResourceManager.GetObject("text-x-generic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap text_x_script {
             get {
                 object obj = ResourceManager.GetObject("text-x-script", resourceCulture);
