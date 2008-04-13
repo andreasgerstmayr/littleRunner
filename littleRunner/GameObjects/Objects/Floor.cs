@@ -61,7 +61,6 @@ namespace littleRunner.GameObjects.Objects
         public Floor()
             : base()
         {
-            Color = FloorColor.Green;
         }
         public Floor(int top, int left, FloorColor style)
             : base()

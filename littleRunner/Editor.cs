@@ -1,14 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
+
 using System.Windows.Forms;
 
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-
+using littleRunner.GameObjects;
+using littleRunner.GameObjects.Enemies;
+using littleRunner.GameObjects.MovingElements;
 using littleRunner.GameObjects.Objects;
 
 
@@ -39,39 +37,55 @@ namespace littleRunner
             scrolled = 0;
             enableBG = true;
 
-            // Images
+            #region Images loading
             floorToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.floor_middle]);
+            floorToolStripButton.Image = Image.FromFile(Files.f[gFile.floor_middle]);
 
             designElementToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.tree]);
             treeToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.tree]);
+            treeToolStripButton.Image = Image.FromFile(Files.f[gFile.tree]);
 
             brickToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.brick_blue]);
+            brickToolStripButton.Image = Image.FromFile(Files.f[gFile.brick_blue]);
 
             boxToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.box1]);
+            boxToolStripButton.Image = Image.FromFile(Files.f[gFile.box1]); ;
 
             pipeToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.pipe_green_up]);
+            pipeToolStripButton.Image = Image.FromFile(Files.f[gFile.pipe_green_up]); ;
 
             pointStarToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.star]);
+            starToolStripButton.Image = Image.FromFile(Files.f[gFile.star]); ;
+
+            platformToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.brick_blue]);
+            bricksToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.brick_blue]);
+            bricksToolStripButton.Image = Image.FromFile(Files.f[gFile.brick_blue]); ;
 
             enemyToolStripMenuItem.Image = AnimateImage.FirstImage(Files.f[gFile.turtle_green]);
             turtleToolStripMenuItem.Image = AnimateImage.FirstImage(Files.f[gFile.turtle_green]);
+            turtleToolStripButton.Image = AnimateImage.FirstImage(Files.f[gFile.turtle_green]); ;
 
             spikaToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.spika_green]);
+            spikaToolStripButton.Image = Image.FromFile(Files.f[gFile.spika_green]); ;
 
             gumbaToolStripMenuItem.Image = AnimateImage.FirstImage(Files.f[gFile.gumba_brown]);
+            gumbaToolStripButton.Image = AnimateImage.FirstImage(Files.f[gFile.gumba_brown]); ;
 
             levelEndToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.levelend_house]);
             houseToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.levelend_house]);
+            houseToolStripButton.Image = Image.FromFile(Files.f[gFile.levelend_house]); ;
 
             gameLevelbeginToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.icon_png]);
             startGamecurrentToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.icon_png]);
+            startGameCurrentToolStripButton.Image = Image.FromFile(Files.f[gFile.icon_png]);
+            #endregion
 
             curfile = "";
             newToolStripMenuItem_Click(new object(), new EventArgs());
         }
 
 
-
+        #region Drag 'n' Drop Events
         private void level_MouseDown(object sender, MouseEventArgs e)
         {
             base.OnMouseDown(e);
@@ -126,6 +140,7 @@ namespace littleRunner
                 }
             }
         }
+        #endregion
 
 
         private void showlevelSettings_Click(object sender, EventArgs e)
@@ -144,6 +159,7 @@ namespace littleRunner
             changedLevelHeight();
         }
 
+        #region Main MenuBar Events
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             curfile = "";
@@ -152,14 +168,14 @@ namespace littleRunner
             setDelegateHandlers();
 
             showlevelSettings_Click(sender, e);
+            trackBar.Value = 0;
             level.Invalidate();
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             newToolStripMenuItem_Click(sender, e);
-            trackBar.Value = 0;
-
+            
             if (openFile.ShowDialog() == DialogResult.OK)
             {
                 curfile = openFile.FileName;
@@ -219,7 +235,7 @@ namespace littleRunner
         {
             if (save())
             {
-                g = new Game(programSwitcher, curfile, PlayMode.Editor);
+                g = new Game(programSwitcher, curfile, PlayMode.Game);
 
                 g.ShowDialog();
                 g = null;
@@ -232,19 +248,47 @@ namespace littleRunner
             {
                 int levelTop = this.Top + menu.Top + menubar.Top + tableLayout.Top + level.Top;
                 int levelLeft = this.Left + tableLayout.Left + level.Left;
-                g = new Game(programSwitcher, curfile, PlayMode.EditorCurrent, levelTop, levelLeft);
+                g = new Game(programSwitcher, curfile, PlayMode.GameInEditor, levelTop, levelLeft);
                 g.AI.Scroll(-trackBar.Value, false);
 
                 string oldtext = this.Text;
                 this.Text = "littleRunner Game Editor [press ESC to quit game]";
+
+                level.Width-=20;
                 g.ShowDialog();
                 g = null;
+                //level.Width+=20;
+
                 this.Text = oldtext;
             }
         }
 
 
 
+        private void editScriptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Scripteditor se = new Scripteditor();
+            se.ScriptText = world.Settings.Script;
+
+            if (se.ShowDialog() == DialogResult.OK)
+                world.Settings.Script = se.ScriptText;
+        }
+
+        private void checkScriptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (world != null)
+            {
+                string exception = world.InitScript();
+                if (exception == "")
+                    MessageBox.Show("Script seems to be OK!", "Script check", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("Script is not OK, exception traced:\n\n" + exception, "Script check", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        #endregion
+
+
+        #region Insert GameObject - Handlers
         private void addElement(GameObject go)
         {
             go.Init(world);
@@ -316,10 +360,76 @@ namespace littleRunner
         }
 
 
-        // -----------------------------------------------------------------------------
-        // -----------------------------------------------------------------------------
+        private void bricksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bricks b = new Bricks(0, 0, BrickColor.Blue);
+            addElement(b);
+        }
 
 
+
+        private void menubar_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem == newToolStripButton)
+                newToolStripMenuItem_Click(sender, e);
+
+            else if (e.ClickedItem == openToolStripButton)
+                openToolStripMenuItem_Click(sender, e);
+
+            else if (e.ClickedItem == saveToolStripButton)
+                saveToolStripMenuItem_Click(sender, e);
+
+
+            else if (e.ClickedItem == floorToolStripButton)
+                floorToolStripMenuItem_Click(sender, e);
+
+            else if (e.ClickedItem == treeToolStripButton)
+                treeToolStripMenuItem_Click(sender, e);
+
+            else if (e.ClickedItem == boxToolStripButton)
+                boxToolStripMenuItem_Click(sender, e);
+
+            else if (e.ClickedItem == brickToolStripButton)
+                brickToolStripMenuItem_Click(sender, e);
+
+            else if (e.ClickedItem == pipeToolStripButton)
+                pipeToolStripMenuItem_Click(sender, e);
+
+            else if (e.ClickedItem == starToolStripButton)
+                pointStarToolStripMenuItem_Click(sender, e);
+
+            else if (e.ClickedItem == bricksToolStripButton)
+                bricksToolStripMenuItem_Click(sender, e);
+
+            else if (e.ClickedItem == turtleToolStripButton)
+                turtleToolStripMenuItem_Click(sender, e);
+
+            else if (e.ClickedItem == spikaToolStripButton)
+                spikaToolStripMenuItem_Click(sender, e);
+
+            else if (e.ClickedItem == gumbaToolStripButton)
+                gumbaToolStripMenuItem_Click(sender, e);
+
+            else if (e.ClickedItem == houseToolStripButton)
+                houseToolStripMenuItem_Click(sender, e);
+
+            else if (e.ClickedItem == treeToolStripButton)
+                treeToolStripMenuItem_Click(sender, e);
+
+
+            else if (e.ClickedItem == startGameCurrentToolStripButton)
+                startGamecurrentToolStripMenuItem_Click(sender, e);
+
+            else if (e.ClickedItem == editScriptToolStripButton)
+                editScriptToolStripMenuItem_Click(sender, e);
+
+            else if (e.ClickedItem == checkScriptToolStripButton)
+                checkScriptToolStripMenuItem_Click(sender, e);
+        }
+        #endregion
+
+
+        #region Contextmenue
         private void toForegroundToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (focus != null)
@@ -346,6 +456,8 @@ namespace littleRunner
                 level.Invalidate();
             }
         }
+        #endregion
+
 
         private void Editor_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -422,18 +534,6 @@ namespace littleRunner
             // enable background
             enableBG = true;
             level.Invalidate();
-        }
-
-        private void scriptToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (world != null)
-            {
-                string exception = world.InitScript();
-                if (exception == "")
-                    MessageBox.Show("Script seems to be OK!", "Script check", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                else
-                    MessageBox.Show("Script is not OK, exception traced:\n\n"+exception, "Script check", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace littleRunner
 {
-    public class Debug
+    public class SimpleDebug
     {
         private Label element;
 
@@ -20,7 +20,7 @@ namespace littleRunner
             }
         }
 
-        public Debug(Label element)
+        public SimpleDebug(Label element)
         {
             this.element = element;
         }

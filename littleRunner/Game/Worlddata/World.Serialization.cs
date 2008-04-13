@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 
+using littleRunner.GameObjects;
 
-namespace littleRunner
+
+namespace littleRunner.Worlddata
 {
     class WorldSerialization
     {
+        #region Obj <--> String serialisation
         private static string ObjToStr(object o)
         {
             string s = null;
@@ -53,7 +56,10 @@ namespace littleRunner
 
             return o;
         }
+        #endregion
 
+
+        #region Serialize
         private static void Serialize(ref XmlTextWriter xmlWriter, Type type, Dictionary<string, object> serialized)
         {
             xmlWriter.WriteStartElement(type.FullName);
@@ -64,22 +70,28 @@ namespace littleRunner
 
                 xmlWriter.WriteStartElement(keypair.Key);
                 xmlWriter.WriteElementString("type", xmlType);
-                if (xmlType.IndexOf("[]") == -1)
-                    xmlWriter.WriteElementString("value", xmlValue);
-                else
+                if (xmlType.IndexOf("[]") != -1 || 
+                    (xmlType == typeof(string).FullName && xmlValue.IndexOf("\n") != -1) )
                 {
                     xmlWriter.WriteStartElement("value");
-                    if (xmlValue != "")
-                        xmlValue = "\n" + xmlValue + "\n";
                     xmlWriter.WriteCData(xmlValue);
                     xmlWriter.WriteEndElement();
                 }
+                else
+                {
+                    xmlWriter.WriteElementString("value", xmlValue);
+                }
+
                 xmlWriter.WriteEndElement();
             }
             xmlWriter.WriteEndElement();
         }
 
-        public static void Serialize(string filename, List<StickyElement> stickyelements, List<Enemy> enemies, LevelSettings settings)
+        public static void Serialize(string filename,
+            List<StickyElement> stickyelements,
+            List<MovingElement> movingelements,
+            List<Enemy> enemies,
+            LevelSettings settings)
         {
             XmlTextWriter xmlWriter = new XmlTextWriter(filename, System.Text.Encoding.UTF8);
             xmlWriter.Formatting = Formatting.Indented;
@@ -95,12 +107,6 @@ namespace littleRunner
 
             xmlWriter.WriteStartElement("Data");
 
-            xmlWriter.WriteStartElement("Enemies");
-            foreach (Enemy e in enemies)
-            {
-                Serialize(ref xmlWriter, e.GetType(), e.Serialize());
-            }
-            xmlWriter.WriteEndElement();
 
             xmlWriter.WriteStartElement("StickyElements");
             foreach (StickyElement se in stickyelements)
@@ -109,15 +115,30 @@ namespace littleRunner
             }
             xmlWriter.WriteEndElement();
 
+            xmlWriter.WriteStartElement("MovingElements");
+            foreach (MovingElement me in movingelements)
+            {
+                Serialize(ref xmlWriter, me.GetType(), me.Serialize());
+            }
+            xmlWriter.WriteEndElement();
+
+            xmlWriter.WriteStartElement("Enemies");
+            foreach (Enemy e in enemies)
+            {
+                Serialize(ref xmlWriter, e.GetType(), e.Serialize());
+            }
+            xmlWriter.WriteEndElement();
+
+
             xmlWriter.WriteEndElement();
             xmlWriter.WriteEndElement();
 
             xmlWriter.Close();
         }
+        #endregion
 
 
-
-
+        #region Deserialization
         private static Dictionary<string, object> Deserialize(ref XmlTextReader xmlReader, string section)
         {
             Dictionary<string, object> serialized = new Dictionary<string, object>();
@@ -139,6 +160,54 @@ namespace littleRunner
             xmlReader.ReadEndElement();
 
             return serialized;
+        }
+        private static List<StickyElement> createObjectsStickyElements(ref XmlTextReader xmlReader, World world)
+        {
+            string section = "StickyElements";
+            List<StickyElement> list = new List<StickyElement>();
+
+            xmlReader.ReadStartElement(section);
+            while (xmlReader.Depth > 2 && xmlReader.Read() && xmlReader.Name != section)
+            {
+                string type = xmlReader.Name;
+                Dictionary<string, object> serialized = Deserialize(ref xmlReader, type);
+
+                Type tType = Type.GetType(type);
+                GameObject go = (GameObject)Activator.CreateInstance(tType);
+                go.Deserialize(serialized);
+                go.Init(world);
+
+                list.Add((StickyElement)go);
+            }
+
+            if (xmlReader.Name != "")
+                xmlReader.ReadEndElement();
+
+            return list;
+        }
+        private static List<MovingElement> createObjectsMovingElements(ref XmlTextReader xmlReader, World world)
+        {
+            string section = "MovingElements";
+            List<MovingElement> list = new List<MovingElement>();
+
+            xmlReader.ReadStartElement(section);
+            while (xmlReader.Depth > 2 && xmlReader.Read() && xmlReader.Name != section)
+            {
+                string type = xmlReader.Name;
+                Dictionary<string, object> serialized = Deserialize(ref xmlReader, type);
+
+                Type tType = Type.GetType(type);
+                GameObject go = (GameObject)Activator.CreateInstance(tType);
+                go.Deserialize(serialized);
+                go.Init(world);
+
+                list.Add((MovingElement)go);
+            }
+
+            if (xmlReader.Name != "")
+                xmlReader.ReadEndElement();
+
+            return list;
         }
         private static List<Enemy> createObjectsEnemies(ref XmlTextReader xmlReader, World world)
         {
@@ -165,41 +234,20 @@ namespace littleRunner
 
             return list;
         }
-        private static List<StickyElement> createObjectsStickyElements(ref XmlTextReader xmlReader, World world)
-        {
-            string section = "StickyElements";
-            List<StickyElement> list = new List<StickyElement>();
-
-            xmlReader.ReadStartElement(section);
-            while (xmlReader.Depth > 2 && xmlReader.Read() && xmlReader.Name != section)
-            {
-                string type = xmlReader.Name;
-                Dictionary<string, object> serialized = Deserialize(ref xmlReader, type);
-
-                Type tType = Type.GetType(type);
-                GameObject go = (GameObject)Activator.CreateInstance(tType);
-                go.Deserialize(serialized);
-                go.Init(world);
-
-                list.Add((StickyElement)go);
-            }
-
-            if (xmlReader.Name != "")
-                xmlReader.ReadEndElement();
-
-            return list;
-        }
+        
 
 
         public static void Deserialize(string filename, out LevelSettings settings,
-                                                        out List<Enemy> enemies,
                                                         out List<StickyElement> stickyelements,
+                                                        out List<MovingElement> movingelements,
+                                                        out List<Enemy> enemies,
                                                         World world)
         {
             settings = new LevelSettings();
-            enemies = new List<Enemy>();
             stickyelements = new List<StickyElement>();
-
+            movingelements = new List<MovingElement>();
+            enemies = new List<Enemy>();
+            
 
             XmlTextReader xmlReader = new XmlTextReader(filename);
             xmlReader.ReadStartElement("Level");
@@ -207,14 +255,19 @@ namespace littleRunner
             settings.Deserialize(Deserialize(ref xmlReader, "littleRunner.LevelSettings"));
             xmlReader.ReadEndElement();
 
-
+            
             xmlReader.ReadStartElement("Data");
-            enemies = createObjectsEnemies(ref xmlReader, world);
+            
+
             stickyelements = createObjectsStickyElements(ref xmlReader, world);
+            movingelements = createObjectsMovingElements(ref xmlReader, world);
+            enemies = createObjectsEnemies(ref xmlReader, world);
+
 
             xmlReader.ReadEndElement();
 
             xmlReader.Close();
         }
+        #endregion
     }
 }

@@ -8,6 +8,10 @@ using System.Windows.Forms;
 
 using System.IO;
 
+
+using littleRunner.GameObjects;
+using littleRunner.GameObjects.MainGameObjects;
+
 namespace littleRunner
 {
     public partial class Game : Form
@@ -56,10 +60,11 @@ namespace littleRunner
 
         private void Game_Shown(object sender, EventArgs e)
         {
-            if (world.PlayMode == PlayMode.EditorCurrent)
+            if (world.PlayMode == PlayMode.GameInEditor)
             {
                 this.Top = top+3;
                 this.Left = left+4;
+                this.Width++;
             }
         }
 
@@ -146,8 +151,18 @@ namespace littleRunner
             }
         }
 
+        private void CloseGame()
+        {
+            ai.Quit();
+            ai = null;
+            Close();
+        }
+
         private void GameAIInteract(GameEvent gevent, Dictionary<GameEventArg, object> args)
         {
+            if (ai == null)
+                return;
+
             if (gevent == GameEvent.dead || gevent == GameEvent.outOfRange)
             {
                 if (gameControlObjs.Lives > 0)
@@ -160,11 +175,8 @@ namespace littleRunner
                     gameControlObjs.Lives--;
                     if (world.PlayMode == PlayMode.Game || world.PlayMode == PlayMode.Editor)
                         StartGame(lastFileName, world.PlayMode);
-                    else if (world.PlayMode == PlayMode.EditorCurrent)
-                    {
-                        ai = null;
+                    else if (world.PlayMode == PlayMode.GameInEditor)
                         Close();
-                    }
                 }
                 else
                 {
@@ -182,18 +194,10 @@ namespace littleRunner
                             StartGame("Data/Levels/level1.lrl", world.PlayMode);
                         }
                         else if (dr == DialogResult.No)
-                        {
-                            ai.Quit();
-                            ai = null;
-                            Close();
-                        }
+                            CloseGame();
                     }
-                    else if (world.PlayMode == PlayMode.EditorCurrent)
-                    {
-                        ai.Quit();
-                        ai = null;
-                        Close();
-                    }
+                    else if (world.PlayMode == PlayMode.GameInEditor)
+                        CloseGame();
                 }
             }
             else if (gevent == GameEvent.finishedLevel)
@@ -220,11 +224,8 @@ namespace littleRunner
                         Close();
                     }
                 }
-                else if (world.PlayMode == PlayMode.EditorCurrent)
-                {
-                    ai.Quit();
-                    ai = null;
-                }
+                else if (world.PlayMode == PlayMode.GameInEditor)
+                    CloseGame();
             }
         }
 
@@ -250,7 +251,7 @@ namespace littleRunner
 
         private void Game_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (ai != null && world != null && world.PlayMode == PlayMode.EditorCurrent
+            if (ai != null && world != null && world.PlayMode == PlayMode.GameInEditor
                 && e.KeyChar == (char)Keys.Escape)
                 Close();
 

@@ -4,7 +4,10 @@ using System.Text;
 using System.ComponentModel;
 using System.Drawing;
 
-namespace littleRunner
+using littleRunner.GameObjects.MovingElements;
+
+
+namespace littleRunner.GameObjects.Enemies
 {
     enum TurtleMode
     {
@@ -19,7 +22,6 @@ namespace littleRunner
     class Turtle : Enemy
     {
         private GameRunDirection direction;
-        private int jumping;
         private AnimateImage imgL, imgR, imgD;
         private AnimateImage curimg;
         private TurtleMode turtleMode;
@@ -82,7 +84,6 @@ namespace littleRunner
         {
             //curimg = imgR;
 
-            jumping = 0;
             speed = 1;
             startSmall = DateTime.Now;
 
@@ -99,7 +100,6 @@ namespace littleRunner
             Style = TurtleStyle.Green;
             curimg = imgR;
 
-            jumping = 0;
             speed = 1;
             startSmall = DateTime.Now;
 
@@ -107,16 +107,15 @@ namespace littleRunner
             turtleMode = TurtleMode.Normal;
         }
 
-        public override void Check()
+        public override void Check(out Dictionary<string, int> newpos)
         {
-            Dictionary<string, int> newpos;
             base.Check(out newpos);
             int newtop = newpos["top"];
             int newleft = newpos["left"];
 
 
             // falling?
-            bool falling = GamePhysics.Falling(World.StickyElements, this);
+            bool falling = GamePhysics.Falling(World.StickyElements, World.MovingElements, this);
 
             if (falling)
                 newtop += 6;
@@ -143,11 +142,9 @@ namespace littleRunner
                     newleft -= speed;
             }
 
-            // jumping?
-            GamePhysics.Jumping(ref jumping, ref newtop, ref newleft);
 
             // check if direction is ok
-            GamePhysics.CrashDetection(this, World.MovingElements, World.StickyElements, getEvent, ref newtop, ref newleft);
+            GamePhysics.CrashDetection(this, World.StickyElements, World.MovingElements, getEvent, ref newtop, ref newleft);
             Enemy crashedInEnemy = GamePhysics.CrashEnemy(this, World.Enemies, getEvent, ref newtop, ref newleft);
 
             bool removedEnemy = false;

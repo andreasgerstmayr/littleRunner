@@ -13,6 +13,9 @@ namespace littleRunner.GameObjects.Objects
 
         public override void Draw(Graphics g)
         {
+            if (curimgfn == Files.f[gFile.brick_invisible] && World.PlayMode == PlayMode.Editor)
+                g.DrawRectangle(Pens.Black, Left, Top, Width, Height);
+
             g.DrawImage(curimg, Left, Top, Width, Height);
         }
         protected string CurImgFilename

@@ -4,7 +4,7 @@ using System.Text;
 using System.ComponentModel;
 using System.Drawing;
 
-namespace littleRunner
+namespace littleRunner.GameObjects.Enemies
 {
     enum GumbaColor
     {
@@ -13,7 +13,6 @@ namespace littleRunner
     class Gumba : Enemy
     {
         private GameRunDirection direction;
-        private int jumping;
         private AnimateImage curimg;
         private int small;
         private GumbaColor color;
@@ -69,7 +68,6 @@ namespace littleRunner
         public Gumba()
             : base()
         {
-            jumping = 0;
             Direction = GameRunDirection.Right;
             small = 1;
         }
@@ -82,7 +80,6 @@ namespace littleRunner
 
             Color = GumbaColor.Brown;
 
-            jumping = 0;
             Direction = GameRunDirection.Right;
             small = 1;
         }
@@ -93,16 +90,15 @@ namespace littleRunner
                 World.Invalidate();
         }
 
-        public override void Check()
+        public override void Check(out Dictionary<string, int> newpos)
         {
-            Dictionary<string, int> newpos;
             base.Check(out newpos);
             int newtop = newpos["top"];
             int newleft = newpos["left"];
 
 
             // falling?
-            bool falling = GamePhysics.Falling(World.StickyElements, this);
+            bool falling = GamePhysics.Falling(World.StickyElements, World.MovingElements, this);
 
             if (falling)
                 newtop += 6;
@@ -116,11 +112,9 @@ namespace littleRunner
                     newleft -= 1;
             }
 
-            // jumping?
-            GamePhysics.Jumping(ref jumping, ref newtop, ref newleft);
 
             // check if direction is ok
-            GamePhysics.CrashDetection(this, World.MovingElements, World.StickyElements, getEvent, ref newtop, ref newleft);
+            GamePhysics.CrashDetection(this, World.StickyElements, World.MovingElements, getEvent, ref newtop, ref newleft);
             Enemy crashedInEnemy = GamePhysics.CrashEnemy(this, World.Enemies, getEvent, ref newtop, ref newleft);
 
 

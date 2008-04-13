@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
 
+using littleRunner.GameObjects.MovingElements;
+
 
 namespace littleRunner.GameObjects.Objects
 {
@@ -57,12 +59,14 @@ namespace littleRunner.GameObjects.Objects
                 {
                     Mushroom m = new Mushroom(MushroomType.Good, Top, Left);
                     m.Init(World);
+                    m.aiEventHandler = aiEventHandler;
                     World.MovingElements.Add(m);
                 }
                 else if (btype == BoxType.PoisonMushroom)
                 {
                     Mushroom m = new Mushroom(MushroomType.Poison, Top, Left);
                     m.Init(World);
+                    m.aiEventHandler = aiEventHandler;
                     World.MovingElements.Add(m);
                 }
                 else if (btype == BoxType.FireFlower)

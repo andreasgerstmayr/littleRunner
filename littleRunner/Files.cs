@@ -14,6 +14,7 @@ namespace littleRunner
         brick_ice,
         brick_red,
         brick_yellow,
+        brick_invisible,
         fire,
         fire_flower,
         floor_left,
@@ -51,6 +52,7 @@ namespace littleRunner
             f[gFile.brick_ice] = "Data/Images/Brick/brick_ice.png";
             f[gFile.brick_red] = "Data/Images/Brick/brick_red.png";
             f[gFile.brick_yellow] = "Data/Images/Brick/brick_yellow.png";
+            f[gFile.brick_invisible] = "Data/Images/Brick/brick_invisible.png";
             f[gFile.fire] = "Data/Images/GameElement/fire.png";
             f[gFile.fire_flower] = "Data/Images/GameItem/fire_flower.png";
             f[gFile.floor_left] = "Data/Images/Floor/floor_left.png";

@@ -4,7 +4,7 @@ using System.Text;
 using System.ComponentModel;
 using System.Drawing;
 
-namespace littleRunner
+namespace littleRunner.GameObjects.Enemies
 {
     enum SpikaColor
     {
