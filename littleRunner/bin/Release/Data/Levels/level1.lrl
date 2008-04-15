@@ -904,7 +904,7 @@
           <value>Green</value>
         </TurtleStyle>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Turtle>
@@ -938,7 +938,7 @@
           <value>Brown</value>
         </Color>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Left</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
@@ -972,7 +972,7 @@
           <value>Green</value>
         </TurtleStyle>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Turtle>

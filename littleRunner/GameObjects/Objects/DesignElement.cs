@@ -26,7 +26,7 @@ namespace littleRunner.GameObjects.Objects
                 switch (element)
                 {
                     case DesignElement.Tree:
-                        CurImgFilename = Files.f[gFile.tree];
+                        CurImgFilename = Files.tree;
                         break;
                 }
             }

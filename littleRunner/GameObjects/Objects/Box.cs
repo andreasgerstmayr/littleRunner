@@ -28,6 +28,7 @@ namespace littleRunner.GameObjects.Objects
         {
             get { return true; }
         }
+        [Category("Box")]
         public BoxStyle Style
         {
             get { return style; }
@@ -37,7 +38,7 @@ namespace littleRunner.GameObjects.Objects
                 switch (style)
                 {
                     case BoxStyle.Yellow:
-                        CurImgFilename = Files.f[gFile.box1];
+                        CurImgFilename = Files.box1;
                         break;
                 }
             }
@@ -58,21 +59,19 @@ namespace littleRunner.GameObjects.Objects
                 if (btype == BoxType.GoodMushroom)
                 {
                     Mushroom m = new Mushroom(MushroomType.Good, Top, Left);
-                    m.Init(World);
-                    m.aiEventHandler = aiEventHandler;
+                    m.Init(World, AiEventHandler);
                     World.MovingElements.Add(m);
                 }
                 else if (btype == BoxType.PoisonMushroom)
                 {
                     Mushroom m = new Mushroom(MushroomType.Poison, Top, Left);
-                    m.Init(World);
-                    m.aiEventHandler = aiEventHandler;
+                    m.Init(World, AiEventHandler);
                     World.MovingElements.Add(m);
                 }
                 else if (btype == BoxType.FireFlower)
                 {
                     FireFlower f = new FireFlower(Top, Left);
-                    f.Init(World);
+                    f.Init(World, AiEventHandler);
                     World.StickyElements.Add(f);
                 }
                 got = true;

@@ -25,11 +25,11 @@ namespace littleRunner.GameObjects.Objects
                 color = value;
                 switch (color)
                 {
-                    case BrickColor.Blue: CurImgFilename = Files.f[gFile.brick_blue]; break;
-                    case BrickColor.Ice: CurImgFilename = Files.f[gFile.brick_ice]; break;
-                    case BrickColor.Red: CurImgFilename = Files.f[gFile.brick_red]; break;
-                    case BrickColor.Yellow: CurImgFilename = Files.f[gFile.brick_yellow]; break;
-                    case BrickColor.Invisible: CurImgFilename = Files.f[gFile.brick_invisible]; break;
+                    case BrickColor.Blue: CurImgFilename = Files.brick_blue; break;
+                    case BrickColor.Ice: CurImgFilename = Files.brick_ice; break;
+                    case BrickColor.Red: CurImgFilename = Files.brick_red; break;
+                    case BrickColor.Yellow: CurImgFilename = Files.brick_yellow; break;
+                    case BrickColor.Invisible: CurImgFilename = Files.brick_invisible; break;
                 }
             }
         }

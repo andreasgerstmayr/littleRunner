@@ -112,11 +112,11 @@
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>322</value>
+          <value>327</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>407</value>
+          <value>406</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -138,11 +138,11 @@
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>324</value>
+          <value>328</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>248</value>
+          <value>271</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -465,8 +465,8 @@
           <value>128</value>
         </Height>
         <NextLevel>
-          <type>NULL</type>
-          <value>null</value>
+          <type>System.String</type>
+          <value>level6.lrl</value>
         </NextLevel>
         <Image>
           <type>littleRunner.GameObjects.Objects.LevelEndImg</type>
@@ -1639,11 +1639,11 @@
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>430</value>
+          <value>428</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>236</value>
+          <value>262</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -1662,7 +1662,7 @@
           <value>Brown</value>
         </Color>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
@@ -1673,11 +1673,11 @@
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>427</value>
+          <value>428</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>183</value>
+          <value>206</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -1703,11 +1703,11 @@
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>427</value>
+          <value>429</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>321</value>
+          <value>344</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -1733,11 +1733,11 @@
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>430</value>
+          <value>427</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>391</value>
+          <value>406</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -1756,7 +1756,7 @@
           <value>Brown</value>
         </Color>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
@@ -1820,7 +1820,7 @@
           <value>Green</value>
         </TurtleStyle>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Turtle>
@@ -1854,7 +1854,7 @@
           <value>Green</value>
         </TurtleStyle>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Left</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Turtle>
@@ -1888,7 +1888,7 @@
           <value>Green</value>
         </TurtleStyle>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Turtle>
@@ -1922,7 +1922,7 @@
           <value>Green</value>
         </TurtleStyle>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Left</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Turtle>
@@ -1956,7 +1956,7 @@
           <value>Brown</value>
         </Color>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
@@ -1990,7 +1990,7 @@
           <value>Brown</value>
         </Color>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
@@ -2024,7 +2024,7 @@
           <value>Brown</value>
         </Color>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
@@ -2058,7 +2058,7 @@
           <value>Brown</value>
         </Color>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
@@ -2092,7 +2092,7 @@
           <value>Brown</value>
         </Color>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
@@ -2126,7 +2126,7 @@
           <value>Brown</value>
         </Color>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
@@ -2160,7 +2160,7 @@
           <value>Brown</value>
         </Color>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
@@ -2194,7 +2194,7 @@
           <value>Brown</value>
         </Color>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
@@ -2235,11 +2235,11 @@
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>321</value>
+          <value>316</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>1306</value>
+          <value>1304</value>
         </Left>
         <Width>
           <type>System.Int32</type>

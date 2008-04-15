@@ -50,9 +50,9 @@ namespace littleRunner.GameObjects.Objects
                 switch (color)
                 {
                     case FloorColor.Green:
-                        imgL = Image.FromFile(Files.f[gFile.floor_left]);
-                        imgM = Image.FromFile(Files.f[gFile.floor_middle]);
-                        imgR = Image.FromFile(Files.f[gFile.floor_right]);
+                        imgL = Image.FromFile(Files.floor_left);
+                        imgM = Image.FromFile(Files.floor_middle);
+                        imgR = Image.FromFile(Files.floor_right);
                         break;
                 }
             }

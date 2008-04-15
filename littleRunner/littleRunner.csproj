@@ -48,12 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Editor.cs">
+    <Compile Include="DebugInfo.cs" />
+    <Compile Include="Editordata\Editor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Editor.Designer.cs">
+    <Compile Include="Editordata\Editor.Designer.cs">
       <DependentUpon>Editor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editordata\EditorUI.cs" />
+    <Compile Include="Exceptions.cs" />
     <Compile Include="Files.cs" />
     <Compile Include="GameObjects\AnimateImage.cs" />
     <Compile Include="GameObjects\Enemies\Spika.cs" />
@@ -75,7 +78,6 @@
     <Compile Include="GameObjects\Objects\Star.cs" />
     <Compile Include="GameObjects\MovingElements\MovingElement.cs" />
     <Compile Include="GameObjects\MovingElements\MovingImageElement.cs" />
-    <Compile Include="Game\SimpleDebug.cs" />
     <Compile Include="GameObjects\Enemies\Enemy.cs" />
     <Compile Include="GameObjects\Enemies\Turtle.cs" />
     <Compile Include="Game\Game.cs">
@@ -139,6 +141,7 @@
     <Compile Include="Script\SimpleEditor.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Editordata\TmpFileHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Images\GameElement\tree.png">
@@ -170,7 +173,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Editor.resx">
+    <EmbeddedResource Include="Editordata\Editor.resx">
       <DependentUpon>Editor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -256,22 +259,22 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\Images\MainGameObject\Tux\tux_0.png">
+    <None Include="Data\Images\MainGameObject\Tux\Normal\tux_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Images\MainGameObject\Tux\tux_1.png">
+    <None Include="Data\Images\MainGameObject\Tux\Normal\tux_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Images\MainGameObject\Tux\tux_2.png">
+    <None Include="Data\Images\MainGameObject\Tux\Normal\tux_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Images\MainGameObject\Tux\tux_3.png">
+    <None Include="Data\Images\MainGameObject\Tux\Normal\tux_3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Images\MainGameObject\Tux\tux_4.png">
+    <None Include="Data\Images\MainGameObject\Tux\Normal\tux_4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Images\MainGameObject\Tux\tux_5.png">
+    <None Include="Data\Images\MainGameObject\Tux\Normal\tux_5.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -334,6 +337,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\Levels\level6.lrl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\Script.py" />
     <None Include="Data\Levelscripts\MovingPlatform.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -354,6 +360,30 @@
     </None>
     <None Include="Data\Images\Brick\brick_invisible.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\MainGameObject\Tux\Small\tux_small_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\MainGameObject\Tux\Small\tux_small_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\MainGameObject\Tux\Small\tux_small_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\MainGameObject\Tux\Small\tux_small_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\MainGameObject\Tux\Small\tux_small_4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\MainGameObject\Tux\Small\tux_small_5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\MainGameObject\Tux\Small\tux_small_6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\MainGameObject\Tux\Small\tux_small_7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="TuxIcon.ico" />
   </ItemGroup>

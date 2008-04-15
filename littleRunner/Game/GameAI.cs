@@ -48,11 +48,6 @@ namespace littleRunner
         jumpRight,
         fire
     }
-    enum GameRunDirection
-    {
-        Left,
-        Right
-    }
     public enum MainGameObjectMode
     {
         NormalFire,
@@ -67,7 +62,6 @@ namespace littleRunner
     public class GameAI
     {
         private Form form;
-        private SimpleDebug debug;
         private GameEventHandler forminteract;
         private Timer mainTimer;
         private MainGameObject mgo;
@@ -75,13 +69,6 @@ namespace littleRunner
         private GameControlObjects gameControlObj;
         private List<Keys> curkeys;
 
-        public void Init()
-        {
-            mainTimer = new Timer();
-            mainTimer.Tick += new EventHandler(Check);
-            mainTimer.Interval = 1;
-            mainTimer.Enabled = true;
-        }
 
         public void Draw(Graphics g)
         {
@@ -104,27 +91,24 @@ namespace littleRunner
             gameControlObj.Points = 0;
         }
 
-        public GameAI(Form form, GameEventHandler forminteract, World world, MainGameObject maingameobject, GameControlObjects gameControlObj)
+        public GameAI(Form form, GameEventHandler forminteract)
         {
             this.form = form;
             this.forminteract = forminteract;
+            this.curkeys = new List<Keys>();
+        }
+        public void Init(World world, MainGameObject maingameobject, GameControlObjects gameControlObj)
+        {
+            mainTimer = new Timer();
+            mainTimer.Tick += new EventHandler(Check);
+            mainTimer.Interval = 1;
+            mainTimer.Enabled = true;
+
+            this.gameControlObj = gameControlObj;
             this.mgo = maingameobject;
             this.world = world;
-            this.gameControlObj = gameControlObj;
-            this.curkeys = new List<Keys>();
+        }
 
-            // add GameEventHandler
-            foreach (GameObject go in world.AllElements)
-            {
-                go.aiEventHandler = getEvent;
-            }
-            this.mgo.aiEventHandler = getEvent;
-        }
-        public GameAI(Form form, SimpleDebug debug, GameEventHandler forminteract, World world, MainGameObject maingameobject, GameControlObjects gameControlObj)
-            : this(form, forminteract, world, maingameobject, gameControlObj)
-        {
-            this.debug = debug;
-        }
 
         public void Scroll(int value, bool moveMGO)
         {
@@ -138,10 +122,14 @@ namespace littleRunner
 
         public void Check(object sender, EventArgs e)
         {
+            if (world.Script != null)
+                world.Script.callFunction("AI", "Check");
+
+
             // scrolling?
-            if (mgo.Left < 100)
+            if (mgo.Left < 140)
                 Scroll(15, true); // scroll left
-            else if (world.Settings.GameWindowWidth - mgo.Right < 100)
+            else if (world.Settings.GameWindowWidth - mgo.Right < 140)
                 Scroll(-15, true); // scroll right
 
 
@@ -228,6 +216,11 @@ namespace littleRunner
                 return GameElement.MovingElement;
             else
                 return GameElement.Unknown;
+        }
+
+
+        static public void NullAiEventHandlerMethod(GameEvent gevent, Dictionary<GameEventArg, object> args)
+        {
         }
     }
 }

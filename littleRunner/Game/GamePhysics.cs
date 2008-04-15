@@ -9,39 +9,43 @@ namespace littleRunner
 {
     static class GamePhysics
     {
+        public static class FallingClass<T> where T : StickyElement
+        {
+            public static bool CheckFalling(List<T> list, GameObject go)
+            {
+                bool falling = true;
+
+                foreach (T el in list)
+                {
+                    if (el.canStandOn)
+                    {
+                        if (go.Right > el.Left && go.Left < el.Right && // left+right ok?
+                            go.Bottom == el.Top)
+                        {
+                            falling = false;
+                            break;
+                        }
+                    }
+                }
+
+                return falling;
+            }
+        }
+
         static public bool Falling(List<StickyElement> stickyelements,
             List<MovingElement> movingelements,
             GameObject go)
         {
             bool falling = true;
 
-            foreach (StickyElement se in stickyelements)
-            {
-                if (se.canStandOn)
-                {
-                    if (go.Right > se.Left && go.Left < se.Right && // left+right ok?
-                        go.Bottom == se.Top)
-                    {
-                        falling = false;
-                        break;
-                    }
-                }
-            }
-            foreach (MovingElement me in movingelements)
-            {
-                if (me.canStandOn)
-                {
-                    if (go.Right > me.Left && go.Left < me.Right && // left+right ok?
-                        go.Bottom == me.Top)
-                    {
-                        falling = false;
-                        break;
-                    }
-                }
-            }
+            falling = FallingClass<StickyElement>.CheckFalling(stickyelements, go);
+            if (falling)
+                falling = FallingClass<MovingElement>.CheckFalling(movingelements, go);
 
             return falling;
         }
+
+
 
         static public void Jumping(ref int jumping, ref int newtop, ref int newleft)
         {
@@ -56,7 +60,7 @@ namespace littleRunner
                 newleft -= 5;
                 newtop += 10;
             }
-            
+
             // jump top
             else if (jumping >= 100 && jumping < 120)
             {

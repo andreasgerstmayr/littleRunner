@@ -12,7 +12,7 @@ namespace littleRunner.GameObjects.Enemies
     }
     class Gumba : Enemy
     {
-        private GameRunDirection direction;
+        private GameDirection direction;
         private AnimateImage curimg;
         private int small;
         private GumbaColor color;
@@ -35,16 +35,16 @@ namespace littleRunner.GameObjects.Enemies
                 switch (color)
                 {
                     case GumbaColor.Brown:
-                        curimg = new AnimateImage (Files.f[gFile.gumba_brown], 100, GameDirection.Left);
+                        curimg = new AnimateImage (Files.gumba_brown, 100);
                         break;
 
                 }
-                Width = curimg.CurImage.Width;
-                Height = curimg.CurImage.Height;
+                Width = curimg.CurImage(direction).Width;
+                Height = curimg.CurImage(direction).Height;
             }
         }
         [Category("Gumba")]
-        public GameRunDirection Direction
+        public GameDirection Direction
         {
             get { return direction; }
             set { direction = value; }
@@ -61,14 +61,14 @@ namespace littleRunner.GameObjects.Enemies
             if (Height <= 2)
                 World.Enemies.Remove(this);
 
-            curimg.Draw(g, Left, Top, Width, Height);
+            curimg.Draw(g, direction, Left, Top, Width, Height);
         }
 
 
         public Gumba()
             : base()
         {
-            Direction = GameRunDirection.Right;
+            Direction = GameDirection.Right;
             small = 1;
         }
 
@@ -80,7 +80,7 @@ namespace littleRunner.GameObjects.Enemies
 
             Color = GumbaColor.Brown;
 
-            Direction = GameRunDirection.Right;
+            Direction = GameDirection.Right;
             small = 1;
         }
 
@@ -106,7 +106,7 @@ namespace littleRunner.GameObjects.Enemies
             // direction
             if (!falling)
             {
-                if (direction == GameRunDirection.Right)
+                if (direction == GameDirection.Right)
                     newleft += 1;
                 else
                     newleft -= 1;
@@ -131,7 +131,7 @@ namespace littleRunner.GameObjects.Enemies
 
             if (!falling && newleft == 0)
             {
-                direction = direction == GameRunDirection.Left ? GameRunDirection.Right : GameRunDirection.Left;
+                direction = direction == GameDirection.Left ? GameDirection.Right : GameDirection.Left;
             }
 
 
@@ -153,7 +153,7 @@ namespace littleRunner.GameObjects.Enemies
 
         public void getEvent(GameEvent gevent, Dictionary<GameEventArg, object> args)
         {
-            base.aiEventHandler(gevent, args);
+            AiEventHandler(gevent, args);
         }
 
 
@@ -168,7 +168,7 @@ namespace littleRunner.GameObjects.Enemies
         {
             base.Deserialize(ser);
             Color = (GumbaColor)ser["Color"];
-            Direction = (GameRunDirection)ser["Direction"];
+            Direction = (GameDirection)ser["Direction"];
         }
     }
 }

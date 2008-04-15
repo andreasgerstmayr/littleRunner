@@ -29,9 +29,9 @@ namespace littleRunner.GameObjects.Enemies
                 color = value;
                 switch (color)
                 {
-                    case SpikaColor.Orange: curimg = Image.FromFile(Files.f[gFile.spika_orange]); break;
-                    case SpikaColor.Green: curimg = Image.FromFile(Files.f[gFile.spika_green]); break;
-                    case SpikaColor.Grey: curimg = Image.FromFile(Files.f[gFile.spika_grey]); break;
+                    case SpikaColor.Orange: curimg = Image.FromFile(Files.spika_orange); break;
+                    case SpikaColor.Green: curimg = Image.FromFile(Files.spika_green); break;
+                    case SpikaColor.Grey: curimg = Image.FromFile(Files.spika_grey); break;
                 }
             }
         }
@@ -69,10 +69,10 @@ namespace littleRunner.GameObjects.Enemies
             {
                 switch (cidirection)
                 {
-                    case GameDirection.Left: World.MGO.Move(MoveType.goLeft); break;
-                    case GameDirection.Right: World.MGO.Move(MoveType.goRight); break;
-                    case GameDirection.Top: World.MGO.Move(MoveType.goTop); break;
-                    case GameDirection.Bottom: World.MGO.Move(MoveType.goBottom); break;
+                    case GameDirection.Left: World.MGO.Move(MoveType.goLeft, 20); break;
+                    case GameDirection.Right: World.MGO.Move(MoveType.goRight, 20); break;
+                    case GameDirection.Top: World.MGO.Move(MoveType.goTop, 20); break;
+                    case GameDirection.Bottom: World.MGO.Move(MoveType.goBottom, 20); break;
                 }
             }
 

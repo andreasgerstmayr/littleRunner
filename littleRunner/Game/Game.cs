@@ -23,6 +23,7 @@ namespace littleRunner
         bool lastModeIsNull;
         GameControlObjects gameControlObjs;
         bool editorOpened;
+        bool ignoreSizeChange;
         int top, left;
 
         public GameAI AI
@@ -30,7 +31,11 @@ namespace littleRunner
             get { return ai; }
         }
 
-        public Game(ProgramSwitcher programSwitcher)
+        public Game()
+        {
+            ignoreSizeChange = false;
+        }
+        public Game(ProgramSwitcher programSwitcher) : this()
         {
             InitializeComponent();
 
@@ -40,7 +45,7 @@ namespace littleRunner
             lastModeIsNull = true;
             StartGame("Data/Levels/level1.lrl", PlayMode.Game);
         }
-        public Game(ProgramSwitcher programSwitcher, string filename, PlayMode playMode)
+        public Game(ProgramSwitcher programSwitcher, string filename, PlayMode playMode) : this()
         {
             InitializeComponent();
 
@@ -92,39 +97,46 @@ namespace littleRunner
                 // set form title
                 string title = "";
 
-                int lastBackslash = filename.LastIndexOf("/");
-                if (lastBackslash == -1)
-                    title = filename.Substring(0);
-                else
-                    title = filename.Substring(lastBackslash+1);
-
-                int lastDot = title.LastIndexOf(".");
-                if (lastDot != -1)
+                if (filename.StartsWith(Path.GetTempPath()))
                 {
-                    title = title.Substring(0, lastDot);
+                    Text = "littleRunner";
+                }
+                else
+                {
+                    int lastBackslash = filename.LastIndexOf("/");
+                    if (lastBackslash == -1)
+                        title = filename.Substring(0);
+                    else
+                        title = filename.Substring(lastBackslash + 1);
+
+                    int lastDot = title.LastIndexOf(".");
+                    if (lastDot != -1)
+                    {
+                        title = title.Substring(0, lastDot);
+                    }
+
+                    Text = "littleRunner - " + title;
                 }
 
-                Text = "littleRunner - " + title;
-
+                // main game AI - world neets AiEventHandler
+                ai = new GameAI(this, GameAIInteract);
 
                 // The world
-                world = new World(filename, Invalidate, playMode);
-
-                Width = world.Settings.GameWindowWidth+5;
-                Height = world.Settings.LevelHeight+29;
-
-                // all enemies need special things
-                foreach (Enemy enemie in world.Enemies)
-                {
-                    enemie.Init(world);
-                }
-
+                world = new World(filename, Invalidate, ai.getEvent, playMode);
 
                 // Main game object
-                Tux tux = new Tux(0, 100);
+                Tux tux = new Tux(0, 140);
+                tux.Init(world, ai.getEvent); // can init
 
-                tux.Init(world);
+                // got MGO!
                 world.Init(tux);
+
+
+                // change window size
+                ignoreSizeChange = true;
+                Width = world.Settings.GameWindowWidth + 5;
+                Height = world.Settings.LevelHeight + 29;
+                ignoreSizeChange = false;
 
 
                 // GameControls
@@ -137,15 +149,14 @@ namespace littleRunner
                     gameControlObjs = new GameControlObjects(gameControlObjPoints, gameControlObjLives, gameControlObjSound);
                 }
 
-                // main game AI
-                ai = new GameAI(this, GameAIInteract, world, tux, gameControlObjs);
-                ai.Init();
+                // init AI with the world - now we have the GameControlObjects
+                ai.Init(world, tux, gameControlObjs);
+
 
                 if (!lastModeIsNull)
                    ai.world.MGO.currentMode = lastMode;
 
                 gameControlObjs.Sound.Start();
-
 
                 // Controls.Remove(loading);
             }
@@ -289,15 +300,18 @@ namespace littleRunner
 
         private void Game_SizeChanged(object sender, EventArgs e)
         {
-            if (WindowState == FormWindowState.Minimized)
+            if (!ignoreSizeChange)
             {
-                if (ai != null)
-                    ai.Stop();
-            }
-            else if (WindowState == FormWindowState.Normal)
-            {
-                if (ai != null)
-                    ai.PlayAgain();
+                if (WindowState == FormWindowState.Minimized)
+                {
+                    if (ai != null)
+                        ai.Stop();
+                }
+                else if (WindowState == FormWindowState.Normal)
+                {
+                    if (ai != null)
+                        ai.PlayAgain();
+                }
             }
         }
     }

@@ -35,6 +35,7 @@ namespace littleRunner
         MainGameObject mainGameObject;
         public LevelSettings Settings;
         public MyInvalidateEventHandler Invalidate;
+        private GameEventHandler aiEventHandler;
         public PlayMode PlayMode;
         public Script Script;
 
@@ -62,7 +63,7 @@ namespace littleRunner
             this.PlayMode = playMode;
 
             if (playMode == PlayMode.Editor)
-               mainGameObject = new NullMGO();
+                mainGameObject = new NullMGO();
         }
         public World(int width, int height, MyInvalidateEventHandler invalidate, PlayMode playMode)
             : this(playMode)
@@ -73,39 +74,58 @@ namespace littleRunner
             Settings.LevelHeight = height;
             this.Invalidate = invalidate;
 
+            this.aiEventHandler = GameAI.NullAiEventHandlerMethod;
             enemies = new List<Enemy>();
             stickyelements = new List<StickyElement>();
             movingelements = new List<MovingElement>();
         }
         // new world with the game
-        public World(string filename, MyInvalidateEventHandler invalidate, PlayMode playMode)
+        public World(string filename, MyInvalidateEventHandler invalidate, GameEventHandler aiEventHandler, PlayMode playMode)
             : this(playMode)
         {
             this.Invalidate = invalidate;
             this.fileName = filename;
+            this.aiEventHandler = aiEventHandler;
             Deserialize();
         }
+        public World(string filename, MyInvalidateEventHandler invalidate, PlayMode playMode)
+            : this(filename, invalidate, GameAI.NullAiEventHandlerMethod, playMode)
+        {
+        }
+
+        public void Init(MainGameObject mainGameObject) // only called when starting the game
+        {
+            this.mainGameObject = mainGameObject;
+            string msg = InitScript();
+
+            if (msg != "")
+            {
+                if (PlayMode == PlayMode.Game)
+                    throw new littleRunnerScriptException(msg);
+                else
+                    MessageBox.Show("Can't load script.", "Script error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
         public string InitScript()
         {
             if (Settings.Script.Length > 0)
             {
                 Script = new Script(this);
 
-                foreach (GameObject go in this.AllElements)
-                {
-                    if (go.Name != null && go.Name != "")
-                    {
-                        Script.GlobalsAdd(go.Name, go);
-                        Script.Execute("handler." + go.Name + " = AttrDict()");
-                    }
-                }
-
-                //if (PlayMode == PlayMode.Game || PlayMode == PlayMode.EditorCurrent)
-                    Script.GlobalsAdd("MGO", MGO);
-
-
                 try
                 {
+                    foreach (GameObject go in this.AllElements)
+                    {
+                        if (go.Name != null && go.Name != "")
+                        {
+                            Script.GlobalsAdd(go.Name, go);
+                            Script.Execute("handler." + go.Name + " = AttrDict()");
+                        }
+                    }
+
+                    Script.GlobalsAdd("MGO", MGO);
                     Script.Execute(Settings.Script);
                 }
                 catch (Exception e)
@@ -115,13 +135,6 @@ namespace littleRunner
             }
 
             return "";
-        }
-        public void Init(MainGameObject mainGameObject)
-        {
-            this.mainGameObject = mainGameObject;
-
-            if (InitScript() != "")
-                MessageBox.Show("Can't load script!", "Scripterror", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         public void Draw(Graphics g, bool drawBackground)
@@ -171,7 +184,7 @@ namespace littleRunner
                 {
                     ret.Add(e);
                 }
-                
+
                 return ret;
             }
         }
@@ -213,9 +226,10 @@ namespace littleRunner
             WorldSerialization.Deserialize(fileName,
                 out Settings,
                 out stickyelements,
-                out movingelements, 
+                out movingelements,
                 out enemies,
-                this);
+                this,
+                aiEventHandler);
         }
     }
 
@@ -290,10 +304,10 @@ namespace littleRunner
                         BackgroundImg = null;
                         break;
                     case Backgrounds.Blue_Hills:
-                        BackgroundImg = Image.FromFile(Files.f[gFile.background_blue_hills]);
+                        BackgroundImg = Image.FromFile(Files.background_blue_hills);
                         break;
                     case Backgrounds.Green_Hills:
-                        BackgroundImg = Image.FromFile(Files.f[gFile.background_green_hills]);
+                        BackgroundImg = Image.FromFile(Files.background_green_hills);
                         break;
                 }
             }

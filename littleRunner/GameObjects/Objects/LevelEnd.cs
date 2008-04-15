@@ -33,7 +33,7 @@ namespace littleRunner.GameObjects.Objects
                 switch (image)
                 {
                     case LevelEndImg.House:
-                        CurImgFilename = Files.f[gFile.levelend_house];
+                        CurImgFilename = Files.levelend_house;
                         break;
                 }
             }

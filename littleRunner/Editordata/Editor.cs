@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-
 using System.Windows.Forms;
+using System.Reflection;
 
 using littleRunner.GameObjects;
 using littleRunner.GameObjects.Enemies;
@@ -16,20 +16,28 @@ namespace littleRunner
     {
         ProgramSwitcher programSwitcher;
         Game g;
+        TmpFileHandler tmpHandler;
+
+        World world;
         GameObject focus;
         bool moving;
         bool enableBG;
         int mouseX, mouseY;
         int scrolled;
 
-        World world;
-        string curfile;
+
+
 
         public Editor(ProgramSwitcher programSwitcher)
         {
             InitializeComponent();
 
             this.programSwitcher = programSwitcher;
+            World defaultWorld = getDefaultWorld();
+            tmpHandler = new TmpFileHandler(openFile, saveFile, defaultWorld.Serialize, 5);
+            defaultWorld = null;
+
+
             focus = null;
             moving = false;
             mouseX = 0;
@@ -38,49 +46,48 @@ namespace littleRunner
             enableBG = true;
 
             #region Images loading
-            floorToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.floor_middle]);
-            floorToolStripButton.Image = Image.FromFile(Files.f[gFile.floor_middle]);
+            floorToolStripMenuItem.Image = Image.FromFile(Files.floor_middle);
+            floorToolStripButton.Image = Image.FromFile(Files.floor_middle);
 
-            designElementToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.tree]);
-            treeToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.tree]);
-            treeToolStripButton.Image = Image.FromFile(Files.f[gFile.tree]);
+            designElementToolStripMenuItem.Image = Image.FromFile(Files.tree);
+            treeToolStripMenuItem.Image = Image.FromFile(Files.tree);
+            treeToolStripButton.Image = Image.FromFile(Files.tree);
 
-            brickToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.brick_blue]);
-            brickToolStripButton.Image = Image.FromFile(Files.f[gFile.brick_blue]);
+            brickToolStripMenuItem.Image = Image.FromFile(Files.brick_blue);
+            brickToolStripButton.Image = Image.FromFile(Files.brick_blue);
 
-            boxToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.box1]);
-            boxToolStripButton.Image = Image.FromFile(Files.f[gFile.box1]); ;
+            boxToolStripMenuItem.Image = Image.FromFile(Files.box1);
+            boxToolStripButton.Image = Image.FromFile(Files.box1); ;
 
-            pipeToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.pipe_green_up]);
-            pipeToolStripButton.Image = Image.FromFile(Files.f[gFile.pipe_green_up]); ;
+            pipeToolStripMenuItem.Image = Image.FromFile(Files.pipe_green_up);
+            pipeToolStripButton.Image = Image.FromFile(Files.pipe_green_up); ;
 
-            pointStarToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.star]);
-            starToolStripButton.Image = Image.FromFile(Files.f[gFile.star]); ;
+            pointStarToolStripMenuItem.Image = Image.FromFile(Files.star);
+            starToolStripButton.Image = Image.FromFile(Files.star); ;
 
-            platformToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.brick_blue]);
-            bricksToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.brick_blue]);
-            bricksToolStripButton.Image = Image.FromFile(Files.f[gFile.brick_blue]); ;
+            platformToolStripMenuItem.Image = Image.FromFile(Files.brick_blue);
+            bricksToolStripMenuItem.Image = Image.FromFile(Files.brick_blue);
+            bricksToolStripButton.Image = Image.FromFile(Files.brick_blue); ;
 
-            enemyToolStripMenuItem.Image = AnimateImage.FirstImage(Files.f[gFile.turtle_green]);
-            turtleToolStripMenuItem.Image = AnimateImage.FirstImage(Files.f[gFile.turtle_green]);
-            turtleToolStripButton.Image = AnimateImage.FirstImage(Files.f[gFile.turtle_green]); ;
+            enemyToolStripMenuItem.Image = AnimateImage.FirstImage(Files.turtle_green);
+            turtleToolStripMenuItem.Image = AnimateImage.FirstImage(Files.turtle_green);
+            turtleToolStripButton.Image = AnimateImage.FirstImage(Files.turtle_green); ;
 
-            spikaToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.spika_green]);
-            spikaToolStripButton.Image = Image.FromFile(Files.f[gFile.spika_green]); ;
+            spikaToolStripMenuItem.Image = Image.FromFile(Files.spika_green);
+            spikaToolStripButton.Image = Image.FromFile(Files.spika_green); ;
 
-            gumbaToolStripMenuItem.Image = AnimateImage.FirstImage(Files.f[gFile.gumba_brown]);
-            gumbaToolStripButton.Image = AnimateImage.FirstImage(Files.f[gFile.gumba_brown]); ;
+            gumbaToolStripMenuItem.Image = AnimateImage.FirstImage(Files.gumba_brown);
+            gumbaToolStripButton.Image = AnimateImage.FirstImage(Files.gumba_brown); ;
 
-            levelEndToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.levelend_house]);
-            houseToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.levelend_house]);
-            houseToolStripButton.Image = Image.FromFile(Files.f[gFile.levelend_house]); ;
+            levelEndToolStripMenuItem.Image = Image.FromFile(Files.levelend_house);
+            houseToolStripMenuItem.Image = Image.FromFile(Files.levelend_house);
+            houseToolStripButton.Image = Image.FromFile(Files.levelend_house); ;
 
-            gameLevelbeginToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.icon_png]);
-            startGamecurrentToolStripMenuItem.Image = Image.FromFile(Files.f[gFile.icon_png]);
-            startGameCurrentToolStripButton.Image = Image.FromFile(Files.f[gFile.icon_png]);
+            gameLevelbeginToolStripMenuItem.Image = Image.FromFile(Files.icon_png);
+            startGamecurrentToolStripMenuItem.Image = Image.FromFile(Files.icon_png);
+            startGameCurrentToolStripButton.Image = Image.FromFile(Files.icon_png);
             #endregion
 
-            curfile = "";
             newToolStripMenuItem_Click(new object(), new EventArgs());
         }
 
@@ -89,7 +96,7 @@ namespace littleRunner
         private void level_MouseDown(object sender, MouseEventArgs e)
         {
             base.OnMouseDown(e);
-            
+
             List<GameObject> gos = world.AllElements;
             for (int i = gos.Count - 1; i >= 0; i--)
             {
@@ -97,7 +104,6 @@ namespace littleRunner
                 if (go.Hit(e.Y, e.X))
                 {
                     focus = go;
-                    actualFocus.Text = "Focus: " + focus.GetType().Name;
                     moving = true;
                     mouseX = e.X - go.Left;
                     mouseY = e.Y - go.Top;
@@ -125,6 +131,19 @@ namespace littleRunner
             level.Invalidate(); // paint again, with background
         }
 
+        private void ViewContextMenue(int x, int y)
+        {
+            for (int i = objectContext.Items.Count - 1; i > 2; i--) // start from end
+            {                                               // easier to understand, because otherwise
+                objectContext.Items.RemoveAt(i);            // you 've to remove always the 3. element
+            }
+
+            List<ToolStripItem> newitems = EditorUI.GenerateProperties(ref focus, ref level, ref propertys);
+            objectContext.Items.AddRange(newitems.ToArray());
+            objectContext.Show(Cursor.Position.X, Cursor.Position.Y);
+        }
+
+
         private void level_MouseClick(object sender, MouseEventArgs e)
         {
             base.OnMouseClick(e);
@@ -134,7 +153,7 @@ namespace littleRunner
 
                 if (e.Button == MouseButtons.Right)
                 {
-                    objectContext.Show(Cursor.Position.X, Cursor.Position.Y);
+                    ViewContextMenue(Cursor.Position.X, Cursor.Position.Y);
                     mouseX = e.X - focus.Left;
                     mouseY = e.Y - focus.Top;
                 }
@@ -146,7 +165,6 @@ namespace littleRunner
         private void showlevelSettings_Click(object sender, EventArgs e)
         {
             propertys.SelectedObject = world.Settings;
-            actualFocus.Text = "Focus: " + world.Settings.GetType().Name;
         }
 
         private void setDelegateHandlers()
@@ -160,11 +178,29 @@ namespace littleRunner
         }
 
         #region Main MenuBar Events
+        private World getDefaultWorld()
+        {
+            return new World(700, 550, level.Invalidate, PlayMode.Editor);
+        }
+        private void SaveWorld(string filename)
+        {
+            if (world != null)
+                scrollAll(scrolled);
+
+            world.Serialize(filename);
+
+            if (world != null)
+                scrollAll(-scrolled);
+        }
+
+
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            curfile = "";
+            tmpHandler.New();
+
             this.Text = "littleRunner Game Editor";
-            world = new World(700, 550, level.Invalidate, PlayMode.Editor);
+            world = getDefaultWorld();
+            tmpHandler.SaveHandler = SaveWorld;
             setDelegateHandlers();
 
             showlevelSettings_Click(sender, e);
@@ -174,13 +210,13 @@ namespace littleRunner
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            newToolStripMenuItem_Click(sender, e);
-            
-            if (openFile.ShowDialog() == DialogResult.OK)
+            if (tmpHandler.Open())
             {
-                curfile = openFile.FileName;
-                this.Text = "littleRunner Game Editor - " + curfile;
-                world = new World(curfile, level.Invalidate, PlayMode.Editor);
+                this.Text = "littleRunner Game Editor - " + tmpHandler.OrigFilename;
+                trackBar.Value = 0;
+
+                world = new World(tmpHandler.TmpFilename, level.Invalidate, PlayMode.Editor);
+                tmpHandler.SaveHandler = SaveWorld;
                 setDelegateHandlers();
 
                 showlevelSettings_Click(sender, e);
@@ -188,42 +224,17 @@ namespace littleRunner
             }
         }
 
-        private bool save()
-        {
-            if (curfile == "")
-            {
-                return saveAs();
-            }
-            else
-            {
-                scrollAll(scrolled);
-
-                world.Serialize(curfile);
-
-                scrollAll(-scrolled);
-                return true;
-            }
-        }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            save();
-        }
-        private bool saveAs()
-        {
-            if (saveFile.ShowDialog() == DialogResult.OK)
-            {
-                curfile = saveFile.FileName;
-                this.Text = "littleRunner Game Editor - " + curfile;
-                return save();
-            }
-            else
-                return false;
+            tmpHandler.SaveReal();
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            saveAs();
+            tmpHandler.SaveAsReal();
+
+            this.Text = "littleRunner Game Editor - " + tmpHandler.OrigFilename;
         }
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -233,34 +244,30 @@ namespace littleRunner
 
         private void gameLevelbeginToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (save())
-            {
-                g = new Game(programSwitcher, curfile, PlayMode.Game);
+            tmpHandler.updateTMP();
 
-                g.ShowDialog();
-                g = null;
-            }
+            g = new Game(programSwitcher, tmpHandler.TmpFilename, PlayMode.Game);
+
+            g.ShowDialog();
+            g = null;
         }
 
         private void startGamecurrentToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (save())
-            {
-                int levelTop = this.Top + menu.Top + menubar.Top + tableLayout.Top + level.Top;
-                int levelLeft = this.Left + tableLayout.Left + level.Left;
-                g = new Game(programSwitcher, curfile, PlayMode.GameInEditor, levelTop, levelLeft);
-                g.AI.Scroll(-trackBar.Value, false);
+            tmpHandler.updateTMP();
 
-                string oldtext = this.Text;
-                this.Text = "littleRunner Game Editor [press ESC to quit game]";
+            int levelTop = this.Top + menu.Top + menubar.Top + tableLayout.Top + level.Top;
+            int levelLeft = this.Left + tableLayout.Left + level.Left;
+            g = new Game(programSwitcher, tmpHandler.TmpFilename, PlayMode.GameInEditor, levelTop, levelLeft);
+            g.AI.Scroll(-trackBar.Value, false);
 
-                level.Width-=20;
-                g.ShowDialog();
-                g = null;
-                //level.Width+=20;
+            string oldtext = this.Text;
+            this.Text = "littleRunner Game Editor [press ESC to quit game]";
 
-                this.Text = oldtext;
-            }
+            g.ShowDialog();
+            g = null;
+
+            this.Text = oldtext;
         }
 
 
@@ -291,9 +298,12 @@ namespace littleRunner
         #region Insert GameObject - Handlers
         private void addElement(GameObject go)
         {
-            go.Init(world);
+            go.Init(world, GameAI.NullAiEventHandlerMethod);
             world.Add(go);
             level.Invalidate();
+
+            // focus on it
+            propertys.SelectedObject = go;
         }
 
 
@@ -336,7 +346,7 @@ namespace littleRunner
 
         private void turtleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Turtle t = new Turtle(0, 0);
+            Turtle t = new Turtle(0, 0, TurtleStyle.Green);
             addElement(t);
         }
 
@@ -454,6 +464,8 @@ namespace littleRunner
             {
                 world.Remove(focus);
                 level.Invalidate();
+
+                showlevelSettings_Click(sender, e);
             }
         }
         #endregion
@@ -461,22 +473,10 @@ namespace littleRunner
 
         private void Editor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            bool ok = false;
-            while (!ok)
-            {
-                DialogResult res = MessageBox.Show("Do you want to save your changes?", "Question", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            tmpHandler.saveChanges();
+            tmpHandler.Dispose();
+            tmpHandler = null;
 
-                if (res == DialogResult.Yes)
-                    ok = saveAs();
-                else if (res == DialogResult.No)
-                    ok = true;
-                else if (res == DialogResult.Cancel)
-                {
-                    e.Cancel = true;
-                    ok = true;
-                    return;
-                }
-            }
             programSwitcher.Show();
         }
 
@@ -534,6 +534,11 @@ namespace littleRunner
             // enable background
             enableBG = true;
             level.Invalidate();
+        }
+
+        private void propertys_SelectedObjectsChanged(object sender, EventArgs e)
+        {
+            actualFocus.Text = "Focus " + propertys.SelectedObject.GetType().Name;
         }
     }
 }

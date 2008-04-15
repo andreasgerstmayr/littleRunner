@@ -28,14 +28,9 @@ namespace littleRunner
 
         private void ProgramSwitcher_Shown(object sender, EventArgs e)
         {
-             // fill the Files.f-Dictionary
-            Files.fill();
-
-
             // check all files
-            foreach (KeyValuePair<gFile, string> pair in Files.f)
+            foreach (string filename in Files.All())
             {
-                string filename = pair.Value;
                 List<string> files = AnimateImage.getFiles(filename);
 
                 foreach (string file in files)
