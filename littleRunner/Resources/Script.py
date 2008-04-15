@@ -20,5 +20,5 @@ class AttrDict(dict):
 
 
 handler = AttrDict()
-cache = AttrDict()
+handler.AI = AttrDict()
 args = []

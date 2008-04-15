@@ -16,14 +16,14 @@ namespace littleRunner.GameObjects.MovingElements
     {
         MushroomType mtype;
         int checks;
-        GameRunDirection direction;
+        GameDirection direction;
 
         public Mushroom(MushroomType mtype, int top, int left)
-            : base(mtype == MushroomType.Good ? Image.FromFile(Files.f[gFile.mushroom_green]) : Image.FromFile(Files.f[gFile.mushroom_poison]), top - Image.FromFile(Files.f[gFile.mushroom_green]).Height, left)
+            : base(mtype == MushroomType.Good ? Image.FromFile(Files.mushroom_green) : Image.FromFile(Files.mushroom_poison), top - Image.FromFile(Files.mushroom_green).Height, left)
         {
             this.mtype = mtype;
             checks = 0;
-            direction = GameRunDirection.Right;
+            direction = GameDirection.Right;
         }
 
         public override bool canStandOn
@@ -52,9 +52,9 @@ namespace littleRunner.GameObjects.MovingElements
                     newtop += 4;
             }
 
-            if (direction == GameRunDirection.Left)
+            if (direction == GameDirection.Left)
                 newleft -= 3;
-            else if (direction == GameRunDirection.Right)
+            else if (direction == GameDirection.Right)
                 newleft += 3;
 
 
@@ -86,7 +86,7 @@ namespace littleRunner.GameObjects.MovingElements
                 Left += newleft;
 
             if (!falling && (newleft == 0 || crashedInEnemy))
-                direction = direction == GameRunDirection.Left ? GameRunDirection.Right : GameRunDirection.Left;
+                direction = direction == GameDirection.Left ? GameDirection.Right : GameDirection.Left;
 
 
             // away?
@@ -115,7 +115,7 @@ namespace littleRunner.GameObjects.MovingElements
 
         public void getEvent(GameEvent gevent, Dictionary<GameEventArg, object> args)
         {
-            base.aiEventHandler(gevent, args);
+            AiEventHandler(gevent, args);
         }
     }
 }

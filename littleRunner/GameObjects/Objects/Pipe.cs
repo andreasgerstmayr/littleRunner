@@ -51,8 +51,8 @@ namespace littleRunner.GameObjects.Objects
                 switch (color)
                 {
                     case PipeColor.Green:
-                        imgU = Image.FromFile(Files.f[gFile.pipe_green_up]);
-                        imgM = Image.FromFile(Files.f[gFile.pipe_green_main]);
+                        imgU = Image.FromFile(Files.pipe_green_up);
+                        imgM = Image.FromFile(Files.pipe_green_main);
                         break;
                 }
             }

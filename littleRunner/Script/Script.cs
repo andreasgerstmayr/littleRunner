@@ -16,7 +16,15 @@ namespace littleRunner
 
         public void GlobalsAdd(string name, object obj)
         {
-            engine.Globals.Add(name, obj);
+            try
+            {
+                engine.Globals.Add(name, obj);
+            }
+            catch(Exception e)
+            {
+                DebugInfo.WriteLine(e);
+                throw new littleRunnerScriptVariablesException("That (Script-)Name exists already.");
+            }
         }
         public void Execute(string command)
         {
@@ -26,6 +34,7 @@ namespace littleRunner
         public Script(World world)
         {
             InitializePythonEngine();
+
             hasFunction = new Dictionary<string, Dictionary<string, bool>>();
             this.world = world;
         }
@@ -67,9 +76,10 @@ namespace littleRunner
                     engine.Globals["args"] = args;
                     engine.Execute("handler." + name + "." + function + "(*args)");
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    throw new Exception("Script error!");
+                    DebugInfo.WriteLine(e);
+                    throw new littleRunnerScriptFunctionException("Can't call function");
                 }
             }
         }
@@ -78,6 +88,7 @@ namespace littleRunner
         void InitializePythonEngine()
         {
             engine = new PythonEngine();
+
             string script = Encoding.UTF8.GetString(Properties.Resources.Script);
             engine.Execute(script);
         }

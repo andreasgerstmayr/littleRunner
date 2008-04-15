@@ -10,7 +10,6 @@ namespace littleRunner.GameObjects
 {
     public abstract class GameObject
     {
-        public GameEventHandler aiEventHandler;
         public abstract void Draw(Graphics g);
 
         public virtual void onKeyPress(GameKey gkey)
@@ -18,6 +17,7 @@ namespace littleRunner.GameObjects
         }
 
         private World world;
+        private GameEventHandler aiEventHandler;
         private int top;
         private int left;
         private int width;
@@ -25,9 +25,14 @@ namespace littleRunner.GameObjects
         private string name;
 
         [Browsable(false)]
-        public World World
+        protected World World
         {
             get { return world; }
+        }
+        [Browsable(false)]
+        protected GameEventHandler AiEventHandler
+        {
+            get { return aiEventHandler; }
         }
         [Category("Script")]
         public string Name
@@ -80,9 +85,10 @@ namespace littleRunner.GameObjects
             return false;
         }
 
-        public virtual void Init(World world)
+        public virtual void Init(World world, GameEventHandler aiEventHandler)
         {
             this.world = world;
+            this.aiEventHandler = aiEventHandler;
         }
 
 

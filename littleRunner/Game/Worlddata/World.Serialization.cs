@@ -161,7 +161,9 @@ namespace littleRunner.Worlddata
 
             return serialized;
         }
-        private static List<StickyElement> createObjectsStickyElements(ref XmlTextReader xmlReader, World world)
+        private static List<StickyElement> createObjectsStickyElements(ref XmlTextReader xmlReader,
+            World world,
+            GameEventHandler aiEventHandler)
         {
             string section = "StickyElements";
             List<StickyElement> list = new List<StickyElement>();
@@ -175,7 +177,7 @@ namespace littleRunner.Worlddata
                 Type tType = Type.GetType(type);
                 GameObject go = (GameObject)Activator.CreateInstance(tType);
                 go.Deserialize(serialized);
-                go.Init(world);
+                go.Init(world, aiEventHandler);
 
                 list.Add((StickyElement)go);
             }
@@ -185,7 +187,9 @@ namespace littleRunner.Worlddata
 
             return list;
         }
-        private static List<MovingElement> createObjectsMovingElements(ref XmlTextReader xmlReader, World world)
+        private static List<MovingElement> createObjectsMovingElements(ref XmlTextReader xmlReader,
+            World world,
+            GameEventHandler aiEventHandler)
         {
             string section = "MovingElements";
             List<MovingElement> list = new List<MovingElement>();
@@ -199,7 +203,7 @@ namespace littleRunner.Worlddata
                 Type tType = Type.GetType(type);
                 GameObject go = (GameObject)Activator.CreateInstance(tType);
                 go.Deserialize(serialized);
-                go.Init(world);
+                go.Init(world, aiEventHandler);
 
                 list.Add((MovingElement)go);
             }
@@ -209,7 +213,9 @@ namespace littleRunner.Worlddata
 
             return list;
         }
-        private static List<Enemy> createObjectsEnemies(ref XmlTextReader xmlReader, World world)
+        private static List<Enemy> createObjectsEnemies(ref XmlTextReader xmlReader,
+            World world,
+            GameEventHandler aiEventHandler)
         {
             string section = "Enemies";
             List<Enemy> list = new List<Enemy>();
@@ -224,7 +230,7 @@ namespace littleRunner.Worlddata
                 Type tType = Type.GetType(type);
                 GameObject go = (GameObject)Activator.CreateInstance(tType);
                 go.Deserialize(serialized);
-                go.Init(world);
+                go.Init(world, aiEventHandler);
 
                 list.Add((Enemy)go);
             }
@@ -241,7 +247,8 @@ namespace littleRunner.Worlddata
                                                         out List<StickyElement> stickyelements,
                                                         out List<MovingElement> movingelements,
                                                         out List<Enemy> enemies,
-                                                        World world)
+                                                        World world,
+                                                        GameEventHandler aiEventHandler)
         {
             settings = new LevelSettings();
             stickyelements = new List<StickyElement>();
@@ -259,9 +266,9 @@ namespace littleRunner.Worlddata
             xmlReader.ReadStartElement("Data");
             
 
-            stickyelements = createObjectsStickyElements(ref xmlReader, world);
-            movingelements = createObjectsMovingElements(ref xmlReader, world);
-            enemies = createObjectsEnemies(ref xmlReader, world);
+            stickyelements = createObjectsStickyElements(ref xmlReader, world, aiEventHandler);
+            movingelements = createObjectsMovingElements(ref xmlReader, world, aiEventHandler);
+            enemies = createObjectsEnemies(ref xmlReader, world, aiEventHandler);
 
 
             xmlReader.ReadEndElement();

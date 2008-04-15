@@ -11,21 +11,22 @@ namespace littleRunner.GameObjects.MainGameObjects
     class Tux : MainGameObject
     {
         private AnimateImage curimg;
-        private GameRunDirection direction;
+        private GameDirection direction;
         private int jumping;
         private bool firePressed;
         private MainGameObjectMode mode;
         private DateTime immortializeStart;
         private bool immortialize;
         private int blink;
-        private AnimateImage imgL, imgR;
+        private AnimateImage imgNormal, imgSmall;
         private MoveType wantNextMove;
+        private int wantNextMoveLength;
 
 
         public override void Draw(Graphics g)
         {
             if (!immortialize || blink % 8 == 0)
-                curimg.Draw(g, Left, Top, Width, Height);
+                curimg.Draw(g, direction, Left, Top, Width, Height);
 
             if (immortialize)
                 blink++;
@@ -37,23 +38,30 @@ namespace littleRunner.GameObjects.MainGameObjects
             set
             {
                 mode = value;
+                Direction = direction;
+
+                int lastHeight = curimg.CurImage(direction).Height;
+
                 switch (mode)
                 {
                     case MainGameObjectMode.NormalFire:
-                        Height = curimg.CurImage.Height;
-                        break;
                     case MainGameObjectMode.Normal:
-                        if (Height == 44)
-                            Top -= curimg.CurImage.Height - 44;
-                        Height = curimg.CurImage.Height;
+                        curimg = imgNormal;
                         break;
                     case MainGameObjectMode.Small:
-                        Top += curimg.CurImage.Height - 44;
-                        Height = 44;
+                        curimg = imgSmall;
                         break;
                 }
+                Top -= curimg.CurImage(direction).Height - lastHeight;
+                Height = curimg.CurImage(direction).Height;
+
                 blink = 0;
             }
+        }
+        public GameDirection Direction
+        {
+            get { return direction; }
+            set { direction = value; }
         }
         public override MainGameObjectMode currentMode
         {
@@ -66,15 +74,15 @@ namespace littleRunner.GameObjects.MainGameObjects
             Top = top;
             Left = left;
 
-            imgL = new AnimateImage(Files.f[gFile.tux], 200, GameDirection.Left);
-            imgR = new AnimateImage(Files.f[gFile.tux], 200, GameDirection.Right);
+            imgNormal = new AnimateImage(Files.tux_normal, 200);
+            imgSmall = new AnimateImage(Files.tux_small, 200);
 
 
-            Width = imgR.CurImage.Width;
-            Height = imgR.CurImage.Height;
+            Width = imgNormal.CurImage(direction).Width;
+            Height = imgNormal.CurImage(direction).Height;
 
-            curimg = imgR;
-            direction = GameRunDirection.Right;
+            curimg = imgNormal;
+            direction = GameDirection.Right;
 
             firePressed = false;
             mode = MainGameObjectMode.Normal;
@@ -101,16 +109,16 @@ namespace littleRunner.GameObjects.MainGameObjects
                         jumping = 100;
                         break;
                     case MoveType.goLeft:
-                        newleft = -20;
+                        newleft -= wantNextMoveLength;
                         break;
                     case MoveType.goRight:
-                        newleft = 20;
+                        newleft += wantNextMoveLength;
                         break;
                     case MoveType.goTop:
-                        newtop -= 20;
+                        newtop -= wantNextMoveLength;
                         break;
                     case MoveType.goBottom:
-                        newtop = 20;
+                        newtop += wantNextMoveLength;
                         break;
                 }
 
@@ -120,8 +128,6 @@ namespace littleRunner.GameObjects.MainGameObjects
             // falling? (need for jumping-if)
             bool falling = GamePhysics.Falling(World.StickyElements, World.MovingElements, this);
 
-            if (falling)
-                newtop += 7;
 
 
             // immortialize end?
@@ -136,38 +142,26 @@ namespace littleRunner.GameObjects.MainGameObjects
             if (pressedKeys.Contains(GameKey.goLeft) && (jumping == -1 || (jumping >= 100 && jumping <= 140)))
             {
                 newleft -= 7;
-                if (direction != GameRunDirection.Left)
-                {
-                    direction = GameRunDirection.Left;
-                    curimg = imgL;
-                }
+                if (direction != GameDirection.Left)
+                    Direction = GameDirection.Left;
             }
             if (pressedKeys.Contains(GameKey.goRight) && (jumping == -1 || (jumping >= 100 && jumping <= 140)))
             {
                 newleft += 7;
-                if (direction != GameRunDirection.Right)
-                {
-                    direction = GameRunDirection.Right;
-                    curimg = imgR;
-                }
+                if (direction != GameDirection.Right)
+                    Direction = GameDirection.Right;
             }
             if (pressedKeys.Contains(GameKey.jumpLeft) && !falling)
             {
                 jumping = 0;
-                if (direction != GameRunDirection.Left)
-                {
-                    direction = GameRunDirection.Left;
-                    curimg = imgL;
-                }
+                if (direction != GameDirection.Left)
+                    Direction = GameDirection.Left;
             }
             if (pressedKeys.Contains(GameKey.jumpRight) && !falling)
             {
                 jumping = 200;
-                if (direction != GameRunDirection.Right)
-                {
-                    direction = GameRunDirection.Right;
-                    curimg = imgR;
-                }
+                if (direction != GameDirection.Right)
+                    Direction = GameDirection.Right;
             }
             if (pressedKeys.Contains(GameKey.jumpTop) && !falling)
             {
@@ -179,11 +173,10 @@ namespace littleRunner.GameObjects.MainGameObjects
                 if (!firePressed)
                 {
                     firePressed = true;
-                    int startFireLeft = direction == GameRunDirection.Right ? Right + 5 : Left - 5;
+                    int startFireLeft = direction == GameDirection.Right ? Right + 5 : Left - 5;
 
                     Fire f = new Fire(direction, Top + 20, startFireLeft);
-                    f.Init(World);
-                    f.aiEventHandler = aiEventHandler;
+                    f.Init(World, AiEventHandler);
                     World.MovingElements.Add(f);
                 }
             }
@@ -194,9 +187,9 @@ namespace littleRunner.GameObjects.MainGameObjects
             GamePhysics.Jumping(ref jumping, ref newtop, ref newleft);
 
 
-            // falling & jumping? no! balance it.
-            if (falling && jumping != -1)
-                newtop -= 7;
+            // now we can fall (if we don't jump)
+            if (falling && jumping == -1)
+                newtop += 7;
 
 
             // check if direction is ok
@@ -212,14 +205,16 @@ namespace littleRunner.GameObjects.MainGameObjects
                 Left += newleft;
         }
 
-        public override void Move(MoveType mtype)
+        public override void Move(MoveType mtype, int length)
         {
             wantNextMove = mtype;
+            wantNextMoveLength = length;
         }
 
         public override void getEvent(GameEvent gevent, Dictionary<GameEventArg, object> args)
         {
-            base.getEvent(gevent, args);
+            base.getEvent(gevent, args); // calls implizit AiEventHandler!
+
 
             if (gevent == GameEvent.crashInEnemy && !immortialize)
             {
@@ -232,7 +227,7 @@ namespace littleRunner.GameObjects.MainGameObjects
                         Mode = MainGameObjectMode.Small;
                         break;
                     case MainGameObjectMode.Small:
-                        aiEventHandler(GameEvent.dead, args);
+                        AiEventHandler(GameEvent.dead, args);
                         break;
                 }
                 immortialize = true;
@@ -248,7 +243,7 @@ namespace littleRunner.GameObjects.MainGameObjects
                 if (mode == MainGameObjectMode.NormalFire || mode == MainGameObjectMode.Normal)
                     Mode = MainGameObjectMode.Small;
                 else if (mode == MainGameObjectMode.Small)
-                    aiEventHandler(GameEvent.dead, args);
+                    AiEventHandler(GameEvent.dead, args);
             }
             else if (gevent == GameEvent.gotFireFlower)
             {
@@ -256,10 +251,8 @@ namespace littleRunner.GameObjects.MainGameObjects
             }
             else if (gevent == GameEvent.finishedLevel)
             {
-                aiEventHandler(gevent, args);
+                AiEventHandler(gevent, args);
             }
-            else
-                base.aiEventHandler(gevent, args);
         }
     }
 }

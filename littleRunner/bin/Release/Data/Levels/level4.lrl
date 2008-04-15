@@ -86,11 +86,37 @@
         </Name>
         <Top>
           <type>System.Int32</type>
+          <value>385</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>284</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <StarStyle>
+          <type>littleRunner.GameObjects.Objects.StarStyle</type>
+          <value>Yellow</value>
+        </StarStyle>
+      </littleRunner.GameObjects.Objects.Star>
+      <littleRunner.GameObjects.Objects.Star>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
           <value>387</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>273</value>
+          <value>240</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -112,37 +138,11 @@
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>388</value>
+          <value>387</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>227</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.Objects.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </littleRunner.GameObjects.Objects.Star>
-      <littleRunner.GameObjects.Objects.Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>389</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>181</value>
+          <value>197</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -164,11 +164,11 @@
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>399</value>
+          <value>395</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>95</value>
+          <value>129</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -803,11 +803,11 @@
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>257</value>
+          <value>254</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>372</value>
+          <value>391</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -826,7 +826,7 @@
           <value>Green</value>
         </TurtleStyle>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Turtle>
@@ -837,11 +837,11 @@
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>255</value>
+          <value>248</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>203</value>
+          <value>247</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -860,7 +860,7 @@
           <value>Green</value>
         </TurtleStyle>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Left</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Turtle>
@@ -871,11 +871,11 @@
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>192</value>
+          <value>194</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>298</value>
+          <value>329</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -894,7 +894,7 @@
           <value>Green</value>
         </TurtleStyle>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Turtle>
@@ -928,7 +928,7 @@
           <value>Brown</value>
         </Color>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
@@ -962,7 +962,7 @@
           <value>Brown</value>
         </Color>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
@@ -996,7 +996,7 @@
           <value>Brown</value>
         </Color>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
@@ -1030,7 +1030,7 @@
           <value>Brown</value>
         </Color>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
@@ -1064,7 +1064,7 @@
           <value>Green</value>
         </TurtleStyle>
         <Direction>
-          <type>littleRunner.GameRunDirection</type>
+          <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Turtle>

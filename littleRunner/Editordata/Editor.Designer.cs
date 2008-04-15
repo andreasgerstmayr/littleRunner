@@ -92,6 +92,7 @@
             this.trackBar = new System.Windows.Forms.TrackBar();
             this.curScrolling = new System.Windows.Forms.Label();
             this.tableLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menubar.SuspendLayout();
             this.menu.SuspendLayout();
             this.objectContext.SuspendLayout();
@@ -127,6 +128,7 @@
             this.propertys.PropertySort = System.Windows.Forms.PropertySort.Categorized;
             this.propertys.Size = new System.Drawing.Size(197, 468);
             this.propertys.TabIndex = 6;
+            this.propertys.SelectedObjectsChanged += new System.EventHandler(this.propertys_SelectedObjectsChanged);
             this.propertys.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.propertys_PropertyValueChanged);
             // 
             // openFile
@@ -446,7 +448,7 @@
             // 
             this.floorToolStripMenuItem.Name = "floorToolStripMenuItem";
             this.floorToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.floorToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.floorToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.floorToolStripMenuItem.Text = "&Floor";
             this.floorToolStripMenuItem.Click += new System.EventHandler(this.floorToolStripMenuItem_Click);
             // 
@@ -455,7 +457,7 @@
             this.designElementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.treeToolStripMenuItem});
             this.designElementToolStripMenuItem.Name = "designElementToolStripMenuItem";
-            this.designElementToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.designElementToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.designElementToolStripMenuItem.Text = "&Design Element";
             // 
             // treeToolStripMenuItem
@@ -470,7 +472,7 @@
             // 
             this.boxToolStripMenuItem.Name = "boxToolStripMenuItem";
             this.boxToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
-            this.boxToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.boxToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.boxToolStripMenuItem.Text = "&Box";
             this.boxToolStripMenuItem.Click += new System.EventHandler(this.boxToolStripMenuItem_Click);
             // 
@@ -478,7 +480,7 @@
             // 
             this.brickToolStripMenuItem.Name = "brickToolStripMenuItem";
             this.brickToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.brickToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.brickToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.brickToolStripMenuItem.Text = "B&rick";
             this.brickToolStripMenuItem.Click += new System.EventHandler(this.brickToolStripMenuItem_Click);
             // 
@@ -486,16 +488,16 @@
             // 
             this.pipeToolStripMenuItem.Name = "pipeToolStripMenuItem";
             this.pipeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.pipeToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.pipeToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.pipeToolStripMenuItem.Text = "&Pipe";
             this.pipeToolStripMenuItem.Click += new System.EventHandler(this.pipeToolStripMenuItem_Click);
             // 
             // pointStarToolStripMenuItem
             // 
             this.pointStarToolStripMenuItem.Name = "pointStarToolStripMenuItem";
-            this.pointStarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.pointStarToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.pointStarToolStripMenuItem.Text = "&Star (Point)";
+            this.pointStarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+            this.pointStarToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.pointStarToolStripMenuItem.Text = "St&ar (Point)";
             this.pointStarToolStripMenuItem.Click += new System.EventHandler(this.pointStarToolStripMenuItem_Click);
             // 
             // platformToolStripMenuItem
@@ -503,7 +505,7 @@
             this.platformToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bricksToolStripMenuItem});
             this.platformToolStripMenuItem.Name = "platformToolStripMenuItem";
-            this.platformToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.platformToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.platformToolStripMenuItem.Text = "Platform";
             // 
             // bricksToolStripMenuItem
@@ -521,7 +523,7 @@
             this.spikaToolStripMenuItem,
             this.gumbaToolStripMenuItem});
             this.enemyToolStripMenuItem.Name = "enemyToolStripMenuItem";
-            this.enemyToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.enemyToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.enemyToolStripMenuItem.Text = "&Enemy";
             // 
             // turtleToolStripMenuItem
@@ -553,7 +555,7 @@
             this.levelEndToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.houseToolStripMenuItem});
             this.levelEndToolStripMenuItem.Name = "levelEndToolStripMenuItem";
-            this.levelEndToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.levelEndToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.levelEndToolStripMenuItem.Text = "&Level End";
             // 
             // houseToolStripMenuItem
@@ -586,7 +588,7 @@
             this.editScriptToolStripMenuItem.Image = global::littleRunner.Properties.Resources.text_x_generic;
             this.editScriptToolStripMenuItem.Name = "editScriptToolStripMenuItem";
             this.editScriptToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.editScriptToolStripMenuItem.Text = "Edit script";
+            this.editScriptToolStripMenuItem.Text = "&Edit script";
             this.editScriptToolStripMenuItem.Click += new System.EventHandler(this.editScriptToolStripMenuItem_Click);
             // 
             // checkScriptToolStripMenuItem
@@ -712,6 +714,15 @@
             this.tableLayout.Size = new System.Drawing.Size(885, 614);
             this.tableLayout.TabIndex = 19;
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.statusStrip1.Location = new System.Drawing.Point(352, 670);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(202, 22);
+            this.statusStrip1.TabIndex = 20;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -720,6 +731,7 @@
             this.Controls.Add(this.menubar);
             this.Controls.Add(this.tableLayout);
             this.Controls.Add(this.menu);
+            this.Controls.Add(this.statusStrip1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -805,5 +817,6 @@
         private System.Windows.Forms.ToolStripButton startGameCurrentToolStripButton;
         private System.Windows.Forms.ToolStripButton editScriptToolStripButton;
         private System.Windows.Forms.ToolStripButton checkScriptToolStripButton;
+        private System.Windows.Forms.StatusStrip statusStrip1;
     }
 }

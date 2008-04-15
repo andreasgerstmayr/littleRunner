@@ -28,8 +28,8 @@ namespace littleRunner.GameObjects.Objects
         {
         }
         public FireFlower(int top, int left)
-            : base(top - Image.FromFile(Files.f[gFile.fire_flower]).Height, left,
-                   Files.f[gFile.fire_flower])
+            : base(top - Image.FromFile(Files.fire_flower).Height, left,
+                   Files.fire_flower)
         {
         }
     }

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.ComponentModel;
 using System.Drawing;
+
 using littleRunner.GameObjects.Objects;
 
 
@@ -13,6 +14,7 @@ namespace littleRunner.GameObjects.MovingElements
         Image image;
         BrickColor color;
 
+        [Category("Bricks")]
         public BrickColor Color
         {
             get { return color; }
@@ -21,11 +23,11 @@ namespace littleRunner.GameObjects.MovingElements
                 color = value;
                 switch (color)
                 {
-                    case BrickColor.Blue: image = Image.FromFile(Files.f[gFile.brick_blue]); break;
-                    case BrickColor.Ice: image = Image.FromFile(Files.f[gFile.brick_ice]); break;
-                    case BrickColor.Red: image = Image.FromFile(Files.f[gFile.brick_red]); break;
-                    case BrickColor.Yellow: image = Image.FromFile(Files.f[gFile.brick_yellow]); break;
-                    case BrickColor.Invisible: image = Image.FromFile(Files.f[gFile.brick_invisible]); break;
+                    case BrickColor.Blue: image = Image.FromFile(Files.brick_blue); break;
+                    case BrickColor.Ice: image = Image.FromFile(Files.brick_ice); break;
+                    case BrickColor.Red: image = Image.FromFile(Files.brick_red); break;
+                    case BrickColor.Yellow: image = Image.FromFile(Files.brick_yellow); break;
+                    case BrickColor.Invisible: image = Image.FromFile(Files.brick_invisible); break;
                 }
             }
         }

@@ -21,8 +21,8 @@ namespace littleRunner.GameObjects.Enemies
     }
     class Turtle : Enemy
     {
-        private GameRunDirection direction;
-        private AnimateImage imgL, imgR, imgD;
+        private GameDirection direction;
+        private AnimateImage imgRunning, imgShell;
         private AnimateImage curimg;
         private TurtleMode turtleMode;
         private int speed;
@@ -48,63 +48,65 @@ namespace littleRunner.GameObjects.Enemies
                 switch (style)
                 {
                     case TurtleStyle.Green:
-                        imgL = new AnimateImage(Files.f[gFile.turtle_green], 200, GameDirection.Left);
-                        imgR = new AnimateImage(Files.f[gFile.turtle_green], 200, GameDirection.Right);
-                        imgD = new AnimateImage(Files.f[gFile.turtle_green_down], 200, GameDirection.None);
+                        imgRunning = new AnimateImage(Files.turtle_green, 200);
+                        imgShell = new AnimateImage(Files.turtle_green_down, 200);
                         break;
                 }
 
-                Width = imgR.CurImage.Width;
-                Height = imgR.CurImage.Height;
+                Width = imgRunning.CurImage(direction).Width;
+                Height = imgRunning.CurImage(direction).Height;
+
+                TurtleMode = turtleMode; // set curimg
             }
         }
         [Category("Turtle")]
-        public GameRunDirection Direction
+        public GameDirection Direction
         {
             get { return direction; }
+            set { direction = value; }
+        }
+        [Category("Turtle"),Browsable(false)]
+        public TurtleMode TurtleMode
+        {
+            get { return turtleMode; }
             set
             {
-                direction = value;
-                switch (direction)
-                {
-                    case GameRunDirection.Left: curimg = imgL; break;
-                    case GameRunDirection.Right: curimg = imgR; break;
-                }
+                turtleMode = value;
+                if (turtleMode == TurtleMode.Normal)
+                    curimg = imgRunning;
+                else if (turtleMode == TurtleMode.Small || turtleMode == TurtleMode.SmallRunning)
+                    curimg = imgShell;
             }
         }
 
         public override void Draw(Graphics g)
         {
-            curimg.Draw(g, Left, Top, curimg.CurImage.Width, Height);
+            curimg.Draw(g, direction, Left, Top, curimg.CurImage(direction).Width, Height);
         }
 
 
         public Turtle()
             : base()
         {
-            //curimg = imgR;
-
             speed = 1;
             startSmall = DateTime.Now;
 
-            Direction = GameRunDirection.Right;
-            turtleMode = TurtleMode.Normal;
+            TurtleMode = TurtleMode.Normal;
         }
 
-        public Turtle(int top, int left)
+        public Turtle(int top, int left, TurtleStyle style)
             : base()
         {
             Top = top;
             Left = left;
 
-            Style = TurtleStyle.Green;
-            curimg = imgR;
+            Style = style;
 
             speed = 1;
             startSmall = DateTime.Now;
 
-            Direction = GameRunDirection.Right;
-            turtleMode = TurtleMode.Normal;
+            Direction = GameDirection.Right;
+            TurtleMode = TurtleMode.Normal;
         }
 
         public override void Check(out Dictionary<string, int> newpos)
@@ -123,20 +125,14 @@ namespace littleRunner.GameObjects.Enemies
             if (turtleMode == TurtleMode.Small && (DateTime.Now - startSmall).Seconds >= 3)
             {
                 speed = 1;
-                turtleMode = TurtleMode.Normal;
-
-                switch (direction)
-                {
-                    case GameRunDirection.Left: curimg = imgL; break;
-                    case GameRunDirection.Right: curimg = imgR; break;
-                }
+                TurtleMode = TurtleMode.Normal;
             }
 
 
             // direction
             if (!falling)
             {
-                if (direction == GameRunDirection.Right)
+                if (direction == GameDirection.Right)
                     newleft += speed;
                 else
                     newleft -= speed;
@@ -169,17 +165,7 @@ namespace littleRunner.GameObjects.Enemies
             if (!falling && (newleft == 0 || (crashedInEnemy != null && !removedEnemy)))
             {
                 if (turtleMode == TurtleMode.Normal || turtleMode == TurtleMode.SmallRunning)
-                {
-                    direction = direction == GameRunDirection.Left ? GameRunDirection.Right : GameRunDirection.Left;
-                    if (turtleMode == TurtleMode.Normal)
-                    {
-                        switch (direction)
-                        {
-                            case GameRunDirection.Left: curimg = imgL; break;
-                            case GameRunDirection.Right: curimg = imgR; break;
-                        }
-                    }
-                }
+                    direction = direction == GameDirection.Left ? GameDirection.Right : GameDirection.Left;
             }
 
 
@@ -198,23 +184,22 @@ namespace littleRunner.GameObjects.Enemies
                 switch (turtleMode)
                 {
                     case TurtleMode.Normal:
-                        curimg = imgD;
-                        turtleMode = TurtleMode.Small;
+                        TurtleMode = TurtleMode.Small;
                         speed = 0;
                         startSmall = DateTime.Now;
                         break;
                     case TurtleMode.Small:
-                        turtleMode = TurtleMode.SmallRunning;
+                        TurtleMode = TurtleMode.SmallRunning;
                         speed = 20;
                         startSmall = DateTime.Now;
                         break;
                     case TurtleMode.SmallRunning:
-                        turtleMode = TurtleMode.Small;
+                        TurtleMode = TurtleMode.Small;
                         speed = 0;
                         startSmall = DateTime.Now;
                         break;
                 }
-                World.MGO.Move(MoveType.Jump);
+                World.MGO.Move(MoveType.Jump, -1);
 
                 return true;
             }
@@ -223,7 +208,7 @@ namespace littleRunner.GameObjects.Enemies
                 if (turtleMode == TurtleMode.Small)
                 {
                     turtleMode = TurtleMode.SmallRunning;
-                    direction = cidirection == GameDirection.Left ? GameRunDirection.Right : GameRunDirection.Left;
+                    direction = cidirection == GameDirection.Left ? GameDirection.Right : GameDirection.Left;
                     speed = 20;
 
                     return true;
@@ -235,7 +220,7 @@ namespace littleRunner.GameObjects.Enemies
 
         public void getEvent(GameEvent gevent, Dictionary<GameEventArg, object> args)
         {
-            base.aiEventHandler(gevent, args);
+            AiEventHandler(gevent, args);
         }
 
 
@@ -250,7 +235,7 @@ namespace littleRunner.GameObjects.Enemies
         {
             base.Deserialize(ser);
             Style = (TurtleStyle)ser["TurtleStyle"];
-            Direction = (GameRunDirection)ser["Direction"];
+            Direction = (GameDirection)ser["Direction"];
         }
     }
 }

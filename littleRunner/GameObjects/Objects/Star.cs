@@ -27,7 +27,7 @@ namespace littleRunner.GameObjects.Objects
                 switch (style)
                 {
                     case StarStyle.Yellow:
-                        CurImgFilename = Files.f[gFile.star];
+                        CurImgFilename = Files.star;
                         break;
                 }
             }

@@ -10,7 +10,7 @@ namespace littleRunner.GameObjects.MovingElements
 
     class Fire : MovingElement
     {
-        private GameRunDirection direction;
+        private GameDirection direction;
         private bool onBottom;
         private float jumps;
         private int curJump;
@@ -27,9 +27,9 @@ namespace littleRunner.GameObjects.MovingElements
             get { return false; }
         }
 
-        public Fire(GameRunDirection direction, int top, int left)
+        public Fire(GameDirection direction, int top, int left)
         {
-            curimg = Image.FromFile(Files.f[gFile.fire]);
+            curimg = Image.FromFile(Files.fire);
             this.direction = direction;
             onBottom = false;
             checkIfBottom = false;
@@ -51,7 +51,7 @@ namespace littleRunner.GameObjects.MovingElements
             int newleft = newpos["left"];
 
 
-            newleft += direction == GameRunDirection.Right ? 5 : -5;
+            newleft += direction == GameDirection.Right ? 5 : -5;
 
             if (!onBottom)
             {
@@ -65,7 +65,7 @@ namespace littleRunner.GameObjects.MovingElements
             }
             else
             {
-                newleft += direction == GameRunDirection.Right ? 1 : -1;
+                newleft += direction == GameDirection.Right ? 1 : -1;
 
                 if (curJump <= 5)
                     newtop += 5;
@@ -117,7 +117,7 @@ namespace littleRunner.GameObjects.MovingElements
 
         public void getEvent(GameEvent gevent, Dictionary<GameEventArg, object> args)
         {
-            base.aiEventHandler(gevent, args);
+            AiEventHandler(gevent, args);
         }
     }
 }
