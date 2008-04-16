@@ -154,7 +154,7 @@ namespace littleRunner
 
 
                 if (!lastModeIsNull)
-                   ai.world.MGO.currentMode = lastMode;
+                   ai.world.MGO.Mode = lastMode;
 
                 gameControlObjs.Sound.Start();
 
@@ -219,7 +219,7 @@ namespace littleRunner
                     if (nextLevel != null && nextLevel != "")
                     {
                         ai.Stop(); // play again, so save last MGO mode
-                        lastMode = ai.world.MGO.currentMode;
+                        lastMode = ai.world.MGO.Mode;
                         lastModeIsNull = false; // it's set to the last mode
 
                         ai = null;

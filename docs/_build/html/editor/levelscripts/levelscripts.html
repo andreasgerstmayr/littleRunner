@@ -10,7 +10,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:   '../../',
-        VERSION:    '2.0.1'
+        VERSION:    '2.1.0'
       };
     </script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -33,7 +33,7 @@
         <li class="right"><a href="../../modindex.html" title="Global Module Index" accesskey="M">modules</a> |</li>
           <li class="right"><a href="../editor.html" title="Editor" accesskey="N">next</a> |</li>
           <li class="right"><a href="../editor.html" title="Editor" accesskey="P">previous</a> |</li>
-        <li><a href="../../index.html">littleRunner v2.0.1 documentation</a> &raquo;</li>
+        <li><a href="../../index.html">littleRunner v2.1.0 documentation</a> &raquo;</li>
           <li><a href="../editor.html" accesskey="U">Editor</a> &raquo;</li>
       </ul>
     </div>
@@ -63,11 +63,14 @@ You can access every object which has a name, which can be choosen in the editor
 
 <span class="k">def</span> <span class="nf">plat1_onOver</span><span class="p">(</span><span class="n">geventhandler</span><span class="p">,</span> <span class="n">who</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
    <span class="k">if</span> <span class="n">who</span> <span class="o">==</span> <span class="n">GameElement</span><span class="o">.</span><span class="n">MGO</span> <span class="ow">and</span> <span class="n">direction</span> <span class="o">==</span> <span class="n">GameDirection</span><span class="o">.</span><span class="n">Left</span><span class="p">:</span>
-      <span class="n">geventhandler</span><span class="p">(</span><span class="n">GameEvent</span><span class="o">.</span><span class="n">gotPoint</span><span class="p">,</span> <span class="n">Dictionary</span><span class="p">[</span><span class="n">GameEventArg</span><span class="p">,</span> <span class="nb">object</span><span class="p">]())</span>
+      <span class="n">pointsArgs</span> <span class="o">=</span> <span class="n">Dictionary</span><span class="p">[</span><span class="n">GameEventArg</span><span class="p">,</span> <span class="nb">object</span><span class="p">]()</span>
+      <span class="n">pointsArgs</span><span class="p">[</span><span class="n">GameEventArg</span><span class="o">.</span><span class="n">points</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="n">geventhandler</span><span class="p">(</span><span class="n">GameEvent</span><span class="o">.</span><span class="n">gotPoints</span><span class="p">,</span> <span class="n">pointsArgs</span><span class="p">)</span>
 
 <span class="n">handler</span><span class="o">.</span><span class="n">Platform1</span><span class="o">.</span><span class="n">onOver</span> <span class="o">=</span> <span class="n">plat1_onOver</span>
 </pre></div>
-<p>This code handles the Platform1&#8217;s onOver-Event, checks if a MGO (MainGameObject, e.g. the Tux) crashes in it at the left border (GameDirection.Left), and give the player a point (call the GameEventHandler with an empty dictionary, because the newPoint-Event needs no arguments).</p>
+<p>This code handles the Platform1&#8217;s onOver-Event, checks if a <a class="reference" href="../../game/game.html#maingameobject"><em>MGO</em></a> crashes in it at the left border (GameDirection.Left), and give the player a point (call the GameEventHandler with an empty dictionary, because the newPoint-Event needs no arguments).</p>
+<p><strong>Note:</strong> You get many points when you touch the left side? That&#8217;s because everytime the <a class="reference" href="../../game/game.html#maingameobject"><em>MGO</em></a> touches the left border, you get points. So, make a variable which checks if the user got the point, and handle that case (if you want).</p>
 <div class="section">
 <h3 id="available-handlers">Available Handlers<a class="headerlink" href="#available-handlers" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -143,13 +146,13 @@ You can access every object which has a name, which can be choosen in the editor
         <li class="right"><a href="../../modindex.html" title="Global Module Index" accesskey="M">modules</a> |</li>
           <li class="right"><a href="../editor.html" title="Editor" accesskey="N">next</a> |</li>
           <li class="right"><a href="../editor.html" title="Editor" accesskey="P">previous</a> |</li>
-        <li><a href="../../index.html">littleRunner v2.0.1 documentation</a> &raquo;</li>
+        <li><a href="../../index.html">littleRunner v2.1.0 documentation</a> &raquo;</li>
           <li><a href="../editor.html" accesskey="U">Editor</a> &raquo;</li>
       </ul>
     </div>
     <div class="footer">
       &copy; Copyright 2008, Andreas G..
-      Last updated on Apr 13, 2008.
+      Last updated on Apr 16, 2008.
     </div>
   </body>
 </html>

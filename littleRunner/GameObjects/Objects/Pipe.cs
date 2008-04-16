@@ -18,6 +18,9 @@ namespace littleRunner.GameObjects.Objects
         public override void Draw(Graphics g)
         {
             // Ceiling (round to x % 32 == 0)
+            if (Height < 32)
+                Height = 32;
+
             int rest = Height % 32;
             if (rest != 0)
             {

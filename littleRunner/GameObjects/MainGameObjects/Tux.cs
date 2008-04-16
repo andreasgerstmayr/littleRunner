@@ -32,7 +32,7 @@ namespace littleRunner.GameObjects.MainGameObjects
                 blink++;
         }
 
-        private MainGameObjectMode Mode
+        public override MainGameObjectMode Mode
         {
             get { return mode; }
             set
@@ -63,11 +63,6 @@ namespace littleRunner.GameObjects.MainGameObjects
             get { return direction; }
             set { direction = value; }
         }
-        public override MainGameObjectMode currentMode
-        {
-            get { return Mode; }
-            set { Mode = value; }
-        } 
 
         public Tux(int top, int left)
         {
@@ -221,8 +216,6 @@ namespace littleRunner.GameObjects.MainGameObjects
                 switch (mode)
                 {
                     case MainGameObjectMode.NormalFire:
-                        Mode = MainGameObjectMode.Normal;
-                        break;
                     case MainGameObjectMode.Normal:
                         Mode = MainGameObjectMode.Small;
                         break;

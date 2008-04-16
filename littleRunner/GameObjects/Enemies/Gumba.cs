@@ -59,7 +59,14 @@ namespace littleRunner.GameObjects.Enemies
             }
 
             if (Height <= 2)
+            {
+                Dictionary<GameEventArg, object> pointsArgs = new Dictionary<GameEventArg, object>();
+                pointsArgs[GameEventArg.points] = 5;
+                AiEventHandler(GameEvent.gotPoints, pointsArgs);
+
                 World.Enemies.Remove(this);
+            }
+
 
             curimg.Draw(g, direction, Left, Top, Width, Height);
         }

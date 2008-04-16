@@ -38,6 +38,9 @@ namespace littleRunner.GameObjects.MovingElements
         public override void Draw(Graphics g)
         {
             // Ceiling (round to x % 42 == 0)
+            if (Width < 43)
+                Width = 43;
+
             int rest = Width % 43;
             if (rest != 0)
             {

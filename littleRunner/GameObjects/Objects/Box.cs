@@ -12,7 +12,8 @@ namespace littleRunner.GameObjects.Objects
     {
         GoodMushroom,
         PoisonMushroom,
-        FireFlower
+        FireFlower,
+        ModeDependent
     }
     enum BoxStyle
     {
@@ -50,30 +51,60 @@ namespace littleRunner.GameObjects.Objects
             set { btype = value; }
         }
 
+        private void getGoodie(BoxType type)
+        {
+            Mushroom m;
+            switch (type)
+            {
+                case BoxType.GoodMushroom:
+                    m = new Mushroom(MushroomType.Good, Top, Left);
+                    m.Init(World, AiEventHandler);
+                    World.MovingElements.Add(m);
+                    break;
+
+                case BoxType.PoisonMushroom:
+                    m = new Mushroom(MushroomType.Poison, Top, Left);
+                    m.Init(World, AiEventHandler);
+                    World.MovingElements.Add(m);
+                    break;
+
+                case BoxType.FireFlower:
+                    FireFlower f = new FireFlower(Top, Left);
+                    f.Init(World, AiEventHandler);
+                    World.StickyElements.Add(f);
+                    break;
+            }
+        }
+
         public override void onOver(GameEventHandler geventhandler, GameElement who, GameDirection direction)
         {
             base.onOver(geventhandler, who, direction);
 
             if (!got && direction == GameDirection.Bottom && who == GameElement.MGO)
             {
-                if (btype == BoxType.GoodMushroom)
+                switch (btype)
                 {
-                    Mushroom m = new Mushroom(MushroomType.Good, Top, Left);
-                    m.Init(World, AiEventHandler);
-                    World.MovingElements.Add(m);
+                    case BoxType.GoodMushroom:
+                        getGoodie(BoxType.GoodMushroom);
+                        break;
+                    case BoxType.PoisonMushroom:
+                        getGoodie(BoxType.PoisonMushroom);
+                        break;
+                    case BoxType.FireFlower:
+                        getGoodie(BoxType.FireFlower);
+                        break;
+                    case BoxType.ModeDependent:
+                        switch(World.MGO.Mode)
+                        {
+                            case MainGameObjectMode.Small:
+                                getGoodie(BoxType.GoodMushroom); break;
+                            case MainGameObjectMode.Normal:
+                            case MainGameObjectMode.NormalFire:
+                                getGoodie(BoxType.FireFlower); break;
+                        }
+                        break;
                 }
-                else if (btype == BoxType.PoisonMushroom)
-                {
-                    Mushroom m = new Mushroom(MushroomType.Poison, Top, Left);
-                    m.Init(World, AiEventHandler);
-                    World.MovingElements.Add(m);
-                }
-                else if (btype == BoxType.FireFlower)
-                {
-                    FireFlower f = new FireFlower(Top, Left);
-                    f.Init(World, AiEventHandler);
-                    World.StickyElements.Add(f);
-                }
+
                 got = true;
             }
         }

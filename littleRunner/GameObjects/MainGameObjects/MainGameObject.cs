@@ -20,7 +20,7 @@ namespace littleRunner.GameObjects
         }
 
         public abstract void Move(MoveType mtype, int length);
-        public abstract MainGameObjectMode currentMode { get; set; }
+        public abstract MainGameObjectMode Mode { get; set; }
 
         public virtual void getEvent(GameEvent gevent, Dictionary<GameEventArg, object> args)
         {

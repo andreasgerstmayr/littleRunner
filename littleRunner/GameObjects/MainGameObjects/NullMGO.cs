@@ -13,17 +13,11 @@ namespace littleRunner.GameObjects.MainGameObjects
         {
             throw new NotImplementedException();
         }
-        public override MainGameObjectMode currentMode
+        public override MainGameObjectMode Mode
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+            get { throw new NotImplementedException(); }
+            set { throw new NotImplementedException(); }
+        } 
         public override void Draw(Graphics g)
         {
             throw new NotImplementedException();
