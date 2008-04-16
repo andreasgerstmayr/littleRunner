@@ -48,3 +48,11 @@ What does 'loose one livepoint' mean?
 * If you are big (and maybe have the fireflower) you get small.
 * If you are small, you have lost the game.
 
+
+.. _maingameobject:
+
+What's a MainGameObject (MGO)?
+------------------------------
+
+* That is in the current version the Tux.
+

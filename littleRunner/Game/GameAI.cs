@@ -14,7 +14,7 @@ namespace littleRunner
         crashInEnemy,
         outOfRange,
         dead,
-        gotPoint,
+        gotPoints,
         gotGoodMushroom,
         gotPoisonMushroom,
         gotFireFlower,
@@ -37,7 +37,8 @@ namespace littleRunner
     }
     public enum GameEventArg
     {
-        nextLevel
+        nextLevel,
+        points
     }
     public enum GameKey
     {
@@ -189,9 +190,15 @@ namespace littleRunner
 
         public void getEvent(GameEvent gevent, Dictionary<GameEventArg, object> args)
         {
-            if (gevent == GameEvent.gotPoint)
+            if (gevent == GameEvent.gotPoints)
             {
-                gameControlObj.Points++;
+                gameControlObj.Points += (int)args[GameEventArg.points];
+
+                if (gameControlObj.Points > 100)
+                {
+                    gameControlObj.Lives++;
+                    gameControlObj.Points -= 100;
+                }
             }
             else if (gevent == GameEvent.outOfRange || gevent == GameEvent.dead)
             {

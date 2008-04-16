@@ -17,7 +17,19 @@ namespace littleRunner.GameObjects.Objects
 
             if (who == GameElement.MGO)
             {
-                geventhandler(GameEvent.gotFireFlower, new Dictionary<GameEventArg, object>());
+                switch (World.MGO.Mode)
+                {
+                    case MainGameObjectMode.Small:
+                    case MainGameObjectMode.Normal:
+                        geventhandler(GameEvent.gotFireFlower, new Dictionary<GameEventArg, object>());
+                        break;
+                    case MainGameObjectMode.NormalFire:
+                        Dictionary<GameEventArg, object> pointsArgs = new Dictionary<GameEventArg,object>();
+                        pointsArgs[GameEventArg.points] = 40;
+                        geventhandler(GameEvent.gotPoints, pointsArgs);
+                        break;
+                }
+
                 World.StickyElements.Remove(this);
             }
         }

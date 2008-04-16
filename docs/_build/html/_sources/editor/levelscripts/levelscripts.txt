@@ -29,11 +29,15 @@ Example::
 
    def plat1_onOver(geventhandler, who, direction):
       if who == GameElement.MGO and direction == GameDirection.Left:
-         geventhandler(GameEvent.gotPoint, Dictionary[GameEventArg, object]())
+         pointsArgs = Dictionary[GameEventArg, object]()
+         pointsArgs[GameEventArg.points] = 1
+         geventhandler(GameEvent.gotPoints, pointsArgs)
 
    handler.Platform1.onOver = plat1_onOver
 
-This code handles the Platform1's onOver-Event, checks if a MGO (MainGameObject, e.g. the Tux) crashes in it at the left border (GameDirection.Left), and give the player a point (call the GameEventHandler with an empty dictionary, because the newPoint-Event needs no arguments).
+This code handles the Platform1's onOver-Event, checks if a :ref:`MGO <maingameobject>` crashes in it at the left border (GameDirection.Left), and give the player a point (call the GameEventHandler with an empty dictionary, because the newPoint-Event needs no arguments).
+
+**Note:** You get many points when you touch the left side? That's because everytime the :ref:`MGO <maingameobject>` touches the left border, you get points. So, make a variable which checks if the user got the point, and handle that case (if you want).
 
 
 Available Handlers
