@@ -11,7 +11,8 @@ namespace littleRunner
     {
         public static class FallingClass<T> where T : StickyElement
         {
-            public static bool CheckFalling(List<T> list, GameObject go)
+            public static bool CheckFalling(List<T> list, GameObject go,
+                int newtop, int newleft)
             {
                 bool falling = true;
 
@@ -19,8 +20,8 @@ namespace littleRunner
                 {
                     if (el.canStandOn)
                     {
-                        if (go.Right > el.Left && go.Left < el.Right && // left+right ok?
-                            go.Bottom == el.Top)
+                        if (go.Right-newleft > el.Left && go.Left+newleft < el.Right && // left+right ok?
+                            go.Bottom-newtop == el.Top)
                         {
                             falling = false;
                             break;
@@ -34,13 +35,15 @@ namespace littleRunner
 
         static public bool Falling(List<StickyElement> stickyelements,
             List<MovingElement> movingelements,
+            int newtop,
+            int newleft,
             GameObject go)
         {
             bool falling = true;
 
-            falling = FallingClass<StickyElement>.CheckFalling(stickyelements, go);
+            falling = FallingClass<StickyElement>.CheckFalling(stickyelements, go,newtop, newleft);
             if (falling)
-                falling = FallingClass<MovingElement>.CheckFalling(movingelements, go);
+                falling = FallingClass<MovingElement>.CheckFalling(movingelements, go, newtop, newleft);
 
             return falling;
         }

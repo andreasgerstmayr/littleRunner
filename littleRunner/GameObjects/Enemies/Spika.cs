@@ -69,10 +69,10 @@ namespace littleRunner.GameObjects.Enemies
             {
                 switch (cidirection)
                 {
-                    case GameDirection.Left: World.MGO.Move(MoveType.goLeft, 20); break;
-                    case GameDirection.Right: World.MGO.Move(MoveType.goRight, 20); break;
-                    case GameDirection.Top: World.MGO.Move(MoveType.goTop, 20); break;
-                    case GameDirection.Bottom: World.MGO.Move(MoveType.goBottom, 20); break;
+                    case GameDirection.Left: World.MGO.Move(MoveType.goLeft, 20, GameInstruction.Nothing); break;
+                    case GameDirection.Right: World.MGO.Move(MoveType.goRight, 20, GameInstruction.Nothing); break;
+                    case GameDirection.Top: World.MGO.Move(MoveType.goTop, 20, GameInstruction.Nothing); break;
+                    case GameDirection.Bottom: World.MGO.Move(MoveType.goBottom, 20, GameInstruction.Nothing); break;
                 }
             }
 
