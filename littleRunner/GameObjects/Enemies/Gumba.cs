@@ -105,7 +105,7 @@ namespace littleRunner.GameObjects.Enemies
 
 
             // falling?
-            bool falling = GamePhysics.Falling(World.StickyElements, World.MovingElements, this);
+            bool falling = GamePhysics.Falling(World.StickyElements, World.MovingElements, newtop, newleft, this);
 
             if (falling)
                 newtop += 6;

@@ -1,7 +1,7 @@
 ﻿
 import clr
 clr.AddReference('littleRunner')
-from littleRunner import GameDirection, GameElement
+from littleRunner import GameDirection, GameElement, GameInstruction, InstructionType
 from littleRunner.GameObjects import MoveType
 import time
 
@@ -24,23 +24,21 @@ class CreateMovingPlatform(object):
 
 
    def __MGOmove(self, direction):
-       self.MGO.Move(direction, self.speed)
+       doThen = GameInstruction(InstructionType.MoveElement, self.obj, self.direction, self.speed)
+       self.MGO.Move(direction, self.speed, doThen)
        
        
    def __move(self, newpos):
       if self.direction == GameDirection.Right:
          self.__MGOmove(MoveType.goRight)
-         newpos['left'] += self.speed
       elif self.direction == GameDirection.Left:
          self.__MGOmove(MoveType.goLeft)
-         newpos['left'] -= self.speed
    
       elif self.direction == GameDirection.Top:
          self.__MGOmove(MoveType.goTop)
-         newpos['top'] -= self.speed
+         
       elif self.direction == GameDirection.Bottom:
          self.__MGOmove(MoveType.goBottom)
-         newpos['top'] += self.speed
          
    
    def __flipdirection(self):

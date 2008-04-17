@@ -117,7 +117,7 @@ namespace littleRunner.GameObjects.Enemies
 
 
             // falling?
-            bool falling = GamePhysics.Falling(World.StickyElements, World.MovingElements, this);
+            bool falling = GamePhysics.Falling(World.StickyElements, World.MovingElements, newtop, newleft, this);
 
             if (falling)
                 newtop += 6;
@@ -199,7 +199,7 @@ namespace littleRunner.GameObjects.Enemies
                         startSmall = DateTime.Now;
                         break;
                 }
-                World.MGO.Move(MoveType.Jump, -1);
+                World.MGO.Move(MoveType.Jump, -1, GameInstruction.Nothing);
 
                 return true;
             }

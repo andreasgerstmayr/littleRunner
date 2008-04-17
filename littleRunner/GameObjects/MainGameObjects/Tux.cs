@@ -21,6 +21,7 @@ namespace littleRunner.GameObjects.MainGameObjects
         private AnimateImage imgNormal, imgSmall;
         private MoveType wantNextMove;
         private int wantNextMoveLength;
+        private GameInstruction moveDoThen;
 
 
         public override void Draw(Graphics g)
@@ -117,12 +118,17 @@ namespace littleRunner.GameObjects.MainGameObjects
                         break;
                 }
 
+                moveDoThen.Do();
                 wantNextMove = MoveType.Nothing;
             }
 
-            // falling? (need for jumping-if)
-            bool falling = GamePhysics.Falling(World.StickyElements, World.MovingElements, this);
 
+            if (pressedKeys.Contains(GameKey.jumpTop))
+            {
+            }
+
+            // falling? (need for jumping-if)
+            bool falling = GamePhysics.Falling(World.StickyElements, World.MovingElements, newtop, newleft, this);
 
 
             // immortialize end?
@@ -182,6 +188,11 @@ namespace littleRunner.GameObjects.MainGameObjects
             GamePhysics.Jumping(ref jumping, ref newtop, ref newleft);
 
 
+            // save jumping state
+            int jumpingTop = newtop;
+            int jumpingLeft = newleft;
+
+
             // now we can fall (if we don't jump)
             if (falling && jumping == -1)
                 newtop += 7;
@@ -194,16 +205,23 @@ namespace littleRunner.GameObjects.MainGameObjects
             if (crashedInEnemy)
                 return;
 
+
+            // check if want-Jump-Top/Left = current (jump in box etc)
+            if (newtop != jumpingTop || newleft != jumpingLeft)
+                jumping = -1;
+
+
             if (newtop != 0)
                 Top += newtop;
             if (newleft != 0)
                 Left += newleft;
         }
 
-        public override void Move(MoveType mtype, int length)
+        public override void Move(MoveType mtype, int length, GameInstruction doThen)
         {
             wantNextMove = mtype;
             wantNextMoveLength = length;
+            this.moveDoThen = doThen;
         }
 
         public override void getEvent(GameEvent gevent, Dictionary<GameEventArg, object> args)

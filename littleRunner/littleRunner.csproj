@@ -93,6 +93,7 @@
     <Compile Include="GameObjects\Objects\StickyImageElement.cs" />
     <Compile Include="GameObjects\MainGameObjects\Tux.cs">
     </Compile>
+    <Compile Include="Game\GameInstruction.cs" />
     <Compile Include="Game\GamePhysics.cs" />
     <Compile Include="Game\Worlddata\World.Serialization.cs" />
     <Compile Include="Program.cs" />

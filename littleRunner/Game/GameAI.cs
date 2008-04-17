@@ -77,18 +77,21 @@ namespace littleRunner
             gameControlObj.Draw(g);
             mgo.Draw(g);
         }
-
-        public void PlayAgain()
+        public bool IsRunning
         {
-            mainTimer.Enabled = true;
+            get { return mainTimer.Enabled; }
         }
-        public void Stop()
+
+        public void Pause(bool start)
         {
-            mainTimer.Enabled = false;
+            if (start)
+                mainTimer.Enabled = true;
+            else
+                mainTimer.Enabled = false;
         }
         public void Quit()
         {
-            Stop();
+            Pause(false);
             gameControlObj.Points = 0;
         }
 
@@ -202,7 +205,7 @@ namespace littleRunner
             }
             else if (gevent == GameEvent.outOfRange || gevent == GameEvent.dead)
             {
-                Stop();
+                Pause(false);
                 forminteract(gevent, args);
             }
             else if (gevent == GameEvent.finishedLevel)

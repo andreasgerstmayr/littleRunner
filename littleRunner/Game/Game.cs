@@ -178,7 +178,7 @@ namespace littleRunner
             {
                 if (gameControlObjs.Lives > 0)
                 {
-                    ai.Stop();
+                    ai.Pause(false);
                     string lastFileName = ai.world.fileName;
                     ai = null;
                     lastModeIsNull = true; // start with standard mode after death
@@ -218,7 +218,7 @@ namespace littleRunner
                     string nextLevel = (string)args[GameEventArg.nextLevel];
                     if (nextLevel != null && nextLevel != "")
                     {
-                        ai.Stop(); // play again, so save last MGO mode
+                        ai.Pause(false); // play again, so save last MGO mode
                         lastMode = ai.world.MGO.Mode;
                         lastModeIsNull = false; // it's set to the last mode
 
@@ -262,9 +262,20 @@ namespace littleRunner
 
         private void Game_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (ai != null && world != null && world.PlayMode == PlayMode.GameInEditor
+            if (ai != null && world != null)
+            {
+                if (world.PlayMode == PlayMode.GameInEditor
                 && e.KeyChar == (char)Keys.Escape)
-                Close();
+                    Close();
+
+                if (e.KeyChar == (char)Keys.Return)
+                {
+                    if (ai.IsRunning)
+                        ai.Pause(false);
+                    else
+                        ai.Pause(true);
+                }
+            }
 
             if (gameControlObjs != null)
                 gameControlObjs.OnKeyPress(e.KeyChar);
@@ -305,12 +316,12 @@ namespace littleRunner
                 if (WindowState == FormWindowState.Minimized)
                 {
                     if (ai != null)
-                        ai.Stop();
+                        ai.Pause(false);
                 }
                 else if (WindowState == FormWindowState.Normal)
                 {
                     if (ai != null)
-                        ai.PlayAgain();
+                        ai.Pause(true);
                 }
             }
         }
