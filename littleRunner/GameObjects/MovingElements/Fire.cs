@@ -85,7 +85,7 @@ namespace littleRunner.GameObjects.MovingElements
             // check if direction is ok
             GamePhysics.CrashDetection(this, World.StickyElements, World.MovingElements, getEvent, ref newtop, ref newleft);
             Enemy crashedInEnemy = GamePhysics.CrashEnemy(this, World.Enemies, getEvent, ref newtop, ref newleft);
-            if (GamePhysics.SimpleCrashDetections(this, World.StickyElements, true, newtop, newleft))
+            if (GamePhysics.SimpleCrashDetections(this, World.StickyElements, World.MovingElements, true, newtop, newleft))
             {
                 World.MovingElements.Remove(this);
                 return;

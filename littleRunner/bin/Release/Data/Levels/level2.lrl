@@ -632,6 +632,10 @@
           <type>System.String</type>
           <value>level3.lrl</value>
         </NextLevel>
+        <StartAt>
+          <type>System.Int32</type>
+          <value>0</value>
+        </StartAt>
         <Image>
           <type>littleRunner.GameObjects.Objects.LevelEndImg</type>
           <value>House</value>

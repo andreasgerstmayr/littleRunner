@@ -1,72 +1,152 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
-using System.IO;
-using System.Diagnostics;
+using System.Drawing;
+using System.Text.RegularExpressions;
 
 
 namespace littleRunner
 {
+    enum SyntaxCategory
+    {
+        General,
+        Syntax,
+        MainKeyword,
+        ImporantVariableName,
+        Number,
+        Constant,
+        Keyword,
+        String,
+        Comment
+    }
+
+    class CategoryInfo
+    {
+        public Color color;
+        public Font font;
+
+        public CategoryInfo(Color color, Font font)
+        {
+            this.color = color;
+            this.font = font;
+        }
+    }
+
+    class Syntax
+    {
+        public SyntaxCategory category;
+        public Regex regex;
+
+        public Syntax(SyntaxCategory category, string regex)
+        {
+            this.category = category;
+            this.regex = new Regex(regex, RegexOptions.Compiled);
+        }
+    }
+
+
     class SimpleEditor : RichTextBox
     {
-        string source, output;
-        Timer timer;
+        public List<Syntax> Highl;
+        public Dictionary<SyntaxCategory, CategoryInfo> Categories;
+        bool canPaint = true;
+        bool ignoreTextChange = false;
+
 
         public SimpleEditor()
-            : base()
         {
-            source = Path.GetTempFileName();
-            output = Path.GetTempFileName();
-
-            timer = new Timer();
-            timer.Interval = 3000;
-            timer.Tick += new EventHandler(timer_Tick);
+            Highl = new List<Syntax>();
+            Categories = new Dictionary<SyntaxCategory, CategoryInfo>();
         }
 
-        internal void Stop()
+        protected override void WndProc(ref System.Windows.Forms.Message m)
         {
-            timer.Enabled = false;
-        }
-
-        internal void timer_Tick(object sender, EventArgs e)
-        {
-            timer.Enabled = false;
-            this.ReadOnly = true;
-
-            // generate
-            File.WriteAllText(source, this.Text);
-
-            Process p = new Process();
-            p.StartInfo.FileName = "Script/start.bat";
-
-            p.StartInfo.Arguments = "\"" + source + "\" \"" + output + "\"";
-
-            p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            p.StartInfo.UseShellExecute = true;
-
-            p.Start();
-            p.WaitForExit();
-
-
-            // write in control
-            int cursorpos = this.SelectionStart;
-
-            this.Rtf = File.ReadAllText(output);
-            this.SelectionStart = cursorpos;
-            this.ScrollToCaret();
-
-            ZoomFactor = 0.8F;
-            this.ReadOnly = false;
+            if (m.Msg == 0x00f)
+            {
+                if (canPaint)
+                    base.WndProc(ref m);
+                else
+                    m.Result = IntPtr.Zero;
+            }
+            else
+                base.WndProc(ref m);
         }
 
 
-        protected override void OnKeyDown(KeyEventArgs e)
+        private void HighlightLine(string line, int startLine)
         {
-            base.OnKeyDown(e);
+            int oldSelect = SelectionStart;
 
-            timer.Enabled = false;
-            timer.Enabled = true;
+            foreach (Syntax text in Highl)
+            {
+                foreach (Match match in text.regex.Matches(line))
+                {
+                    int start;
+                    int len;
 
-            ZoomFactor = 0.799F;
+                    if (match.Groups["h"].Success)
+                    {
+                        start = match.Groups["h"].Index;
+                        len = match.Groups["h"].Length;
+                    }
+                    else
+                    {
+                        start = match.Index;
+                        len = match.Length;
+                    }
+
+                    SelectionStart = startLine + start;
+                    SelectionLength = len;
+                    SelectionColor = Categories[text.category].color;
+                    SelectionFont = Categories[text.category].font;
+                }
+            }
+
+
+            SelectionStart = oldSelect;
+            SelectionLength = 0;
+            SelectionColor = Categories[SyntaxCategory.General].color;
+            SelectionFont = Categories[SyntaxCategory.General].font;
         }
+
+        protected override void OnTextChanged(EventArgs e)
+        {
+            base.OnTextChanged(e);
+
+            if (!ignoreTextChange)
+            {
+                int startLine = SelectionStart;
+                while (startLine > 0 && Text[startLine - 1] != '\n')
+                    startLine--;
+
+                int endLine = SelectionStart;
+                while (endLine < Text.Length && Text[endLine] != '\n')
+                    endLine++;
+
+                string line = Text.Substring(startLine, endLine - startLine);
+
+                canPaint = false;
+                HighlightLine(line, startLine);
+                canPaint = true;
+            }
+        }
+
+
+        public void HighlightAll()
+        {
+            int cur = 0;
+            canPaint = false;
+            ignoreTextChange = true;
+
+            for (int i = 0; i < Lines.Length; i++)
+            {
+                HighlightLine(Lines[i], cur);
+                cur += Lines[i].Length + 1;
+            }
+
+            ignoreTextChange = false;
+            canPaint = true;
+        }
+
     }
 }

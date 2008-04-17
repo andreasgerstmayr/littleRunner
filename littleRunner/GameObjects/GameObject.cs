@@ -10,12 +10,6 @@ namespace littleRunner.GameObjects
 {
     public abstract class GameObject
     {
-        public abstract void Draw(Graphics g);
-
-        public virtual void onKeyPress(GameKey gkey)
-        {
-        }
-
         private World world;
         private GameEventHandler aiEventHandler;
         private int top;
@@ -23,6 +17,18 @@ namespace littleRunner.GameObjects
         private int width;
         private int height;
         private string name;
+
+
+        public abstract void Draw(Graphics g);
+        public virtual void onKeyPress(GameKey gkey)
+        {
+        }
+        [Browsable(false), Category("Object")]
+        public virtual bool canStandOn
+        {
+            get { return false; }
+        }
+
 
         [Browsable(false)]
         protected World World

@@ -13,12 +13,21 @@ namespace littleRunner.GameObjects.Objects
     {
         LevelEndImg image;
         string nextLevel;
+        int startAt;
         [Category("Next level")]
         public string NextLevel
         {
             get { return nextLevel; }
             set { nextLevel = value; }
         }
+        [Category("Next level")]
+        public int StartAt
+        {
+            get { return startAt; }
+            set { startAt = value; }
+        }
+
+
         public override bool canStandOn
         {
             get { return false; }
@@ -45,8 +54,13 @@ namespace littleRunner.GameObjects.Objects
 
             if (who == GameElement.MGO)
             {
+                if (base.Name != null && base.Name != "" && World.Script != null)
+                    World.Script.callFunction(base.Name, "finishedLevel", geventhandler);
+
+
                 Dictionary<GameEventArg, object> args = new Dictionary<GameEventArg, object>();
                 args[GameEventArg.nextLevel] = nextLevel;
+                args[GameEventArg.nextLevelStartAt] = startAt;
 
                 geventhandler(GameEvent.finishedLevel, args);
             }
@@ -67,6 +81,7 @@ namespace littleRunner.GameObjects.Objects
         {
             Dictionary<string, object> ser = new Dictionary<string, object>(base.Serialize());
             ser["NextLevel"] = nextLevel;
+            ser["StartAt"] = startAt;
             ser["Image"] = image;
             return ser;
         }
@@ -74,6 +89,7 @@ namespace littleRunner.GameObjects.Objects
         {
             base.Deserialize(ser);
             nextLevel = (string)ser["NextLevel"];
+            startAt = (int)ser["StartAt"];
             Image = (LevelEndImg)ser["Image"];
         }
     }

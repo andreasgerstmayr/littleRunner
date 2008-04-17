@@ -24,8 +24,7 @@ namespace littleRunner
         bool enableBG;
         int mouseX, mouseY;
         int scrolled;
-
-
+        List<Keys> pressedKeys;
 
 
         public Editor(ProgramSwitcher programSwitcher)
@@ -44,6 +43,8 @@ namespace littleRunner
             mouseY = 0;
             scrolled = 0;
             enableBG = true;
+            pressedKeys = new List<Keys>();
+
 
             #region Images loading
             floorToolStripMenuItem.Image = Image.FromFile(Files.floor_middle);
@@ -104,6 +105,9 @@ namespace littleRunner
                 if (go.Hit(e.Y, e.X))
                 {
                     focus = go;
+                    if (!pressedKeys.Contains(Keys.ControlKey))
+                        properties.SelectedObjects = new object[] { focus };
+
                     moving = true;
                     mouseX = e.X - go.Left;
                     mouseY = e.Y - go.Top;
@@ -118,8 +122,21 @@ namespace littleRunner
 
             if (moving && focus != null)
             {
-                focus.Top = e.Y - mouseY;
-                focus.Left = e.X - mouseX;
+                int movementTop = (e.Y - mouseY) - focus.Top;
+                int movementLeft = (e.X - mouseX) - focus.Left;
+
+                focus.Top += movementTop;
+                focus.Left += movementLeft;
+                
+                for (int i = 0; i < properties.SelectedObjects.Length; i++)
+                {
+                    if (properties.SelectedObjects[i] != focus &&
+                        properties.SelectedObjects[i] is GameObject)
+                    {
+                        ((GameObject)properties.SelectedObjects[i]).Top += movementTop;
+                        ((GameObject)properties.SelectedObjects[i]).Left += movementLeft;
+                    }
+                }
                 level.Invalidate();
             }
         }
@@ -138,7 +155,7 @@ namespace littleRunner
                 objectContext.Items.RemoveAt(i);            // you 've to remove always the 3. element
             }
 
-            List<ToolStripItem> newitems = EditorUI.GenerateProperties(ref focus, ref level, ref propertys);
+            List<ToolStripItem> newitems = EditorUI.GenerateProperties(ref focus, ref level, ref properties);
             objectContext.Items.AddRange(newitems.ToArray());
             objectContext.Show(Cursor.Position.X, Cursor.Position.Y);
         }
@@ -149,7 +166,18 @@ namespace littleRunner
             base.OnMouseClick(e);
             if (focus != null)
             {
-                propertys.SelectedObject = focus;
+                if (!pressedKeys.Contains(Keys.ControlKey))
+                    properties.SelectedObjects = new object[] { focus };
+                else
+                {
+                    List<object> selected = new List<object>(properties.SelectedObjects);
+                    if (!selected.Contains(focus))
+                    {
+                        selected.Add(focus);
+                        properties.SelectedObjects = selected.ToArray();
+                    }
+                }
+
 
                 if (e.Button == MouseButtons.Right)
                 {
@@ -164,7 +192,7 @@ namespace littleRunner
 
         private void showlevelSettings_Click(object sender, EventArgs e)
         {
-            propertys.SelectedObject = world.Settings;
+            properties.SelectedObjects = new object[] { world.Settings };
         }
 
         private void setDelegateHandlers()
@@ -303,7 +331,7 @@ namespace littleRunner
             level.Invalidate();
 
             // focus on it
-            propertys.SelectedObject = go;
+            properties.SelectedObjects = new object[] { go };
         }
 
 
@@ -482,10 +510,10 @@ namespace littleRunner
 
         private void level_Paint(object sender, PaintEventArgs e)
         {
-            world.Draw(e.Graphics, enableBG ? (!moving) : false);
+            world.Draw(e.Graphics, enableBG ? (!moving) : false, properties.SelectedObjects);
         }
 
-        private void propertys_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        private void properties_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
             level.Invalidate();
         }
@@ -493,7 +521,7 @@ namespace littleRunner
 
         private void changedGameWindowWidth()
         {
-            this.Width = 44 + world.Settings.GameWindowWidth + propertys.Width;
+            this.Width = 44 + world.Settings.GameWindowWidth + properties.Width;
         }
         private void changedLevelWidth()
         {
@@ -536,9 +564,25 @@ namespace littleRunner
             level.Invalidate();
         }
 
-        private void propertys_SelectedObjectsChanged(object sender, EventArgs e)
+        private void properties_SelectedObjectsChanged(object sender, EventArgs e)
         {
-            actualFocus.Text = "Focus " + propertys.SelectedObject.GetType().Name;
+            if (properties.SelectedObjects.Length == 1)
+                actualFocus.Text = "Focus: " + properties.SelectedObjects[0].GetType().Name;
+            else
+                actualFocus.Text = "selected " + properties.SelectedObjects.Length + " objects";
+        }
+
+
+
+        private void Editor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!pressedKeys.Contains(e.KeyCode))
+                pressedKeys.Add(e.KeyCode);
+        }
+
+        private void Editor_KeyUp(object sender, KeyEventArgs e)
+        {
+            pressedKeys.Remove(e.KeyCode);
         }
     }
 }

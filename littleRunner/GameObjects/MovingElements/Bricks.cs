@@ -53,14 +53,44 @@ namespace littleRunner.GameObjects.MovingElements
             int occurences = Width / 43;
             int width = image.Width;
             for (int i = 0; i < occurences; i++)
-            {
                 g.DrawImage(image, Left + i * 43, Top, width, Height);
-            }
 
 
             if (color == BrickColor.Invisible && World.PlayMode == PlayMode.Editor)
                 g.DrawRectangle(Pens.Black, Left, Top, Width, Height);
         }
+
+
+
+        private void fillMgoMoveQueue(MoveType type)
+        {
+            World.MGO.Move(type, 10, GameInstruction.Nothing);
+        }
+
+        public override void onOver(GameEventHandler geventhandler, GameElement who, GameDirection direction)
+        {
+            base.onOver(geventhandler, who, direction);
+
+            if (color == BrickColor.Ice && who == GameElement.MGO && direction == GameDirection.Top)
+            {
+                switch (World.MGO.Direction)
+                {
+                    case GameDirection.Left:
+                        for (int i = 0; i < 10; i++)
+                        {
+                            fillMgoMoveQueue(MoveType.goLeft);
+                        }
+                        break;
+                    case GameDirection.Right:
+                        for (int i = 0; i < 10; i++)
+                        {
+                            fillMgoMoveQueue(MoveType.goRight);
+                        }
+                        break;
+                }
+            }
+        }
+
 
         public Bricks()
         {

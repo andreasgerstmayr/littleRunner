@@ -9,7 +9,11 @@ namespace littleRunner.GameObjects.MainGameObjects
 {
     class NullMGO : MainGameObject
     {
-        public override void Move(MoveType mtype, int length, GameInstruction doThen)
+        public override GameDirection Direction
+        {
+            get { return GameDirection.None; }
+        }
+        public override void Move(MoveType mtype, int value, GameInstruction instruction)
         {
             throw new NotImplementedException();
         }

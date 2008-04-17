@@ -8,8 +8,7 @@ namespace littleRunner.GameObjects
 {
     public abstract class StickyElement : GameObject
     {
-        [Browsable(false), Category("Object")]
-        abstract public bool canStandOn { get; }
+        abstract override public bool canStandOn { get; }
 
         public StickyElement()
         {

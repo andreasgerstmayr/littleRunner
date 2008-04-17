@@ -39,9 +39,9 @@ class MoveSpika:
       else:
          Spika1.Top += 10
 
+      if self.count >= 40:
+         self.count = 0
       self.count += 1
-      if self.count > 40:
-         self.count = 1
 
 
 m = MoveSpika()
@@ -51,7 +51,10 @@ handler.AI.Check = m.move
 CreateMovingPlatform(Plat3, handler, MGO, 700, speed=15, moveBack=False)
 CreateMovingPlatform(Plat4, handler, MGO, 400, speed=20, startDirection=GameDirection.Left, moveBack=False)
 
-CreateMovingPlatform(Plat5, handler, MGO, 100, startDirection=GameDirection.Top)]]></value>
+CreateMovingPlatform(Plat5, handler, MGO, 100, startDirection=GameDirection.Top)
+
+
+CreateMovingPlatform(Plat6, handler, MGO, 650)]]></value>
       </Script>
     </littleRunner.LevelSettings>
   </Settings>
@@ -72,7 +75,7 @@ CreateMovingPlatform(Plat5, handler, MGO, 100, startDirection=GameDirection.Top)
         </Left>
         <Width>
           <type>System.Int32</type>
-          <value>504</value>
+          <value>189</value>
         </Width>
         <Height>
           <type>System.Int32</type>
@@ -290,6 +293,10 @@ CreateMovingPlatform(Plat5, handler, MGO, 100, startDirection=GameDirection.Top)
           <type>NULL</type>
           <value>null</value>
         </NextLevel>
+        <StartAt>
+          <type>System.Int32</type>
+          <value>0</value>
+        </StartAt>
         <Image>
           <type>littleRunner.GameObjects.Objects.LevelEndImg</type>
           <value>House</value>
@@ -347,6 +354,40 @@ CreateMovingPlatform(Plat5, handler, MGO, 100, startDirection=GameDirection.Top)
           <value>Yellow</value>
         </StarStyle>
       </littleRunner.GameObjects.Objects.Star>
+      <littleRunner.GameObjects.Objects.LevelEnd>
+        <Name>
+          <type>System.String</type>
+          <value>House1</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>313</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>958</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>96</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>128</value>
+        </Height>
+        <NextLevel>
+          <type>System.String</type>
+          <value>bonuslevel1.lrl</value>
+        </NextLevel>
+        <StartAt>
+          <type>System.Int32</type>
+          <value>0</value>
+        </StartAt>
+        <Image>
+          <type>littleRunner.GameObjects.Objects.LevelEndImg</type>
+          <value>House</value>
+        </Image>
+      </littleRunner.GameObjects.Objects.LevelEnd>
     </StickyElements>
     <MovingElements>
       <littleRunner.GameObjects.MovingElements.Bricks>
@@ -398,7 +439,7 @@ CreateMovingPlatform(Plat5, handler, MGO, 100, startDirection=GameDirection.Top)
         </Height>
         <Color>
           <type>littleRunner.GameObjects.Objects.BrickColor</type>
-          <value>Ice</value>
+          <value>Red</value>
         </Color>
       </littleRunner.GameObjects.MovingElements.Bricks>
       <littleRunner.GameObjects.MovingElements.Bricks>
@@ -424,7 +465,7 @@ CreateMovingPlatform(Plat5, handler, MGO, 100, startDirection=GameDirection.Top)
         </Height>
         <Color>
           <type>littleRunner.GameObjects.Objects.BrickColor</type>
-          <value>Ice</value>
+          <value>Blue</value>
         </Color>
       </littleRunner.GameObjects.MovingElements.Bricks>
       <littleRunner.GameObjects.MovingElements.Bricks>
@@ -479,6 +520,32 @@ CreateMovingPlatform(Plat5, handler, MGO, 100, startDirection=GameDirection.Top)
           <value>Invisible</value>
         </Color>
       </littleRunner.GameObjects.MovingElements.Bricks>
+      <littleRunner.GameObjects.MovingElements.Bricks>
+        <Name>
+          <type>System.String</type>
+          <value>Plat6</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>372</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>237</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>43</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.Objects.BrickColor</type>
+          <value>Invisible</value>
+        </Color>
+      </littleRunner.GameObjects.MovingElements.Bricks>
     </MovingElements>
     <Enemies>
       <littleRunner.GameObjects.Enemies.Spika>
@@ -518,11 +585,11 @@ CreateMovingPlatform(Plat5, handler, MGO, 100, startDirection=GameDirection.Top)
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>459</value>
+          <value>458</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>219</value>
+          <value>29</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -545,6 +612,40 @@ CreateMovingPlatform(Plat5, handler, MGO, 100, startDirection=GameDirection.Top)
           <value>Right</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Turtle>
+      <littleRunner.GameObjects.Enemies.Gumba>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>488</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>151</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>True</value>
+        </StartAtViewpoint>
+        <Color>
+          <type>littleRunner.GameObjects.Enemies.GumbaColor</type>
+          <value>Brown</value>
+        </Color>
+        <Direction>
+          <type>littleRunner.GameDirection</type>
+          <value>Left</value>
+        </Direction>
+      </littleRunner.GameObjects.Enemies.Gumba>
     </Enemies>
   </Data>
 </Level>
