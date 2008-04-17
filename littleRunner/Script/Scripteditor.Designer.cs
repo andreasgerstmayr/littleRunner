@@ -43,20 +43,17 @@
             this.btnOk.TabIndex = 1;
             this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = true;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // script
             // 
             this.script.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.script.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.script.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.script.DetectUrls = false;
-            this.script.Location = new System.Drawing.Point(12, 23);
+            this.script.Font = new System.Drawing.Font("Bitstream Vera Sans Mono", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.script.Location = new System.Drawing.Point(12, 12);
             this.script.Name = "script";
-            this.script.Size = new System.Drawing.Size(630, 402);
-            this.script.TabIndex = 0;
+            this.script.Size = new System.Drawing.Size(630, 414);
+            this.script.TabIndex = 2;
             this.script.Text = "";
             // 
             // Scripteditor
@@ -64,18 +61,19 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(654, 479);
-            this.Controls.Add(this.btnOk);
             this.Controls.Add(this.script);
+            this.Controls.Add(this.btnOk);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "Scripteditor";
             this.Text = "littleRunner Scripteditor";
+            this.Shown += new System.EventHandler(this.Scripteditor_Shown);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private SimpleEditor script;
         private System.Windows.Forms.Button btnOk;
+        private SimpleEditor script;
     }
 }

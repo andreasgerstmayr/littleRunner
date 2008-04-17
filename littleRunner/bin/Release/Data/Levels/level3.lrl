@@ -680,6 +680,10 @@
           <type>System.String</type>
           <value>level4.lrl</value>
         </NextLevel>
+        <StartAt>
+          <type>System.Int32</type>
+          <value>0</value>
+        </StartAt>
         <Image>
           <type>littleRunner.GameObjects.Objects.LevelEndImg</type>
           <value>House</value>
@@ -1156,6 +1160,10 @@
           <type>System.String</type>
           <value>level4.lrl</value>
         </NextLevel>
+        <StartAt>
+          <type>System.Int32</type>
+          <value>0</value>
+        </StartAt>
         <Image>
           <type>littleRunner.GameObjects.Objects.LevelEndImg</type>
           <value>House</value>
@@ -1279,11 +1287,11 @@
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>85</value>
+          <value>83</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>85</value>
+          <value>127</value>
         </Left>
         <Width>
           <type>System.Int32</type>

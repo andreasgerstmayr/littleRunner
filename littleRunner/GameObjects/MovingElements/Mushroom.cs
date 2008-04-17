@@ -46,7 +46,7 @@ namespace littleRunner.GameObjects.MovingElements
             else
             {
                 // falling?
-                falling = GamePhysics.Falling(World.StickyElements, World.MovingElements, newtop, newleft, this);
+                falling = GamePhysics.Falling(World.StickyElements, World.MovingElements, World.Enemies, newtop, newleft, this);
 
                 if (falling)
                     newtop += 4;

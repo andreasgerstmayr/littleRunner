@@ -8,20 +8,26 @@ using littleRunner.GameObjects.MovingElements;
 
 namespace littleRunner.GameObjects.MainGameObjects
 {
+    struct WantNext
+    {
+        public MoveType type;
+        public int value;
+        public GameInstruction instruction;
+    }
+
     class Tux : MainGameObject
     {
         private AnimateImage curimg;
         private GameDirection direction;
-        private int jumping;
+        private GamePhysics.JumpData jumping;
         private bool firePressed;
         private MainGameObjectMode mode;
         private DateTime immortializeStart;
         private bool immortialize;
         private int blink;
         private AnimateImage imgNormal, imgSmall;
-        private MoveType wantNextMove;
-        private int wantNextMoveLength;
-        private GameInstruction moveDoThen;
+
+        private Queue<WantNext> wantNext;
 
 
         public override void Draw(Graphics g)
@@ -59,7 +65,7 @@ namespace littleRunner.GameObjects.MainGameObjects
                 blink = 0;
             }
         }
-        public GameDirection Direction
+        public override GameDirection Direction
         {
             get { return direction; }
             set { direction = value; }
@@ -84,10 +90,13 @@ namespace littleRunner.GameObjects.MainGameObjects
             mode = MainGameObjectMode.Normal;
             immortializeStart = DateTime.Now;
             immortialize = false;
-            jumping = -1;
+            GamePhysics.JumpData jumping = new GamePhysics.JumpData();
+            jumping.direction = GameDirection.None;
+            jumping.value = 1;
+            this.jumping = jumping;
 
             blink = 0;
-            wantNextMove = MoveType.Nothing;
+            wantNext = new Queue<WantNext>();
         }
 
 
@@ -97,38 +106,36 @@ namespace littleRunner.GameObjects.MainGameObjects
             int newleft = 0;
 
 
-            if (wantNextMove != MoveType.Nothing)
+            if (wantNext.Count > 0)
             {
-                switch (wantNextMove)
+                WantNext next = wantNext.Dequeue();
+
+                switch (next.type)
                 {
                     case MoveType.Jump:
-                        jumping = 100;
+                        jumping.direction = GameDirection.Top;
+                        jumping.value = 1;
                         break;
                     case MoveType.goLeft:
-                        newleft -= wantNextMoveLength;
+                        newleft -= next.value;
                         break;
                     case MoveType.goRight:
-                        newleft += wantNextMoveLength;
+                        newleft += next.value;
                         break;
                     case MoveType.goTop:
-                        newtop -= wantNextMoveLength;
+                        newtop -= next.value;
                         break;
                     case MoveType.goBottom:
-                        newtop += wantNextMoveLength;
+                        newtop += next.value;
                         break;
                 }
 
-                moveDoThen.Do();
-                wantNextMove = MoveType.Nothing;
+                next.instruction.Do();
             }
 
-
-            if (pressedKeys.Contains(GameKey.jumpTop))
-            {
-            }
 
             // falling? (need for jumping-if)
-            bool falling = GamePhysics.Falling(World.StickyElements, World.MovingElements, newtop, newleft, this);
+            bool falling = GamePhysics.Falling(World.StickyElements, World.MovingElements, World.Enemies, newtop, newleft, this);
 
 
             // immortialize end?
@@ -140,13 +147,15 @@ namespace littleRunner.GameObjects.MainGameObjects
 
 
             // key pressed?
-            if (pressedKeys.Contains(GameKey.goLeft) && (jumping == -1 || (jumping >= 100 && jumping <= 140)))
+            if (pressedKeys.Contains(GameKey.goLeft) &&
+                (jumping.direction == GameDirection.None || jumping.direction == GameDirection.Top))
             {
                 newleft -= 7;
                 if (direction != GameDirection.Left)
                     Direction = GameDirection.Left;
             }
-            if (pressedKeys.Contains(GameKey.goRight) && (jumping == -1 || (jumping >= 100 && jumping <= 140)))
+            if (pressedKeys.Contains(GameKey.goRight) &&
+                (jumping.direction == GameDirection.None || jumping.direction == GameDirection.Top))
             {
                 newleft += 7;
                 if (direction != GameDirection.Right)
@@ -154,19 +163,22 @@ namespace littleRunner.GameObjects.MainGameObjects
             }
             if (pressedKeys.Contains(GameKey.jumpLeft) && !falling)
             {
-                jumping = 0;
+                jumping.direction = GameDirection.Left;
+                jumping.value = 1;
                 if (direction != GameDirection.Left)
                     Direction = GameDirection.Left;
             }
             if (pressedKeys.Contains(GameKey.jumpRight) && !falling)
             {
-                jumping = 200;
+                jumping.direction = GameDirection.Right;
+                jumping.value = 1;
                 if (direction != GameDirection.Right)
                     Direction = GameDirection.Right;
             }
             if (pressedKeys.Contains(GameKey.jumpTop) && !falling)
             {
-                jumping = 100;
+                jumping.direction = GameDirection.Top;
+                jumping.value = 1;
             }
 
             if (pressedKeys.Contains(GameKey.fire) && mode == MainGameObjectMode.NormalFire)
@@ -187,14 +199,8 @@ namespace littleRunner.GameObjects.MainGameObjects
             // jumping?
             GamePhysics.Jumping(ref jumping, ref newtop, ref newleft);
 
-
-            // save jumping state
-            int jumpingTop = newtop;
-            int jumpingLeft = newleft;
-
-
             // now we can fall (if we don't jump)
-            if (falling && jumping == -1)
+            if (falling && jumping.direction == GameDirection.None)
                 newtop += 7;
 
 
@@ -202,13 +208,18 @@ namespace littleRunner.GameObjects.MainGameObjects
             GamePhysics.CrashDetection(this, World.StickyElements, World.MovingElements, getEvent, ref newtop, ref newleft);
             bool crashedInEnemy = GamePhysics.CrashEnemy(this, World.Enemies, getEvent, ref newtop, ref newleft) == null ? false : true;
 
-            if (crashedInEnemy)
-                return;
 
-
-            // check if want-Jump-Top/Left = current (jump in box etc)
-            if (newtop != jumpingTop || newleft != jumpingLeft)
-                jumping = -1;
+            // check if jump in box etc.
+            if (jumping.direction != GameDirection.None &&
+                (
+                   (newtop == 0 && jumping.direction == GameDirection.Top) ||
+                   (newleft == 0 &&
+                                    (jumping.direction == GameDirection.Left ||
+                                    jumping.direction == GameDirection.Right)
+                   )
+                 )
+                )
+                jumping.direction = GameDirection.None;
 
 
             if (newtop != 0)
@@ -217,11 +228,14 @@ namespace littleRunner.GameObjects.MainGameObjects
                 Left += newleft;
         }
 
-        public override void Move(MoveType mtype, int length, GameInstruction doThen)
+        public override void Move(MoveType mtype, int value, GameInstruction instruction)
         {
-            wantNextMove = mtype;
-            wantNextMoveLength = length;
-            this.moveDoThen = doThen;
+            WantNext next = new WantNext();
+            next.type = mtype;
+            next.value = value;
+            next.instruction = instruction;
+
+            wantNext.Enqueue(next);
         }
 
         public override void getEvent(GameEvent gevent, Dictionary<GameEventArg, object> args)

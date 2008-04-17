@@ -23,7 +23,9 @@ If you want to handle some event, register it to the handler-object::
 
    handler.Name.Event = some_function
 
-Example::
+Example
+"""""""
+::
 
    from System.Collections.Generic import Dictionary
 
@@ -40,19 +42,51 @@ This code handles the Platform1's onOver-Event, checks if a :ref:`MGO <maingameo
 **Note:** You get many points when you touch the left side? That's because everytime the :ref:`MGO <maingameobject>` touches the left border, you get points. So, make a variable which checks if the user got the point, and handle that case (if you want).
 
 
+Example with a class
+""""""""""""""""""""
+::
+
+   class MoveSpika:
+      def __init__(self):
+         self.count = 1
+
+      def move(self):
+         if self.count <= 20:
+            Spika1.Top -= 10
+         else:
+            Spika1.Top += 10
+
+         if self.count >= 40:
+            self.count = 0
+         self.count += 1
+
+
+   m = MoveSpika()
+   handler.AI.Check = m.move
+
+That moves the *Spika1* up and down.
+
+
 Available Handlers
 """"""""""""""""""
 
 * **StickyElements**
 
-  * onOver (GameEventHandler geventhandler, GameElement who, GameDirection direction)
+  * onOver(GameEventHandler geventhandler, GameElement who, GameDirection direction)
 
 * **MovingElements**
 
-  * onOver (inherits from StickyElements)
-  * Check (Dictionary<string, int> newpos)
+  * onOver(inherits from StickyElements)
+  * Check(Dictionary<string, int> newpos)
 
 * **Enemies**
 
-  * Check (Dictionary<string, int> newpos)
+  * Check(Dictionary<string, int> newpos)
 
+* **LevelEnd**
+
+  * finishedLevel(GameEventHandler geventhandler)
+
+* **AI**
+
+  * Check()

@@ -126,6 +126,7 @@ namespace littleRunner
                     }
 
                     Script.GlobalsAdd("MGO", MGO);
+                    Script.GlobalsAdd("World", this);
                     Script.Execute(Settings.Script);
                 }
                 catch (Exception e)
@@ -147,6 +148,23 @@ namespace littleRunner
                 go.Draw(g);
             }
         }
+        public void Draw(Graphics g, bool drawBackground, object[] selected)
+        {
+            if (drawBackground && Settings.BackgroundImg != null)
+                g.DrawImage(Settings.BackgroundImg, 0, 0, Settings.GameWindowWidth, Settings.LevelHeight);
+
+            Pen pen = new Pen(Color.Black);
+            pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+
+            foreach (GameObject go in AllElements)
+            {
+                if (Array.IndexOf<object>(selected, go) != -1)
+                    g.DrawRectangle(pen, go.Left-2, go.Top-2, go.Width+3, go.Height+3);
+
+                go.Draw(g);
+            }
+        }
+
 
         public void Add(GameObject go)
         {

@@ -19,7 +19,13 @@ namespace littleRunner.GameObjects
         {
         }
 
-        public abstract void Move(MoveType mtype, int length, GameInstruction doThen);
+        public virtual GameDirection Direction
+        {
+            get { return GameDirection.None; }
+            set { }
+        }
+
+        public abstract void Move(MoveType mtype, int value, GameInstruction instruction);
         public abstract MainGameObjectMode Mode { get; set; }
 
         public virtual void getEvent(GameEvent gevent, Dictionary<GameEventArg, object> args)

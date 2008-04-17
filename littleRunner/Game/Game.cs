@@ -223,7 +223,10 @@ namespace littleRunner
                         lastModeIsNull = false; // it's set to the last mode
 
                         ai = null;
+                        int nextLevelStartAt = (int)args[GameEventArg.nextLevelStartAt];
                         StartGame("Data/Levels/" + nextLevel, world.PlayMode);
+                        if (ai != null)
+                            ai.Scroll(-nextLevelStartAt, false);
                     }
                     else
                     {

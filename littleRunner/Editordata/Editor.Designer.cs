@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Editor));
             this.level = new System.Windows.Forms.Panel();
-            this.propertys = new System.Windows.Forms.PropertyGrid();
+            this.properties = new System.Windows.Forms.PropertyGrid();
             this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.menubar = new System.Windows.Forms.ToolStrip();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -92,7 +92,6 @@
             this.trackBar = new System.Windows.Forms.TrackBar();
             this.curScrolling = new System.Windows.Forms.Label();
             this.tableLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menubar.SuspendLayout();
             this.menu.SuspendLayout();
             this.objectContext.SuspendLayout();
@@ -117,19 +116,19 @@
             this.level.MouseDown += new System.Windows.Forms.MouseEventHandler(this.level_MouseDown);
             this.level.MouseUp += new System.Windows.Forms.MouseEventHandler(this.level_MouseUp);
             // 
-            // propertys
+            // properties
             // 
-            this.propertys.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.properties.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.propertys.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.propertys.Location = new System.Drawing.Point(685, 93);
-            this.propertys.Name = "propertys";
-            this.propertys.PropertySort = System.Windows.Forms.PropertySort.Categorized;
-            this.propertys.Size = new System.Drawing.Size(197, 468);
-            this.propertys.TabIndex = 6;
-            this.propertys.SelectedObjectsChanged += new System.EventHandler(this.propertys_SelectedObjectsChanged);
-            this.propertys.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.propertys_PropertyValueChanged);
+            this.properties.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.properties.Location = new System.Drawing.Point(685, 93);
+            this.properties.Name = "properties";
+            this.properties.PropertySort = System.Windows.Forms.PropertySort.Categorized;
+            this.properties.Size = new System.Drawing.Size(197, 468);
+            this.properties.TabIndex = 6;
+            this.properties.SelectedObjectsChanged += new System.EventHandler(this.properties_SelectedObjectsChanged);
+            this.properties.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.properties_PropertyValueChanged);
             // 
             // openFile
             // 
@@ -701,7 +700,7 @@
             this.tableLayout.Controls.Add(this.trackBar, 0, 3);
             this.tableLayout.Controls.Add(this.actualFocus, 1, 1);
             this.tableLayout.Controls.Add(this.curScrolling, 1, 3);
-            this.tableLayout.Controls.Add(this.propertys, 1, 2);
+            this.tableLayout.Controls.Add(this.properties, 1, 2);
             this.tableLayout.Controls.Add(this.showlevelSettings, 1, 0);
             this.tableLayout.Controls.Add(this.level, 0, 0);
             this.tableLayout.Location = new System.Drawing.Point(12, 52);
@@ -714,15 +713,6 @@
             this.tableLayout.Size = new System.Drawing.Size(885, 614);
             this.tableLayout.TabIndex = 19;
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.statusStrip1.Location = new System.Drawing.Point(352, 670);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(202, 22);
-            this.statusStrip1.TabIndex = 20;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -731,7 +721,6 @@
             this.Controls.Add(this.menubar);
             this.Controls.Add(this.tableLayout);
             this.Controls.Add(this.menu);
-            this.Controls.Add(this.statusStrip1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -739,7 +728,9 @@
             this.MaximizeBox = false;
             this.Name = "Editor";
             this.Text = "littleRunner Game Editor";
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Editor_KeyUp);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Editor_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Editor_KeyDown);
             this.menubar.ResumeLayout(false);
             this.menubar.PerformLayout();
             this.menu.ResumeLayout(false);
@@ -757,7 +748,7 @@
 
         private System.Windows.Forms.ToolStripMenuItem pointStarToolStripMenuItem;
         private System.Windows.Forms.Panel level;
-        private System.Windows.Forms.PropertyGrid propertys;
+        private System.Windows.Forms.PropertyGrid properties;
         private System.Windows.Forms.OpenFileDialog openFile;
         private System.Windows.Forms.ToolStrip menubar;
         private System.Windows.Forms.SaveFileDialog saveFile;
@@ -817,6 +808,5 @@
         private System.Windows.Forms.ToolStripButton startGameCurrentToolStripButton;
         private System.Windows.Forms.ToolStripButton editScriptToolStripButton;
         private System.Windows.Forms.ToolStripButton checkScriptToolStripButton;
-        private System.Windows.Forms.StatusStrip statusStrip1;
     }
 }

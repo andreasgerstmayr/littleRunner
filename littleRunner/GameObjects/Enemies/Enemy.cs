@@ -11,6 +11,11 @@ namespace littleRunner.GameObjects
         {
         }
 
+        public override bool canStandOn
+        {
+            get { return true; }
+        }
+
         [Browsable(false), Category("Enemy configuration")]
         public abstract bool fireCanDelete { get; }
         [Browsable(false), Category("Enemy configuration")]

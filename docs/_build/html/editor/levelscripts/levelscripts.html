@@ -58,7 +58,8 @@ You can access every object which has a name, which can be choosen in the editor
 <p>If you want to handle some event, register it to the handler-object:</p>
 <div class="highlight"><pre><span class="n">handler</span><span class="o">.</span><span class="n">Name</span><span class="o">.</span><span class="n">Event</span> <span class="o">=</span> <span class="n">some_function</span>
 </pre></div>
-<p>Example:</p>
+<div class="section">
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
 <div class="highlight"><pre><span class="k">from</span> <span class="nn">System.Collections.Generic</span> <span class="k">import</span> <span class="n">Dictionary</span>
 
 <span class="k">def</span> <span class="nf">plat1_onOver</span><span class="p">(</span><span class="n">geventhandler</span><span class="p">,</span> <span class="n">who</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
@@ -71,20 +72,51 @@ You can access every object which has a name, which can be choosen in the editor
 </pre></div>
 <p>This code handles the Platform1&#8217;s onOver-Event, checks if a <a class="reference" href="../../game/game.html#maingameobject"><em>MGO</em></a> crashes in it at the left border (GameDirection.Left), and give the player a point (call the GameEventHandler with an empty dictionary, because the newPoint-Event needs no arguments).</p>
 <p><strong>Note:</strong> You get many points when you touch the left side? That&#8217;s because everytime the <a class="reference" href="../../game/game.html#maingameobject"><em>MGO</em></a> touches the left border, you get points. So, make a variable which checks if the user got the point, and handle that case (if you want).</p>
+</div>
+<div class="section">
+<h3 id="example-with-a-class">Example with a class<a class="headerlink" href="#example-with-a-class" title="Permalink to this headline">¶</a></h3>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">MoveSpika</span><span class="p">:</span>
+   <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+
+   <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">&lt;=</span> <span class="mi">20</span><span class="p">:</span>
+         <span class="n">Spika1</span><span class="o">.</span><span class="n">Top</span> <span class="o">-=</span> <span class="mi">10</span>
+      <span class="k">else</span><span class="p">:</span>
+         <span class="n">Spika1</span><span class="o">.</span><span class="n">Top</span> <span class="o">+=</span> <span class="mi">10</span>
+
+      <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">&gt;=</span> <span class="mi">40</span><span class="p">:</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">MoveSpika</span><span class="p">()</span>
+<span class="n">handler</span><span class="o">.</span><span class="n">AI</span><span class="o">.</span><span class="n">Check</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">move</span>
+</pre></div>
+<p>That moves the <em>Spika1</em> up and down.</p>
+</div>
 <div class="section">
 <h3 id="available-handlers">Available Handlers<a class="headerlink" href="#available-handlers" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><strong>StickyElements</strong><ul>
-<li>onOver (GameEventHandler geventhandler, GameElement who, GameDirection direction)</li>
+<li>onOver(GameEventHandler geventhandler, GameElement who, GameDirection direction)</li>
 </ul>
 </li>
 <li><strong>MovingElements</strong><ul>
-<li>onOver (inherits from StickyElements)</li>
-<li>Check (Dictionary&lt;string, int&gt; newpos)</li>
+<li>onOver(inherits from StickyElements)</li>
+<li>Check(Dictionary&lt;string, int&gt; newpos)</li>
 </ul>
 </li>
 <li><strong>Enemies</strong><ul>
-<li>Check (Dictionary&lt;string, int&gt; newpos)</li>
+<li>Check(Dictionary&lt;string, int&gt; newpos)</li>
+</ul>
+</li>
+<li><strong>LevelEnd</strong><ul>
+<li>finishedLevel(GameEventHandler geventhandler)</li>
+</ul>
+</li>
+<li><strong>AI</strong><ul>
+<li>Check()</li>
 </ul>
 </li>
 </ul>
@@ -104,6 +136,8 @@ You can access every object which has a name, which can be choosen in the editor
 <li><a class="reference" href="">Levelscripts</a><ul>
 <li><a class="reference" href="#quickstart">Quickstart</a></li>
 <li><a class="reference" href="#handlers">Handlers</a><ul>
+<li><a class="reference" href="#example">Example</a></li>
+<li><a class="reference" href="#example-with-a-class">Example with a class</a></li>
 <li><a class="reference" href="#available-handlers">Available Handlers</a></li>
 </ul>
 </li>
@@ -152,7 +186,7 @@ You can access every object which has a name, which can be choosen in the editor
     </div>
     <div class="footer">
       &copy; Copyright 2008, Andreas G..
-      Last updated on Apr 16, 2008.
+      Last updated on Apr 17, 2008.
     </div>
   </body>
 </html>

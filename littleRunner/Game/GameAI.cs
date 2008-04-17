@@ -38,6 +38,7 @@ namespace littleRunner
     public enum GameEventArg
     {
         nextLevel,
+        nextLevelStartAt,
         points
     }
     public enum GameKey
@@ -197,10 +198,10 @@ namespace littleRunner
             {
                 gameControlObj.Points += (int)args[GameEventArg.points];
 
-                if (gameControlObj.Points > 100)
+                if (gameControlObj.Points >= 1000)
                 {
                     gameControlObj.Lives++;
-                    gameControlObj.Points -= 100;
+                    gameControlObj.Points -= 1000;
                 }
             }
             else if (gevent == GameEvent.outOfRange || gevent == GameEvent.dead)

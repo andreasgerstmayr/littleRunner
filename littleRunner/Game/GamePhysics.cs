@@ -5,11 +5,12 @@ using System.Text;
 using littleRunner.GameObjects;
 using System.Diagnostics;
 
+
 namespace littleRunner
 {
     static class GamePhysics
     {
-        public static class FallingClass<T> where T : StickyElement
+        public static class FallingClass<T> where T : GameObject
         {
             public static bool CheckFalling(List<T> list, GameObject go,
                 int newtop, int newleft)
@@ -20,8 +21,8 @@ namespace littleRunner
                 {
                     if (el.canStandOn)
                     {
-                        if (go.Right-newleft > el.Left && go.Left+newleft < el.Right && // left+right ok?
-                            go.Bottom-newtop == el.Top)
+                        if (go.Right+newleft > el.Left && go.Left+newleft < el.Right && // left+right ok?
+                            go.Bottom+newtop == el.Top)
                         {
                             falling = false;
                             break;
@@ -35,62 +36,78 @@ namespace littleRunner
 
         static public bool Falling(List<StickyElement> stickyelements,
             List<MovingElement> movingelements,
+            List<Enemy> enemies,
             int newtop,
             int newleft,
             GameObject go)
         {
-            bool falling = true;
+            if (!FallingClass<StickyElement>.CheckFalling(stickyelements, go, newtop, newleft))
+                return false;
+            else if (!FallingClass<MovingElement>.CheckFalling(movingelements, go, newtop, newleft))
+                return false;
+            else if (!FallingClass<Enemy>.CheckFalling(enemies, go, newtop, newleft))
+                return false;
 
-            falling = FallingClass<StickyElement>.CheckFalling(stickyelements, go,newtop, newleft);
-            if (falling)
-                falling = FallingClass<MovingElement>.CheckFalling(movingelements, go, newtop, newleft);
-
-            return falling;
+            return true;
         }
 
 
-
-        static public void Jumping(ref int jumping, ref int newtop, ref int newleft)
+        public struct JumpData
         {
+            public GameDirection direction;
+            public int value;
+        }
+        static public void Jumping(ref JumpData jumping, ref int newtop, ref int newleft)
+        {
+            if (jumping.direction == GameDirection.None)
+                return;
+
+
             // jump left
-            if (jumping >= 0 && jumping < 20)
+            if (jumping.direction == GameDirection.Left)
             {
-                newleft -= 5;
-                newtop -= 10;
-            }
-            else if (jumping >= 20 && jumping < 40)
-            {
-                newleft -= 5;
-                newtop += 10;
+                if (jumping.value <= 20)
+                {
+                    newleft -= 5;
+                    newtop -= 10;
+                }
+                else
+                {
+                    newleft -= 5;
+                    newtop += 10;
+                }
             }
 
             // jump top
-            else if (jumping >= 100 && jumping < 120)
+            if (jumping.direction == GameDirection.Top)
             {
-                newtop -= 10;
-            }
-            else if (jumping >= 120 && jumping < 140)
-            {
-                newtop += 10;
+                if (jumping.value <= 20)
+                    newtop -= 10;
+                else
+                    newtop += 10;
             }
 
             // jump right
-            else if (jumping >= 200 && jumping < 220)
+            if (jumping.direction == GameDirection.Right)
             {
-                newleft += 5;
-                newtop -= 10;
-            }
-            else if (jumping >= 220 && jumping < 240)
-            {
-                newleft += 5;
-                newtop += 10;
+                if (jumping.value <= 20)
+                {
+                    newleft += 5;
+                    newtop -= 10;
+                }
+                else
+                {
+                    newleft += 5;
+                    newtop += 10;
+                }
             }
 
 
-            if (jumping != -1)
-                jumping++;
-            if (jumping == 40 || jumping == 140 || jumping == 240)
-                jumping = -1;
+            if (jumping.direction != GameDirection.None)
+                jumping.value++;
+
+            if (jumping.value == 41)
+                jumping.direction = GameDirection.None;
         }
 
 
@@ -99,8 +116,13 @@ namespace littleRunner
             bool crashedIn = false;
             direction = GameDirection.None;
 
+            int enemy = 0;
+            if (go2 is Enemy)
+                enemy = 1;
+
+
             if (go.Right + newleft > go2.Left && go.Left + newleft < go2.Right && // left+right ok?
-                go.Bottom + newtop > go2.Top && go.Top + newtop < go2.Bottom)
+                go.Bottom + newtop + enemy > go2.Top && go.Top + newtop < go2.Bottom)
             {
                 if (go.Right <= go2.Left) // crash into right
                 {
@@ -120,7 +142,7 @@ namespace littleRunner
 
             // newleft may be changed, recheck!
             if (go.Right + newleft > go2.Left && go.Left + newleft < go2.Right && // left+right ok?
-                go.Bottom + newtop > go2.Top && go.Top + newtop < go2.Bottom)
+                go.Bottom + newtop + enemy > go2.Top && go.Top + newtop < go2.Bottom)
             {
                 if (go.Bottom - 5 < go2.Top)
                 {
@@ -201,7 +223,9 @@ namespace littleRunner
                    my.Top + newtop < box.Bottom && my.Bottom + newtop > box.Top;
         }
 
-        static public bool SimpleCrashDetections(GameObject my, List<StickyElement> stickyelements, bool onlyWhenCanStandOn, int newtop, int newleft)
+        static public bool SimpleCrashDetections(GameObject my, List<StickyElement> stickyelements,
+            List<MovingElement> movingelements,
+            bool onlyWhenCanStandOn, int newtop, int newleft)
         {
             foreach (StickyElement se in stickyelements)
             {
@@ -212,6 +236,16 @@ namespace littleRunner
                 }
                 else
                     SimpleCrashDetection(my, se, newtop, newleft);
+            }
+            foreach (MovingElement me in movingelements)
+            {
+                if (onlyWhenCanStandOn)
+                {
+                    if (me.canStandOn && SimpleCrashDetection(my, me, newtop, newleft))
+                        return true;
+                }
+                else
+                    SimpleCrashDetection(my, me, newtop, newleft);
             }
             return false;
         }

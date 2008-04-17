@@ -338,6 +338,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\Levels\bonuslevel1.lrl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Data\Levels\level6.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
