@@ -170,12 +170,14 @@ namespace littleRunner
                     properties.SelectedObjects = new object[] { focus };
                 else
                 {
-                    List<object> selected = new List<object>(properties.SelectedObjects);
-                    if (!selected.Contains(focus))
+                    if (Array.IndexOf<object>(properties.SelectedObjects, focus) == -1)
                     {
-                        selected.Add(focus);
-                        properties.SelectedObjects = selected.ToArray();
-                    }
+                        object[] selected = properties.SelectedObjects;
+                        Array.Resize<object>(ref selected, selected.Length + 1);
+                        selected[selected.Length - 1] = focus;
+
+                        properties.SelectedObjects = selected;
+                    }  
                 }
 
 
@@ -243,7 +245,7 @@ namespace littleRunner
                 this.Text = "littleRunner Game Editor - " + tmpHandler.OrigFilename;
                 trackBar.Value = 0;
 
-                world = new World(tmpHandler.TmpFilename, level.Invalidate, PlayMode.Editor);
+                world = new World(tmpHandler.TmpFilename, level.Invalidate, new GameSession(), PlayMode.Editor);
                 tmpHandler.SaveHandler = SaveWorld;
                 setDelegateHandlers();
 

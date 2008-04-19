@@ -54,7 +54,15 @@ CreateMovingPlatform(Plat4, handler, MGO, 400, speed=20, startDirection=GameDire
 CreateMovingPlatform(Plat5, handler, MGO, 100, startDirection=GameDirection.Top)
 
 
-CreateMovingPlatform(Plat6, handler, MGO, 650)]]></value>
+# Remove Bonus-Level-House if already catched
+if Session.Get('level6.lrl', 'gotBonusLvl') == True:
+   World.StickyElements.Remove(House1)
+
+# Write to session that the bonus level has been catched
+def removeBonusLvl(geventhandler):
+   Session.Set('level6.lrl', 'gotBonusLvl', True)
+
+handler.House1.finishedLevel = removeBonusLvl]]></value>
       </Script>
     </littleRunner.LevelSettings>
   </Settings>
@@ -75,7 +83,7 @@ CreateMovingPlatform(Plat6, handler, MGO, 650)]]></value>
         </Left>
         <Width>
           <type>System.Int32</type>
-          <value>189</value>
+          <value>504</value>
         </Width>
         <Height>
           <type>System.Int32</type>
@@ -361,11 +369,11 @@ CreateMovingPlatform(Plat6, handler, MGO, 650)]]></value>
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>313</value>
+          <value>354</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>958</value>
+          <value>1111</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -510,32 +518,6 @@ CreateMovingPlatform(Plat6, handler, MGO, 650)]]></value>
         <Width>
           <type>System.Int32</type>
           <value>215</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.Objects.BrickColor</type>
-          <value>Invisible</value>
-        </Color>
-      </littleRunner.GameObjects.MovingElements.Bricks>
-      <littleRunner.GameObjects.MovingElements.Bricks>
-        <Name>
-          <type>System.String</type>
-          <value>Plat6</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>372</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>237</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>43</value>
         </Width>
         <Height>
           <type>System.Int32</type>

@@ -101,17 +101,31 @@ namespace littleRunner
             this.form = form;
             this.forminteract = forminteract;
             this.curkeys = new List<Keys>();
-        }
-        public void Init(World world, MainGameObject maingameobject, GameControlObjects gameControlObj)
-        {
+
             mainTimer = new Timer();
             mainTimer.Tick += new EventHandler(Check);
             mainTimer.Interval = 1;
+            mainTimer.Enabled = false;
+        }
+        public void Init(World world, MainGameObject maingameobject, GameControlObjects gameControlObj)
+        {
             mainTimer.Enabled = true;
 
             this.gameControlObj = gameControlObj;
             this.mgo = maingameobject;
             this.world = world;
+
+
+            // Init script
+            string msg = this.world.InitScript();
+
+            if (msg != "")
+            {
+                if (this.world.PlayMode == PlayMode.Game)
+                    throw new littleRunnerScriptException(msg);
+                else
+                    MessageBox.Show("Can't load script.", "Script error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 
@@ -210,7 +224,10 @@ namespace littleRunner
                 forminteract(gevent, args);
             }
             else if (gevent == GameEvent.finishedLevel)
+            {
+                Pause(false);
                 forminteract(gevent, args);
+            }
         }
 
 

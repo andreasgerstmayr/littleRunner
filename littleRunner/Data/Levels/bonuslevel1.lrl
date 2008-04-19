@@ -24,7 +24,16 @@
         <value><![CDATA[from MovingPlatform import CreateMovingPlatform
 
 
-CreateMovingPlatform(Plat1, handler, MGO, 1010, speed=10, startDirection=GameDirection.Right)]]></value>
+CreateMovingPlatform(Plat1, handler, MGO, 1010, speed=10, startDirection=GameDirection.Right)
+
+
+if Session.Get('bonuslevel1.lrl', 'gotLvl') == True:
+   levelFinishArgs = Dictionary[GameEventArg, object]()
+   levelFinishArgs[GameEventArg.nextLevel] = House.NextLevel
+   levelFinishArgs[GameEventArg.nextLevelStartAt] = House.StartAt
+   AiEventHandler(GameEvent.finishedLevel, levelFinishArgs)
+else:
+   Session.Set('bonuslevel1.lrl', 'gotLvl', True)]]></value>
       </Script>
     </littleRunner.LevelSettings>
   </Settings>
@@ -1592,8 +1601,8 @@ CreateMovingPlatform(Plat1, handler, MGO, 1010, speed=10, startDirection=GameDir
       </littleRunner.GameObjects.Objects.Star>
       <littleRunner.GameObjects.Objects.LevelEnd>
         <Name>
-          <type>NULL</type>
-          <value>null</value>
+          <type>System.String</type>
+          <value>House</value>
         </Name>
         <Top>
           <type>System.Int32</type>

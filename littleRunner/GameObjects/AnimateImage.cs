@@ -13,17 +13,16 @@ namespace littleRunner.GameObjects
         Image[,] images;
         int milliSecPerFrame;
         int cur;
-        bool dirRelevant;
         DateTime last;
 
         public Image CurImage(GameDirection direction)
         {
-            return images[dirRelevant ? (int)direction : 0, cur];
+            return images[(int)direction, cur];
         }
 
         public void Draw(Graphics g, GameDirection direction, int left, int top, int width, int height)
         {
-            g.DrawImage(images[dirRelevant ? (int)direction : 0, cur], left, top, width, height);
+            g.DrawImage(images[(int)direction, cur], left, top, width, height);
             if ((DateTime.Now - last).TotalMilliseconds >= milliSecPerFrame)
             {
                 cur++;
@@ -43,40 +42,45 @@ namespace littleRunner.GameObjects
             }
             return GameDirection.None;
         }
-        public AnimateImage(string imagesFn, int milliSecPerFrame)
+        public AnimateImage(string imagesFn, int milliSecPerFrame, params GameDirection[] needDirections)
         {
             List<string> files = AnimateImage.getFiles(imagesFn);
             images = new Image[Enum.GetNames(typeof(GameDirection)).Length, files.Count];
 
             for (int i = 0; i < files.Count; i++)
             {
+                GameDirection imgDir;
                 int indexOfSharp = imagesFn.IndexOf("#");
-                dirRelevant = indexOfSharp != -1;
 
-                if (dirRelevant)
-                {
-                    string dir = imagesFn.Substring(indexOfSharp + 1, 1);
-                    GameDirection imgDir = AnimateImage.getDirection(dir);
-
-                    Image original = Image.FromFile(files[i]);
-                    // write with original direction
-                    images[(int)imgDir, i] = original;
-
-                    Image flip = (Image)original.Clone();
-
-                    // change direction & write
-                    if (imgDir == GameDirection.Left)
-                        imgDir = GameDirection.Right;
-                    else if (imgDir == GameDirection.Right)
-                        imgDir = GameDirection.Left;
-
-                    flip.RotateFlip(RotateFlipType.RotateNoneFlipX);
-                    images[(int)imgDir, i] = flip;
-                }
+                if (indexOfSharp == -1)
+                    imgDir = GameDirection.None;
                 else
                 {
-                    Image original = Image.FromFile(files[i]);
-                    images[0, i] = original;
+                    string sDirection = imagesFn.Substring(indexOfSharp + 1, 1);
+                    imgDir = AnimateImage.getDirection(sDirection);
+                }
+
+                foreach (GameDirection dir in needDirections)
+                {
+                    Image img = Image.FromFile(files[i]);
+
+                    if (imgDir == dir)
+                        images[(int)imgDir, i] = img;
+                    else
+                    {
+                        switch (dir)
+                        {
+                            case GameDirection.Left:
+                                if (imgDir == GameDirection.Right)
+                                    img.RotateFlip(RotateFlipType.RotateNoneFlipX);
+                                break;
+                            case GameDirection.Right:
+                                if (imgDir == GameDirection.Left)
+                                    img.RotateFlip(RotateFlipType.RotateNoneFlipX);
+                                break;
+                        }
+                        images[(int)dir, i] = img;
+                    }
                 }
             }
 

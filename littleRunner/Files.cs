@@ -62,7 +62,7 @@ namespace littleRunner
         }
         public static string gumba_brown
         {
-            get { return "Data/Images/Enemie/Gumba/Brown/walk_#L[1-10].png"; }
+            get { return "Data/Images/Enemie/Gumba/Brown/walk_#N[1-10].png"; }
         }
         public static string icon_png
         {

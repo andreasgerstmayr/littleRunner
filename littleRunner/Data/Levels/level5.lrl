@@ -1961,7 +1961,7 @@
         </Color>
         <Direction>
           <type>littleRunner.GameDirection</type>
-          <value>Right</value>
+          <value>None</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
       <littleRunner.GameObjects.Enemies.Gumba>
@@ -1995,7 +1995,7 @@
         </Color>
         <Direction>
           <type>littleRunner.GameDirection</type>
-          <value>Right</value>
+          <value>None</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
       <littleRunner.GameObjects.Enemies.Gumba>
@@ -2029,7 +2029,7 @@
         </Color>
         <Direction>
           <type>littleRunner.GameDirection</type>
-          <value>Right</value>
+          <value>None</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
       <littleRunner.GameObjects.Enemies.Gumba>
@@ -2063,7 +2063,7 @@
         </Color>
         <Direction>
           <type>littleRunner.GameDirection</type>
-          <value>Right</value>
+          <value>None</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
       <littleRunner.GameObjects.Enemies.Gumba>
@@ -2097,7 +2097,7 @@
         </Color>
         <Direction>
           <type>littleRunner.GameDirection</type>
-          <value>Right</value>
+          <value>None</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
       <littleRunner.GameObjects.Enemies.Gumba>
@@ -2131,7 +2131,7 @@
         </Color>
         <Direction>
           <type>littleRunner.GameDirection</type>
-          <value>Right</value>
+          <value>None</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
       <littleRunner.GameObjects.Enemies.Gumba>
@@ -2165,7 +2165,7 @@
         </Color>
         <Direction>
           <type>littleRunner.GameDirection</type>
-          <value>Right</value>
+          <value>None</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
       <littleRunner.GameObjects.Enemies.Gumba>
@@ -2199,7 +2199,7 @@
         </Color>
         <Direction>
           <type>littleRunner.GameDirection</type>
-          <value>Right</value>
+          <value>None</value>
         </Direction>
       </littleRunner.GameObjects.Enemies.Gumba>
       <littleRunner.GameObjects.Enemies.Spika>
