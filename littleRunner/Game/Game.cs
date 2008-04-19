@@ -22,6 +22,7 @@ namespace littleRunner
         MainGameObjectMode lastMode;
         bool lastModeIsNull;
         GameControlObjects gameControlObjs;
+        GameSession session;
         bool editorOpened;
         bool ignoreSizeChange;
         int top, left;
@@ -121,8 +122,14 @@ namespace littleRunner
                 // main game AI - world neets AiEventHandler
                 ai = new GameAI(this, GameAIInteract);
 
+                if (session == null) // first run or complete new run (after game over)
+                {
+                    session = new GameSession();
+                }
+
+
                 // The world
-                world = new World(filename, Invalidate, ai.getEvent, playMode);
+                world = new World(filename, Invalidate, ai.getEvent, session, playMode);
 
                 // Main game object
                 Tux tux = new Tux(0, 140);
@@ -201,6 +208,7 @@ namespace littleRunner
                             ai.Quit();
                             ai = null;
                             gameControlObjs = null; // set new points+sound!
+                            session = null; // new session
 
                             StartGame("Data/Levels/level1.lrl", world.PlayMode);
                         }

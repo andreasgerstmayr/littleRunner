@@ -39,6 +39,14 @@ namespace littleRunner.GameObjects
                 World.Script.callFunction(base.Name, "Check", newpos);
         }
         abstract public bool getCrashEvent(GameObject go, GameDirection cidirection); // true: survived, false: loose one livepoint
+        virtual public void Remove()
+        {
+            World.Enemies.Remove(this);
+        }
+        virtual public void Remove(Enemy e)
+        {
+            World.Enemies.Remove(e);
+        }
 
 
         public override Dictionary<string, object> Serialize()

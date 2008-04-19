@@ -33,6 +33,7 @@ namespace littleRunner
 
         public string fileName;
         MainGameObject mainGameObject;
+        GameSession session;
         public LevelSettings Settings;
         public MyInvalidateEventHandler Invalidate;
         private GameEventHandler aiEventHandler;
@@ -80,36 +81,31 @@ namespace littleRunner
             movingelements = new List<MovingElement>();
         }
         // new world with the game
-        public World(string filename, MyInvalidateEventHandler invalidate, GameEventHandler aiEventHandler, PlayMode playMode)
+        public World(string filename, MyInvalidateEventHandler invalidate, GameEventHandler aiEventHandler, GameSession session, PlayMode playMode)
             : this(playMode)
         {
             this.Invalidate = invalidate;
             this.fileName = filename;
             this.aiEventHandler = aiEventHandler;
+            this.session = session;
             Deserialize();
         }
-        public World(string filename, MyInvalidateEventHandler invalidate, PlayMode playMode)
-            : this(filename, invalidate, GameAI.NullAiEventHandlerMethod, playMode)
+        public World(string filename, MyInvalidateEventHandler invalidate, GameSession session, PlayMode playMode)
+            : this(filename, invalidate, GameAI.NullAiEventHandlerMethod, session, playMode)
         {
         }
 
         public void Init(MainGameObject mainGameObject) // only called when starting the game
         {
             this.mainGameObject = mainGameObject;
-            string msg = InitScript();
-
-            if (msg != "")
-            {
-                if (PlayMode == PlayMode.Game)
-                    throw new littleRunnerScriptException(msg);
-                else
-                    MessageBox.Show("Can't load script.", "Script error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
 
         public string InitScript()
         {
+            if (this.fileName == "Data/Levels/bonuslevel1.lrl")
+            {
+            }
             if (Settings.Script.Length > 0)
             {
                 Script = new Script(this);
@@ -125,8 +121,12 @@ namespace littleRunner
                         }
                     }
 
+
                     Script.GlobalsAdd("MGO", MGO);
                     Script.GlobalsAdd("World", this);
+                    Script.GlobalsAdd("Session", session);
+                    Script.GlobalsAdd("AiEventHandler", aiEventHandler);
+
                     Script.Execute(Settings.Script);
                 }
                 catch (Exception e)

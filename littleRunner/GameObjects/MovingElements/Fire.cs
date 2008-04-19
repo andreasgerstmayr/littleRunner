@@ -93,7 +93,7 @@ namespace littleRunner.GameObjects.MovingElements
 
             if (crashedInEnemy != null && crashedInEnemy.fireCanDelete)
             {
-                World.Enemies.Remove(crashedInEnemy);
+                crashedInEnemy.Remove();
                 World.MovingElements.Remove(this);
                 return;
             }

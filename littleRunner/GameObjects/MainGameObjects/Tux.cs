@@ -76,8 +76,8 @@ namespace littleRunner.GameObjects.MainGameObjects
             Top = top;
             Left = left;
 
-            imgNormal = new AnimateImage(Files.tux_normal, 200);
-            imgSmall = new AnimateImage(Files.tux_small, 200);
+            imgNormal = new AnimateImage(Files.tux_normal, 200, GameDirection.Left, GameDirection.Right);
+            imgSmall = new AnimateImage(Files.tux_small, 200, GameDirection.Left, GameDirection.Right);
 
 
             Width = imgNormal.CurImage(direction).Width;
@@ -273,10 +273,6 @@ namespace littleRunner.GameObjects.MainGameObjects
             else if (gevent == GameEvent.gotFireFlower)
             {
                 Mode = MainGameObjectMode.NormalFire;
-            }
-            else if (gevent == GameEvent.finishedLevel)
-            {
-                AiEventHandler(gevent, args);
             }
         }
     }

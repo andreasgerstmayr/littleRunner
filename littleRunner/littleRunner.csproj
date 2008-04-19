@@ -38,7 +38,7 @@
   <ItemGroup>
     <Reference Include="IronPython, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Dokumente und Einstellungen\Andreas\Desktop\IronPython-1.1.1-Bin\IronPython-1.1.1\IronPython.dll</HintPath>
+      <HintPath>C:\Dokumente und Einstellungen\Andi\Desktop\IronPython-1.1.1-Bin\IronPython-1.1.1\IronPython.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="Game\GameInstruction.cs" />
     <Compile Include="Game\GamePhysics.cs" />
+    <Compile Include="Game\GameSession.cs" />
     <Compile Include="Game\Worlddata\World.Serialization.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramSwitcher.cs">
@@ -356,9 +357,6 @@
     <None Include="Resources\system-shutdown.png" />
     <None Include="Resources\text-x-script.png" />
     <None Include="Resources\text-x-generic.png" />
-    <None Include="Script\start.bat">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Data\Levelscripts\__init__.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

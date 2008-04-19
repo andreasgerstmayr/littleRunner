@@ -7,8 +7,11 @@ from littleRunner.GameObjects import GameObject
 import sys
 sys.path.append('Data/Levelscripts')
 
+from System.Collections.Generic import Dictionary
+
+
     
-class AttrDict(dict):
+class AttrDict(Dictionary[object, object]):
    def __getattr__(self, key):
       return self[key]
 
@@ -16,7 +19,7 @@ class AttrDict(dict):
       self[key] = value
 
    def __delattr__(self, key):
-      del self[key]
+      self.Remove(key)
 
 
 handler = AttrDict()

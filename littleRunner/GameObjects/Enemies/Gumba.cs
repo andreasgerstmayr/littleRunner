@@ -35,12 +35,12 @@ namespace littleRunner.GameObjects.Enemies
                 switch (color)
                 {
                     case GumbaColor.Brown:
-                        curimg = new AnimateImage (Files.gumba_brown, 100);
+                        curimg = new AnimateImage (Files.gumba_brown, 100, GameDirection.None);
                         break;
 
                 }
-                Width = curimg.CurImage(direction).Width;
-                Height = curimg.CurImage(direction).Height;
+                Width = curimg.CurImage(GameDirection.None).Width;
+                Height = curimg.CurImage(GameDirection.None).Height;
             }
         }
         [Category("Gumba")]
@@ -57,21 +57,12 @@ namespace littleRunner.GameObjects.Enemies
                 Height -= small*2;
                 small++;
             }
-
             if (Height <= 2)
-            {
-                Dictionary<GameEventArg, object> pointsArgs = new Dictionary<GameEventArg, object>();
-                pointsArgs[GameEventArg.points] = 5;
-                AiEventHandler(GameEvent.gotPoints, pointsArgs);
+                Remove();
 
-                World.Enemies.Remove(this);
-            }
-
-
-            curimg.Draw(g, direction, Left, Top, Width, Height);
+            curimg.Draw(g, GameDirection.None, Left, Top, Width, Height);
         }
-
-
+   
         public Gumba()
             : base()
         {
@@ -91,10 +82,14 @@ namespace littleRunner.GameObjects.Enemies
             small = 1;
         }
 
-        public void FrameChanged(object o, EventArgs e)
+
+        public override void Remove()
         {
-            if (World != null)
-                World.Invalidate();
+            base.Remove();
+
+            Dictionary<GameEventArg, object> pointsArgs = new Dictionary<GameEventArg, object>();
+            pointsArgs[GameEventArg.points] = 5;
+            AiEventHandler(GameEvent.gotPoints, pointsArgs);
         }
 
         public override void Check(out Dictionary<string, int> newpos)
@@ -110,13 +105,18 @@ namespace littleRunner.GameObjects.Enemies
             if (falling)
                 newtop += 6;
 
+            if (direction == GameDirection.None)
+            {
+            }
+
             // direction
             if (!falling)
             {
-                if (direction == GameDirection.Right)
-                    newleft += 1;
-                else
-                    newleft -= 1;
+                switch (direction)
+                {
+                    case GameDirection.Left: newleft -= 1; break;
+                    case GameDirection.Right: newleft += 1; break;
+                }
             }
 
 
@@ -126,8 +126,8 @@ namespace littleRunner.GameObjects.Enemies
 
 
             // run in standing mgo?
-            GameDirection _direction;
-            if (GamePhysics.SingleCrashDetection(this, World.MGO, out _direction, ref newtop, ref newleft, true) && !getCrashEvent(this, _direction))
+            GameDirection crashInDirection;
+            if (GamePhysics.SingleCrashDetection(this, World.MGO, out crashInDirection, ref newtop, ref newleft, true) && !getCrashEvent(this, crashInDirection))
                 World.MGO.getEvent(GameEvent.crashInEnemy, new Dictionary<GameEventArg, object>());
 
 
@@ -136,7 +136,7 @@ namespace littleRunner.GameObjects.Enemies
             if (newleft != 0)
                 Left += newleft;
 
-            if (!falling && newleft == 0)
+            if (!falling && newleft == 0 && direction != GameDirection.None)
             {
                 direction = direction == GameDirection.Left ? GameDirection.Right : GameDirection.Left;
             }
@@ -144,7 +144,7 @@ namespace littleRunner.GameObjects.Enemies
 
             // dead?
             if (Top > World.Settings.LevelHeight)
-                World.Enemies.Remove(this);
+                base.Remove();
         }
 
         public override bool getCrashEvent(GameObject go, GameDirection cidirection)

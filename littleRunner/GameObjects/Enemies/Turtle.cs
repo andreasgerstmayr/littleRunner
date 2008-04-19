@@ -48,8 +48,8 @@ namespace littleRunner.GameObjects.Enemies
                 switch (style)
                 {
                     case TurtleStyle.Green:
-                        imgRunning = new AnimateImage(Files.turtle_green, 200);
-                        imgShell = new AnimateImage(Files.turtle_green_down, 200);
+                        imgRunning = new AnimateImage(Files.turtle_green, 200, GameDirection.Left, GameDirection.Right);
+                        imgShell = new AnimateImage(Files.turtle_green_down, 200, GameDirection.None);
                         break;
                 }
 
@@ -81,7 +81,8 @@ namespace littleRunner.GameObjects.Enemies
 
         public override void Draw(Graphics g)
         {
-            curimg.Draw(g, direction, Left, Top, curimg.CurImage(direction).Width, Height);
+            GameDirection dir = turtleMode == TurtleMode.Normal ? direction : GameDirection.None;
+            curimg.Draw(g, dir, Left, Top, curimg.CurImage(dir).Width, Height);
         }
 
 
@@ -107,6 +108,15 @@ namespace littleRunner.GameObjects.Enemies
 
             Direction = GameDirection.Right;
             TurtleMode = TurtleMode.Normal;
+        }
+
+        public override void Remove()
+        {
+            base.Remove();
+
+            Dictionary<GameEventArg, object> pointsArgs = new Dictionary<GameEventArg, object>();
+            pointsArgs[GameEventArg.points] = 5;
+            AiEventHandler(GameEvent.gotPoints, pointsArgs);
         }
 
         public override void Check(out Dictionary<string, int> newpos)
@@ -146,7 +156,7 @@ namespace littleRunner.GameObjects.Enemies
             bool removedEnemy = false;
             if (turtleMode == TurtleMode.SmallRunning && crashedInEnemy != null && crashedInEnemy.turtleCanRemove)
             {
-                World.Enemies.Remove(crashedInEnemy);
+                base.Remove(crashedInEnemy);
                 removedEnemy = true;
             }
 
@@ -171,7 +181,7 @@ namespace littleRunner.GameObjects.Enemies
 
             // dead?
             if (Top > World.Settings.LevelHeight)
-                World.Enemies.Remove(this);
+                base.Remove();
         }
 
         public override bool getCrashEvent(GameObject go, GameDirection cidirection)

@@ -42,45 +42,12 @@ namespace littleRunner
 
         public void callFunction(string name, string function, params object[] args)
         {
-            bool call = false;
-            bool containName = hasFunction.ContainsKey(name);
-
-            if (containName && hasFunction[name].ContainsKey(function))
+            Dictionary<object, object> handlers = (Dictionary<object, object>)engine.Globals["handler"];
+            if (handlers.ContainsKey(name) &&
+                ((Dictionary<object, object>)handlers[name]).ContainsKey(function))
             {
-                // cached
-                call = hasFunction[name][function];
-            }
-            else
-            {
-                engine.Execute("x = '" + name + "' in handler and '" + function + "' in handler." + name);
-                if ((bool)engine.Globals["x"])
-                    call = true;
-                else
-                    call = false;
-
-                // name in cache, add function
-                if (containName)
-                    hasFunction[name][function] = call;
-                else // nothing in cache, add everything
-                {
-                    Dictionary<string, bool> funcList = new Dictionary<string, bool>();
-                    funcList.Add(function, call);
-                    hasFunction.Add(name, funcList);
-                }
-            }
-
-            if (call)
-            {
-                try
-                {
-                    engine.Globals["args"] = args;
-                    engine.Execute("handler." + name + "." + function + "(*args)");
-                }
-                catch (Exception e)
-                {
-                    DebugInfo.WriteLine(e);
-                    throw new littleRunnerScriptFunctionException("Can't call function");
-                }
+                engine.Globals["args"] = args;
+                engine.Execute("handler." + name + "." + function + "(*args)");
             }
         }
 
