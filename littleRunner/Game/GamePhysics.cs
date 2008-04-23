@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace littleRunner
 {
-    static class GamePhysics
+    public static class GamePhysics
     {
         public static class FallingClass<T> where T : GameObject
         {

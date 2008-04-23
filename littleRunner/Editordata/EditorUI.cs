@@ -12,21 +12,17 @@ namespace littleRunner
 {
     class EditorUI
     {
-        static GameObject focus;
         static Panel level;
         static PropertyGrid properties;
 
-        public static List<ToolStripItem> GenerateProperties(ref GameObject focus,
-            ref Panel level,
+        public static List<ToolStripItem> GenerateProperties(ref Panel level,
             ref PropertyGrid properties)
         {
-            EditorUI.focus = focus;
             EditorUI.level = level;
             EditorUI.properties = properties;
             List<ToolStripItem> newitems = new List<ToolStripItem>();
 
-
-            foreach (PropertyInfo i in focus.GetType().GetProperties())
+            foreach (PropertyInfo i in properties.SelectedObject.GetType().GetProperties())
             {
                 if (i.PropertyType.IsEnum)
                 {
@@ -40,7 +36,7 @@ namespace littleRunner
                     if (browseable)
                     {
                         ToolStripMenuItem item = new ToolStripMenuItem(i.Name);
-                        string selected = Enum.GetName(i.PropertyType, i.GetGetMethod().Invoke(focus, new object[] { }));
+                        string selected = Enum.GetName(i.PropertyType, i.GetGetMethod().Invoke(properties.SelectedObject, new object[] { }));
 
                         List<ToolStripMenuItem> itemDDItems = new List<ToolStripMenuItem>();
                         bool canWrite = i.CanWrite;
@@ -85,13 +81,13 @@ namespace littleRunner
             ToolStripMenuItem selected = (ToolStripMenuItem)sender;
             ToolStripItem owner = selected.OwnerItem;
 
-            PropertyInfo i = focus.GetType().GetProperty(owner.Text);
+            PropertyInfo i = properties.SelectedObject.GetType().GetProperty(owner.Text);
             object enumValue = Enum.Parse(i.PropertyType, selected.Text);
 
 
             if (i.CanWrite)
             {
-                i.GetSetMethod().Invoke(focus, new object[] { enumValue });
+                i.GetSetMethod().Invoke(properties.SelectedObject, new object[] { enumValue });
                 properties.Refresh();
                 level.Invalidate();
             }

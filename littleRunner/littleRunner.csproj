@@ -358,7 +358,7 @@
     <None Include="Resources\text-x-script.png" />
     <None Include="Resources\text-x-generic.png" />
     <None Include="Data\Levelscripts\__init__.py">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\Images\Brick\brick_invisible.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
