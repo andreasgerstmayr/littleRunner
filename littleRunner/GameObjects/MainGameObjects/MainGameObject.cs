@@ -6,7 +6,9 @@ namespace littleRunner.GameObjects
 {
     public enum MoveType
     {
-        Jump,
+        jumpLeft,
+        jumpTop,
+        jumpRight,
         goLeft,
         goRight,
         goTop,

@@ -108,14 +108,12 @@ namespace littleRunner.GameObjects.MainGameObjects
 
             if (wantNext.Count > 0)
             {
-                WantNext next = wantNext.Dequeue();
+                WantNext next = wantNext.Peek();
+
+                bool wantJump = false;
 
                 switch (next.type)
                 {
-                    case MoveType.Jump:
-                        jumping.direction = GameDirection.Top;
-                        jumping.value = 1;
-                        break;
                     case MoveType.goLeft:
                         newleft -= next.value;
                         break;
@@ -128,9 +126,37 @@ namespace littleRunner.GameObjects.MainGameObjects
                     case MoveType.goBottom:
                         newtop += next.value;
                         break;
+                    default: wantJump = true;
+                        break;
                 }
 
-                next.instruction.Do();
+
+                if (!wantJump)
+                {
+                    wantNext.Dequeue();
+                    next.instruction.Do();
+                }
+                else if (wantJump && jumping.direction == GameDirection.None)
+                {
+                    switch (next.type)
+                    {
+                        case MoveType.jumpLeft:
+                            jumping.direction = GameDirection.Left;
+                            jumping.value = 1;
+                            break;
+                        case MoveType.jumpTop:
+                            jumping.direction = GameDirection.Top;
+                            jumping.value = 1;
+                            break;
+                        case MoveType.jumpRight:
+                            jumping.direction = GameDirection.Right;
+                            jumping.value = 1;
+                            break;
+                    }
+
+                    wantNext.Dequeue();
+                    next.instruction.Do();
+                }
             }
 
 

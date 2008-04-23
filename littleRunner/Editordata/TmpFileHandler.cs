@@ -88,16 +88,18 @@ namespace littleRunner
             }
         }
 
-        public void saveChanges()
+        public bool saveChanges()
         {
             if (OriginalIsOld)
             {
                 // save?
-                DialogResult result = MessageBox.Show("Do you want to save your changes?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-                
-                if (result == DialogResult.Yes)
+                DialogResult result = MessageBox.Show("Do you want to save your changes?", "Question", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                if (result == DialogResult.Cancel)
+                    return false;
+                else if (result == DialogResult.Yes)
                     SaveReal();
             }
+            return true;
         }
 
         public void updateTMP()
@@ -107,19 +109,22 @@ namespace littleRunner
         }
 
 
-        public void New()
+        public bool New()
         {
             //save old?
-            saveChanges();
+            if (!saveChanges())
+                return false;
 
             originalFile = "";
+            return true;
         }
 
 
         public bool Open()
         {
             // maybe save old
-            saveChanges();
+            if (!saveChanges())
+                return false;
 
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)

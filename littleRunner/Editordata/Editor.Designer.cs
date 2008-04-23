@@ -112,6 +112,7 @@
             this.level.TabIndex = 7;
             this.level.Paint += new System.Windows.Forms.PaintEventHandler(this.level_Paint);
             this.level.MouseMove += new System.Windows.Forms.MouseEventHandler(this.level_MouseMove);
+            this.level.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.level_MouseDoubleClick);
             this.level.MouseClick += new System.Windows.Forms.MouseEventHandler(this.level_MouseClick);
             this.level.MouseDown += new System.Windows.Forms.MouseEventHandler(this.level_MouseDown);
             this.level.MouseUp += new System.Windows.Forms.MouseEventHandler(this.level_MouseUp);

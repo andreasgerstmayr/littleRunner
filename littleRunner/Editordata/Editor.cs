@@ -96,30 +96,38 @@ namespace littleRunner
         #region Drag 'n' Drop Events
         private void level_MouseDown(object sender, MouseEventArgs e)
         {
-            base.OnMouseDown(e);
-
             List<GameObject> gos = world.AllElements;
+            bool found = false;
             for (int i = gos.Count - 1; i >= 0; i--)
             {
                 GameObject go = gos[i];
                 if (go.Hit(e.Y, e.X))
                 {
                     focus = go;
-                    if (!pressedKeys.Contains(Keys.ControlKey))
-                        properties.SelectedObjects = new object[] { focus };
 
                     moving = true;
                     mouseX = e.X - go.Left;
                     mouseY = e.Y - go.Top;
+                    found = true;
                     break;
                 }
+            }
+
+
+            if (!found)
+            {
+                focus = null;
+                properties.SelectedObjects = new object[] { };
+            }
+            else
+            {
+                if (!pressedKeys.Contains(Keys.ControlKey))
+                    properties.SelectedObjects = new object[] { focus };
             }
         }
 
         private void level_MouseMove(object sender, MouseEventArgs e)
         {
-            base.OnMouseMove(e);
-
             if (moving && focus != null)
             {
                 int movementTop = (e.Y - mouseY) - focus.Top;
@@ -127,7 +135,7 @@ namespace littleRunner
 
                 focus.Top += movementTop;
                 focus.Left += movementLeft;
-                
+
                 for (int i = 0; i < properties.SelectedObjects.Length; i++)
                 {
                     if (properties.SelectedObjects[i] != focus &&
@@ -143,7 +151,6 @@ namespace littleRunner
 
         private void level_MouseUp(object sender, MouseEventArgs e)
         {
-            base.OnMouseUp(e);
             moving = false;
             level.Invalidate(); // paint again, with background
         }
@@ -155,15 +162,24 @@ namespace littleRunner
                 objectContext.Items.RemoveAt(i);            // you 've to remove always the 3. element
             }
 
-            List<ToolStripItem> newitems = EditorUI.GenerateProperties(ref focus, ref level, ref properties);
+            List<ToolStripItem> newitems = EditorUI.GenerateProperties(ref level, ref properties);
             objectContext.Items.AddRange(newitems.ToArray());
             objectContext.Show(Cursor.Position.X, Cursor.Position.Y);
         }
 
 
+        private void level_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (focus != null && Array.IndexOf<object>(properties.SelectedObjects, focus) != -1)
+            {
+                List<object> selected = new List<object>(properties.SelectedObjects);
+                selected.Remove(focus);
+                properties.SelectedObjects = selected.ToArray();
+            }
+        }
+
         private void level_MouseClick(object sender, MouseEventArgs e)
         {
-            base.OnMouseClick(e);
             if (focus != null)
             {
                 if (!pressedKeys.Contains(Keys.ControlKey))
@@ -172,12 +188,19 @@ namespace littleRunner
                 {
                     if (Array.IndexOf<object>(properties.SelectedObjects, focus) == -1)
                     {
-                        object[] selected = properties.SelectedObjects;
-                        Array.Resize<object>(ref selected, selected.Length + 1);
-                        selected[selected.Length - 1] = focus;
+                        if (properties.SelectedObjects.Length == 1 && properties.SelectedObject is LevelSettings)
+                        {
+                            properties.SelectedObjects = new object[] { focus };
+                        }
+                        else
+                        {
+                            object[] selected = properties.SelectedObjects;
+                            Array.Resize<object>(ref selected, selected.Length + 1);
+                            selected[selected.Length - 1] = focus;
 
-                        properties.SelectedObjects = selected;
-                    }  
+                            properties.SelectedObjects = selected;
+                        }
+                    }
                 }
 
 
@@ -226,16 +249,17 @@ namespace littleRunner
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            tmpHandler.New();
+            if (tmpHandler.New())
+            {
+                this.Text = "littleRunner Game Editor";
+                world = getDefaultWorld();
+                tmpHandler.SaveHandler = SaveWorld;
+                setDelegateHandlers();
 
-            this.Text = "littleRunner Game Editor";
-            world = getDefaultWorld();
-            tmpHandler.SaveHandler = SaveWorld;
-            setDelegateHandlers();
-
-            showlevelSettings_Click(sender, e);
-            trackBar.Value = 0;
-            level.Invalidate();
+                showlevelSettings_Click(sender, e);
+                trackBar.Value = 0;
+                level.Invalidate();
+            }
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -333,7 +357,16 @@ namespace littleRunner
             level.Invalidate();
 
             // focus on it
-            properties.SelectedObjects = new object[] { go };
+            if (!pressedKeys.Contains(Keys.ControlKey) || properties.SelectedObject is LevelSettings)
+                properties.SelectedObjects = new object[] { go };
+            else
+            {
+                object[] selected = properties.SelectedObjects;
+                Array.Resize<object>(ref selected, selected.Length + 1);
+                selected[selected.Length - 1] = go;
+
+                properties.SelectedObjects = selected;
+            }
         }
 
 
@@ -472,42 +505,60 @@ namespace littleRunner
         #region Contextmenue
         private void toForegroundToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (focus != null)
+            foreach (object o in properties.SelectedObjects)
             {
-                world.SetLast(focus);
-                level.Invalidate();
+                if (!(o is LevelSettings))
+                {
+                    GameObject gameObject = (GameObject)o;
+                    world.SetLast(gameObject);
+                }
             }
+
+            level.Invalidate();
         }
 
         private void toBackgroundToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (focus != null)
+            foreach (object o in properties.SelectedObjects)
             {
-                world.SetFirst(focus);
-                level.Invalidate();
+                if (!(o is LevelSettings))
+                {
+                    GameObject gameObject = (GameObject)o;
+                    world.SetFirst(gameObject);
+                }
             }
+
+            level.Invalidate();
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (focus != null)
+            foreach (object o in properties.SelectedObjects)
             {
-                world.Remove(focus);
-                level.Invalidate();
-
-                showlevelSettings_Click(sender, e);
+                if (!(o is LevelSettings))
+                {
+                    GameObject gameObject = (GameObject)o;
+                    world.Remove(gameObject);
+                }
             }
+
+            properties.SelectedObjects = new object[] { };
+            level.Invalidate();
         }
         #endregion
 
 
         private void Editor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            tmpHandler.saveChanges();
-            tmpHandler.Dispose();
-            tmpHandler = null;
+            if (tmpHandler.saveChanges())
+            {
+                tmpHandler.Dispose();
+                tmpHandler = null;
 
-            programSwitcher.Show();
+                programSwitcher.Show();
+            }
+            else
+                e.Cancel = true;
         }
 
         private void level_Paint(object sender, PaintEventArgs e)
@@ -572,6 +623,8 @@ namespace littleRunner
                 actualFocus.Text = "Focus: " + properties.SelectedObjects[0].GetType().Name;
             else
                 actualFocus.Text = "selected " + properties.SelectedObjects.Length + " objects";
+
+            level.Invalidate();
         }
 
 
@@ -580,6 +633,14 @@ namespace littleRunner
         {
             if (!pressedKeys.Contains(e.KeyCode))
                 pressedKeys.Add(e.KeyCode);
+
+
+            switch (e.KeyCode)
+            {
+                case Keys.Delete:
+                    deleteToolStripMenuItem_Click(sender, e);
+                    break;
+            }
         }
 
         private void Editor_KeyUp(object sender, KeyEventArgs e)
