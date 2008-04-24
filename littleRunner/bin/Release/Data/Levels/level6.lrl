@@ -24,6 +24,9 @@
         <value><![CDATA[from MovingPlatform import CreateMovingPlatform
 
 
+Session.Set('bonuslevel1.lrl', 'nextLevel', 'level6.lrl')
+Session.Set('bonuslevel1.lrl', 'nextLevelStartAt', 1040)
+
 CreateMovingPlatform(Plat1, handler, MGO, 200, startDirection=GameDirection.Top, moveBack=False)
 
 CreateMovingPlatform(Plat2, handler, MGO, 500, speed=7, moveBack=False)
@@ -56,13 +59,13 @@ CreateMovingPlatform(Plat5, handler, MGO, 100, startDirection=GameDirection.Top)
 
 # Remove Bonus-Level-House if already catched
 if Session.Get('level6.lrl', 'gotBonusLvl') == True:
-   World.StickyElements.Remove(House1)
+   World.StickyElements.Remove(BonusHouse)
 
 # Write to session that the bonus level has been catched
 def removeBonusLvl(geventhandler):
    Session.Set('level6.lrl', 'gotBonusLvl', True)
 
-handler.House1.finishedLevel = removeBonusLvl]]></value>
+handler.BonusHouse.finishedLevel = removeBonusLvl]]></value>
       </Script>
     </littleRunner.LevelSettings>
   </Settings>
@@ -365,7 +368,7 @@ handler.House1.finishedLevel = removeBonusLvl]]></value>
       <littleRunner.GameObjects.Objects.LevelEnd>
         <Name>
           <type>System.String</type>
-          <value>House1</value>
+          <value>BonusHouse</value>
         </Name>
         <Top>
           <type>System.Int32</type>

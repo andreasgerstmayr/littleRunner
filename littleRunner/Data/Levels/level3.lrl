@@ -9,7 +9,7 @@
       </gameWindowWidth>
       <levelWidth>
         <type>System.Int32</type>
-        <value>1400</value>
+        <value>1700</value>
       </levelWidth>
       <levelHeight>
         <type>System.Int32</type>
@@ -21,7 +21,27 @@
       </Background>
       <Script>
         <type>System.String</type>
-        <value />
+        <value><![CDATA[from MovingPlatform import CreateMovingPlatform
+
+
+Session.Set('bonuslevel1.lrl', 'nextLevel', 'level3.lrl')
+Session.Set('bonuslevel1.lrl', 'nextLevelStartAt', 1470)
+
+
+CreateMovingPlatform(Plat1, handler, MGO, 210, startDirection=GameDirection.Bottom)
+
+CreateMovingPlatform(Plat2, handler, MGO, 450, speed=3, startDirection=GameDirection.Left, startOnOver=False)
+
+
+# Remove Bonus-Level-House if already catched
+if Session.Get('level3.lrl', 'gotBonusLvl') == True:
+   World.StickyElements.Remove(BonusHouse)
+
+# Write to session that the bonus level has been catched
+def removeBonusLvl(geventhandler):
+   Session.Set('level3.lrl', 'gotBonusLvl', True)
+
+handler.BonusHouse.finishedLevel = removeBonusLvl]]></value>
       </Script>
     </littleRunner.LevelSettings>
   </Settings>
@@ -440,7 +460,7 @@
         </Height>
         <BoxType>
           <type>littleRunner.GameObjects.Objects.BoxType</type>
-          <value>FireFlower</value>
+          <value>ModeDependent</value>
         </BoxType>
         <BoxStyle>
           <type>littleRunner.GameObjects.Objects.BoxStyle</type>
@@ -657,8 +677,8 @@
       </littleRunner.GameObjects.Objects.DesignElements>
       <littleRunner.GameObjects.Objects.LevelEnd>
         <Name>
-          <type>NULL</type>
-          <value>null</value>
+          <type>System.String</type>
+          <value>BonusHouse</value>
         </Name>
         <Top>
           <type>System.Int32</type>
@@ -678,7 +698,7 @@
         </Height>
         <NextLevel>
           <type>System.String</type>
-          <value>level4.lrl</value>
+          <value>bonuslevel1.lrl</value>
         </NextLevel>
         <StartAt>
           <type>System.Int32</type>
@@ -1277,8 +1297,87 @@
           <value>Yellow</value>
         </Color>
       </littleRunner.GameObjects.Objects.Brick>
+      <littleRunner.GameObjects.Objects.Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>83</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>2027</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.Objects.BrickColor</type>
+          <value>Red</value>
+        </Color>
+      </littleRunner.GameObjects.Objects.Brick>
     </StickyElements>
-    <MovingElements />
+    <MovingElements>
+      <littleRunner.GameObjects.MovingElements.Bricks>
+        <Name>
+          <type>System.String</type>
+          <value>Plat1</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>154</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>2137</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>43</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.Objects.BrickColor</type>
+          <value>Blue</value>
+        </Color>
+      </littleRunner.GameObjects.MovingElements.Bricks>
+      <littleRunner.GameObjects.MovingElements.Bricks>
+        <Name>
+          <type>System.String</type>
+          <value>Plat2</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>379</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>2077</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>43</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.Objects.BrickColor</type>
+          <value>Yellow</value>
+        </Color>
+      </littleRunner.GameObjects.MovingElements.Bricks>
+    </MovingElements>
     <Enemies>
       <littleRunner.GameObjects.Enemies.Turtle>
         <Name>

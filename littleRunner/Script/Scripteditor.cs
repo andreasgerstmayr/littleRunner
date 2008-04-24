@@ -47,7 +47,8 @@ namespace littleRunner
             script.Highl.Add(new Syntax(SyntaxCategory.MainKeyword, @"(\W)(?<h>\d+)(\W)"));
             script.Highl.Add(new Syntax(SyntaxCategory.Constant, @"(True|False)"));
             script.Highl.Add(new Syntax(SyntaxCategory.Keyword, @"self"));
-            script.Highl.Add(new Syntax(SyntaxCategory.String, @""".*"""));
+            script.Highl.Add(new Syntax(SyntaxCategory.String, @""".*?"""));
+            script.Highl.Add(new Syntax(SyntaxCategory.String, @"'.*?'"));
             script.Highl.Add(new Syntax(SyntaxCategory.Comment, @"#(.*)$"));
         }
 

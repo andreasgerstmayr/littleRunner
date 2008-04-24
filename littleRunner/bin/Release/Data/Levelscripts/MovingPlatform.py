@@ -32,14 +32,14 @@ class CreateMovingPlatform(object):
 
 	def __move(self):
 		doThen = GameInstruction(InstructionType.MoveElement, self.obj, self.direction, self.speed)
-		jump5sec = self.releaseMGOtime != 0 and time.time()-0.5 < self.releaseMGOtime
+		centripetalForce = self.releaseMGOtime != 0 and time.time()-0.3 < self.releaseMGOtime
 		
-		if self.mgoOnTop or jump5sec:
+		if self.mgoOnTop or centripetalForce:
 			self.MGO.Move(self.__moveDirection(), self.speed, doThen)
 		else:
 			doThen.Do()
 			
-		if self.releaseMGOtime != 0 and not jump5sec:
+		if self.releaseMGOtime != 0 and not centripetalForce:
 			self.releaseMGOtime = 0
        
        
