@@ -76,9 +76,13 @@ namespace littleRunner
         private void HighlightLine(string line, int startLine)
         {
             int oldSelect = SelectionStart;
+            ignoreTextChange = true;
 
             foreach (Syntax text in Highl)
             {
+                if (line == "class Test(foo):")
+                {
+                }
                 foreach (Match match in text.regex.Matches(line))
                 {
                     int start;
@@ -107,7 +111,23 @@ namespace littleRunner
             SelectionLength = 0;
             SelectionColor = Categories[SyntaxCategory.General].color;
             SelectionFont = Categories[SyntaxCategory.General].font;
+
+            ignoreTextChange = false;
         }
+        private void ResetLine(int start, int end)
+        {
+            int oldSelStart = SelectionStart;
+            int oldSelLen = SelectionLength;
+
+            SelectionStart = start;
+            SelectionLength = end - start;
+            SelectionColor = Categories[SyntaxCategory.General].color;
+            SelectionFont = Categories[SyntaxCategory.General].font;
+
+            SelectionStart = oldSelStart;
+            SelectionLength = oldSelLen;
+        }
+
 
         protected override void OnTextChanged(EventArgs e)
         {
@@ -126,6 +146,7 @@ namespace littleRunner
                 string line = Text.Substring(startLine, endLine - startLine);
 
                 canPaint = false;
+                ResetLine(startLine, endLine);
                 HighlightLine(line, startLine);
                 canPaint = true;
             }

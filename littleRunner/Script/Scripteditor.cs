@@ -42,12 +42,13 @@ namespace littleRunner
 
             script.Highl.Add(new Syntax(SyntaxCategory.MainKeyword, @"(import|from|class|def|if|elif|else)"));
             script.Highl.Add(new Syntax(SyntaxCategory.ImporantVariableName, @"class (?<h>\w+)((\(\w+\))|):"));
+            script.Highl.Add(new Syntax(SyntaxCategory.ImporantVariableName, @"class (\w+)((\((?<h>\w+)\))|):"));
             script.Highl.Add(new Syntax(SyntaxCategory.ImporantVariableName, @"from (?<h>\w+) "));
             script.Highl.Add(new Syntax(SyntaxCategory.MainKeyword, @"(\W)(?<h>\d+)(\W)"));
             script.Highl.Add(new Syntax(SyntaxCategory.Constant, @"(True|False)"));
             script.Highl.Add(new Syntax(SyntaxCategory.Keyword, @"self"));
             script.Highl.Add(new Syntax(SyntaxCategory.String, @""".*"""));
-            script.Highl.Add(new Syntax(SyntaxCategory.Comment, @"#(.*)"));
+            script.Highl.Add(new Syntax(SyntaxCategory.Comment, @"#(.*)$"));
         }
 
         public string ScriptText
@@ -56,10 +57,10 @@ namespace littleRunner
             set { script.Text = value; }
         }
 
-
         private void Scripteditor_Shown(object sender, EventArgs e)
         {
             script.HighlightAll();
+            script.Focus();
         }
     }
 }

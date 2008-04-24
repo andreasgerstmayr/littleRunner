@@ -41,6 +41,7 @@
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(102, 23);
             this.btnOk.TabIndex = 1;
+            this.btnOk.TabStop = false;
             this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = true;
             // 
@@ -54,6 +55,7 @@
             this.script.Name = "script";
             this.script.Size = new System.Drawing.Size(630, 414);
             this.script.TabIndex = 2;
+            this.script.TabStop = false;
             this.script.Text = "";
             // 
             // Scripteditor
