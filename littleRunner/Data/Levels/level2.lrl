@@ -414,7 +414,7 @@
         </Height>
         <BoxType>
           <type>littleRunner.GameObjects.Objects.BoxType</type>
-          <value>GoodMushroom</value>
+          <value>ModeDependent</value>
         </BoxType>
         <BoxStyle>
           <type>littleRunner.GameObjects.Objects.BoxStyle</type>
@@ -428,11 +428,11 @@
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>21</value>
+          <value>49</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>1448</value>
+          <value>1370</value>
         </Left>
         <Width>
           <type>System.Int32</type>

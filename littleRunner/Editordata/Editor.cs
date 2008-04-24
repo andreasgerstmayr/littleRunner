@@ -84,8 +84,11 @@ namespace littleRunner
             houseToolStripMenuItem.Image = Image.FromFile(Files.levelend_house);
             houseToolStripButton.Image = Image.FromFile(Files.levelend_house); ;
 
+
             gameLevelbeginToolStripMenuItem.Image = Image.FromFile(Files.icon_png);
-            startGamecurrentToolStripMenuItem.Image = Image.FromFile(Files.icon_png);
+            gameWindowToolStripMenuItem.Image = Image.FromFile(Files.icon_png);
+
+            startGameCurrentToolStripMenuItem.Image = Image.FromFile(Files.icon_png);
             startGameCurrentToolStripButton.Image = Image.FromFile(Files.icon_png);
             #endregion
 
@@ -306,6 +309,17 @@ namespace littleRunner
             g = null;
         }
 
+        private void gameWindowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tmpHandler.updateTMP();
+
+            g = new Game(programSwitcher, tmpHandler.TmpFilename, PlayMode.Game);
+            g.AI.Scroll(-trackBar.Value, false);
+
+            g.ShowDialog();
+            g = null;
+        }
+
         private void startGamecurrentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tmpHandler.updateTMP();
@@ -357,7 +371,9 @@ namespace littleRunner
             level.Invalidate();
 
             // focus on it
-            if (!pressedKeys.Contains(Keys.ControlKey) || properties.SelectedObject is LevelSettings)
+            if (!pressedKeys.Contains(Keys.ControlKey) ||
+                properties.SelectedObject is LevelSettings ||
+                properties.SelectedObjects.Length == 1)
                 properties.SelectedObjects = new object[] { go };
             else
             {

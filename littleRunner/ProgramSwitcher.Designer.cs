@@ -44,7 +44,7 @@
             // startgame
             // 
             this.startgame.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startgame.Location = new System.Drawing.Point(63, 32);
+            this.startgame.Location = new System.Drawing.Point(63, 23);
             this.startgame.Name = "startgame";
             this.startgame.Size = new System.Drawing.Size(132, 37);
             this.startgame.TabIndex = 0;
@@ -55,7 +55,7 @@
             // starteditor
             // 
             this.starteditor.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.starteditor.Location = new System.Drawing.Point(218, 32);
+            this.starteditor.Location = new System.Drawing.Point(218, 23);
             this.starteditor.Name = "starteditor";
             this.starteditor.Size = new System.Drawing.Size(134, 37);
             this.starteditor.TabIndex = 1;
@@ -104,7 +104,7 @@
             // closelittleRunner
             // 
             this.closelittleRunner.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closelittleRunner.Location = new System.Drawing.Point(141, 96);
+            this.closelittleRunner.Location = new System.Drawing.Point(141, 84);
             this.closelittleRunner.Name = "closelittleRunner";
             this.closelittleRunner.Size = new System.Drawing.Size(132, 36);
             this.closelittleRunner.TabIndex = 2;
@@ -116,10 +116,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 144);
+            this.ClientSize = new System.Drawing.Size(414, 134);
             this.Controls.Add(this.starteditor);
-            this.Controls.Add(this.startgame);
             this.Controls.Add(this.closelittleRunner);
+            this.Controls.Add(this.startgame);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ProgramSwitcher";

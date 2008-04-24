@@ -23,9 +23,11 @@
         <type>System.String</type>
         <value><![CDATA[from MovingPlatform import CreateMovingPlatform
 
+CreateMovingPlatform(Plat1, handler, MGO, 1150, speed=10, startDirection=GameDirection.Right)
 
-CreateMovingPlatform(Plat1, handler, MGO, 1010, speed=10, startDirection=GameDirection.Right)
 
+House.NextLevel = Session.Get('bonuslevel1.lrl', 'nextLevel')
+House.StartAt = Session.Get('bonuslevel1.lrl', 'nextLevelStartAt')
 
 if Session.Get('bonuslevel1.lrl', 'gotLvl') == True:
    levelFinishArgs = Dictionary[GameEventArg, object]()
@@ -39,292 +41,6 @@ else:
   </Settings>
   <Data>
     <StickyElements>
-      <littleRunner.GameObjects.Objects.Brick>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>45</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>20</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.Objects.BrickColor</type>
-          <value>Blue</value>
-        </Color>
-      </littleRunner.GameObjects.Objects.Brick>
-      <littleRunner.GameObjects.Objects.Brick>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>88</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>20</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.Objects.BrickColor</type>
-          <value>Blue</value>
-        </Color>
-      </littleRunner.GameObjects.Objects.Brick>
-      <littleRunner.GameObjects.Objects.Brick>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>131</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>20</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.Objects.BrickColor</type>
-          <value>Blue</value>
-        </Color>
-      </littleRunner.GameObjects.Objects.Brick>
-      <littleRunner.GameObjects.Objects.Brick>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>174</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>20</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.Objects.BrickColor</type>
-          <value>Blue</value>
-        </Color>
-      </littleRunner.GameObjects.Objects.Brick>
-      <littleRunner.GameObjects.Objects.Brick>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>217</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>20</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.Objects.BrickColor</type>
-          <value>Blue</value>
-        </Color>
-      </littleRunner.GameObjects.Objects.Brick>
-      <littleRunner.GameObjects.Objects.Brick>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>260</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>20</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.Objects.BrickColor</type>
-          <value>Blue</value>
-        </Color>
-      </littleRunner.GameObjects.Objects.Brick>
-      <littleRunner.GameObjects.Objects.Brick>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>303</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>20</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.Objects.BrickColor</type>
-          <value>Blue</value>
-        </Color>
-      </littleRunner.GameObjects.Objects.Brick>
-      <littleRunner.GameObjects.Objects.Brick>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>346</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>20</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.Objects.BrickColor</type>
-          <value>Blue</value>
-        </Color>
-      </littleRunner.GameObjects.Objects.Brick>
-      <littleRunner.GameObjects.Objects.Brick>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>389</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>20</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.Objects.BrickColor</type>
-          <value>Blue</value>
-        </Color>
-      </littleRunner.GameObjects.Objects.Brick>
-      <littleRunner.GameObjects.Objects.Brick>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>432</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>21</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.Objects.BrickColor</type>
-          <value>Blue</value>
-        </Color>
-      </littleRunner.GameObjects.Objects.Brick>
-      <littleRunner.GameObjects.Objects.Brick>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>475</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>20</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.Objects.BrickColor</type>
-          <value>Blue</value>
-        </Color>
-      </littleRunner.GameObjects.Objects.Brick>
       <littleRunner.GameObjects.Objects.Star>
         <Name>
           <type>NULL</type>
@@ -462,11 +178,11 @@ else:
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>206</value>
+          <value>218</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>136</value>
+          <value>113</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -566,11 +282,11 @@ else:
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>220</value>
+          <value>110</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>104</value>
+          <value>23</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -670,11 +386,11 @@ else:
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>238</value>
+          <value>233</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>162</value>
+          <value>153</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -696,11 +412,11 @@ else:
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>268</value>
+          <value>53</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>131</value>
+          <value>20</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -722,11 +438,11 @@ else:
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>260</value>
+          <value>263</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>200</value>
+          <value>193</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -852,11 +568,11 @@ else:
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>260</value>
+          <value>224</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>95</value>
+          <value>66</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -878,11 +594,11 @@ else:
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>182</value>
+          <value>161</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>69</value>
+          <value>17</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -904,11 +620,11 @@ else:
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>234</value>
+          <value>213</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>68</value>
+          <value>19</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -930,11 +646,11 @@ else:
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>293</value>
+          <value>267</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>74</value>
+          <value>25</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -956,11 +672,11 @@ else:
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>282</value>
+          <value>281</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>168</value>
+          <value>156</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -1606,11 +1322,11 @@ else:
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>189</value>
+          <value>220</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>1288</value>
+          <value>1290</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -1622,11 +1338,11 @@ else:
         </Height>
         <NextLevel>
           <type>System.String</type>
-          <value>level6.lrl</value>
+          <value>level1.lrl</value>
         </NextLevel>
         <StartAt>
           <type>System.Int32</type>
-          <value>1040</value>
+          <value>0</value>
         </StartAt>
         <Image>
           <type>littleRunner.GameObjects.Objects.LevelEndImg</type>
@@ -1893,6 +1609,84 @@ else:
           <value>Yellow</value>
         </StarStyle>
       </littleRunner.GameObjects.Objects.Star>
+      <littleRunner.GameObjects.Objects.Star>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>171</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>56</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <StarStyle>
+          <type>littleRunner.GameObjects.Objects.StarStyle</type>
+          <value>Yellow</value>
+        </StarStyle>
+      </littleRunner.GameObjects.Objects.Star>
+      <littleRunner.GameObjects.Objects.Star>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>271</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>114</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <StarStyle>
+          <type>littleRunner.GameObjects.Objects.StarStyle</type>
+          <value>Yellow</value>
+        </StarStyle>
+      </littleRunner.GameObjects.Objects.Star>
+      <littleRunner.GameObjects.Objects.Star>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>280</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>69</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <StarStyle>
+          <type>littleRunner.GameObjects.Objects.StarStyle</type>
+          <value>Yellow</value>
+        </StarStyle>
+      </littleRunner.GameObjects.Objects.Star>
     </StickyElements>
     <MovingElements>
       <littleRunner.GameObjects.MovingElements.Bricks>
@@ -1906,7 +1700,7 @@ else:
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>75</value>
+          <value>8</value>
         </Left>
         <Width>
           <type>System.Int32</type>

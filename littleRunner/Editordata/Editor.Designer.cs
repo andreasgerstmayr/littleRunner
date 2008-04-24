@@ -82,7 +82,7 @@
             this.gameLevelbeginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.startGamecurrentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startGameCurrentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.objectContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toForegroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,6 +92,7 @@
             this.trackBar = new System.Windows.Forms.TrackBar();
             this.curScrolling = new System.Windows.Forms.Label();
             this.tableLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.gameWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menubar.SuspendLayout();
             this.menu.SuspendLayout();
             this.objectContext.SuspendLayout();
@@ -362,7 +363,7 @@
             this.fileToolStripMenuItem,
             this.insertToolStripMenuItem,
             this.testToolStripMenuItem,
-            this.startGamecurrentToolStripMenuItem});
+            this.startGameCurrentToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
             this.menu.Size = new System.Drawing.Size(909, 24);
@@ -570,6 +571,7 @@
             // 
             this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gameLevelbeginToolStripMenuItem,
+            this.gameWindowToolStripMenuItem,
             this.editScriptToolStripMenuItem,
             this.checkScriptToolStripMenuItem});
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
@@ -579,7 +581,8 @@
             // gameLevelbeginToolStripMenuItem
             // 
             this.gameLevelbeginToolStripMenuItem.Name = "gameLevelbeginToolStripMenuItem";
-            this.gameLevelbeginToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.gameLevelbeginToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
+            this.gameLevelbeginToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.gameLevelbeginToolStripMenuItem.Text = "&Game (Levelbegin)";
             this.gameLevelbeginToolStripMenuItem.Click += new System.EventHandler(this.gameLevelbeginToolStripMenuItem_Click);
             // 
@@ -587,7 +590,7 @@
             // 
             this.editScriptToolStripMenuItem.Image = global::littleRunner.Properties.Resources.text_x_generic;
             this.editScriptToolStripMenuItem.Name = "editScriptToolStripMenuItem";
-            this.editScriptToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.editScriptToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.editScriptToolStripMenuItem.Text = "&Edit script";
             this.editScriptToolStripMenuItem.Click += new System.EventHandler(this.editScriptToolStripMenuItem_Click);
             // 
@@ -595,17 +598,17 @@
             // 
             this.checkScriptToolStripMenuItem.Image = global::littleRunner.Properties.Resources.text_x_script;
             this.checkScriptToolStripMenuItem.Name = "checkScriptToolStripMenuItem";
-            this.checkScriptToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.checkScriptToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.checkScriptToolStripMenuItem.Text = "&Check script";
             this.checkScriptToolStripMenuItem.Click += new System.EventHandler(this.checkScriptToolStripMenuItem_Click);
             // 
-            // startGamecurrentToolStripMenuItem
+            // startGameCurrentToolStripMenuItem
             // 
-            this.startGamecurrentToolStripMenuItem.Name = "startGamecurrentToolStripMenuItem";
-            this.startGamecurrentToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.startGamecurrentToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
-            this.startGamecurrentToolStripMenuItem.Text = "Start &game";
-            this.startGamecurrentToolStripMenuItem.Click += new System.EventHandler(this.startGamecurrentToolStripMenuItem_Click);
+            this.startGameCurrentToolStripMenuItem.Name = "startGameCurrentToolStripMenuItem";
+            this.startGameCurrentToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.startGameCurrentToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
+            this.startGameCurrentToolStripMenuItem.Text = "Start &game";
+            this.startGameCurrentToolStripMenuItem.Click += new System.EventHandler(this.startGamecurrentToolStripMenuItem_Click);
             // 
             // objectContext
             // 
@@ -714,6 +717,14 @@
             this.tableLayout.Size = new System.Drawing.Size(885, 614);
             this.tableLayout.TabIndex = 19;
             // 
+            // gameWindowToolStripMenuItem
+            // 
+            this.gameWindowToolStripMenuItem.Name = "gameWindowToolStripMenuItem";
+            this.gameWindowToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
+            this.gameWindowToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.gameWindowToolStripMenuItem.Text = "Game (&Window)";
+            this.gameWindowToolStripMenuItem.Click += new System.EventHandler(this.gameWindowToolStripMenuItem_Click);
+            // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -783,7 +794,7 @@
         private System.Windows.Forms.TrackBar trackBar;
         private System.Windows.Forms.Label curScrolling;
         private System.Windows.Forms.TableLayoutPanel tableLayout;
-        private System.Windows.Forms.ToolStripMenuItem startGamecurrentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem startGameCurrentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gameLevelbeginToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem checkScriptToolStripMenuItem;
@@ -809,5 +820,6 @@
         private System.Windows.Forms.ToolStripButton startGameCurrentToolStripButton;
         private System.Windows.Forms.ToolStripButton editScriptToolStripButton;
         private System.Windows.Forms.ToolStripButton checkScriptToolStripButton;
+        private System.Windows.Forms.ToolStripMenuItem gameWindowToolStripMenuItem;
     }
 }

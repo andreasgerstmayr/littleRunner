@@ -102,7 +102,7 @@
         </Height>
         <BoxType>
           <type>littleRunner.GameObjects.Objects.BoxType</type>
-          <value>GoodMushroom</value>
+          <value>ModeDependent</value>
         </BoxType>
         <BoxStyle>
           <type>littleRunner.GameObjects.Objects.BoxStyle</type>
@@ -756,7 +756,7 @@
         </Height>
         <BoxType>
           <type>littleRunner.GameObjects.Objects.BoxType</type>
-          <value>FireFlower</value>
+          <value>ModeDependent</value>
         </BoxType>
         <BoxStyle>
           <type>littleRunner.GameObjects.Objects.BoxStyle</type>
