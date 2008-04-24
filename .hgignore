@@ -7,4 +7,4 @@ syntax: glob
 
 bin/Debug/*
 obj/*
-
+littleRunner.suo
