@@ -15,12 +15,9 @@ namespace littleRunner
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
-            
             Application.Run(new ProgramSwitcher());
         }
-
 
         static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
