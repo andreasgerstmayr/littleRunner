@@ -254,7 +254,7 @@ namespace littleRunner
         {
             if (tmpHandler.New())
             {
-                this.Text = "littleRunner Game Editor";
+                this.Text = "littleRunner Level Editor";
                 world = getDefaultWorld();
                 tmpHandler.SaveHandler = SaveWorld;
                 setDelegateHandlers();
@@ -269,7 +269,7 @@ namespace littleRunner
         {
             if (tmpHandler.Open())
             {
-                this.Text = "littleRunner Game Editor - " + tmpHandler.OrigFilename;
+                this.Text = "littleRunner Level Editor - " + tmpHandler.OrigFilename;
                 trackBar.Value = 0;
 
                 world = new World(tmpHandler.TmpFilename, level.Invalidate, new GameSession(), PlayMode.Editor);
@@ -291,7 +291,7 @@ namespace littleRunner
         {
             tmpHandler.SaveAsReal();
 
-            this.Text = "littleRunner Game Editor - " + tmpHandler.OrigFilename;
+            this.Text = "littleRunner Level Editor - " + tmpHandler.OrigFilename;
         }
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -330,7 +330,7 @@ namespace littleRunner
             g.AI.Scroll(-trackBar.Value, false);
 
             string oldtext = this.Text;
-            this.Text = "littleRunner Game Editor [press ESC to quit game]";
+            this.Text = "littleRunner Level Editor [press ESC to quit game]";
 
             g.ShowDialog();
             g = null;

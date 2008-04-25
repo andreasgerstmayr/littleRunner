@@ -739,7 +739,7 @@
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "Editor";
-            this.Text = "littleRunner Game Editor";
+            this.Text = "littleRunner Level Editor";
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Editor_KeyUp);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Editor_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Editor_KeyDown);
