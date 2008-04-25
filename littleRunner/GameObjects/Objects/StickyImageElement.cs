@@ -8,8 +8,8 @@ namespace littleRunner.GameObjects.Objects
 {
     abstract class StickyImageElement : StickyElement
     {
-        protected Image curimg;
-        protected string curimgfn;
+        private Image curimg;
+        private string curimgfn;
 
         public override void Draw(Graphics g)
         {
