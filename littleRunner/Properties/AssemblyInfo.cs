@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("littleRunner")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("andi programms")]
+[assembly: AssemblyCompany("andihit")]
 [assembly: AssemblyProduct("littleRunner")]
-[assembly: AssemblyCopyright("Copyright © andi programms 2007")]
+[assembly: AssemblyCopyright("Copyright © andihit 2008")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Buildnummer
 //      Revision
 //
-[assembly: AssemblyVersion("2.1")]
-[assembly: AssemblyFileVersion("2.1")]
+[assembly: AssemblyVersion("2.2")]
+[assembly: AssemblyFileVersion("2.2")]
