@@ -37,7 +37,7 @@
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOk.Location = new System.Drawing.Point(540, 444);
+            this.btnOk.Location = new System.Drawing.Point(680, 543);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(102, 23);
             this.btnOk.TabIndex = 1;
@@ -53,7 +53,7 @@
             this.script.Font = new System.Drawing.Font("Bitstream Vera Sans Mono", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.script.Location = new System.Drawing.Point(12, 12);
             this.script.Name = "script";
-            this.script.Size = new System.Drawing.Size(630, 414);
+            this.script.Size = new System.Drawing.Size(770, 513);
             this.script.TabIndex = 2;
             this.script.TabStop = false;
             this.script.Text = "";
@@ -62,7 +62,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(654, 479);
+            this.ClientSize = new System.Drawing.Size(794, 578);
             this.Controls.Add(this.script);
             this.Controls.Add(this.btnOk);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;

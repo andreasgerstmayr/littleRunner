@@ -60,7 +60,6 @@ namespace littleRunner.GameObjects.MovingElements
 
             // check if direction is ok
             GamePhysics.CrashDetection(this, World.StickyElements, World.MovingElements, getEvent, ref newtop, ref newleft);
-            bool crashedInEnemy = GamePhysics.CrashEnemy(this, World.Enemies, getEvent, ref newtop, ref newleft) == null ? false : true;
 
 
             // run in standing mgo?
@@ -85,7 +84,7 @@ namespace littleRunner.GameObjects.MovingElements
             if (newleft != 0)
                 Left += newleft;
 
-            if (!falling && (newleft == 0 || crashedInEnemy))
+            if (!falling && newleft == 0)
                 direction = direction == GameDirection.Left ? GameDirection.Right : GameDirection.Left;
 
 
