@@ -24,7 +24,7 @@ namespace littleRunner
                 new CategoryInfo(Color.DarkCyan, new Font(script.Font, FontStyle.Bold))
             );
             script.Categories.Add(SyntaxCategory.Number,
-                new CategoryInfo(Color.Cyan, new Font(script.Font, FontStyle.Bold))
+                new CategoryInfo(Color.DarkSlateBlue, new Font(script.Font, FontStyle.Bold))
             );
             script.Categories.Add(SyntaxCategory.Constant,
                 new CategoryInfo(Color.DarkGreen, new Font(script.Font, FontStyle.Bold))
@@ -44,9 +44,9 @@ namespace littleRunner
             script.Highl.Add(new Syntax(SyntaxCategory.ImporantVariableName, @"class (?<h>\w+)((\(\w+\))|):"));
             script.Highl.Add(new Syntax(SyntaxCategory.ImporantVariableName, @"class (\w+)((\((?<h>\w+)\))|):"));
             script.Highl.Add(new Syntax(SyntaxCategory.ImporantVariableName, @"from (?<h>\w+) "));
-            script.Highl.Add(new Syntax(SyntaxCategory.MainKeyword, @"(\W)(?<h>\d+)(\W)"));
+            script.Highl.Add(new Syntax(SyntaxCategory.Number, @"(\W)(?<h>\d+)(\W)"));
             script.Highl.Add(new Syntax(SyntaxCategory.Constant, @"(True|False)"));
-            script.Highl.Add(new Syntax(SyntaxCategory.Keyword, @"self"));
+            script.Highl.Add(new Syntax(SyntaxCategory.Keyword, @"(self|pass|return)"));
             script.Highl.Add(new Syntax(SyntaxCategory.String, @""".*?"""));
             script.Highl.Add(new Syntax(SyntaxCategory.String, @"'.*?'"));
             script.Highl.Add(new Syntax(SyntaxCategory.Comment, @"#(.*)$"));

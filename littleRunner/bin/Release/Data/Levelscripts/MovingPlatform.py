@@ -1,11 +1,8 @@
 ﻿
-import clr
-clr.AddReference('littleRunner')
 from littleRunner import GameDirection, GameElement, GameInstruction, InstructionType
 from littleRunner.GameObjects import MoveType
 from littleRunner.GamePhysics import SimpleCrashDetection
 import time
-
 
 
 class CreateMovingPlatform(object):

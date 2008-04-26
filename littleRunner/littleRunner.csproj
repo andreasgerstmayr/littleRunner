@@ -387,6 +387,9 @@
     <None Include="Data\Images\MainGameObject\Tux\Small\tux_small_7.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Data\Levelscripts\FlyingCircle.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="TuxIcon.ico" />
   </ItemGroup>
   <ItemGroup>
