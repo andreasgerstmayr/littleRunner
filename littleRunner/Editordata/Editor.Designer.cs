@@ -80,6 +80,7 @@
             this.houseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gameLevelbeginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gameWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startGameCurrentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,7 +93,6 @@
             this.trackBar = new System.Windows.Forms.TrackBar();
             this.curScrolling = new System.Windows.Forms.Label();
             this.tableLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.gameWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menubar.SuspendLayout();
             this.menu.SuspendLayout();
             this.objectContext.SuspendLayout();
@@ -586,6 +586,14 @@
             this.gameLevelbeginToolStripMenuItem.Text = "&Game (Levelbegin)";
             this.gameLevelbeginToolStripMenuItem.Click += new System.EventHandler(this.gameLevelbeginToolStripMenuItem_Click);
             // 
+            // gameWindowToolStripMenuItem
+            // 
+            this.gameWindowToolStripMenuItem.Name = "gameWindowToolStripMenuItem";
+            this.gameWindowToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
+            this.gameWindowToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.gameWindowToolStripMenuItem.Text = "Game (&Window)";
+            this.gameWindowToolStripMenuItem.Click += new System.EventHandler(this.gameWindowToolStripMenuItem_Click);
+            // 
             // editScriptToolStripMenuItem
             // 
             this.editScriptToolStripMenuItem.Image = global::littleRunner.Properties.Resources.text_x_generic;
@@ -716,14 +724,6 @@
             this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayout.Size = new System.Drawing.Size(885, 614);
             this.tableLayout.TabIndex = 19;
-            // 
-            // gameWindowToolStripMenuItem
-            // 
-            this.gameWindowToolStripMenuItem.Name = "gameWindowToolStripMenuItem";
-            this.gameWindowToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
-            this.gameWindowToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.gameWindowToolStripMenuItem.Text = "Game (&Window)";
-            this.gameWindowToolStripMenuItem.Click += new System.EventHandler(this.gameWindowToolStripMenuItem_Click);
             // 
             // Editor
             // 

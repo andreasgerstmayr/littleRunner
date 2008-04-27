@@ -53,9 +53,6 @@ namespace littleRunner.GameObjects.Enemies
                         break;
                 }
 
-                Width = imgRunning.CurImage(direction).Width;
-                Height = imgRunning.CurImage(direction).Height;
-
                 TurtleMode = turtleMode; // set curimg
             }
         }
@@ -71,11 +68,23 @@ namespace littleRunner.GameObjects.Enemies
             get { return turtleMode; }
             set
             {
-                turtleMode = value;
-                if (turtleMode == TurtleMode.Normal)
+                if (value == TurtleMode.Normal)
+                {
                     curimg = imgRunning;
-                else if (turtleMode == TurtleMode.Small || turtleMode == TurtleMode.SmallRunning)
+                    if (turtleMode == TurtleMode.Small || turtleMode == TurtleMode.SmallRunning)
+                        Top -= curimg.CurImage(direction).Height - Height;
+
+                    Width = curimg.CurImage(direction).Width;
+                    Height = curimg.CurImage(direction).Height;
+                }
+                else if (value == TurtleMode.Small || value == TurtleMode.SmallRunning)
+                {
                     curimg = imgShell;
+                    Width = curimg.CurImage(GameDirection.None).Width;
+                    Height = curimg.CurImage(GameDirection.None).Height;
+                }
+
+                turtleMode = value;
             }
         }
 
@@ -91,8 +100,6 @@ namespace littleRunner.GameObjects.Enemies
         {
             speed = 1;
             startSmall = DateTime.Now;
-
-            TurtleMode = TurtleMode.Normal;
         }
 
         public Turtle(int top, int left, TurtleStyle style)

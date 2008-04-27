@@ -41,7 +41,7 @@ if Session.Get('level3.lrl', 'gotBonusLvl') == True:
 def removeBonusLvl(geventhandler):
    Session.Set('level3.lrl', 'gotBonusLvl', True)
 
-handler.BonusHouse.finishedLevel = removeBonusLvl]]></value>
+handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
       </Script>
     </littleRunner.LevelSettings>
   </Settings>

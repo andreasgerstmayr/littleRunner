@@ -66,17 +66,18 @@ namespace littleRunner
         private Form form;
         private GameEventHandler forminteract;
         private Timer mainTimer;
-        private MainGameObject mgo;
-        public World world;
+        public World World;
         private GameControlObjects gameControlObj;
         private List<Keys> curkeys;
 
 
         public void Draw(Graphics g)
         {
-            world.Draw(g, true);
+            World.Draw(g, true);
             gameControlObj.Draw(g);
-            mgo.Draw(g);
+            g.TranslateTransform(World.Viewport, 0);
+            World.MGO.Draw(g);
+            g.TranslateTransform(-World.Viewport, 0);
         }
         public bool IsRunning
         {
@@ -107,49 +108,40 @@ namespace littleRunner
             mainTimer.Interval = 1;
             mainTimer.Enabled = false;
         }
-        public void Init(World world, MainGameObject maingameobject, GameControlObjects gameControlObj)
+        public void Init(World world, GameControlObjects gameControlObj)
         {
             mainTimer.Enabled = true;
 
             this.gameControlObj = gameControlObj;
-            this.mgo = maingameobject;
-            this.world = world;
+            this.World = world;
 
-
+            this.InitScript();
+        }
+        private void InitScript()
+        {
             // Init script
-            string msg = this.world.InitScript();
+            string msg = this.World.InitScript();
 
             if (msg != "")
             {
-                if (this.world.PlayMode == PlayMode.Game)
+                if (this.World.PlayMode == PlayMode.Game)
                     throw new littleRunnerScriptException(msg);
                 else
                     MessageBox.Show("Can't load script.", "Script error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-
-        public void Scroll(int value, bool moveMGO)
-        {
-            foreach (GameObject go in world.AllElements)
-            {
-                go.Left += value;
-            }
-            if (moveMGO)
-                mgo.Left += value;
-        }
-
         public void Check(object sender, EventArgs e)
         {
-            if (world.Script != null)
-                world.Script.callFunction("AI", "Check");
+            if (World.Script != null)
+                World.Script.callFunction("AI", "Check");
 
 
             // scrolling?
-            if (mgo.Left < 140)
-                Scroll(15, true); // scroll left
-            else if (world.Settings.GameWindowWidth - mgo.Right < 140)
-                Scroll(-15, true); // scroll right
+            if (World.Viewport+World.MGO.Left < 140)
+                World.Viewport += 15; // scroll left
+            else if (World.Settings.GameWindowWidth-World.Viewport - World.MGO.Right < 140)
+                World.Viewport -= 15; // scroll right
 
 
             List<GameKey> pressedKeys = new List<GameKey>();
@@ -169,33 +161,33 @@ namespace littleRunner
                 pressedKeys.Add(GameKey.jumpRight);
 
 
-            mgo.Check(pressedKeys);
+            World.MGO.Check(pressedKeys);
 
             // check of all enemies
-            for (int i = 0; i < world.Enemies.Count; i++)
+            for (int i = 0; i < World.Enemies.Count; i++)
             {
-                if (!world.Enemies[i].StartAtViewpoint || world.Enemies[i].Left < world.Settings.GameWindowWidth)
+                if (!World.Enemies[i].StartAtViewpoint || World.Enemies[i].Left < World.Settings.GameWindowWidth - World.Viewport)
                 {
                     Dictionary<string, int> newpos;
-                    world.Enemies[i].Check(out newpos);
+                    World.Enemies[i].Check(out newpos);
                 }
             }
             // check of all moving elements
-            for (int i = 0; i < world.MovingElements.Count; i++)
+            for (int i = 0; i < World.MovingElements.Count; i++)
             {
                 Dictionary<string, int> newpos;
-                world.MovingElements[i].Check(out newpos);
+                World.MovingElements[i].Check(out newpos);
             }
 
             // mgo out of range?
-            if (mgo.Top > form.Height)
+            if (World.MGO.Top > form.Height)
             {
                 mainTimer.Enabled = false;
                 forminteract(GameEvent.outOfRange, new Dictionary<GameEventArg, object>());
             }
 
             // Repaint
-            world.Invalidate();
+            World.Invalidate();
         }
 
         public void Interact(Keys key, bool pressed)

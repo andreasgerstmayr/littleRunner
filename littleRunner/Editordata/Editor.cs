@@ -23,7 +23,6 @@ namespace littleRunner
         bool moving;
         bool enableBG;
         int mouseX, mouseY;
-        int scrolled;
         List<Keys> pressedKeys;
 
 
@@ -36,12 +35,10 @@ namespace littleRunner
             tmpHandler = new TmpFileHandler(openFile, saveFile, defaultWorld.Serialize, 5);
             defaultWorld = null;
 
-
             focus = null;
             moving = false;
             mouseX = 0;
             mouseY = 0;
-            scrolled = 0;
             enableBG = true;
             pressedKeys = new List<Keys>();
 
@@ -104,7 +101,7 @@ namespace littleRunner
             for (int i = gos.Count - 1; i >= 0; i--)
             {
                 GameObject go = gos[i];
-                if (go.Hit(e.Y, e.X))
+                if (go.Hit(e.Y, e.X - world.Viewport))
                 {
                     focus = go;
 
@@ -238,17 +235,6 @@ namespace littleRunner
         {
             return new World(700, 550, level.Invalidate, PlayMode.Editor);
         }
-        private void SaveWorld(string filename)
-        {
-            if (world != null)
-                scrollAll(scrolled);
-
-            world.Serialize(filename);
-
-            if (world != null)
-                scrollAll(-scrolled);
-        }
-
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -256,7 +242,7 @@ namespace littleRunner
             {
                 this.Text = "littleRunner Level Editor";
                 world = getDefaultWorld();
-                tmpHandler.SaveHandler = SaveWorld;
+                tmpHandler.SaveHandler = world.Serialize;
                 setDelegateHandlers();
 
                 showlevelSettings_Click(sender, e);
@@ -273,7 +259,7 @@ namespace littleRunner
                 trackBar.Value = 0;
 
                 world = new World(tmpHandler.TmpFilename, level.Invalidate, new GameSession(), PlayMode.Editor);
-                tmpHandler.SaveHandler = SaveWorld;
+                tmpHandler.SaveHandler = world.Serialize;
                 setDelegateHandlers();
 
                 showlevelSettings_Click(sender, e);
@@ -285,12 +271,12 @@ namespace littleRunner
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tmpHandler.SaveReal();
+            this.Text = "littleRunner Level Editor - " + tmpHandler.OrigFilename;
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tmpHandler.SaveAsReal();
-
             this.Text = "littleRunner Level Editor - " + tmpHandler.OrigFilename;
         }
 
@@ -314,7 +300,8 @@ namespace littleRunner
             tmpHandler.updateTMP();
 
             g = new Game(programSwitcher, tmpHandler.TmpFilename, PlayMode.Game);
-            g.AI.Scroll(-trackBar.Value, false);
+            g.AI.World.MGO.Left += trackBar.Value;
+            g.AI.World.Viewport -= trackBar.Value;
 
             g.ShowDialog();
             g = null;
@@ -327,7 +314,8 @@ namespace littleRunner
             int levelTop = this.Top + menu.Top + menubar.Top + tableLayout.Top + level.Top;
             int levelLeft = this.Left + tableLayout.Left + level.Left;
             g = new Game(programSwitcher, tmpHandler.TmpFilename, PlayMode.GameInEditor, levelTop, levelLeft);
-            g.AI.Scroll(-trackBar.Value, false);
+            g.AI.World.MGO.Left += trackBar.Value;
+            g.AI.World.Viewport -= trackBar.Value;
 
             string oldtext = this.Text;
             this.Text = "littleRunner Level Editor [press ESC to quit game]";
@@ -388,70 +376,70 @@ namespace littleRunner
 
         private void floorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Floor f = new Floor(0, 0, FloorColor.Green);
+            Floor f = new Floor(0, -world.Viewport, FloorColor.Green);
             addElement(f);
         }
 
 
         private void treeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DesignElements tree = new DesignElements(0, 0, DesignElement.Tree);
+            DesignElements tree = new DesignElements(0, -world.Viewport, DesignElement.Tree);
             addElement(tree);
         }
 
         private void boxToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Box b = new Box(0, 0, BoxStyle.Yellow);
+            Box b = new Box(0, -world.Viewport, BoxStyle.Yellow);
             addElement(b);
         }
 
         private void brickToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Brick b = new Brick(0, 0, BrickColor.Blue);
+            Brick b = new Brick(0, -world.Viewport, BrickColor.Blue);
             addElement(b);
         }
 
         private void pipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Pipe p = new Pipe(0, 0, PipeColor.Green);
+            Pipe p = new Pipe(0, -world.Viewport, PipeColor.Green);
             addElement(p);
         }
 
         private void pointStarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Star p = new Star(0, 0);
+            Star p = new Star(0, -world.Viewport);
             addElement(p);
         }
 
         private void turtleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Turtle t = new Turtle(0, 0, TurtleStyle.Green);
+            Turtle t = new Turtle(0, -world.Viewport, TurtleStyle.Green);
             addElement(t);
         }
 
 
         private void spikaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Spika s = new Spika(0, 0);
+            Spika s = new Spika(0, -world.Viewport);
             addElement(s);
         }
 
         private void gumbaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Gumba g = new Gumba(0, 0);
+            Gumba g = new Gumba(0, -world.Viewport);
             addElement(g);
         }
 
         private void houseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LevelEnd l = new LevelEnd(0, 0, LevelEndImg.House);
+            LevelEnd l = new LevelEnd(0, -world.Viewport, LevelEndImg.House);
             addElement(l);
         }
 
 
         private void bricksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bricks b = new Bricks(0, 0, BrickColor.Blue);
+            Bricks b = new Bricks(0, -world.Viewport, BrickColor.Blue);
             addElement(b);
         }
 
@@ -587,7 +575,7 @@ namespace littleRunner
             level.Invalidate();
         }
 
-
+        #region Level-Setting changed
         private void changedGameWindowWidth()
         {
             this.Width = 44 + world.Settings.GameWindowWidth + properties.Width;
@@ -601,20 +589,12 @@ namespace littleRunner
         {
             this.Height = 148 + world.Settings.LevelHeight;
         }
+        #endregion
 
-
-        private void scrollAll(int val)
-        {
-            foreach (GameObject go in world.AllElements)
-            {
-                go.Left += val;
-            }
-        }
-
+        #region Trackbar events
         private void trackBar_ValueChanged(object sender, EventArgs e)
         {
-            scrollAll(-(trackBar.Value - scrolled));
-            scrolled = trackBar.Value;
+            world.Viewport = -trackBar.Value;
             curScrolling.Text = trackBar.Value.ToString();
 
             level.Invalidate();
@@ -632,6 +612,8 @@ namespace littleRunner
             enableBG = true;
             level.Invalidate();
         }
+        #endregion
+
 
         private void properties_SelectedObjectsChanged(object sender, EventArgs e)
         {
@@ -643,8 +625,7 @@ namespace littleRunner
             level.Invalidate();
         }
 
-
-
+        #region Editor Key Events
         private void Editor_KeyDown(object sender, KeyEventArgs e)
         {
             if (!pressedKeys.Contains(e.KeyCode))
@@ -661,7 +642,9 @@ namespace littleRunner
 
         private void Editor_KeyUp(object sender, KeyEventArgs e)
         {
-            pressedKeys.Remove(e.KeyCode);
+            if (properties.SelectedGridItem == null)
+                pressedKeys.Remove(e.KeyCode);
         }
+        #endregion
     }
 }
