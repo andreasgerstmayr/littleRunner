@@ -36,7 +36,8 @@ namespace littleRunner
         {
             ignoreSizeChange = false;
         }
-        public Game(ProgramSwitcher programSwitcher) : this()
+        public Game(ProgramSwitcher programSwitcher) 
+            : this()
         {
             InitializeComponent();
 
@@ -46,7 +47,8 @@ namespace littleRunner
             lastModeIsNull = true;
             StartGame("Data/Levels/level1.lrl", PlayMode.Game);
         }
-        public Game(ProgramSwitcher programSwitcher, string filename, PlayMode playMode) : this()
+        public Game(ProgramSwitcher programSwitcher, string filename, PlayMode playMode) 
+            : this()
         {
             InitializeComponent();
 
@@ -73,7 +75,6 @@ namespace littleRunner
                 this.Width++;
             }
         }
-
 
         private void StartGame(string filename, PlayMode playMode)
         {
@@ -157,11 +158,10 @@ namespace littleRunner
                 }
 
                 // init AI with the world - now we have the GameControlObjects
-                ai.Init(world, tux, gameControlObjs);
-
+                ai.Init(world, gameControlObjs);
 
                 if (!lastModeIsNull)
-                   ai.world.MGO.Mode = lastMode;
+                   ai.World.MGO.Mode = lastMode;
 
                 gameControlObjs.Sound.Start();
 
@@ -186,7 +186,7 @@ namespace littleRunner
                 if (gameControlObjs.Lives > 0)
                 {
                     ai.Pause(false);
-                    string lastFileName = ai.world.fileName;
+                    string lastFileName = ai.World.fileName;
                     ai = null;
                     lastModeIsNull = true; // start with standard mode after death
 
@@ -227,14 +227,14 @@ namespace littleRunner
                     if (nextLevel != null && nextLevel != "")
                     {
                         ai.Pause(false); // play again, so save last MGO mode
-                        lastMode = ai.world.MGO.Mode;
+                        lastMode = ai.World.MGO.Mode;
                         lastModeIsNull = false; // it's set to the last mode
 
                         ai = null;
                         int nextLevelStartAt = (int)args[GameEventArg.nextLevelStartAt];
                         StartGame("Data/Levels/" + nextLevel, world.PlayMode);
                         if (ai != null)
-                            ai.Scroll(-nextLevelStartAt, false);
+                            ai.World.Viewport -= nextLevelStartAt;
                     }
                     else
                     {

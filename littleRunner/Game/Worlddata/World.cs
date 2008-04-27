@@ -39,6 +39,7 @@ namespace littleRunner
         private GameEventHandler aiEventHandler;
         public PlayMode PlayMode;
         public Script Script;
+        private int viewport;
 
         public List<Enemy> Enemies
         {
@@ -56,7 +57,11 @@ namespace littleRunner
         {
             get { return mainGameObject; }
         }
-
+        public int Viewport
+        {
+            get { return viewport; }
+            set { viewport = value; }
+        }
 
         // new world with the editor
         private World(PlayMode playMode)
@@ -117,7 +122,7 @@ namespace littleRunner
                         if (go.Name != null && go.Name != "")
                         {
                             Script.GlobalsAdd(go.Name, go);
-                            Script.Execute("handler." + go.Name + " = AttrDict()");
+                            Script.Execute("handler." + go.Name + " = EventAttrDict()");
                         }
                     }
 
@@ -143,16 +148,18 @@ namespace littleRunner
             if (drawBackground && Settings.BackgroundImg != null)
                 g.DrawImage(Settings.BackgroundImg, 0, 0, Settings.GameWindowWidth, Settings.LevelHeight);
 
+            g.TranslateTransform(viewport, 0);
             foreach (GameObject go in AllElements)
             {
                 go.Draw(g);
             }
+            g.TranslateTransform(-viewport, 0);
         }
         public void Draw(Graphics g, bool drawBackground, object[] selected)
         {
-            if (drawBackground && Settings.BackgroundImg != null)
-                g.DrawImage(Settings.BackgroundImg, 0, 0, Settings.GameWindowWidth, Settings.LevelHeight);
+            Draw(g, drawBackground);
 
+            g.TranslateTransform(viewport, 0);
             Pen pen = new Pen(Color.Black);
             pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
 
@@ -160,9 +167,8 @@ namespace littleRunner
             {
                 if (Array.IndexOf<object>(selected, go) != -1)
                     g.DrawRectangle(pen, go.Left-2, go.Top-2, go.Width+3, go.Height+3);
-
-                go.Draw(g);
             }
+            g.TranslateTransform(-viewport, 0);
         }
 
 

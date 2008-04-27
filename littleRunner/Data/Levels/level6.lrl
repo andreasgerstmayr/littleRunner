@@ -22,7 +22,7 @@
       <Script>
         <type>System.String</type>
         <value><![CDATA[from MovingPlatform import CreateMovingPlatform
-
+from MovingObject import CreateMovingObject
 
 Session.Set('bonuslevel1.lrl', 'nextLevel', 'level6.lrl')
 Session.Set('bonuslevel1.lrl', 'nextLevelStartAt', 1040)
@@ -31,24 +31,7 @@ CreateMovingPlatform(Plat1, handler, MGO, 200, startDirection=GameDirection.Top,
 
 CreateMovingPlatform(Plat2, handler, MGO, 500, speed=7, moveBack=False)
 
-
-class MoveSpika:
-   def __init__(self):
-      self.count = 1
-
-   def move(self):
-      if self.count <= 20:
-         Spika1.Top -= 10
-      else:
-         Spika1.Top += 10
-
-      if self.count >= 40:
-         self.count = 0
-      self.count += 1
-
-
-m = MoveSpika()
-handler.AI.Check = m.move
+CreateMovingObject(Spika1, handler, 250, speed=5, direction=GameDirection.Top)
 
 
 CreateMovingPlatform(Plat3, handler, MGO, 700, speed=15, moveBack=False)
@@ -65,7 +48,7 @@ if Session.Get('level6.lrl', 'gotBonusLvl') == True:
 def removeBonusLvl(geventhandler):
    Session.Set('level6.lrl', 'gotBonusLvl', True)
 
-handler.BonusHouse.finishedLevel = removeBonusLvl]]></value>
+handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
       </Script>
     </littleRunner.LevelSettings>
   </Settings>
@@ -301,8 +284,8 @@ handler.BonusHouse.finishedLevel = removeBonusLvl]]></value>
           <value>128</value>
         </Height>
         <NextLevel>
-          <type>NULL</type>
-          <value>null</value>
+          <type>System.String</type>
+          <value>level7.lrl</value>
         </NextLevel>
         <StartAt>
           <type>System.Int32</type>
@@ -540,11 +523,11 @@ handler.BonusHouse.finishedLevel = removeBonusLvl]]></value>
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>158</value>
+          <value>160</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>1012</value>
+          <value>1020</value>
         </Left>
         <Width>
           <type>System.Int32</type>

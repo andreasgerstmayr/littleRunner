@@ -11,7 +11,6 @@ namespace littleRunner
     {
         private PythonEngine engine;
         private World world;
-        private Dictionary<string, Dictionary<string, bool>> hasFunction;
 
 
         public void GlobalsAdd(string name, object obj)
@@ -35,7 +34,6 @@ namespace littleRunner
         {
             InitializePythonEngine();
 
-            hasFunction = new Dictionary<string, Dictionary<string, bool>>();
             this.world = world;
         }
 

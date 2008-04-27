@@ -80,9 +80,6 @@ namespace littleRunner
 
             foreach (Syntax text in Highl)
             {
-                if (line == "class Test(foo):")
-                {
-                }
                 foreach (Match match in text.regex.Matches(line))
                 {
                     int start;
@@ -151,7 +148,6 @@ namespace littleRunner
                 canPaint = true;
             }
         }
-
 
         public void HighlightAll()
         {
