@@ -234,7 +234,10 @@ namespace littleRunner
                         int nextLevelStartAt = (int)args[GameEventArg.nextLevelStartAt];
                         StartGame("Data/Levels/" + nextLevel, world.PlayMode);
                         if (ai != null)
+                        {
+                            ai.World.MGO.Left += nextLevelStartAt;
                             ai.World.Viewport -= nextLevelStartAt;
+                        }
                     }
                     else
                     {

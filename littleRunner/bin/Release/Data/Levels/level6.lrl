@@ -31,7 +31,7 @@ CreateMovingPlatform(Plat1, handler, MGO, 200, startDirection=GameDirection.Top,
 
 CreateMovingPlatform(Plat2, handler, MGO, 500, speed=7, moveBack=False)
 
-CreateMovingObject(Spika1, handler, 250, speed=5, direction=GameDirection.Top)
+CreateMovingObject(Spika1, handler, 270, speed=7, direction=GameDirection.Top)
 
 
 CreateMovingPlatform(Plat3, handler, MGO, 700, speed=15, moveBack=False)
