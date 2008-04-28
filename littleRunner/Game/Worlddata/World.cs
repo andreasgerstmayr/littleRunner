@@ -16,7 +16,7 @@ using littleRunner.GameObjects.MainGameObjects;
 
 namespace littleRunner
 {
-    public delegate void MyInvalidateEventHandler();
+    public delegate void InvalidateHandler();
 
     public enum PlayMode
     {
@@ -35,7 +35,7 @@ namespace littleRunner
         MainGameObject mainGameObject;
         GameSession session;
         public LevelSettings Settings;
-        public MyInvalidateEventHandler Invalidate;
+        public InvalidateHandler Invalidate;
         private GameEventHandler aiEventHandler;
         public PlayMode PlayMode;
         public Script Script;
@@ -71,7 +71,7 @@ namespace littleRunner
             if (playMode == PlayMode.Editor)
                 mainGameObject = new NullMGO();
         }
-        public World(int width, int height, MyInvalidateEventHandler invalidate, PlayMode playMode)
+        public World(int width, int height, InvalidateHandler invalidate, PlayMode playMode)
             : this(playMode)
         {
             Settings = new LevelSettings();
@@ -86,7 +86,7 @@ namespace littleRunner
             movingelements = new List<MovingElement>();
         }
         // new world with the game
-        public World(string filename, MyInvalidateEventHandler invalidate, GameEventHandler aiEventHandler, GameSession session, PlayMode playMode)
+        public World(string filename, InvalidateHandler invalidate, GameEventHandler aiEventHandler, GameSession session, PlayMode playMode)
             : this(playMode)
         {
             this.Invalidate = invalidate;
@@ -95,7 +95,7 @@ namespace littleRunner
             this.session = session;
             Deserialize();
         }
-        public World(string filename, MyInvalidateEventHandler invalidate, GameSession session, PlayMode playMode)
+        public World(string filename, InvalidateHandler invalidate, GameSession session, PlayMode playMode)
             : this(filename, invalidate, GameAI.NullAiEventHandlerMethod, session, playMode)
         {
         }
