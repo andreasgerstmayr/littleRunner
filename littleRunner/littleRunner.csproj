@@ -396,6 +396,9 @@
     <None Include="Data\Levelscripts\MovingObject.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="COPYING.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="TuxIcon.ico" />
   </ItemGroup>
   <ItemGroup>
