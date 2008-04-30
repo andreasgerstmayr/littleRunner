@@ -13,6 +13,7 @@ namespace littleRunner.GameObjects.MovingElements
     {
         Image image;
         BrickColor color;
+        int imgWidth;
 
         [Category("Bricks")]
         public BrickColor Color
@@ -27,8 +28,12 @@ namespace littleRunner.GameObjects.MovingElements
                     case BrickColor.Ice: image = Image.FromFile(Files.brick_ice); break;
                     case BrickColor.Red: image = Image.FromFile(Files.brick_red); break;
                     case BrickColor.Yellow: image = Image.FromFile(Files.brick_yellow); break;
+                    case BrickColor.Brown: image = Image.FromFile(Files.brick_brown); break;
                     case BrickColor.Invisible: image = Image.FromFile(Files.brick_invisible); break;
                 }
+                imgWidth = image.Width;
+
+                Height = image.Height;
             }
         }
         public override bool canStandOn
@@ -37,23 +42,23 @@ namespace littleRunner.GameObjects.MovingElements
         }
         public override void Draw(Graphics g)
         {
-            // Ceiling (round to x % 42 == 0)
-            if (Width < 43)
-                Width = 43;
+            // Ceiling (round to x % width+1 == 0)
+            if (Width < imgWidth + 1)
+                Width = imgWidth+1;
 
-            int rest = Width % 43;
+            int rest = Width % (imgWidth + 1);
             if (rest != 0)
             {
-                if (rest < 21)
+                if (rest < imgWidth / 2)
                     Width -= rest;
                 else
-                    Width += 43 - rest;
+                    Width += imgWidth + 1 - rest;
             }
 
-            int occurences = Width / 43;
+            int occurences = Width / (imgWidth+1);
             int width = image.Width;
             for (int i = 0; i < occurences; i++)
-                g.DrawImage(image, Left + i * 43, Top, width, Height);
+                g.DrawImage(image, Left + i * (imgWidth + 1), Top, width, Height);
 
 
             if (color == BrickColor.Invisible && World.PlayMode == PlayMode.Editor)
@@ -94,8 +99,9 @@ namespace littleRunner.GameObjects.MovingElements
 
         public Bricks()
         {
+            imgWidth = 0;
         }
-        public Bricks(int top, int left, BrickColor color)
+        public Bricks(int top, int left, BrickColor color) : this()
         {
             Top = top;
             Left = left;
@@ -103,7 +109,7 @@ namespace littleRunner.GameObjects.MovingElements
             Color = color;
 
             Width = image.Width * 5;
-            Height = image.Height;
+            // Height in Color-Property
         }
 
         public override void Check(out Dictionary<string, int> newpos)

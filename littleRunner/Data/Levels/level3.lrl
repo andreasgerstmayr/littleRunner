@@ -17,7 +17,7 @@
       </levelHeight>
       <Background>
         <type>littleRunner.Backgrounds</type>
-        <value>Green_Hills</value>
+        <value>Green_Hills1</value>
       </Background>
       <Script>
         <type>System.String</type>
