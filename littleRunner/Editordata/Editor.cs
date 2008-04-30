@@ -35,6 +35,7 @@ namespace littleRunner
             tmpHandler = new TmpFileHandler(openFile, saveFile, defaultWorld.Serialize, 5);
             defaultWorld = null;
 
+
             focus = null;
             moving = false;
             mouseX = 0;
@@ -213,7 +214,6 @@ namespace littleRunner
             }
         }
         #endregion
-
 
         private void showlevelSettings_Click(object sender, EventArgs e)
         {
@@ -631,19 +631,18 @@ namespace littleRunner
             if (!pressedKeys.Contains(e.KeyCode))
                 pressedKeys.Add(e.KeyCode);
 
-
-            switch (e.KeyCode)
-            {
-                case Keys.Delete:
-                    deleteToolStripMenuItem_Click(sender, e);
-                    break;
-            }
+            /*
+                switch (e.KeyCode)
+                {
+                    case Keys.Delete:
+                        deleteToolStripMenuItem_Click(sender, e);
+                        break;
+                }*/
         }
 
         private void Editor_KeyUp(object sender, KeyEventArgs e)
         {
-            if (properties.SelectedGridItem == null)
-                pressedKeys.Remove(e.KeyCode);
+            pressedKeys.Remove(e.KeyCode);
         }
         #endregion
     }

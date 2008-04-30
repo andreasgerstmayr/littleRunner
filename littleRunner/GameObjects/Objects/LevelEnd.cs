@@ -7,7 +7,8 @@ namespace littleRunner.GameObjects.Objects
 {
     enum LevelEndImg
     {
-        House
+        House,
+        Igloo
     }
     class LevelEnd : StickyImageElement
     {
@@ -41,9 +42,8 @@ namespace littleRunner.GameObjects.Objects
                 image = value;
                 switch (image)
                 {
-                    case LevelEndImg.House:
-                        CurImgFilename = Files.levelend_house;
-                        break;
+                    case LevelEndImg.House: CurImgFilename = Files.levelend_house; break;
+                    case LevelEndImg.Igloo: CurImgFilename = Files.levelend_igloo; break;
                 }
             }
         }

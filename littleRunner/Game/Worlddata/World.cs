@@ -260,7 +260,11 @@ namespace littleRunner
     public enum Backgrounds
     {
         Blue_Hills,
-        Green_Hills,
+        Blue_Mountains,
+        Blue_Waterhills,
+        Green_Hills1,
+        Green_Hills2,
+        Green_Junglehills,
         None
     }
 
@@ -330,8 +334,20 @@ namespace littleRunner
                     case Backgrounds.Blue_Hills:
                         BackgroundImg = Image.FromFile(Files.background_blue_hills);
                         break;
-                    case Backgrounds.Green_Hills:
-                        BackgroundImg = Image.FromFile(Files.background_green_hills);
+                    case Backgrounds.Blue_Mountains:
+                        BackgroundImg = Image.FromFile(Files.background_blue_mountains);
+                        break;
+                    case Backgrounds.Blue_Waterhills:
+                        BackgroundImg = Image.FromFile(Files.background_blue_waterhills);
+                        break;
+                    case Backgrounds.Green_Hills1:
+                        BackgroundImg = Image.FromFile(Files.background_green_hills1);
+                        break;
+                    case Backgrounds.Green_Hills2:
+                        BackgroundImg = Image.FromFile(Files.background_green_hills2);
+                        break;
+                    case Backgrounds.Green_Junglehills:
+                        BackgroundImg = Image.FromFile(Files.background_green_junglehills);
                         break;
                 }
             }

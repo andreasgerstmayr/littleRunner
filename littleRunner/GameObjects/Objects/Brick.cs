@@ -11,6 +11,7 @@ namespace littleRunner.GameObjects.Objects
         Ice,
         Red,
         Yellow,
+        Brown,
         Invisible
     }
     class Brick : StickyImageElement
@@ -29,6 +30,7 @@ namespace littleRunner.GameObjects.Objects
                     case BrickColor.Ice: CurImgFilename = Files.brick_ice; break;
                     case BrickColor.Red: CurImgFilename = Files.brick_red; break;
                     case BrickColor.Yellow: CurImgFilename = Files.brick_yellow; break;
+                    case BrickColor.Brown: CurImgFilename = Files.brick_brown; break;
                     case BrickColor.Invisible: CurImgFilename = Files.brick_invisible; break;
                 }
             }
