@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Reflection;
 
 using littleRunner.GameObjects;
 using littleRunner.GameObjects.Enemies;
@@ -631,13 +630,15 @@ namespace littleRunner
             if (!pressedKeys.Contains(e.KeyCode))
                 pressedKeys.Add(e.KeyCode);
 
-            /*
+            if (e.Control)
+            {
                 switch (e.KeyCode)
                 {
                     case Keys.Delete:
                         deleteToolStripMenuItem_Click(sender, e);
                         break;
-                }*/
+                }
+            }
         }
 
         private void Editor_KeyUp(object sender, KeyEventArgs e)
@@ -645,5 +646,6 @@ namespace littleRunner
             pressedKeys.Remove(e.KeyCode);
         }
         #endregion
+
     }
 }
