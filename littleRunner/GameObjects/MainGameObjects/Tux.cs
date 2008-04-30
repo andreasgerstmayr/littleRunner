@@ -155,7 +155,7 @@ namespace littleRunner.GameObjects.MainGameObjects
             }
 
 
-            // key pressed?
+            #region key pressed?
             if (pressedKeys.Contains(GameKey.goLeft) &&
                 (jumping.direction == GameDirection.None || jumping.direction == GameDirection.Top))
             {
@@ -204,6 +204,7 @@ namespace littleRunner.GameObjects.MainGameObjects
             }
             else
                 firePressed = false;
+            #endregion
 
             // jumping?
             GamePhysics.Jumping(ref jumping, ref newtop, ref newleft);

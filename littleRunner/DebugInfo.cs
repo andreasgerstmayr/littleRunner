@@ -16,6 +16,12 @@ namespace littleRunner
         {
             DebugInfo.text = text + "\n" + DebugInfo.text;
         }
+        public static void WriteException(object e)
+        {
+            DebugInfo.WriteLine("");
+            DebugInfo.WriteLine(e);
+            DebugInfo.WriteLine("");
+        }
 
         public static void ShowLog()
         {

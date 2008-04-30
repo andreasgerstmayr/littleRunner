@@ -63,21 +63,20 @@ namespace littleRunner
 
     public class GameAI
     {
-        private Form form;
         private GameEventHandler forminteract;
         private Timer mainTimer;
         public World World;
         private GameControlObjects gameControlObj;
         private List<Keys> curkeys;
-
+        int scrollTop;
 
         public void Draw(Graphics g)
         {
             World.Draw(g, true);
             gameControlObj.Draw(g);
-            g.TranslateTransform(World.Viewport, 0);
+            g.TranslateTransform(World.Viewport.X, World.Viewport.Y);
             World.MGO.Draw(g);
-            g.TranslateTransform(-World.Viewport, 0);
+            g.TranslateTransform(-World.Viewport.X, -World.Viewport.Y);
         }
         public bool IsRunning
         {
@@ -97,9 +96,9 @@ namespace littleRunner
             gameControlObj.Points = 0;
         }
 
-        public GameAI(Form form, GameEventHandler forminteract)
+        public GameAI(GameEventHandler forminteract)
         {
-            this.form = form;
+            scrollTop = 0;
             this.forminteract = forminteract;
             this.curkeys = new List<Keys>();
 
@@ -108,6 +107,8 @@ namespace littleRunner
             mainTimer.Interval = 1;
             mainTimer.Enabled = false;
         }
+
+
         public void Init(World world, GameControlObjects gameControlObj)
         {
             mainTimer.Enabled = true;
@@ -136,17 +137,45 @@ namespace littleRunner
             if (World.Script != null)
                 World.Script.callFunction("AI", "Check");
 
+            #region Scrolling
+            bool scrolled = false;
 
-            // scrolling?
-            if (World.Viewport+World.MGO.Left < 140)
-                World.Viewport += 15; // scroll left
-            else if (World.Settings.GameWindowWidth-World.Viewport - World.MGO.Right < 140)
-                World.Viewport -= 15; // scroll right
+            // scrolling Top/Bottom
+            if (World.Viewport.Y + World.MGO.Top < Globals.SCROLL_TOP)
+            {
+                World.Viewport.Y += Globals.SCROLL_CHANGE_Y; // scroll top
+                scrollTop += Globals.SCROLL_CHANGE_Y;
+                scrolled = true;
+            }
+            else if (World.Settings.GameWindowHeight - World.Viewport.Y - World.MGO.Bottom < Globals.SCROLL_BOTTOM)
+            {
+                World.Viewport.Y -= Globals.SCROLL_CHANGE_Y; // scroll bottom
+                scrolled = true;
+            }
 
+            // scrolling Left/Right
+            if (World.Viewport.X + World.MGO.Left < Globals.SCROLL_X)
+                World.Viewport.X += Globals.SCROLL_CHANGE_X; // scroll left
+            else if (World.Settings.GameWindowWidth - World.Viewport.X - World.MGO.Right < Globals.SCROLL_X)
+                World.Viewport.X -= Globals.SCROLL_CHANGE_X; // scroll right
+
+            // if not scrolled
+            //    and need to scroll bottom
+            //    and don't need to scroll top
+            //    and when scroll down don't need to scroll top
+            // scroll down in pieces (SCROLL_CHANGE_Y).
+            if (!scrolled && scrollTop > 0 &&
+                !(World.Viewport.Y + World.MGO.Top < Globals.SCROLL_TOP) &&
+                !(World.Viewport.Y - Globals.SCROLL_CHANGE_Y + World.MGO.Top < Globals.SCROLL_TOP))
+            {
+                World.Viewport.Y -= Globals.SCROLL_CHANGE_Y;
+                scrollTop -= Globals.SCROLL_CHANGE_Y;
+            }
+            #endregion
 
             List<GameKey> pressedKeys = new List<GameKey>();
 
-            // key pressed?
+            #region check if key pressed
             if (curkeys.Contains(Keys.A) || curkeys.Contains(Keys.Left))
                 pressedKeys.Add(GameKey.goLeft);
             if (curkeys.Contains(Keys.D) || curkeys.Contains(Keys.Right))
@@ -159,14 +188,14 @@ namespace littleRunner
                 pressedKeys.Add(GameKey.jumpTop);
             if (curkeys.Contains(Keys.E))
                 pressedKeys.Add(GameKey.jumpRight);
-
+            #endregion
 
             World.MGO.Check(pressedKeys);
 
             // check of all enemies
             for (int i = 0; i < World.Enemies.Count; i++)
             {
-                if (!World.Enemies[i].StartAtViewpoint || World.Enemies[i].Left < World.Settings.GameWindowWidth - World.Viewport)
+                if (!World.Enemies[i].StartAtViewpoint || World.Enemies[i].Left < World.Settings.GameWindowWidth - World.Viewport.X)
                 {
                     Dictionary<string, int> newpos;
                     World.Enemies[i].Check(out newpos);
@@ -180,7 +209,7 @@ namespace littleRunner
             }
 
             // mgo out of range?
-            if (World.MGO.Top > form.Height)
+            if (World.MGO.Top > World.Settings.LevelHeight)
             {
                 mainTimer.Enabled = false;
                 forminteract(GameEvent.outOfRange, new Dictionary<GameEventArg, object>());

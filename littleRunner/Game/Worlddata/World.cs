@@ -39,7 +39,7 @@ namespace littleRunner
         private GameEventHandler aiEventHandler;
         public PlayMode PlayMode;
         public Script Script;
-        private int viewport;
+        private bPoint viewport;
 
         public List<Enemy> Enemies
         {
@@ -57,7 +57,7 @@ namespace littleRunner
         {
             get { return mainGameObject; }
         }
-        public int Viewport
+        public bPoint Viewport
         {
             get { return viewport; }
             set { viewport = value; }
@@ -67,6 +67,7 @@ namespace littleRunner
         private World(PlayMode playMode)
         {
             this.PlayMode = playMode;
+            this.viewport = new bPoint(0, 0);
 
             if (playMode == PlayMode.Editor)
                 mainGameObject = new NullMGO();
@@ -75,8 +76,9 @@ namespace littleRunner
             : this(playMode)
         {
             Settings = new LevelSettings();
-            Settings.LevelWidth = width;
             Settings.GameWindowWidth = width;
+            Settings.GameWindowHeight = height;
+            Settings.LevelWidth = width;
             Settings.LevelHeight = height;
             this.Invalidate = invalidate;
 
@@ -148,18 +150,18 @@ namespace littleRunner
             if (drawBackground && Settings.BackgroundImg != null)
                 g.DrawImage(Settings.BackgroundImg, 0, 0, Settings.GameWindowWidth, Settings.LevelHeight);
 
-            g.TranslateTransform(viewport, 0);
+            g.TranslateTransform(viewport.X, viewport.Y);
             foreach (GameObject go in AllElements)
             {
                 go.Draw(g);
             }
-            g.TranslateTransform(-viewport, 0);
+            g.TranslateTransform(-viewport.X, -viewport.Y);
         }
         public void Draw(Graphics g, bool drawBackground, object[] selected)
         {
             Draw(g, drawBackground);
 
-            g.TranslateTransform(viewport, 0);
+            g.TranslateTransform(viewport.X, viewport.Y);
             Pen pen = new Pen(Color.Black);
             pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
 
@@ -168,7 +170,7 @@ namespace littleRunner
                 if (Array.IndexOf<object>(selected, go) != -1)
                     g.DrawRectangle(pen, go.Left-2, go.Top-2, go.Width+3, go.Height+3);
             }
-            g.TranslateTransform(-viewport, 0);
+            g.TranslateTransform(-viewport.X, -viewport.Y);
         }
 
 
@@ -271,16 +273,14 @@ namespace littleRunner
     public delegate void Changed_Setting();
     public class LevelSettings
     {
-        private int gameWindowWidth;
-        private int levelWidth;
-        private int levelHeight;
+        private int gameWindowWidth, gameWindowHeight;
+        private int levelWidth, levelHeight;
         private Backgrounds background;
         private Image backgroundImg;
         private string script;
 
-        public Changed_Setting cLevelWidth;
-        public Changed_Setting cLevelHeight;
-        public Changed_Setting cGameWindowWidth;
+        public Changed_Setting cLevelWidth, cLevelHeight;
+        public Changed_Setting cGameWindowWidth, cGameWindowHeight;
 
         public LevelSettings()
         {
@@ -297,6 +297,16 @@ namespace littleRunner
             {
                 gameWindowWidth = value;
                 if (cGameWindowWidth != null) cGameWindowWidth();
+            }
+        }
+        [Category("Level settings")]
+        public int GameWindowHeight
+        {
+            get { return gameWindowHeight; }
+            set
+            {
+                gameWindowHeight = value;
+                if (cGameWindowHeight != null) cGameWindowHeight();
             }
         }
         [Category("Level settings")]
@@ -388,6 +398,7 @@ namespace littleRunner
         {
             Dictionary<string, object> ser = new Dictionary<string, object>();
             ser["gameWindowWidth"] = gameWindowWidth;
+            ser["gameWindowHeight"] = gameWindowHeight;
             ser["levelWidth"] = levelWidth;
             ser["levelHeight"] = levelHeight;
             ser["Background"] = background;
@@ -397,6 +408,7 @@ namespace littleRunner
         public void Deserialize(Dictionary<string, object> ser)
         {
             gameWindowWidth = (int)ser["gameWindowWidth"];
+            gameWindowHeight = (int)ser["gameWindowHeight"];
             levelWidth = (int)ser["levelWidth"];
             levelHeight = (int)ser["levelHeight"];
             Background = (Backgrounds)ser["Background"];

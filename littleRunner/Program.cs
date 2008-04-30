@@ -21,7 +21,7 @@ namespace littleRunner
 
         static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
-            DebugInfo.WriteLine(e.Exception);
+            DebugInfo.WriteException(e.Exception);
             DebugInfo.WriteLine("\n" +
             "=== Game crashed ===\n\n" +
             "Please send the contents of this file to <littleRunner@andihit.net>!\n" +

@@ -21,7 +21,7 @@ namespace littleRunner
             }
             catch(Exception e)
             {
-                DebugInfo.WriteLine(e);
+                DebugInfo.WriteException(e);
                 throw new littleRunnerScriptVariablesException("That (Script-)Name exists already.");
             }
         }

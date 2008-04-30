@@ -101,7 +101,7 @@ namespace littleRunner
             for (int i = gos.Count - 1; i >= 0; i--)
             {
                 GameObject go = gos[i];
-                if (go.Hit(e.Y, e.X - world.Viewport))
+                if (go.Hit(e.Y - world.Viewport.Y, e.X - world.Viewport.X))
                 {
                     focus = go;
 
@@ -222,9 +222,12 @@ namespace littleRunner
         private void setDelegateHandlers()
         {
             world.Settings.cGameWindowWidth = changedGameWindowWidth;
+            world.Settings.cGameWindowHeight = changedGameWindowHeight;
             world.Settings.cLevelWidth = changedLevelWidth;
             world.Settings.cLevelHeight = changedLevelHeight;
+
             changedGameWindowWidth();
+            changedGameWindowHeight();
             changedLevelWidth();
             changedLevelHeight();
         }
@@ -245,7 +248,8 @@ namespace littleRunner
                 setDelegateHandlers();
 
                 showlevelSettings_Click(sender, e);
-                trackBar.Value = 0;
+                hScroll.Value = hScroll.Minimum;
+                vScroll.Value = vScroll.Minimum;
                 level.Invalidate();
             }
         }
@@ -255,7 +259,8 @@ namespace littleRunner
             if (tmpHandler.Open())
             {
                 this.Text = "littleRunner Level Editor - " + tmpHandler.OrigFilename;
-                trackBar.Value = 0;
+                hScroll.Value = hScroll.Minimum;
+                vScroll.Value = vScroll.Minimum;
 
                 world = new World(tmpHandler.TmpFilename, level.Invalidate, new GameSession(), PlayMode.Editor);
                 tmpHandler.SaveHandler = world.Serialize;
@@ -294,13 +299,20 @@ namespace littleRunner
             g = null;
         }
 
+        private void setCurrentViewport(ref Game g)
+        {
+            g.AI.World.MGO.Left += hScroll.Value - hScroll.Minimum;
+            g.AI.World.MGO.Top += (vScroll.Value - vScroll.Minimum);
+            g.AI.World.Viewport.X -= hScroll.Value - hScroll.Minimum;
+            g.AI.World.Viewport.Y -= vScroll.Value - vScroll.Minimum;
+        }
+
         private void gameWindowToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tmpHandler.updateTMP();
 
             g = new Game(programSwitcher, tmpHandler.TmpFilename, PlayMode.Game);
-            g.AI.World.MGO.Left += trackBar.Value;
-            g.AI.World.Viewport -= trackBar.Value;
+            setCurrentViewport(ref g);
 
             g.ShowDialog();
             g = null;
@@ -313,8 +325,7 @@ namespace littleRunner
             int levelTop = this.Top + menu.Top + menubar.Top + tableLayout.Top + level.Top;
             int levelLeft = this.Left + tableLayout.Left + level.Left;
             g = new Game(programSwitcher, tmpHandler.TmpFilename, PlayMode.GameInEditor, levelTop, levelLeft);
-            g.AI.World.MGO.Left += trackBar.Value;
-            g.AI.World.Viewport -= trackBar.Value;
+            setCurrentViewport(ref g);
 
             string oldtext = this.Text;
             this.Text = "littleRunner Level Editor [press ESC to quit game]";
@@ -375,70 +386,70 @@ namespace littleRunner
 
         private void floorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Floor f = new Floor(0, -world.Viewport, FloorColor.Green);
+            Floor f = new Floor(-world.Viewport.Y, -world.Viewport.X, FloorColor.Green);
             addElement(f);
         }
 
 
         private void treeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DesignElements tree = new DesignElements(0, -world.Viewport, DesignElement.Tree);
+            DesignElements tree = new DesignElements(-world.Viewport.Y, -world.Viewport.X, DesignElement.Tree);
             addElement(tree);
         }
 
         private void boxToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Box b = new Box(0, -world.Viewport, BoxStyle.Yellow);
+            Box b = new Box(-world.Viewport.Y, -world.Viewport.X, BoxStyle.Yellow);
             addElement(b);
         }
 
         private void brickToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Brick b = new Brick(0, -world.Viewport, BrickColor.Blue);
+            Brick b = new Brick(-world.Viewport.Y, -world.Viewport.X, BrickColor.Blue);
             addElement(b);
         }
 
         private void pipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Pipe p = new Pipe(0, -world.Viewport, PipeColor.Green);
+            Pipe p = new Pipe(-world.Viewport.Y, -world.Viewport.X, PipeColor.Green);
             addElement(p);
         }
 
         private void pointStarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Star p = new Star(0, -world.Viewport);
+            Star p = new Star(-world.Viewport.Y, -world.Viewport.X);
             addElement(p);
         }
 
         private void turtleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Turtle t = new Turtle(0, -world.Viewport, TurtleStyle.Green);
+            Turtle t = new Turtle(-world.Viewport.Y, -world.Viewport.X, TurtleStyle.Green);
             addElement(t);
         }
 
 
         private void spikaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Spika s = new Spika(0, -world.Viewport);
+            Spika s = new Spika(-world.Viewport.Y, -world.Viewport.X);
             addElement(s);
         }
 
         private void gumbaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Gumba g = new Gumba(0, -world.Viewport);
+            Gumba g = new Gumba(-world.Viewport.Y, -world.Viewport.X);
             addElement(g);
         }
 
         private void houseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LevelEnd l = new LevelEnd(0, -world.Viewport, LevelEndImg.House);
+            LevelEnd l = new LevelEnd(-world.Viewport.Y, -world.Viewport.X, LevelEndImg.House);
             addElement(l);
         }
 
 
         private void bricksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bricks b = new Bricks(0, -world.Viewport, BrickColor.Blue);
+            Bricks b = new Bricks(-world.Viewport.Y, -world.Viewport.X, BrickColor.Blue);
             addElement(b);
         }
 
@@ -577,39 +588,66 @@ namespace littleRunner
         #region Level-Setting changed
         private void changedGameWindowWidth()
         {
-            this.Width = 44 + world.Settings.GameWindowWidth + properties.Width;
+            this.Width = 64 + world.Settings.GameWindowWidth + properties.Width;
+        }
+        private void changedGameWindowHeight()
+        {
+            this.Height = 118 + world.Settings.GameWindowHeight;
         }
         private void changedLevelWidth()
         {
-            trackBar.Maximum = world.Settings.LevelWidth;
-            trackBar_ValueChanged(new object(), new EventArgs());
+            hScroll.Maximum = world.Settings.LevelWidth;
+            hScroll_ValueChanged(new object(), new EventArgs());
         }
         private void changedLevelHeight()
         {
-            this.Height = 148 + world.Settings.LevelHeight;
+            vScroll.Minimum = world.Settings.GameWindowHeight;
+            vScroll.Maximum = world.Settings.LevelHeight;
+            vScroll_ValueChanged(new object(), new EventArgs());
         }
         #endregion
 
-        #region Trackbar events
-        private void trackBar_ValueChanged(object sender, EventArgs e)
+        #region Scrollbar events
+        private void setcurScrollingText()
         {
-            world.Viewport = -trackBar.Value;
-            curScrolling.Text = trackBar.Value.ToString();
+            curScrolling.Text = "(" + hScroll.Value.ToString() + " | " + vScroll.Value.ToString() + ")";
+        }
+
+        private void hScroll_ValueChanged(object sender, EventArgs e)
+        {
+            world.Viewport.X = -(hScroll.Value - hScroll.Minimum);
+            setcurScrollingText();
 
             level.Invalidate();
         }
 
-        private void trackBar_MouseDown(object sender, MouseEventArgs e)
+        private void hScroll_MouseCaptureChanged(object sender, EventArgs e)
         {
-            // disable background
-            enableBG = false;
+            if (enableBG)
+            {
+                // disable background
+                enableBG = false;
+            }
+            else
+            {
+                // enable background
+                enableBG = true;
+                level.Invalidate();
+            }
         }
 
-        private void trackBar_MouseUp(object sender, MouseEventArgs e)
+
+        private void vScroll_ValueChanged(object sender, EventArgs e)
         {
-            // enable background
-            enableBG = true;
+            world.Viewport.Y = -(vScroll.Value-vScroll.Minimum);
+            setcurScrollingText();
+
             level.Invalidate();
+        }
+
+        private void vScroll_MouseCaptureChanged(object sender, EventArgs e)
+        {
+            hScroll_MouseCaptureChanged(sender, e);
         }
         #endregion
 
@@ -646,6 +684,17 @@ namespace littleRunner
             pressedKeys.Remove(e.KeyCode);
         }
         #endregion
+
+        private void level_SizeChanged(object sender, EventArgs e)
+        {
+            if (world != null)
+            {
+                world.Settings.GameWindowWidth = level.Width;
+                world.Settings.GameWindowHeight = level.Height;
+
+                showlevelSettings_Click(sender, e);
+            }
+        }
 
     }
 }

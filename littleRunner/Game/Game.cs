@@ -70,9 +70,10 @@ namespace littleRunner
         {
             if (world.PlayMode == PlayMode.GameInEditor)
             {
-                this.Top = top+3;
-                this.Left = left+4;
-                this.Width++;
+                this.Top = top+4;
+                this.Left = left+5;
+                this.Width--;
+                this.Height -= 2;
             }
         }
 
@@ -121,7 +122,7 @@ namespace littleRunner
                 }
 
                 // main game AI - world neets AiEventHandler
-                ai = new GameAI(this, GameAIInteract);
+                ai = new GameAI(GameAIInteract);
 
                 if (session == null) // first run or complete new run (after game over)
                 {
@@ -133,7 +134,7 @@ namespace littleRunner
                 world = new World(filename, Invalidate, ai.getEvent, session, playMode);
 
                 // Main game object
-                Tux tux = new Tux(0, 140);
+                Tux tux = new Tux(Globals.SCROLL_TOP, Globals.SCROLL_X);
                 tux.Init(world, ai.getEvent); // can init
 
                 // got MGO!
@@ -143,7 +144,7 @@ namespace littleRunner
                 // change window size
                 ignoreSizeChange = true;
                 Width = world.Settings.GameWindowWidth + 5;
-                Height = world.Settings.LevelHeight + 29;
+                Height = world.Settings.GameWindowHeight + 29;
                 ignoreSizeChange = false;
 
 
@@ -236,7 +237,7 @@ namespace littleRunner
                         if (ai != null)
                         {
                             ai.World.MGO.Left += nextLevelStartAt;
-                            ai.World.Viewport -= nextLevelStartAt;
+                            ai.World.Viewport.X -= nextLevelStartAt;
                         }
                     }
                     else
