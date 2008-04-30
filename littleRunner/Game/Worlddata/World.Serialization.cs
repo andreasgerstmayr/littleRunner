@@ -254,26 +254,33 @@ namespace littleRunner.Worlddata
             stickyelements = new List<StickyElement>();
             movingelements = new List<MovingElement>();
             enemies = new List<Enemy>();
-            
 
-            XmlTextReader xmlReader = new XmlTextReader(filename);
-            xmlReader.ReadStartElement("Level");
-            xmlReader.ReadStartElement("Settings");
-            settings.Deserialize(Deserialize(ref xmlReader, "littleRunner.LevelSettings"));
-            xmlReader.ReadEndElement();
-
-            
-            xmlReader.ReadStartElement("Data");
-            
-
-            stickyelements = createObjectsStickyElements(ref xmlReader, world, aiEventHandler);
-            movingelements = createObjectsMovingElements(ref xmlReader, world, aiEventHandler);
-            enemies = createObjectsEnemies(ref xmlReader, world, aiEventHandler);
+            try
+            {
+                XmlTextReader xmlReader = new XmlTextReader(filename);
+                xmlReader.ReadStartElement("Level");
+                xmlReader.ReadStartElement("Settings");
+                settings.Deserialize(Deserialize(ref xmlReader, "littleRunner.LevelSettings"));
+                xmlReader.ReadEndElement();
 
 
-            xmlReader.ReadEndElement();
+                xmlReader.ReadStartElement("Data");
 
-            xmlReader.Close();
+
+                stickyelements = createObjectsStickyElements(ref xmlReader, world, aiEventHandler);
+                movingelements = createObjectsMovingElements(ref xmlReader, world, aiEventHandler);
+                enemies = createObjectsEnemies(ref xmlReader, world, aiEventHandler);
+
+
+                xmlReader.ReadEndElement();
+
+                xmlReader.Close();
+            }
+            catch (Exception e)
+            {
+                DebugInfo.WriteException(e);
+                throw new littleRunnerScriptVariablesException("Can't deserialize level.");
+            }
         }
         #endregion
     }

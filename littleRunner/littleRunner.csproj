@@ -97,6 +97,8 @@
     <Compile Include="Game\GamePhysics.cs" />
     <Compile Include="Game\GameSession.cs" />
     <Compile Include="Game\Worlddata\World.Serialization.cs" />
+    <Compile Include="General.cs" />
+    <Compile Include="Globals.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramSwitcher.cs">
       <SubType>Form</SubType>
@@ -348,6 +350,7 @@
     <None Include="Data\Levels\level7.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Data\Levels\level8.lrl" />
     <None Include="Resources\Script.py" />
     <None Include="Data\Levelscripts\MovingPlatform.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

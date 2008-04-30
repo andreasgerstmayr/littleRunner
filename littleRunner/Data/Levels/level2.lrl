@@ -7,6 +7,10 @@
         <type>System.Int32</type>
         <value>700</value>
       </gameWindowWidth>
+      <gameWindowHeight>
+        <type>System.Int32</type>
+        <value>450</value>
+      </gameWindowHeight>
       <levelWidth>
         <type>System.Int32</type>
         <value>1000</value>

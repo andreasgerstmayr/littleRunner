@@ -90,13 +90,13 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actualFocus = new System.Windows.Forms.Label();
             this.showlevelSettings = new System.Windows.Forms.Button();
-            this.trackBar = new System.Windows.Forms.TrackBar();
             this.curScrolling = new System.Windows.Forms.Label();
             this.tableLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.hScroll = new System.Windows.Forms.HScrollBar();
+            this.vScroll = new System.Windows.Forms.VScrollBar();
             this.menubar.SuspendLayout();
             this.menu.SuspendLayout();
             this.objectContext.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar)).BeginInit();
             this.tableLayout.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -109,7 +109,7 @@
             this.level.Location = new System.Drawing.Point(3, 3);
             this.level.Name = "level";
             this.tableLayout.SetRowSpan(this.level, 3);
-            this.level.Size = new System.Drawing.Size(676, 558);
+            this.level.Size = new System.Drawing.Size(680, 550);
             this.level.TabIndex = 7;
             this.level.Paint += new System.Windows.Forms.PaintEventHandler(this.level_Paint);
             this.level.MouseMove += new System.Windows.Forms.MouseEventHandler(this.level_MouseMove);
@@ -117,6 +117,7 @@
             this.level.MouseClick += new System.Windows.Forms.MouseEventHandler(this.level_MouseClick);
             this.level.MouseDown += new System.Windows.Forms.MouseEventHandler(this.level_MouseDown);
             this.level.MouseUp += new System.Windows.Forms.MouseEventHandler(this.level_MouseUp);
+            this.level.SizeChanged += new System.EventHandler(this.level_SizeChanged);
             // 
             // properties
             // 
@@ -124,10 +125,10 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.properties.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.properties.Location = new System.Drawing.Point(685, 93);
+            this.properties.Location = new System.Drawing.Point(709, 93);
             this.properties.Name = "properties";
             this.properties.PropertySort = System.Windows.Forms.PropertySort.Categorized;
-            this.properties.Size = new System.Drawing.Size(197, 468);
+            this.properties.Size = new System.Drawing.Size(197, 460);
             this.properties.TabIndex = 6;
             this.properties.SelectedObjectsChanged += new System.EventHandler(this.properties_SelectedObjectsChanged);
             this.properties.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.properties_PropertyValueChanged);
@@ -163,7 +164,7 @@
             this.checkScriptToolStripButton});
             this.menubar.Location = new System.Drawing.Point(0, 24);
             this.menubar.Name = "menubar";
-            this.menubar.Size = new System.Drawing.Size(909, 25);
+            this.menubar.Size = new System.Drawing.Size(933, 25);
             this.menubar.TabIndex = 5;
             this.menubar.Text = "toolStrip1";
             this.menubar.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menubar_ItemClicked);
@@ -366,7 +367,7 @@
             this.startGameCurrentToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(909, 24);
+            this.menu.Size = new System.Drawing.Size(933, 24);
             this.menu.TabIndex = 4;
             this.menu.Text = "menuStrip1";
             // 
@@ -654,7 +655,7 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.actualFocus.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.actualFocus.Location = new System.Drawing.Point(685, 60);
+            this.actualFocus.Location = new System.Drawing.Point(709, 60);
             this.actualFocus.Name = "actualFocus";
             this.actualFocus.Size = new System.Drawing.Size(197, 30);
             this.actualFocus.TabIndex = 14;
@@ -663,7 +664,7 @@
             // showlevelSettings
             // 
             this.showlevelSettings.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showlevelSettings.Location = new System.Drawing.Point(685, 3);
+            this.showlevelSettings.Location = new System.Drawing.Point(709, 3);
             this.showlevelSettings.Name = "showlevelSettings";
             this.showlevelSettings.Size = new System.Drawing.Size(197, 36);
             this.showlevelSettings.TabIndex = 16;
@@ -671,34 +672,17 @@
             this.showlevelSettings.UseVisualStyleBackColor = true;
             this.showlevelSettings.Click += new System.EventHandler(this.showlevelSettings_Click);
             // 
-            // trackBar
-            // 
-            this.trackBar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackBar.LargeChange = 50;
-            this.trackBar.Location = new System.Drawing.Point(3, 567);
-            this.trackBar.Maximum = 652;
-            this.trackBar.Name = "trackBar";
-            this.trackBar.Size = new System.Drawing.Size(676, 44);
-            this.trackBar.SmallChange = 40;
-            this.trackBar.TabIndex = 17;
-            this.trackBar.TickFrequency = 50;
-            this.trackBar.ValueChanged += new System.EventHandler(this.trackBar_ValueChanged);
-            this.trackBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.trackBar_MouseDown);
-            this.trackBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trackBar_MouseUp);
-            // 
             // curScrolling
             // 
             this.curScrolling.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.curScrolling.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.curScrolling.Location = new System.Drawing.Point(685, 564);
+            this.curScrolling.Location = new System.Drawing.Point(709, 556);
             this.curScrolling.Name = "curScrolling";
-            this.curScrolling.Size = new System.Drawing.Size(197, 50);
+            this.curScrolling.Size = new System.Drawing.Size(197, 20);
             this.curScrolling.TabIndex = 18;
-            this.curScrolling.Text = "0";
+            this.curScrolling.Text = "(0 | 0)";
             this.curScrolling.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // tableLayout
@@ -706,14 +690,16 @@
             this.tableLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayout.ColumnCount = 2;
+            this.tableLayout.ColumnCount = 3;
             this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 203F));
-            this.tableLayout.Controls.Add(this.trackBar, 0, 3);
-            this.tableLayout.Controls.Add(this.actualFocus, 1, 1);
-            this.tableLayout.Controls.Add(this.curScrolling, 1, 3);
-            this.tableLayout.Controls.Add(this.properties, 1, 2);
-            this.tableLayout.Controls.Add(this.showlevelSettings, 1, 0);
+            this.tableLayout.Controls.Add(this.hScroll, 0, 3);
+            this.tableLayout.Controls.Add(this.showlevelSettings, 2, 0);
+            this.tableLayout.Controls.Add(this.actualFocus, 2, 1);
+            this.tableLayout.Controls.Add(this.properties, 2, 2);
+            this.tableLayout.Controls.Add(this.curScrolling, 2, 3);
+            this.tableLayout.Controls.Add(this.vScroll, 1, 0);
             this.tableLayout.Controls.Add(this.level, 0, 0);
             this.tableLayout.Location = new System.Drawing.Point(12, 52);
             this.tableLayout.Name = "tableLayout";
@@ -721,20 +707,46 @@
             this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayout.Size = new System.Drawing.Size(885, 614);
+            this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayout.Size = new System.Drawing.Size(909, 576);
             this.tableLayout.TabIndex = 19;
+            // 
+            // hScroll
+            // 
+            this.hScroll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.hScroll.LargeChange = 1;
+            this.hScroll.Location = new System.Drawing.Point(0, 558);
+            this.hScroll.Maximum = 700;
+            this.hScroll.Name = "hScroll";
+            this.hScroll.Size = new System.Drawing.Size(686, 15);
+            this.hScroll.TabIndex = 20;
+            this.hScroll.MouseCaptureChanged += new System.EventHandler(this.hScroll_MouseCaptureChanged);
+            this.hScroll.ValueChanged += new System.EventHandler(this.hScroll_ValueChanged);
+            // 
+            // vScroll
+            // 
+            this.vScroll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.vScroll.LargeChange = 1;
+            this.vScroll.Location = new System.Drawing.Point(688, 0);
+            this.vScroll.Maximum = 550;
+            this.vScroll.Minimum = 550;
+            this.vScroll.Name = "vScroll";
+            this.tableLayout.SetRowSpan(this.vScroll, 3);
+            this.vScroll.Size = new System.Drawing.Size(15, 556);
+            this.vScroll.TabIndex = 21;
+            this.vScroll.Value = 550;
+            this.vScroll.MouseCaptureChanged += new System.EventHandler(this.vScroll_MouseCaptureChanged);
+            this.vScroll.ValueChanged += new System.EventHandler(this.vScroll_ValueChanged);
             // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(909, 675);
+            this.ClientSize = new System.Drawing.Size(933, 637);
             this.Controls.Add(this.menubar);
             this.Controls.Add(this.tableLayout);
             this.Controls.Add(this.menu);
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -748,9 +760,7 @@
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.objectContext.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar)).EndInit();
             this.tableLayout.ResumeLayout(false);
-            this.tableLayout.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -791,7 +801,6 @@
         private System.Windows.Forms.ToolStripMenuItem levelEndToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem houseToolStripMenuItem;
         private System.Windows.Forms.Button showlevelSettings;
-        private System.Windows.Forms.TrackBar trackBar;
         private System.Windows.Forms.Label curScrolling;
         private System.Windows.Forms.TableLayoutPanel tableLayout;
         private System.Windows.Forms.ToolStripMenuItem startGameCurrentToolStripMenuItem;
@@ -821,5 +830,7 @@
         private System.Windows.Forms.ToolStripButton editScriptToolStripButton;
         private System.Windows.Forms.ToolStripButton checkScriptToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem gameWindowToolStripMenuItem;
+        private System.Windows.Forms.HScrollBar hScroll;
+        private System.Windows.Forms.VScrollBar vScroll;
     }
 }
