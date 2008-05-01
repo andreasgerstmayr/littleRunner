@@ -97,6 +97,7 @@
             this.tableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.hScroll = new System.Windows.Forms.HScrollBar();
             this.vScroll = new System.Windows.Forms.VScrollBar();
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menubar.SuspendLayout();
             this.menu.SuspendLayout();
             this.objectContext.SuspendLayout();
@@ -650,9 +651,10 @@
             this.objectContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toForegroundToolStripMenuItem,
             this.toBackgroundToolStripMenuItem,
+            this.copyToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.objectContext.Name = "objectContext";
-            this.objectContext.Size = new System.Drawing.Size(157, 70);
+            this.objectContext.Size = new System.Drawing.Size(157, 114);
             // 
             // toForegroundToolStripMenuItem
             // 
@@ -764,6 +766,13 @@
             this.vScroll.MouseCaptureChanged += new System.EventHandler(this.vScroll_MouseCaptureChanged);
             this.vScroll.ValueChanged += new System.EventHandler(this.vScroll_ValueChanged);
             // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -861,5 +870,6 @@
         private System.Windows.Forms.ToolStripMenuItem transformToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem moveToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox moveToolStripTextBox1;
+        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
     }
 }

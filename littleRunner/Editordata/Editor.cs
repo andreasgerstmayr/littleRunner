@@ -19,6 +19,7 @@ namespace littleRunner.Editordata
 
         World world;
         GameObject focus;
+        int defaultContextMenuItems;
         bool moving;
         bool enableBG;
         int mouseX, mouseY;
@@ -33,6 +34,7 @@ namespace littleRunner.Editordata
             World defaultWorld = getDefaultWorld();
             tmpHandler = new TmpFileHandler(openFile, saveFile, defaultWorld.Serialize, 5);
             defaultWorld = null;
+            defaultContextMenuItems = objectContext.Items.Count;
 
 
             focus = null;
@@ -157,7 +159,7 @@ namespace littleRunner.Editordata
 
         private void ViewContextMenue(int x, int y)
         {
-            for (int i = objectContext.Items.Count - 1; i > 2; i--) // start from end
+            for (int i = objectContext.Items.Count - 1; i >= defaultContextMenuItems; i--) // start from end
             {                                               // easier to understand, because otherwise
                 objectContext.Items.RemoveAt(i);            // you 've to remove always the 3. element
             }
@@ -562,6 +564,23 @@ namespace littleRunner.Editordata
             }
 
             level.Invalidate();
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (object o in properties.SelectedObjects)
+            {
+                if (!(o is LevelSettings))
+                {
+                    GameObject go = (GameObject)o;
+                    Dictionary<string,object> serialized = go.Serialize();
+
+                    GameObject cloned = (GameObject)Activator.CreateInstance(go.GetType());
+                    cloned.Deserialize(serialized);
+                    cloned.Left = go.Right + 5;
+                    addElement(cloned);
+                }
+            }
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
