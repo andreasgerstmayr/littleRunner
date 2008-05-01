@@ -134,11 +134,7 @@ namespace littleRunner
                 return true;
             }
             else
-            {
-                originalFile = "";
                 return false;
-            }
-
         }
 
 

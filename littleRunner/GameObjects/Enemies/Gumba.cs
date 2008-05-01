@@ -71,15 +71,12 @@ namespace littleRunner.GameObjects.Enemies
         }
 
         public Gumba(int top, int left)
-            : base()
+            : this()
         {
             Top = top;
             Left = left;
 
             Color = GumbaColor.Brown;
-
-            Direction = GameDirection.Right;
-            small = 1;
         }
 
 

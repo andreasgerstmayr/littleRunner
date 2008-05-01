@@ -52,12 +52,10 @@ namespace littleRunner.GameObjects.Enemies
         }
 
         public Spika(int top, int left)
-            : base()
+            : this()
         {
             Top = top;
             Left = left;
-
-            Color = SpikaColor.Green;
 
             Width = curimg.Width;
             Height = curimg.Height; 

@@ -237,7 +237,7 @@ namespace littleRunner.Editordata
         #region Main MenuBar Events
         private World getDefaultWorld()
         {
-            return new World(700, 550, level.Invalidate, PlayMode.Editor);
+            return new World(700, 550, 1000, 550, level.Invalidate, PlayMode.Editor);
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)

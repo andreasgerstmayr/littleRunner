@@ -66,7 +66,7 @@ namespace littleRunner.GameObjects.StickyElements
         {
         }
         public Pipe(int top, int left, PipeColor color)
-            : base()
+            : this()
         {
             Top = top;
             Left = left;
