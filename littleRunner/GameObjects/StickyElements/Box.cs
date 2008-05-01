@@ -149,6 +149,10 @@ namespace littleRunner.GameObjects.StickyElements
         public Box(int top, int left, BoxStyle style)
             : base(top, left)
         {
+            got = 0;
+            canGet = 1;
+            canGetNext = DateTime.Now;
+
             Style = style;
         }
 

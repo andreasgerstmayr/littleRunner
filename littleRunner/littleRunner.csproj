@@ -354,6 +354,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\Levels\level8.lrl" />
+    <None Include="Data\Levels\level9.lrl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\Script.py" />
     <None Include="Data\Levelscripts\MovingPlatform.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

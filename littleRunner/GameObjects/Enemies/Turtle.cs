@@ -103,15 +103,12 @@ namespace littleRunner.GameObjects.Enemies
         }
 
         public Turtle(int top, int left, TurtleStyle style)
-            : base()
+            : this()
         {
             Top = top;
             Left = left;
 
             Style = style;
-
-            speed = 1;
-            startSmall = DateTime.Now;
 
             Direction = GameDirection.Right;
             TurtleMode = TurtleMode.Normal;

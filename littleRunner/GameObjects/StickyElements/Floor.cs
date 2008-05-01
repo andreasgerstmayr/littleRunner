@@ -66,7 +66,7 @@ namespace littleRunner.GameObjects.StickyElements
         {
         }
         public Floor(int top, int left, FloorColor style)
-            : base()
+            : this()
         {
             Top = top;
             Left = left;

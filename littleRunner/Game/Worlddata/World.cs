@@ -67,14 +67,16 @@ namespace littleRunner
             if (playMode == PlayMode.Editor)
                 mainGameObject = new NullMGO();
         }
-        public World(int width, int height, InvalidateHandler invalidate, PlayMode playMode)
+        public World(int gameWindowWidth, int gameWindowHeight,
+            int levelWidth, int levelHeight,
+            InvalidateHandler invalidate, PlayMode playMode)
             : this(playMode)
         {
             Settings = new LevelSettings();
-            Settings.GameWindowWidth = width;
-            Settings.GameWindowHeight = height;
-            Settings.LevelWidth = width;
-            Settings.LevelHeight = height;
+            Settings.GameWindowWidth = gameWindowWidth;
+            Settings.GameWindowHeight = gameWindowHeight;
+            Settings.LevelWidth = levelWidth;
+            Settings.LevelHeight = levelHeight;
             this.Invalidate = invalidate;
 
             this.aiEventHandler = GameAI.NullAiEventHandlerMethod;
