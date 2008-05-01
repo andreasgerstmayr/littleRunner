@@ -6,10 +6,10 @@ using System.Windows.Forms;
 using littleRunner.GameObjects;
 using littleRunner.GameObjects.Enemies;
 using littleRunner.GameObjects.MovingElements;
-using littleRunner.GameObjects.Objects;
+using littleRunner.GameObjects.StickyElements;
 
 
-namespace littleRunner
+namespace littleRunner.Editordata
 {
     public partial class Editor : Form
     {
@@ -356,6 +356,25 @@ namespace littleRunner
                     MessageBox.Show("Script seems to be OK!", "Script check", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 else
                     MessageBox.Show("Script is not OK, exception traced:\n\n" + exception, "Script check", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+
+        private void moveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (world != null)
+            {
+                int offset;
+                string convertText = moveToolStripTextBox1.Text.Replace(" ", "");
+                convertText = convertText.Replace("px", "");
+
+                if (Int32.TryParse(convertText, out offset))
+                {
+                    EditorTransformations.Move(offset, ref world);
+                    level.Invalidate();
+                }
+                else
+                    MessageBox.Show("Please write an offset in the field below this button!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion

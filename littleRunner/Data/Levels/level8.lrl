@@ -37,7 +37,7 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
   </Settings>
   <Data>
     <StickyElements>
-      <littleRunner.GameObjects.Objects.Floor>
+      <littleRunner.GameObjects.StickyElements.Floor>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -59,11 +59,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>64</value>
         </Height>
         <FloorStyle>
-          <type>littleRunner.GameObjects.Objects.FloorColor</type>
+          <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
-      </littleRunner.GameObjects.Objects.Floor>
-      <littleRunner.GameObjects.Objects.Brick>
+      </littleRunner.GameObjects.StickyElements.Floor>
+      <littleRunner.GameObjects.StickyElements.Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -85,11 +85,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>32</value>
         </Height>
         <Color>
-          <type>littleRunner.GameObjects.Objects.BrickColor</type>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Brown</value>
         </Color>
-      </littleRunner.GameObjects.Objects.Brick>
-      <littleRunner.GameObjects.Objects.Brick>
+      </littleRunner.GameObjects.StickyElements.Brick>
+      <littleRunner.GameObjects.StickyElements.Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -111,11 +111,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>42</value>
         </Height>
         <Color>
-          <type>littleRunner.GameObjects.Objects.BrickColor</type>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.Objects.Brick>
-      <littleRunner.GameObjects.Objects.Brick>
+      </littleRunner.GameObjects.StickyElements.Brick>
+      <littleRunner.GameObjects.StickyElements.Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -137,11 +137,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>42</value>
         </Height>
         <Color>
-          <type>littleRunner.GameObjects.Objects.BrickColor</type>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.Objects.Brick>
-      <littleRunner.GameObjects.Objects.Brick>
+      </littleRunner.GameObjects.StickyElements.Brick>
+      <littleRunner.GameObjects.StickyElements.Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -163,11 +163,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>42</value>
         </Height>
         <Color>
-          <type>littleRunner.GameObjects.Objects.BrickColor</type>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.Objects.Brick>
-      <littleRunner.GameObjects.Objects.Brick>
+      </littleRunner.GameObjects.StickyElements.Brick>
+      <littleRunner.GameObjects.StickyElements.Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -189,11 +189,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>42</value>
         </Height>
         <Color>
-          <type>littleRunner.GameObjects.Objects.BrickColor</type>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.Objects.Brick>
-      <littleRunner.GameObjects.Objects.Brick>
+      </littleRunner.GameObjects.StickyElements.Brick>
+      <littleRunner.GameObjects.StickyElements.Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -215,11 +215,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>42</value>
         </Height>
         <Color>
-          <type>littleRunner.GameObjects.Objects.BrickColor</type>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.Objects.Brick>
-      <littleRunner.GameObjects.Objects.Pipe>
+      </littleRunner.GameObjects.StickyElements.Brick>
+      <littleRunner.GameObjects.StickyElements.Pipe>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -241,11 +241,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>96</value>
         </Height>
         <PipeColor>
-          <type>littleRunner.GameObjects.Objects.PipeColor</type>
+          <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
           <value>Green</value>
         </PipeColor>
-      </littleRunner.GameObjects.Objects.Pipe>
-      <littleRunner.GameObjects.Objects.Star>
+      </littleRunner.GameObjects.StickyElements.Pipe>
+      <littleRunner.GameObjects.StickyElements.Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -267,11 +267,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>42</value>
         </Height>
         <StarStyle>
-          <type>littleRunner.GameObjects.Objects.StarStyle</type>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.Objects.Star>
-      <littleRunner.GameObjects.Objects.LevelEnd>
+      </littleRunner.GameObjects.StickyElements.Star>
+      <littleRunner.GameObjects.StickyElements.LevelEnd>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -301,11 +301,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>0</value>
         </StartAt>
         <Image>
-          <type>littleRunner.GameObjects.Objects.LevelEndImg</type>
+          <type>littleRunner.GameObjects.StickyElements.LevelEndImg</type>
           <value>Igloo</value>
         </Image>
-      </littleRunner.GameObjects.Objects.LevelEnd>
-      <littleRunner.GameObjects.Objects.Star>
+      </littleRunner.GameObjects.StickyElements.LevelEnd>
+      <littleRunner.GameObjects.StickyElements.Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -327,11 +327,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>42</value>
         </Height>
         <StarStyle>
-          <type>littleRunner.GameObjects.Objects.StarStyle</type>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.Objects.Star>
-      <littleRunner.GameObjects.Objects.Star>
+      </littleRunner.GameObjects.StickyElements.Star>
+      <littleRunner.GameObjects.StickyElements.Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -353,11 +353,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>42</value>
         </Height>
         <StarStyle>
-          <type>littleRunner.GameObjects.Objects.StarStyle</type>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.Objects.Star>
-      <littleRunner.GameObjects.Objects.Star>
+      </littleRunner.GameObjects.StickyElements.Star>
+      <littleRunner.GameObjects.StickyElements.Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -379,11 +379,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>42</value>
         </Height>
         <StarStyle>
-          <type>littleRunner.GameObjects.Objects.StarStyle</type>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.Objects.Star>
-      <littleRunner.GameObjects.Objects.Star>
+      </littleRunner.GameObjects.StickyElements.Star>
+      <littleRunner.GameObjects.StickyElements.Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -405,11 +405,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>42</value>
         </Height>
         <StarStyle>
-          <type>littleRunner.GameObjects.Objects.StarStyle</type>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.Objects.Star>
-      <littleRunner.GameObjects.Objects.Star>
+      </littleRunner.GameObjects.StickyElements.Star>
+      <littleRunner.GameObjects.StickyElements.Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -431,11 +431,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>42</value>
         </Height>
         <StarStyle>
-          <type>littleRunner.GameObjects.Objects.StarStyle</type>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.Objects.Star>
-      <littleRunner.GameObjects.Objects.Star>
+      </littleRunner.GameObjects.StickyElements.Star>
+      <littleRunner.GameObjects.StickyElements.Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -457,11 +457,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>42</value>
         </Height>
         <StarStyle>
-          <type>littleRunner.GameObjects.Objects.StarStyle</type>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.Objects.Star>
-      <littleRunner.GameObjects.Objects.Star>
+      </littleRunner.GameObjects.StickyElements.Star>
+      <littleRunner.GameObjects.StickyElements.Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -483,11 +483,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>42</value>
         </Height>
         <StarStyle>
-          <type>littleRunner.GameObjects.Objects.StarStyle</type>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.Objects.Star>
-      <littleRunner.GameObjects.Objects.Star>
+      </littleRunner.GameObjects.StickyElements.Star>
+      <littleRunner.GameObjects.StickyElements.Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -509,11 +509,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>42</value>
         </Height>
         <StarStyle>
-          <type>littleRunner.GameObjects.Objects.StarStyle</type>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.Objects.Star>
-      <littleRunner.GameObjects.Objects.Star>
+      </littleRunner.GameObjects.StickyElements.Star>
+      <littleRunner.GameObjects.StickyElements.Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -535,11 +535,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>42</value>
         </Height>
         <StarStyle>
-          <type>littleRunner.GameObjects.Objects.StarStyle</type>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.Objects.Star>
-      <littleRunner.GameObjects.Objects.Star>
+      </littleRunner.GameObjects.StickyElements.Star>
+      <littleRunner.GameObjects.StickyElements.Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -561,11 +561,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>42</value>
         </Height>
         <StarStyle>
-          <type>littleRunner.GameObjects.Objects.StarStyle</type>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.Objects.Star>
-      <littleRunner.GameObjects.Objects.Star>
+      </littleRunner.GameObjects.StickyElements.Star>
+      <littleRunner.GameObjects.StickyElements.Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -587,11 +587,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>42</value>
         </Height>
         <StarStyle>
-          <type>littleRunner.GameObjects.Objects.StarStyle</type>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.Objects.Star>
-      <littleRunner.GameObjects.Objects.Star>
+      </littleRunner.GameObjects.StickyElements.Star>
+      <littleRunner.GameObjects.StickyElements.Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -613,10 +613,10 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>42</value>
         </Height>
         <StarStyle>
-          <type>littleRunner.GameObjects.Objects.StarStyle</type>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.Objects.Star>
+      </littleRunner.GameObjects.StickyElements.Star>
     </StickyElements>
     <MovingElements>
       <littleRunner.GameObjects.MovingElements.Bricks>
@@ -641,7 +641,7 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>32</value>
         </Height>
         <Color>
-          <type>littleRunner.GameObjects.Objects.BrickColor</type>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Brown</value>
         </Color>
       </littleRunner.GameObjects.MovingElements.Bricks>
@@ -667,7 +667,7 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>42</value>
         </Height>
         <Color>
-          <type>littleRunner.GameObjects.Objects.BrickColor</type>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Ice</value>
         </Color>
       </littleRunner.GameObjects.MovingElements.Bricks>
@@ -693,7 +693,7 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>42</value>
         </Height>
         <Color>
-          <type>littleRunner.GameObjects.Objects.BrickColor</type>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Ice</value>
         </Color>
       </littleRunner.GameObjects.MovingElements.Bricks>

@@ -53,8 +53,8 @@ namespace littleRunner.GameObjects.Enemies
         {
             if (small > 1)
             {
-                Top += small*2;
-                Height -= small*2;
+                Top += small*3;
+                Height -= small*3;
                 small++;
             }
             if (Height <= 2)

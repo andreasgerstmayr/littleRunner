@@ -6,14 +6,17 @@ using System.ComponentModel;
 using littleRunner.GameObjects.MovingElements;
 
 
-namespace littleRunner.GameObjects.Objects
+namespace littleRunner.GameObjects.StickyElements
 {
     enum BoxType
     {
         GoodMushroom,
         PoisonMushroom,
+        LiveMushroom,
         FireFlower,
-        ModeDependent
+        ModeDependent,
+        Star,
+        ImmortializeStar
     }
     enum BoxStyle
     {
@@ -23,7 +26,9 @@ namespace littleRunner.GameObjects.Objects
     {
         BoxStyle style;
         BoxType btype;
-        bool got;
+        int got;
+        int canGet;
+        DateTime canGetNext;
 
         override public bool canStandOn
         {
@@ -50,6 +55,13 @@ namespace littleRunner.GameObjects.Objects
             get { return btype; }
             set { btype = value; }
         }
+        [Category("Box")]
+        public int Content
+        {
+            get { return canGet; }
+            set { canGet = value; }
+        }
+
 
         private void getGoodie(BoxType type)
         {
@@ -57,13 +69,19 @@ namespace littleRunner.GameObjects.Objects
             switch (type)
             {
                 case BoxType.GoodMushroom:
-                    m = new Mushroom(MushroomType.Good, Top, Left);
+                    m = new Mushroom(MushroomType.Good, World.MGO.Direction, Top, Left);
                     m.Init(World, AiEventHandler);
                     World.MovingElements.Add(m);
                     break;
 
                 case BoxType.PoisonMushroom:
-                    m = new Mushroom(MushroomType.Poison, Top, Left);
+                    m = new Mushroom(MushroomType.Poison, World.MGO.Direction, Top, Left);
+                    m.Init(World, AiEventHandler);
+                    World.MovingElements.Add(m);
+                    break;
+
+                case BoxType.LiveMushroom:
+                    m = new Mushroom(MushroomType.Live, World.MGO.Direction, Top, Left);
                     m.Init(World, AiEventHandler);
                     World.MovingElements.Add(m);
                     break;
@@ -73,6 +91,18 @@ namespace littleRunner.GameObjects.Objects
                     f.Init(World, AiEventHandler);
                     World.StickyElements.Add(f);
                     break;
+
+                case BoxType.Star:
+                    JumpingStar js = new JumpingStar(Top, Left);
+                    js.Init(World, AiEventHandler);
+                    World.MovingElements.Add(js);
+                    break;
+
+                case BoxType.ImmortializeStar:
+                    ImmortializeStar iStar = new ImmortializeStar(World.MGO.Direction, Top, Left);
+                    iStar.Init(World, AiEventHandler);
+                    World.MovingElements.Add(iStar);
+                    break;
             }
         }
 
@@ -80,19 +110,15 @@ namespace littleRunner.GameObjects.Objects
         {
             base.onOver(geventhandler, who, direction);
 
-            if (!got && direction == GameDirection.Bottom && who == GameElement.MGO)
+            if (got < canGet && DateTime.Now > canGetNext &&
+                direction == GameDirection.Bottom && who == GameElement.MGO)
             {
                 switch (btype)
                 {
-                    case BoxType.GoodMushroom:
-                        getGoodie(BoxType.GoodMushroom);
-                        break;
-                    case BoxType.PoisonMushroom:
-                        getGoodie(BoxType.PoisonMushroom);
-                        break;
-                    case BoxType.FireFlower:
-                        getGoodie(BoxType.FireFlower);
-                        break;
+                    case BoxType.GoodMushroom:      getGoodie(BoxType.GoodMushroom);    break;
+                    case BoxType.PoisonMushroom:    getGoodie(BoxType.PoisonMushroom);  break;
+                    case BoxType.LiveMushroom:      getGoodie(BoxType.LiveMushroom);    break;
+                    case BoxType.FireFlower:        getGoodie(BoxType.FireFlower);      break;
                     case BoxType.ModeDependent:
                         switch(World.MGO.Mode)
                         {
@@ -103,21 +129,26 @@ namespace littleRunner.GameObjects.Objects
                                 getGoodie(BoxType.FireFlower); break;
                         }
                         break;
+
+                    case BoxType.Star:              getGoodie(BoxType.Star);             break;
+                    case BoxType.ImmortializeStar:  getGoodie(BoxType.ImmortializeStar); break;
                 }
 
-                got = true;
+                got++;
+                canGetNext = DateTime.Now.AddMilliseconds(200);
             }
         }
 
         public Box()
             : base()
         {
-            got = false;
+            got = 0;
+            canGet = 1;
+            canGetNext = DateTime.Now;
         }
         public Box(int top, int left, BoxStyle style)
             : base(top, left)
         {
-            got = false;
             Style = style;
         }
 
@@ -127,6 +158,7 @@ namespace littleRunner.GameObjects.Objects
             Dictionary<string, object> ser = new Dictionary<string, object>(base.Serialize());
             ser["BoxType"] = btype;
             ser["BoxStyle"] = style;
+            ser["Content"] = canGet;
             return ser;
         }
         public override void Deserialize(Dictionary<string, object> ser)
@@ -134,6 +166,7 @@ namespace littleRunner.GameObjects.Objects
             base.Deserialize(ser);
             btype = (BoxType)ser["BoxType"];
             Style = (BoxStyle)ser["BoxStyle"];
+            Content = (int)ser["Content"];
         }
     }
 }

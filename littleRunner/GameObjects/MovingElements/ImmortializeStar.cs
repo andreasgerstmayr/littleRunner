@@ -1,12 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
 using System.Drawing;
 
 namespace littleRunner.GameObjects.MovingElements
 {
-    class Fire : MovingImageElement
+    class ImmortializeStar : MovingImageElement
     {
         private GameDirection direction;
         private GameDirection flyDirection;
@@ -18,14 +17,34 @@ namespace littleRunner.GameObjects.MovingElements
             get { return false; }
         }
 
-        public Fire(GameDirection direction, int top, int left)
-            : base(Image.FromFile(Files.fire), top, left)
+        public override void Draw(Graphics g)
+        {
+            if (DateTime.Now.Millisecond % 4 == 0)
+                base.Draw(g);
+        }
+
+        public ImmortializeStar(GameDirection direction, int top, int left)
+            : base(Image.FromFile(Files.star),
+            top - Image.FromFile(Files.star).Height,
+            left)
         {
             this.direction = direction;
-            flyDirection = GameDirection.Bottom;
+            flyDirection = GameDirection.Top;
             flyTopCount = 0;
             runs = 0;
         }
+
+        public override void onOver(GameEventHandler geventhandler, GameElement who, GameDirection direction)
+        {
+            base.onOver(geventhandler, who, direction);
+
+            if (who == GameElement.MGO)
+            {
+                geventhandler(GameEvent.gotImmortialize, new Dictionary<GameEventArg, object>());
+                World.MovingElements.Remove(this);
+            }
+        }
+
 
         public override void Check(out Dictionary<string, int> newpos)
         {
@@ -38,22 +57,16 @@ namespace littleRunner.GameObjects.MovingElements
                 case GameDirection.Right: newleft += 5; break;
                 case GameDirection.Left: newleft -= 5; break;
             }
-
-            if (runs >= 50)
+            switch (flyDirection)
             {
-                switch(flyDirection)
-                {
-                    case GameDirection.Bottom: newtop += 3; break;
-                    case GameDirection.Top: newtop -= 3; break;
-                }
+                case GameDirection.Top: newtop -= 5; break;
+                case GameDirection.Bottom: newtop += 5; break;
             }
-            runs++;
-
 
             if (flyDirection == GameDirection.Top)
                 flyTopCount++;
 
-            if (flyTopCount > 10)
+            if (flyTopCount > 20)
             {
                 flyDirection = GameDirection.Bottom;
                 flyTopCount = 0;
@@ -69,26 +82,28 @@ namespace littleRunner.GameObjects.MovingElements
                 return;
             }
 
-            if (crashedInEnemy != null && crashedInEnemy.fireCanDelete)
-            {
-                crashedInEnemy.Remove();
-                World.MovingElements.Remove(this);
-                return;
-            }
-
             if (newtop != 0)
                 Top += newtop;
-            else if (runs >= 52) // 50 -> start moving, +1 -> nothing moved, so use +2!
+            else
                 flyDirection = GameDirection.Top;
+
 
             if (newleft != 0)
                 Left += newleft;
             else
-                World.MovingElements.Remove(this);
+            {
+                switch (direction)
+                {
+                    case GameDirection.Right: direction = GameDirection.Left; break;
+                    case GameDirection.Left: direction = GameDirection.Right; break;
+                }
+            }
+
+            runs++;
 
 
             // away?
-            if (runs >= 200 || Top > World.Settings.LevelHeight)
+            if (runs >= 150 || Top > World.Settings.LevelHeight)
             {
                 World.MovingElements.Remove(this);
             }

@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
 using System.Drawing;
 
-namespace littleRunner.GameObjects.Objects
+
+namespace littleRunner.GameObjects.StickyElements
 {
     abstract class StickyImageElement : StickyElement
     {

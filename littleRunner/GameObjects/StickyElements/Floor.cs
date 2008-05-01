@@ -4,7 +4,7 @@ using System.Text;
 using System.Drawing;
 using System.ComponentModel;
 
-namespace littleRunner.GameObjects.Objects
+namespace littleRunner.GameObjects.StickyElements
 {
     enum FloorColor
     {

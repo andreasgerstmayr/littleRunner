@@ -9,6 +9,7 @@ using System.Reflection;
 using System.IO;
 
 using littleRunner.GameObjects;
+using littleRunner.Editordata;
 
 
 namespace littleRunner

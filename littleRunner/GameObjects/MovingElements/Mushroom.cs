@@ -9,7 +9,8 @@ namespace littleRunner.GameObjects.MovingElements
     enum MushroomType
     {
         Good,
-        Poison
+        Poison,
+        Live
     }
 
     class Mushroom : MovingImageElement
@@ -18,12 +19,25 @@ namespace littleRunner.GameObjects.MovingElements
         int checks;
         GameDirection direction;
 
-        public Mushroom(MushroomType mtype, int top, int left)
-            : base(mtype == MushroomType.Good ? Image.FromFile(Files.mushroom_green) : Image.FromFile(Files.mushroom_poison), top - Image.FromFile(Files.mushroom_green).Height, left)
+        static Image GetMushroomImage(MushroomType mtype)
+        {
+            switch (mtype)
+            {
+                case MushroomType.Good: return Image.FromFile(Files.mushroom_good);
+                case MushroomType.Poison: return Image.FromFile(Files.mushroom_poison);
+                case MushroomType.Live: return Image.FromFile(Files.mushroom_live);
+            }
+            return new Bitmap(0, 0);
+        }
+
+        public Mushroom(MushroomType mtype, GameDirection direction, int top, int left)
+            : base(Mushroom.GetMushroomImage(mtype),
+            top - Mushroom.GetMushroomImage(mtype).Height,
+            left)
         {
             this.mtype = mtype;
             checks = 0;
-            direction = GameDirection.Right;
+            this.direction = direction;
         }
 
         public override bool canStandOn
@@ -106,6 +120,9 @@ namespace littleRunner.GameObjects.MovingElements
                         break;
                     case MushroomType.Poison:
                         World.MGO.getEvent(GameEvent.gotPoisonMushroom, new Dictionary<GameEventArg, object>());
+                        break;
+                    case MushroomType.Live:
+                        World.MGO.getEvent(GameEvent.gotLive, new Dictionary<GameEventArg, object>());
                         break;
                 }
                 World.MovingElements.Remove(this);

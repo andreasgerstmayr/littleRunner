@@ -22,9 +22,8 @@ namespace littleRunner.GameObjects.MainGameObjects
         private GamePhysics.JumpData jumping;
         private bool firePressed;
         private MainGameObjectMode mode;
-        private DateTime immortializeStart;
+        private DateTime immortializeEnd;
         private bool immortialize;
-        private int blink;
         private AnimateImage imgNormal, imgSmall;
 
         private Queue<WantNext> wantNext;
@@ -32,11 +31,8 @@ namespace littleRunner.GameObjects.MainGameObjects
 
         public override void Draw(Graphics g)
         {
-            if (!immortialize || blink % 8 == 0)
+            if (!immortialize || DateTime.Now.Millisecond % 4 == 0)
                 curimg.Draw(g, direction, Left, Top, Width, Height);
-
-            if (immortialize)
-                blink++;
         }
 
         public override MainGameObjectMode Mode
@@ -61,8 +57,6 @@ namespace littleRunner.GameObjects.MainGameObjects
                 }
                 Top -= curimg.CurImage(direction).Height - lastHeight;
                 Height = curimg.CurImage(direction).Height;
-
-                blink = 0;
             }
         }
         public override GameDirection Direction
@@ -88,14 +82,15 @@ namespace littleRunner.GameObjects.MainGameObjects
 
             firePressed = false;
             mode = MainGameObjectMode.Normal;
-            immortializeStart = DateTime.Now;
+
+            immortializeEnd = DateTime.Now;
             immortialize = false;
+            
             GamePhysics.JumpData jumping = new GamePhysics.JumpData();
             jumping.direction = GameDirection.None;
             jumping.value = 1;
             this.jumping = jumping;
 
-            blink = 0;
             wantNext = new Queue<WantNext>();
         }
 
@@ -148,11 +143,9 @@ namespace littleRunner.GameObjects.MainGameObjects
 
 
             // immortialize end?
-            if (immortialize && (DateTime.Now - immortializeStart).Seconds >= 1)
-            {
+            if (immortialize && DateTime.Now > immortializeEnd)
                 immortialize = false;
-                blink = 0;
-            }
+
 
 
             #region key pressed?
@@ -230,6 +223,11 @@ namespace littleRunner.GameObjects.MainGameObjects
                 Top += newtop;
             if (newleft != 0)
                 Left += newleft;
+
+
+            // out of range?
+            if (Top > World.Settings.LevelHeight)
+                AiEventHandler(GameEvent.outOfRange, new Dictionary<GameEventArg, object>());
         }
 
         public override void Move(MoveType mtype, int value, GameInstruction instruction)
@@ -259,8 +257,8 @@ namespace littleRunner.GameObjects.MainGameObjects
                         AiEventHandler(GameEvent.dead, args);
                         break;
                 }
+                immortializeEnd = DateTime.Now.AddSeconds(1);
                 immortialize = true;
-                immortializeStart = DateTime.Now;
             }
             else if (gevent == GameEvent.gotGoodMushroom)
             {
@@ -277,6 +275,11 @@ namespace littleRunner.GameObjects.MainGameObjects
             else if (gevent == GameEvent.gotFireFlower)
             {
                 Mode = MainGameObjectMode.NormalFire;
+            }
+            else if (gevent == GameEvent.gotImmortialize)
+            {
+                immortializeEnd = DateTime.Now.AddSeconds(5);
+                immortialize = true;
             }
         }
     }

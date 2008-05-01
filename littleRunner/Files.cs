@@ -145,13 +145,17 @@ namespace littleRunner
         #endregion
 
         #region mushrooms
-        public static string mushroom_green
+        public static string mushroom_good
         {
-            get { return "Data/Images/GameItem/mushroom_green.png"; }
+            get { return "Data/Images/GameItem/mushroom_good.png"; }
         }
         public static string mushroom_poison
         {
             get { return "Data/Images/GameItem/mushroom_poison.png"; }
+        }
+        public static string mushroom_live
+        {
+            get { return "Data/Images/GameItem/mushroom_live.png"; }
         }
         #endregion
 
