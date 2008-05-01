@@ -6,12 +6,12 @@ using System.Drawing;
 
 namespace littleRunner
 {
-    public class bPoint
+    public class GamePoint
     {
         int x;
         int y;
 
-        public bPoint(int x, int y)
+        public GamePoint(int x, int y)
         {
             this.x = x;
             this.y = y;

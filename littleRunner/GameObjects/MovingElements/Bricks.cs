@@ -4,7 +4,7 @@ using System.Text;
 using System.ComponentModel;
 using System.Drawing;
 
-using littleRunner.GameObjects.Objects;
+using littleRunner.GameObjects.StickyElements;
 
 
 namespace littleRunner.GameObjects.MovingElements

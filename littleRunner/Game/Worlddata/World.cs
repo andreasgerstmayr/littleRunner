@@ -1,12 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.ComponentModel;
-
-using System.Windows.Forms;
 using System.Drawing;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
 using IronPython.Runtime.Exceptions;
 using littleRunner.GameObjects;
@@ -39,7 +34,7 @@ namespace littleRunner
         private GameEventHandler aiEventHandler;
         public PlayMode PlayMode;
         public Script Script;
-        private bPoint viewport;
+        private GamePoint viewport;
 
         public List<Enemy> Enemies
         {
@@ -57,7 +52,7 @@ namespace littleRunner
         {
             get { return mainGameObject; }
         }
-        public bPoint Viewport
+        public GamePoint Viewport
         {
             get { return viewport; }
             set { viewport = value; }
@@ -67,7 +62,7 @@ namespace littleRunner
         private World(PlayMode playMode)
         {
             this.PlayMode = playMode;
-            this.viewport = new bPoint(0, 0);
+            this.viewport = new GamePoint(0, 0);
 
             if (playMode == PlayMode.Editor)
                 mainGameObject = new NullMGO();

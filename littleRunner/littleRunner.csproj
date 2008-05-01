@@ -55,6 +55,7 @@
     <Compile Include="Editordata\Editor.Designer.cs">
       <DependentUpon>Editor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editordata\EditorTransformations.cs" />
     <Compile Include="Editordata\EditorUI.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="Files.cs" />
@@ -62,20 +63,22 @@
     <Compile Include="GameObjects\Enemies\Spika.cs" />
     <Compile Include="GameObjects\Enemies\Gumba.cs" />
     <Compile Include="GameObjects\MainGameObjects\NullMGO.cs" />
+    <Compile Include="GameObjects\MovingElements\ImmortializeStar.cs" />
+    <Compile Include="GameObjects\MovingElements\JumpingStar.cs" />
     <Compile Include="GameObjects\MovingElements\Mushroom.cs" />
     <Compile Include="GameObjects\MovingElements\Bricks.cs" />
     <Compile Include="GameObjects\MovingElements\Fire.cs">
     </Compile>
-    <Compile Include="GameObjects\Objects\Box.cs" />
-    <Compile Include="GameObjects\Objects\Brick.cs" />
-    <Compile Include="GameObjects\Objects\DesignElement.cs" />
-    <Compile Include="GameObjects\Objects\FireFlower.cs" />
-    <Compile Include="GameObjects\Objects\Floor.cs" />
-    <Compile Include="GameObjects\Objects\LevelEnd.cs" />
-    <Compile Include="GameObjects\Objects\Pipe.cs" />
+    <Compile Include="GameObjects\StickyElements\Box.cs" />
+    <Compile Include="GameObjects\StickyElements\Brick.cs" />
+    <Compile Include="GameObjects\StickyElements\DesignElement.cs" />
+    <Compile Include="GameObjects\StickyElements\FireFlower.cs" />
+    <Compile Include="GameObjects\StickyElements\Floor.cs" />
+    <Compile Include="GameObjects\StickyElements\LevelEnd.cs" />
+    <Compile Include="GameObjects\StickyElements\Pipe.cs" />
     <Compile Include="GameObjects\MainGameObjects\MainGameObject.cs">
     </Compile>
-    <Compile Include="GameObjects\Objects\Star.cs" />
+    <Compile Include="GameObjects\StickyElements\Star.cs" />
     <Compile Include="GameObjects\MovingElements\MovingElement.cs" />
     <Compile Include="GameObjects\MovingElements\MovingImageElement.cs" />
     <Compile Include="GameObjects\Enemies\Enemy.cs" />
@@ -90,7 +93,7 @@
     </Compile>
     <Compile Include="Game\GameAI.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
-    <Compile Include="GameObjects\Objects\StickyImageElement.cs" />
+    <Compile Include="GameObjects\StickyElements\StickyImageElement.cs" />
     <Compile Include="GameObjects\MainGameObjects\Tux.cs">
     </Compile>
     <Compile Include="Game\GameInstruction.cs" />
@@ -133,7 +136,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="GameObjects\StickyElement.cs" />
+    <Compile Include="GameObjects\StickyElements\StickyElement.cs" />
     <Compile Include="Game\Worlddata\World.cs" />
     <Compile Include="Script\Script.cs" />
     <Compile Include="Script\Scripteditor.cs">
@@ -200,7 +203,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\Images\GameItem\mushroom_green.png">
+    <None Include="Data\Images\GameItem\mushroom_good.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -418,6 +421,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\Images\LevelEnd\igloo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Images\GameItem\mushroom_live.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="TuxIcon.ico" />

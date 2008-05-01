@@ -1,4 +1,4 @@
-﻿namespace littleRunner
+﻿namespace littleRunner.Editordata
 {
     partial class Editor
     {
@@ -78,6 +78,9 @@
             this.gumbaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.levelEndToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.houseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.transformToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.moveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.moveToolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gameLevelbeginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gameWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -363,6 +366,7 @@
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.insertToolStripMenuItem,
+            this.transformToolStripMenuItem,
             this.testToolStripMenuItem,
             this.startGameCurrentToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
@@ -567,6 +571,28 @@
             this.houseToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.houseToolStripMenuItem.Text = "&House";
             this.houseToolStripMenuItem.Click += new System.EventHandler(this.houseToolStripMenuItem_Click);
+            // 
+            // transformToolStripMenuItem
+            // 
+            this.transformToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.moveToolStripMenuItem,
+            this.moveToolStripTextBox1});
+            this.transformToolStripMenuItem.Name = "transformToolStripMenuItem";
+            this.transformToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
+            this.transformToolStripMenuItem.Text = "Transform";
+            // 
+            // moveToolStripMenuItem
+            // 
+            this.moveToolStripMenuItem.Name = "moveToolStripMenuItem";
+            this.moveToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.moveToolStripMenuItem.Text = "Move";
+            this.moveToolStripMenuItem.Click += new System.EventHandler(this.moveToolStripMenuItem_Click);
+            // 
+            // moveToolStripTextBox1
+            // 
+            this.moveToolStripTextBox1.Name = "moveToolStripTextBox1";
+            this.moveToolStripTextBox1.Size = new System.Drawing.Size(100, 21);
+            this.moveToolStripTextBox1.Text = "0 px";
             // 
             // testToolStripMenuItem
             // 
@@ -832,5 +858,8 @@
         private System.Windows.Forms.ToolStripMenuItem gameWindowToolStripMenuItem;
         private System.Windows.Forms.HScrollBar hScroll;
         private System.Windows.Forms.VScrollBar vScroll;
+        private System.Windows.Forms.ToolStripMenuItem transformToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem moveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox moveToolStripTextBox1;
     }
 }

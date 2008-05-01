@@ -17,7 +17,9 @@ namespace littleRunner
         gotPoints,
         gotGoodMushroom,
         gotPoisonMushroom,
+        gotLive,
         gotFireFlower,
+        gotImmortialize,
         finishedLevel
     }
     public enum GameDirection
@@ -208,13 +210,6 @@ namespace littleRunner
                 World.MovingElements[i].Check(out newpos);
             }
 
-            // mgo out of range?
-            if (World.MGO.Top > World.Settings.LevelHeight)
-            {
-                mainTimer.Enabled = false;
-                forminteract(GameEvent.outOfRange, new Dictionary<GameEventArg, object>());
-            }
-
             // Repaint
             World.Invalidate();
         }
@@ -249,6 +244,8 @@ namespace littleRunner
                 Pause(false);
                 forminteract(gevent, args);
             }
+            else if (gevent == GameEvent.gotLive)
+                gameControlObj.Lives++;
         }
 
 
