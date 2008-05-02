@@ -92,24 +92,27 @@ namespace littleRunner
             #region Scrolling
             bool scrolled = false;
 
+            int changeX = World.MGO.CustomScrollX == 0 ? Globals.SCROLL_CHANGE_X : World.MGO.CustomScrollX;
+            int changeY = World.MGO.CustomScrollY == 0 ? Globals.SCROLL_CHANGE_Y : World.MGO.CustomScrollY;
+
             // scrolling Top/Bottom
             if (World.Viewport.Y + World.MGO.Top < Globals.SCROLL_TOP)
             {
-                World.Viewport.Y += Globals.SCROLL_CHANGE_Y; // scroll top
-                scrollTop += Globals.SCROLL_CHANGE_Y;
+                World.Viewport.Y += changeY; // scroll top
+                scrollTop += changeY;
                 scrolled = true;
             }
             else if (World.Settings.GameWindowHeight - World.Viewport.Y - World.MGO.Bottom < Globals.SCROLL_BOTTOM)
             {
-                World.Viewport.Y -= Globals.SCROLL_CHANGE_Y; // scroll bottom
+                World.Viewport.Y -= changeY; // scroll bottom
                 scrolled = true;
             }
 
             // scrolling Left/Right
             if (World.Viewport.X + World.MGO.Left < Globals.SCROLL_X)
-                World.Viewport.X += Globals.SCROLL_CHANGE_X; // scroll left
+                World.Viewport.X += changeX; // scroll left
             else if (World.Settings.GameWindowWidth - World.Viewport.X - World.MGO.Right < Globals.SCROLL_X)
-                World.Viewport.X -= Globals.SCROLL_CHANGE_X; // scroll right
+                World.Viewport.X -= changeX; // scroll right
 
             // if not scrolled
             //    and need to scroll bottom
@@ -118,10 +121,10 @@ namespace littleRunner
             // scroll down in pieces (SCROLL_CHANGE_Y).
             if (!scrolled && scrollTop > 0 &&
                 !(World.Viewport.Y + World.MGO.Top < Globals.SCROLL_TOP) &&
-                !(World.Viewport.Y - Globals.SCROLL_CHANGE_Y + World.MGO.Top < Globals.SCROLL_TOP))
+                !(World.Viewport.Y - changeY + World.MGO.Top < Globals.SCROLL_TOP))
             {
-                World.Viewport.Y -= Globals.SCROLL_CHANGE_Y;
-                scrollTop -= Globals.SCROLL_CHANGE_Y;
+                World.Viewport.Y -= changeY;
+                scrollTop -= changeY;
             }
             #endregion
 

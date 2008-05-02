@@ -32,8 +32,10 @@ class CreateMovingPlatform(object):
       centripetalForce = self.releaseMGOtime != 0 and time.time()-0.3 < self.releaseMGOtime
       
       if self.mgoOnTop or centripetalForce:
+         self.MGO.CustomScrollX = self.speed
          self.MGO.Move(self.__moveDirection(), self.speed, doThen)
       else:
+         self.MGO.CustomScrollX = 0
          doThen.Do()
          
       if self.releaseMGOtime != 0 and not centripetalForce:

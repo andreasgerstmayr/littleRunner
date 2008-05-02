@@ -66,6 +66,7 @@ namespace littleRunner.GameObjects.MainGameObjects
         }
 
         public Tux(int top, int left)
+            : base()
         {
             Top = top;
             Left = left;
@@ -93,7 +94,6 @@ namespace littleRunner.GameObjects.MainGameObjects
 
             wantNext = new Queue<WantNext>();
         }
-
 
         public override void Check(List<GameKey> pressedKeys)
         {
