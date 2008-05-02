@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 using System.IO;
 
-
+using littleRunner.Gamedata.Worlddata;
 using littleRunner.GameObjects;
 using littleRunner.GameObjects.MainGameObjects;
 
@@ -34,6 +34,7 @@ namespace littleRunner
 
         public Game()
         {
+            AnimateImage.Refresh = true;
             ignoreSizeChange = false;
         }
         public Game(ProgramSwitcher programSwitcher) 

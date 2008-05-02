@@ -54,8 +54,8 @@ namespace littleRunner.GameObjects.MovingElements
 
             switch (direction)
             {
-                case GameDirection.Right: newleft += 5; break;
-                case GameDirection.Left: newleft -= 5; break;
+                case GameDirection.Right: newleft += 4; break;
+                case GameDirection.Left: newleft -= 4; break;
             }
             switch (flyDirection)
             {

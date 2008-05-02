@@ -39,7 +39,7 @@ namespace littleRunner.GameObjects.StickyElements
             if (who == GameElement.MGO)
             {
                 Dictionary<GameEventArg, object> pointArgs = new Dictionary<GameEventArg, object>();
-                pointArgs[GameEventArg.points] = 10;
+                pointArgs[GameEventArg.points] = 1;
                 geventhandler(GameEvent.gotPoints, pointArgs);
 
                 World.StickyElements.Remove(this);

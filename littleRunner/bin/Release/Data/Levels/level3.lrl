@@ -2,30 +2,29 @@
 <!--littleRunner level file-->
 <Level>
   <Settings>
-    <littleRunner.LevelSettings>
-      <gameWindowWidth>
-        <type>System.Int32</type>
-        <value>700</value>
-      </gameWindowWidth>
-      <gameWindowHeight>
-        <type>System.Int32</type>
-        <value>550</value>
-      </gameWindowHeight>
-      <levelWidth>
-        <type>System.Int32</type>
-        <value>1700</value>
-      </levelWidth>
-      <levelHeight>
-        <type>System.Int32</type>
-        <value>550</value>
-      </levelHeight>
-      <Background>
-        <type>littleRunner.Backgrounds</type>
-        <value>Green_Hills1</value>
-      </Background>
-      <Script>
-        <type>System.String</type>
-        <value><![CDATA[from MovingPlatform import CreateMovingPlatform
+    <gameWindowWidth>
+      <type>System.Int32</type>
+      <value>700</value>
+    </gameWindowWidth>
+    <gameWindowHeight>
+      <type>System.Int32</type>
+      <value>550</value>
+    </gameWindowHeight>
+    <levelWidth>
+      <type>System.Int32</type>
+      <value>1700</value>
+    </levelWidth>
+    <levelHeight>
+      <type>System.Int32</type>
+      <value>550</value>
+    </levelHeight>
+    <Background>
+      <type>littleRunner.Gamedata.Worlddata.Backgrounds</type>
+      <value>Green_Hills1</value>
+    </Background>
+    <Script>
+      <type>System.String</type>
+      <value><![CDATA[from MovingPlatform import CreateMovingPlatform
 
 
 Session.Set('bonuslevel1.lrl', 'nextLevel', 'level3.lrl')
@@ -46,12 +45,11 @@ def removeBonusLvl(geventhandler):
    Session.Set('level3.lrl', 'gotBonusLvl', True)
 
 handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
-      </Script>
-    </littleRunner.LevelSettings>
+    </Script>
   </Settings>
   <Data>
     <StickyElements>
-      <littleRunner.GameObjects.StickyElements.Floor>
+      <Floor>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -76,8 +74,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
-      </littleRunner.GameObjects.StickyElements.Floor>
-      <littleRunner.GameObjects.StickyElements.Floor>
+      </Floor>
+      <Floor>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -102,8 +100,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
-      </littleRunner.GameObjects.StickyElements.Floor>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Floor>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -128,8 +126,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -154,8 +152,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Red</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Pipe>
+      </Brick>
+      <Pipe>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -180,19 +178,19 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
           <value>Green</value>
         </PipeColor>
-      </littleRunner.GameObjects.StickyElements.Pipe>
-      <littleRunner.GameObjects.StickyElements.Floor>
+      </Pipe>
+      <Floor>
         <Name>
           <type>NULL</type>
           <value>null</value>
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>221</value>
+          <value>217</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>552</value>
+          <value>601</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -206,19 +204,19 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
-      </littleRunner.GameObjects.StickyElements.Floor>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Floor>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>208</value>
+          <value>154</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>444</value>
+          <value>505</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -232,8 +230,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -258,8 +256,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -284,8 +282,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -310,8 +308,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -336,8 +334,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Star>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -360,10 +358,10 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
         </Height>
         <Color>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
-          <value>Ice</value>
+          <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -388,8 +386,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Ice</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -414,19 +412,19 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Red</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Brick>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>335</value>
+          <value>321</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>814</value>
+          <value>819</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -440,15 +438,15 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Box>
+      </Star>
+      <Box>
         <Name>
           <type>NULL</type>
           <value>null</value>
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>281</value>
+          <value>259</value>
         </Top>
         <Left>
           <type>System.Int32</type>
@@ -474,8 +472,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>System.Int32</type>
           <value>1</value>
         </Content>
-      </littleRunner.GameObjects.StickyElements.Box>
-      <littleRunner.GameObjects.StickyElements.Floor>
+      </Box>
+      <Floor>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -500,8 +498,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
-      </littleRunner.GameObjects.StickyElements.Floor>
-      <littleRunner.GameObjects.StickyElements.Pipe>
+      </Floor>
+      <Pipe>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -526,8 +524,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
           <value>Green</value>
         </PipeColor>
-      </littleRunner.GameObjects.StickyElements.Pipe>
-      <littleRunner.GameObjects.StickyElements.Pipe>
+      </Pipe>
+      <Pipe>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -552,8 +550,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
           <value>Green</value>
         </PipeColor>
-      </littleRunner.GameObjects.StickyElements.Pipe>
-      <littleRunner.GameObjects.StickyElements.Pipe>
+      </Pipe>
+      <Pipe>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -578,8 +576,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
           <value>Green</value>
         </PipeColor>
-      </littleRunner.GameObjects.StickyElements.Pipe>
-      <littleRunner.GameObjects.StickyElements.Pipe>
+      </Pipe>
+      <Pipe>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -604,8 +602,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
           <value>Green</value>
         </PipeColor>
-      </littleRunner.GameObjects.StickyElements.Pipe>
-      <littleRunner.GameObjects.StickyElements.Pipe>
+      </Pipe>
+      <Pipe>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -630,8 +628,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
           <value>Green</value>
         </PipeColor>
-      </littleRunner.GameObjects.StickyElements.Pipe>
-      <littleRunner.GameObjects.StickyElements.Floor>
+      </Pipe>
+      <Floor>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -656,8 +654,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
-      </littleRunner.GameObjects.StickyElements.Floor>
-      <littleRunner.GameObjects.StickyElements.DesignElements>
+      </Floor>
+      <DesignElements>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -682,8 +680,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.DesignElement</type>
           <value>Tree</value>
         </Element>
-      </littleRunner.GameObjects.StickyElements.DesignElements>
-      <littleRunner.GameObjects.StickyElements.LevelEnd>
+      </DesignElements>
+      <LevelEnd>
         <Name>
           <type>System.String</type>
           <value>BonusHouse</value>
@@ -716,8 +714,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.LevelEndImg</type>
           <value>House</value>
         </Image>
-      </littleRunner.GameObjects.StickyElements.LevelEnd>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </LevelEnd>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -742,8 +740,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -768,8 +766,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -794,8 +792,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -820,8 +818,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -846,8 +844,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -872,8 +870,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Star>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -898,8 +896,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Ice</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -924,8 +922,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Floor>
+      </Brick>
+      <Floor>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -950,8 +948,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
-      </littleRunner.GameObjects.StickyElements.Floor>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Floor>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -976,8 +974,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1002,8 +1000,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1028,8 +1026,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1054,8 +1052,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1080,8 +1078,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Brick>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1106,8 +1104,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Box>
+      </Star>
+      <Box>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1140,8 +1138,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>System.Int32</type>
           <value>1</value>
         </Content>
-      </littleRunner.GameObjects.StickyElements.Box>
-      <littleRunner.GameObjects.StickyElements.Floor>
+      </Box>
+      <Floor>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1166,8 +1164,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
-      </littleRunner.GameObjects.StickyElements.Floor>
-      <littleRunner.GameObjects.StickyElements.LevelEnd>
+      </Floor>
+      <LevelEnd>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1200,8 +1198,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.LevelEndImg</type>
           <value>House</value>
         </Image>
-      </littleRunner.GameObjects.StickyElements.LevelEnd>
-      <littleRunner.GameObjects.StickyElements.Pipe>
+      </LevelEnd>
+      <Pipe>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1226,8 +1224,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
           <value>Green</value>
         </PipeColor>
-      </littleRunner.GameObjects.StickyElements.Pipe>
-      <littleRunner.GameObjects.StickyElements.Box>
+      </Pipe>
+      <Box>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1260,8 +1258,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>System.Int32</type>
           <value>1</value>
         </Content>
-      </littleRunner.GameObjects.StickyElements.Box>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Box>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1286,8 +1284,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1312,8 +1310,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Yellow</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1338,10 +1336,44 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Red</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Box>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>243</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>554</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <BoxType>
+          <type>littleRunner.GameObjects.StickyElements.BoxType</type>
+          <value>LiveMushroom</value>
+        </BoxType>
+        <BoxStyle>
+          <type>littleRunner.GameObjects.StickyElements.BoxStyle</type>
+          <value>Yellow</value>
+        </BoxStyle>
+        <Content>
+          <type>System.Int32</type>
+          <value>1</value>
+        </Content>
+      </Box>
     </StickyElements>
     <MovingElements>
-      <littleRunner.GameObjects.MovingElements.Bricks>
+      <Bricks>
         <Name>
           <type>System.String</type>
           <value>Plat1</value>
@@ -1366,8 +1398,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.MovingElements.Bricks>
-      <littleRunner.GameObjects.MovingElements.Bricks>
+      </Bricks>
+      <Bricks>
         <Name>
           <type>System.String</type>
           <value>Plat2</value>
@@ -1392,10 +1424,10 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Yellow</value>
         </Color>
-      </littleRunner.GameObjects.MovingElements.Bricks>
+      </Bricks>
     </MovingElements>
     <Enemies>
-      <littleRunner.GameObjects.Enemies.Turtle>
+      <Turtle>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1428,19 +1460,19 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
-      </littleRunner.GameObjects.Enemies.Turtle>
-      <littleRunner.GameObjects.Enemies.Spika>
+      </Turtle>
+      <Spika>
         <Name>
           <type>NULL</type>
           <value>null</value>
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>183</value>
+          <value>214</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>557</value>
+          <value>447</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -1458,8 +1490,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
           <value>Green</value>
         </Color>
-      </littleRunner.GameObjects.Enemies.Spika>
-      <littleRunner.GameObjects.Enemies.Spika>
+      </Spika>
+      <Spika>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1488,8 +1520,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
           <value>Green</value>
         </Color>
-      </littleRunner.GameObjects.Enemies.Spika>
-      <littleRunner.GameObjects.Enemies.Gumba>
+      </Spika>
+      <Gumba>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1522,8 +1554,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
-      </littleRunner.GameObjects.Enemies.Gumba>
-      <littleRunner.GameObjects.Enemies.Gumba>
+      </Gumba>
+      <Gumba>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1556,8 +1588,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
-      </littleRunner.GameObjects.Enemies.Gumba>
-      <littleRunner.GameObjects.Enemies.Gumba>
+      </Gumba>
+      <Gumba>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1590,8 +1622,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
-      </littleRunner.GameObjects.Enemies.Gumba>
-      <littleRunner.GameObjects.Enemies.Turtle>
+      </Gumba>
+      <Turtle>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1624,7 +1656,7 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
-      </littleRunner.GameObjects.Enemies.Turtle>
+      </Turtle>
     </Enemies>
   </Data>
 </Level>

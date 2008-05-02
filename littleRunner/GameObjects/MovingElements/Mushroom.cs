@@ -44,6 +44,25 @@ namespace littleRunner.GameObjects.MovingElements
         {
             get { return false; }
         }
+
+        public void GotMushroom()
+        {
+            switch (mtype)
+            {
+                case MushroomType.Good:
+                    World.MGO.getEvent(GameEvent.gotGoodMushroom, new Dictionary<GameEventArg, object>());
+                    break;
+                case MushroomType.Poison:
+                    World.MGO.getEvent(GameEvent.gotPoisonMushroom, new Dictionary<GameEventArg, object>());
+                    break;
+                case MushroomType.Live:
+                    World.MGO.getEvent(GameEvent.gotLive, new Dictionary<GameEventArg, object>());
+                    break;
+            }
+
+            World.MovingElements.Remove(this);
+        }
+
         public override void Check(out Dictionary<string, int> newpos)
         {
             base.Check(out newpos);
@@ -79,18 +98,7 @@ namespace littleRunner.GameObjects.MovingElements
             // run in standing mgo?
             GameDirection _direction;
             if (GamePhysics.SingleCrashDetection(this, World.MGO, out _direction, ref newtop, ref newleft, true))
-            {
-                switch (mtype)
-                {
-                    case MushroomType.Good:
-                        World.MGO.getEvent(GameEvent.gotGoodMushroom, new Dictionary<GameEventArg, object>());
-                        break;
-                    case MushroomType.Poison:
-                        World.MGO.getEvent(GameEvent.gotPoisonMushroom, new Dictionary<GameEventArg, object>());
-                        break;
-                }
-                World.MovingElements.Remove(this);
-            }
+                GotMushroom();
 
 
             if (newtop != 0)
@@ -112,21 +120,7 @@ namespace littleRunner.GameObjects.MovingElements
             base.onOver(geventhandler, who, direction);
 
             if (who == GameElement.MGO)
-            {
-                switch (mtype)
-                {
-                    case MushroomType.Good:
-                        World.MGO.getEvent(GameEvent.gotGoodMushroom, new Dictionary<GameEventArg, object>());
-                        break;
-                    case MushroomType.Poison:
-                        World.MGO.getEvent(GameEvent.gotPoisonMushroom, new Dictionary<GameEventArg, object>());
-                        break;
-                    case MushroomType.Live:
-                        World.MGO.getEvent(GameEvent.gotLive, new Dictionary<GameEventArg, object>());
-                        break;
-                }
-                World.MovingElements.Remove(this);
-            }
+                GotMushroom();
         }
 
         public void getEvent(GameEvent gevent, Dictionary<GameEventArg, object> args)

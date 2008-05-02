@@ -6,7 +6,7 @@ using System.Xml;
 using littleRunner.GameObjects;
 
 
-namespace littleRunner.Worlddata
+namespace littleRunner.Gamedata.Worlddata
 {
     class WorldSerialization
     {
@@ -60,9 +60,12 @@ namespace littleRunner.Worlddata
 
 
         #region Serialize
-        private static void Serialize(ref XmlTextWriter xmlWriter, Type type, Dictionary<string, object> serialized)
+        private static void Serialize(ref XmlTextWriter xmlWriter, Type type,
+            Dictionary<string, object> serialized, bool writeStartElement)
         {
-            xmlWriter.WriteStartElement(type.FullName);
+            if (writeStartElement)
+                xmlWriter.WriteStartElement(type.Name);
+
             foreach (KeyValuePair<string, object> keypair in serialized)
             {
                 string xmlType = keypair.Value == null ? "NULL" : keypair.Value.GetType().FullName;
@@ -84,7 +87,9 @@ namespace littleRunner.Worlddata
 
                 xmlWriter.WriteEndElement();
             }
-            xmlWriter.WriteEndElement();
+
+            if (writeStartElement)
+                xmlWriter.WriteEndElement();
         }
 
         public static void Serialize(string filename,
@@ -101,7 +106,7 @@ namespace littleRunner.Worlddata
             xmlWriter.WriteStartElement("Level");
 
             xmlWriter.WriteStartElement("Settings");
-            Serialize(ref xmlWriter, settings.GetType(), settings.Serialize());
+            Serialize(ref xmlWriter, settings.GetType(), settings.Serialize(), false);
             xmlWriter.WriteEndElement();
 
 
@@ -111,21 +116,21 @@ namespace littleRunner.Worlddata
             xmlWriter.WriteStartElement("StickyElements");
             foreach (StickyElement se in stickyelements)
             {
-                Serialize(ref xmlWriter, se.GetType(), se.Serialize());
+                Serialize(ref xmlWriter, se.GetType(), se.Serialize(), true);
             }
             xmlWriter.WriteEndElement();
 
             xmlWriter.WriteStartElement("MovingElements");
             foreach (MovingElement me in movingelements)
             {
-                Serialize(ref xmlWriter, me.GetType(), me.Serialize());
+                Serialize(ref xmlWriter, me.GetType(), me.Serialize(), true);
             }
             xmlWriter.WriteEndElement();
 
             xmlWriter.WriteStartElement("Enemies");
             foreach (Enemy e in enemies)
             {
-                Serialize(ref xmlWriter, e.GetType(), e.Serialize());
+                Serialize(ref xmlWriter, e.GetType(), e.Serialize(), true);
             }
             xmlWriter.WriteEndElement();
 
@@ -174,7 +179,8 @@ namespace littleRunner.Worlddata
                 string type = xmlReader.Name;
                 Dictionary<string, object> serialized = Deserialize(ref xmlReader, type);
 
-                Type tType = Type.GetType(type);
+                string typePrefix = "littleRunner.GameObjects." + section + ".";
+                Type tType = Type.GetType(typePrefix + type);
                 GameObject go = (GameObject)Activator.CreateInstance(tType);
                 go.Deserialize(serialized);
                 go.Init(world, aiEventHandler);
@@ -200,7 +206,8 @@ namespace littleRunner.Worlddata
                 string type = xmlReader.Name;
                 Dictionary<string, object> serialized = Deserialize(ref xmlReader, type);
 
-                Type tType = Type.GetType(type);
+                string typePrefix = "littleRunner.GameObjects." + section + ".";
+                Type tType = Type.GetType(typePrefix + type);
                 GameObject go = (GameObject)Activator.CreateInstance(tType);
                 go.Deserialize(serialized);
                 go.Init(world, aiEventHandler);
@@ -227,7 +234,8 @@ namespace littleRunner.Worlddata
                 string type = xmlReader.Name;
                 Dictionary<string, object> serialized = Deserialize(ref xmlReader, type);
 
-                Type tType = Type.GetType(type);
+                string typePrefix = "littleRunner.GameObjects." + section + ".";
+                Type tType = Type.GetType(typePrefix + type);
                 GameObject go = (GameObject)Activator.CreateInstance(tType);
                 go.Deserialize(serialized);
                 go.Init(world, aiEventHandler);
@@ -259,9 +267,7 @@ namespace littleRunner.Worlddata
             {
                 XmlTextReader xmlReader = new XmlTextReader(filename);
                 xmlReader.ReadStartElement("Level");
-                xmlReader.ReadStartElement("Settings");
-                settings.Deserialize(Deserialize(ref xmlReader, "littleRunner.LevelSettings"));
-                xmlReader.ReadEndElement();
+                settings.Deserialize(Deserialize(ref xmlReader, "Settings"));
 
 
                 xmlReader.ReadStartElement("Data");

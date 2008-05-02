@@ -4,6 +4,7 @@ using System.Text;
 using System.ComponentModel;
 
 using System.Drawing;
+using littleRunner.Gamedata.Worlddata;
 
 
 namespace littleRunner.GameObjects
@@ -90,6 +91,14 @@ namespace littleRunner.GameObjects
                 return true;
             return false;
         }
+        public bool InRectangle(Rectangle rect)
+        {
+            if (Left >= rect.X && Right <= rect.X + rect.Width &&
+                Top >= rect.Y && Bottom <= rect.Y + rect.Height)
+                return true;
+            return false;
+        }
+
 
         public virtual void Init(World world, GameEventHandler aiEventHandler)
         {

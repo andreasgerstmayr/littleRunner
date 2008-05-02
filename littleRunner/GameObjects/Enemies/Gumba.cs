@@ -85,7 +85,7 @@ namespace littleRunner.GameObjects.Enemies
             base.Remove();
 
             Dictionary<GameEventArg, object> pointsArgs = new Dictionary<GameEventArg, object>();
-            pointsArgs[GameEventArg.points] = 5;
+            pointsArgs[GameEventArg.points] = 1;
             AiEventHandler(GameEvent.gotPoints, pointsArgs);
         }
 

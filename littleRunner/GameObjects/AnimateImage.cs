@@ -10,6 +10,7 @@ namespace littleRunner.GameObjects
 
     class AnimateImage
     {
+        static public bool Refresh;
         Image[,] images;
         int milliSecPerFrame;
         int cur;
@@ -23,7 +24,7 @@ namespace littleRunner.GameObjects
         public void Draw(Graphics g, GameDirection direction, int left, int top, int width, int height)
         {
             g.DrawImage(images[(int)direction, cur], left, top, width, height);
-            if ((DateTime.Now - last).TotalMilliseconds >= milliSecPerFrame)
+            if ((DateTime.Now - last).TotalMilliseconds >= milliSecPerFrame && Refresh)
             {
                 cur++;
                 last = DateTime.Now;
