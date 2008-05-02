@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
+using littleRunner.Gamedata.Worlddata;
 using littleRunner.GameObjects;
 using littleRunner.GameObjects.Enemies;
 using littleRunner.GameObjects.MovingElements;
@@ -25,17 +26,21 @@ namespace littleRunner.Editordata
         int mouseX, mouseY;
         List<Keys> pressedKeys;
 
+        GamePoint startRectangle, endRectangle;
+        Rectangle curRectangle;
 
         public Editor(ProgramSwitcher programSwitcher)
         {
             InitializeComponent();
+
+            AnimateImage.Refresh = false;
 
             this.programSwitcher = programSwitcher;
             World defaultWorld = getDefaultWorld();
             tmpHandler = new TmpFileHandler(openFile, saveFile, defaultWorld.Serialize, 5);
             defaultWorld = null;
             defaultContextMenuItems = objectContext.Items.Count;
-
+            curRectangle = Rectangle.Empty;
 
             focus = null;
             moving = false;
@@ -116,20 +121,39 @@ namespace littleRunner.Editordata
             }
 
 
-            if (!found)
-            {
-                focus = null;
-                properties.SelectedObjects = new object[] { };
-            }
-            else
+            if (found)
             {
                 if (!pressedKeys.Contains(Keys.ControlKey))
                     properties.SelectedObjects = new object[] { focus };
             }
+            else
+            {
+                focus = null;
+                properties.SelectedObjects = new object[] { };
+            }
+
+            startRectangle = new GamePoint(e.X - world.Viewport.X, e.Y - world.Viewport.Y);
+        }
+        private void level_MouseUp(object sender, MouseEventArgs e)
+        {
+            moving = false;
+
+            if (endRectangle != null)
+            {
+                EditorUI.FetchElementsInRectangle(curRectangle, ref world, ref properties);
+
+                startRectangle = null;
+                endRectangle = null;
+                curRectangle = Rectangle.Empty;
+            }
+
+            level.Invalidate(); // paint again, with background
         }
 
         private void level_MouseMove(object sender, MouseEventArgs e)
         {
+            bool invalidate = false;
+
             if (moving && focus != null)
             {
                 int movementTop = (e.Y - mouseY) - focus.Top;
@@ -147,37 +171,21 @@ namespace littleRunner.Editordata
                         ((GameObject)properties.SelectedObjects[i]).Left += movementLeft;
                     }
                 }
-                level.Invalidate();
-            }
-        }
 
-        private void level_MouseUp(object sender, MouseEventArgs e)
-        {
-            moving = false;
-            level.Invalidate(); // paint again, with background
-        }
-
-        private void ViewContextMenue(int x, int y)
-        {
-            for (int i = objectContext.Items.Count - 1; i >= defaultContextMenuItems; i--) // start from end
-            {                                               // easier to understand, because otherwise
-                objectContext.Items.RemoveAt(i);            // you 've to remove always the 3. element
+                invalidate = true;
             }
 
-            List<ToolStripItem> newitems = EditorUI.GenerateProperties(ref level, ref properties);
-            objectContext.Items.AddRange(newitems.ToArray());
-            objectContext.Show(Cursor.Position.X, Cursor.Position.Y);
-        }
-
-
-        private void level_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            if (focus != null && Array.IndexOf<object>(properties.SelectedObjects, focus) != -1)
+            if (startRectangle != null && focus == null)
             {
-                List<object> selected = new List<object>(properties.SelectedObjects);
-                selected.Remove(focus);
-                properties.SelectedObjects = selected.ToArray();
+                endRectangle = new GamePoint(e.X - world.Viewport.X, e.Y - world.Viewport.Y);
+                curRectangle = GamePoint.GetRectangle(startRectangle, endRectangle);
+
+                invalidate = true;
             }
+
+
+            if (invalidate)
+                level.Invalidate();
         }
 
         private void level_MouseClick(object sender, MouseEventArgs e)
@@ -213,6 +221,29 @@ namespace littleRunner.Editordata
                     mouseY = e.Y - focus.Top;
                 }
             }
+        }
+
+        private void level_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (focus != null && Array.IndexOf<object>(properties.SelectedObjects, focus) != -1)
+            {
+                List<object> selected = new List<object>(properties.SelectedObjects);
+                selected.Remove(focus);
+                properties.SelectedObjects = selected.ToArray();
+            }
+        }
+
+
+        private void ViewContextMenue(int x, int y)
+        {
+            for (int i = objectContext.Items.Count - 1; i >= defaultContextMenuItems; i--) // start from end
+            {                                               // easier to understand, because otherwise
+                objectContext.Items.RemoveAt(i);            // you 've to remove always the 3. element
+            }
+
+            List<ToolStripItem> newitems = EditorUI.GenerateProperties(ref level, ref properties);
+            objectContext.Items.AddRange(newitems.ToArray());
+            objectContext.Show(Cursor.Position.X, Cursor.Position.Y);
         }
         #endregion
 
@@ -299,6 +330,7 @@ namespace littleRunner.Editordata
 
             g.ShowDialog();
             g = null;
+            AnimateImage.Refresh = false;
         }
 
         private void setCurrentViewport(ref Game g)
@@ -318,6 +350,7 @@ namespace littleRunner.Editordata
 
             g.ShowDialog();
             g = null;
+            AnimateImage.Refresh = false;
         }
 
         private void startGamecurrentToolStripMenuItem_Click(object sender, EventArgs e)
@@ -334,6 +367,7 @@ namespace littleRunner.Editordata
 
             g.ShowDialog();
             g = null;
+            AnimateImage.Refresh = false;
 
             this.Text = oldtext;
         }
@@ -383,18 +417,14 @@ namespace littleRunner.Editordata
 
 
         #region Insert GameObject - Handlers
-        private void addElement(GameObject go)
+        private void addElement(GameObject go, bool alwaysAddToSelection)
         {
             go.Init(world, GameAI.NullAiEventHandlerMethod);
             world.Add(go);
             level.Invalidate();
 
             // focus on it
-            if (!pressedKeys.Contains(Keys.ControlKey) ||
-                properties.SelectedObject is LevelSettings ||
-                properties.SelectedObjects.Length == 1)
-                properties.SelectedObjects = new object[] { go };
-            else
+            if (pressedKeys.Contains(Keys.ControlKey) || alwaysAddToSelection)
             {
                 object[] selected = properties.SelectedObjects;
                 Array.Resize<object>(ref selected, selected.Length + 1);
@@ -402,6 +432,14 @@ namespace littleRunner.Editordata
 
                 properties.SelectedObjects = selected;
             }
+            else if (properties.SelectedObjects.Length == 1)
+            {
+                properties.SelectedObjects = new object[] { go };
+            }
+        }
+        private void addElement(GameObject go)
+        {
+            addElement(go, false);
         }
 
 
@@ -568,7 +606,10 @@ namespace littleRunner.Editordata
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (object o in properties.SelectedObjects)
+            object[] selected = properties.SelectedObjects;
+            properties.SelectedObjects = new object[] { };
+
+            foreach (object o in selected)
             {
                 if (!(o is LevelSettings))
                 {
@@ -578,7 +619,7 @@ namespace littleRunner.Editordata
                     GameObject cloned = (GameObject)Activator.CreateInstance(go.GetType());
                     cloned.Deserialize(serialized);
                     cloned.Left = go.Right + 5;
-                    addElement(cloned);
+                    addElement(cloned, true);
                 }
             }
         }
@@ -615,7 +656,26 @@ namespace littleRunner.Editordata
 
         private void level_Paint(object sender, PaintEventArgs e)
         {
-            world.Draw(e.Graphics, enableBG ? (!moving) : false, properties.SelectedObjects);
+            bool drawBg = true;
+            if (enableBG)
+                drawBg = !moving; // when moving == true, drawBg = false
+
+            if (drawBg && curRectangle != Rectangle.Empty)
+                drawBg = false;
+
+
+            world.Draw(e.Graphics, drawBg, properties.SelectedObjects);
+
+            if (curRectangle != Rectangle.Empty)
+            {
+                Graphics g = e.Graphics;
+                g.TranslateTransform(world.Viewport.X, world.Viewport.Y);
+
+                g.DrawRectangle(Pens.DodgerBlue, curRectangle);
+                g.FillRectangle(new SolidBrush(Color.FromArgb(15, Color.DodgerBlue)), curRectangle);
+
+                g.TranslateTransform(-world.Viewport.X, -world.Viewport.Y);
+            }
         }
 
         private void properties_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
@@ -725,7 +785,7 @@ namespace littleRunner.Editordata
 
         private void level_SizeChanged(object sender, EventArgs e)
         {
-            if (world != null)
+            if (world != null && WindowState != FormWindowState.Minimized)
             {
                 world.Settings.GameWindowWidth = level.Width;
                 world.Settings.GameWindowHeight = level.Height;

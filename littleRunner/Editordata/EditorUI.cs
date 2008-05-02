@@ -4,11 +4,13 @@ using System.Text;
 using System.Windows.Forms;
 using System.ComponentModel;
 using System.Reflection;
+using System.Drawing;
 
+using littleRunner.Gamedata.Worlddata;
 using littleRunner.GameObjects;
 
 
-namespace littleRunner
+namespace littleRunner.Editordata
 {
     class EditorUI
     {
@@ -85,7 +87,7 @@ namespace littleRunner
                 if (CheckOtherObjects(i.Name, i.PropertyType, selected, out valuesEqual))
                 {
                     ToolStripMenuItem item = new ToolStripMenuItem(i.Name);
-                    
+
                     List<ToolStripMenuItem> itemDDItems = new List<ToolStripMenuItem>();
                     bool canWrite = i.CanWrite;
                     foreach (string value in Enum.GetNames(i.PropertyType))
@@ -153,5 +155,20 @@ namespace littleRunner
             properties.Refresh();
             level.Invalidate();
         }
+
+
+        static public void FetchElementsInRectangle(Rectangle curRectangle, ref World world, ref PropertyGrid properties)
+        {
+            List<object> selected = new List<object>();
+
+            foreach (GameObject go in world.AllElements)
+            {
+                if (go.InRectangle(curRectangle))
+                    selected.Add(go);
+            }
+
+            properties.SelectedObjects = selected.ToArray();
+        }
+
     }
 }

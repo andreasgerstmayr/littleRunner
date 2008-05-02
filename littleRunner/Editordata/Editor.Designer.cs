@@ -90,6 +90,7 @@
             this.objectContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toForegroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actualFocus = new System.Windows.Forms.Label();
             this.showlevelSettings = new System.Windows.Forms.Button();
@@ -97,7 +98,6 @@
             this.tableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.hScroll = new System.Windows.Forms.HScrollBar();
             this.vScroll = new System.Windows.Forms.VScrollBar();
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menubar.SuspendLayout();
             this.menu.SuspendLayout();
             this.objectContext.SuspendLayout();
@@ -654,7 +654,7 @@
             this.copyToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.objectContext.Name = "objectContext";
-            this.objectContext.Size = new System.Drawing.Size(157, 114);
+            this.objectContext.Size = new System.Drawing.Size(157, 92);
             // 
             // toForegroundToolStripMenuItem
             // 
@@ -669,6 +669,13 @@
             this.toBackgroundToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.toBackgroundToolStripMenuItem.Text = "To background";
             this.toBackgroundToolStripMenuItem.Click += new System.EventHandler(this.toBackgroundToolStripMenuItem_Click);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
@@ -765,13 +772,6 @@
             this.vScroll.Value = 550;
             this.vScroll.MouseCaptureChanged += new System.EventHandler(this.vScroll_MouseCaptureChanged);
             this.vScroll.ValueChanged += new System.EventHandler(this.vScroll_ValueChanged);
-            // 
-            // copyToolStripMenuItem
-            // 
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.copyToolStripMenuItem.Text = "Copy";
-            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // Editor
             // 

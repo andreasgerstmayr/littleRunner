@@ -2,30 +2,29 @@
 <!--littleRunner level file-->
 <Level>
   <Settings>
-    <littleRunner.LevelSettings>
-      <gameWindowWidth>
-        <type>System.Int32</type>
-        <value>700</value>
-      </gameWindowWidth>
-      <gameWindowHeight>
-        <type>System.Int32</type>
-        <value>550</value>
-      </gameWindowHeight>
-      <levelWidth>
-        <type>System.Int32</type>
-        <value>2000</value>
-      </levelWidth>
-      <levelHeight>
-        <type>System.Int32</type>
-        <value>550</value>
-      </levelHeight>
-      <Background>
-        <type>littleRunner.Backgrounds</type>
-        <value>Blue_Waterhills</value>
-      </Background>
-      <Script>
-        <type>System.String</type>
-        <value><![CDATA[from MovingPlatform import CreateMovingPlatform
+    <gameWindowWidth>
+      <type>System.Int32</type>
+      <value>700</value>
+    </gameWindowWidth>
+    <gameWindowHeight>
+      <type>System.Int32</type>
+      <value>550</value>
+    </gameWindowHeight>
+    <levelWidth>
+      <type>System.Int32</type>
+      <value>2000</value>
+    </levelWidth>
+    <levelHeight>
+      <type>System.Int32</type>
+      <value>550</value>
+    </levelHeight>
+    <Background>
+      <type>littleRunner.Gamedata.Worlddata.Backgrounds</type>
+      <value>Blue_Waterhills</value>
+    </Background>
+    <Script>
+      <type>System.String</type>
+      <value><![CDATA[from MovingPlatform import CreateMovingPlatform
 from MovingObject import CreateMovingObject
 from FlyingCircle import CreateFlyingCircle
 
@@ -42,12 +41,11 @@ CreateFlyingCircle(Spika2, handler, 100)
 
 CreateMovingPlatform(Plat2, handler, MGO, 200, startDirection=GameDirection.Right, startOnOver=False)
 CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
-      </Script>
-    </littleRunner.LevelSettings>
+    </Script>
   </Settings>
   <Data>
     <StickyElements>
-      <littleRunner.GameObjects.StickyElements.DesignElements>
+      <DesignElements>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -72,8 +70,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.DesignElement</type>
           <value>Tree</value>
         </Element>
-      </littleRunner.GameObjects.StickyElements.DesignElements>
-      <littleRunner.GameObjects.StickyElements.Floor>
+      </DesignElements>
+      <Floor>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -98,8 +96,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
-      </littleRunner.GameObjects.StickyElements.Floor>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Floor>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -124,8 +122,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Ice</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -150,8 +148,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Ice</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -176,8 +174,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Ice</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -202,8 +200,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Ice</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -228,8 +226,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Ice</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -254,8 +252,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Ice</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -280,8 +278,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Ice</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -306,8 +304,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -332,8 +330,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Ice</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -358,8 +356,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Ice</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Box>
+      </Brick>
+      <Box>
         <Name>
           <type>System.String</type>
           <value>Box1</value>
@@ -392,8 +390,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>System.Int32</type>
           <value>1</value>
         </Content>
-      </littleRunner.GameObjects.StickyElements.Box>
-      <littleRunner.GameObjects.StickyElements.Floor>
+      </Box>
+      <Floor>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -418,8 +416,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
-      </littleRunner.GameObjects.StickyElements.Floor>
-      <littleRunner.GameObjects.StickyElements.LevelEnd>
+      </Floor>
+      <LevelEnd>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -452,8 +450,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.LevelEndImg</type>
           <value>House</value>
         </Image>
-      </littleRunner.GameObjects.StickyElements.LevelEnd>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </LevelEnd>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -478,8 +476,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -504,8 +502,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -530,8 +528,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -556,8 +554,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -582,8 +580,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -608,8 +606,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -634,8 +632,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -660,8 +658,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -686,8 +684,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -712,8 +710,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -738,8 +736,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -764,8 +762,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Star>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -790,8 +788,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Yellow</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Box>
+      </Brick>
+      <Box>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -824,8 +822,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>System.Int32</type>
           <value>1</value>
         </Content>
-      </littleRunner.GameObjects.StickyElements.Box>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Box>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -850,8 +848,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Brown</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -876,8 +874,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Ice</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -902,8 +900,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Brown</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Brick>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -928,8 +926,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -954,8 +952,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -980,8 +978,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1006,8 +1004,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Star>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1032,8 +1030,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Brown</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1058,8 +1056,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Brown</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1084,8 +1082,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Brown</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1110,8 +1108,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Brown</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1136,8 +1134,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Ice</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1162,8 +1160,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Brown</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1188,8 +1186,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Brown</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1214,8 +1212,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Brown</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1240,8 +1238,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Brown</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1266,8 +1264,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Brown</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1292,8 +1290,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Ice</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Floor>
+      </Brick>
+      <Floor>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1318,8 +1316,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
-      </littleRunner.GameObjects.StickyElements.Floor>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Floor>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1344,8 +1342,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1370,8 +1368,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1396,8 +1394,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1422,8 +1420,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1448,8 +1446,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1474,8 +1472,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1500,10 +1498,44 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Box>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>278</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>2156</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <BoxType>
+          <type>littleRunner.GameObjects.StickyElements.BoxType</type>
+          <value>Star</value>
+        </BoxType>
+        <BoxStyle>
+          <type>littleRunner.GameObjects.StickyElements.BoxStyle</type>
+          <value>Yellow</value>
+        </BoxStyle>
+        <Content>
+          <type>System.Int32</type>
+          <value>10</value>
+        </Content>
+      </Box>
     </StickyElements>
     <MovingElements>
-      <littleRunner.GameObjects.MovingElements.Bricks>
+      <Bricks>
         <Name>
           <type>System.String</type>
           <value>Plat1</value>
@@ -1528,8 +1560,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.MovingElements.Bricks>
-      <littleRunner.GameObjects.MovingElements.Bricks>
+      </Bricks>
+      <Bricks>
         <Name>
           <type>System.String</type>
           <value>Plat2</value>
@@ -1554,10 +1586,10 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.MovingElements.Bricks>
+      </Bricks>
     </MovingElements>
     <Enemies>
-      <littleRunner.GameObjects.Enemies.Spika>
+      <Spika>
         <Name>
           <type>System.String</type>
           <value>Spika1</value>
@@ -1586,8 +1618,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
           <value>Green</value>
         </Color>
-      </littleRunner.GameObjects.Enemies.Spika>
-      <littleRunner.GameObjects.Enemies.Spika>
+      </Spika>
+      <Spika>
         <Name>
           <type>System.String</type>
           <value>Spika2</value>
@@ -1616,8 +1648,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
           <value>Grey</value>
         </Color>
-      </littleRunner.GameObjects.Enemies.Spika>
-      <littleRunner.GameObjects.Enemies.Spika>
+      </Spika>
+      <Spika>
         <Name>
           <type>System.String</type>
           <value>Spika3</value>
@@ -1646,8 +1678,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
           <value>Green</value>
         </Color>
-      </littleRunner.GameObjects.Enemies.Spika>
-      <littleRunner.GameObjects.Enemies.Turtle>
+      </Spika>
+      <Turtle>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1680,8 +1712,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
-      </littleRunner.GameObjects.Enemies.Turtle>
-      <littleRunner.GameObjects.Enemies.Spika>
+      </Turtle>
+      <Spika>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1710,7 +1742,7 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
           <value>Grey</value>
         </Color>
-      </littleRunner.GameObjects.Enemies.Spika>
+      </Spika>
     </Enemies>
   </Data>
 </Level>

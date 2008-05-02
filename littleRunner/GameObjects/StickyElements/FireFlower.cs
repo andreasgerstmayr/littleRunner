@@ -25,7 +25,7 @@ namespace littleRunner.GameObjects.StickyElements
                         break;
                     case MainGameObjectMode.NormalFire:
                         Dictionary<GameEventArg, object> pointsArgs = new Dictionary<GameEventArg,object>();
-                        pointsArgs[GameEventArg.points] = 100;
+                        pointsArgs[GameEventArg.points] = 10;
                         geventhandler(GameEvent.gotPoints, pointsArgs);
                         break;
                 }

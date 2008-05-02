@@ -265,7 +265,7 @@ namespace littleRunner.GameObjects.MainGameObjects
                 if (mode == MainGameObjectMode.Small)
                     Mode = MainGameObjectMode.Normal;
             }
-            else if (gevent == GameEvent.gotPoisonMushroom)
+            else if (gevent == GameEvent.gotPoisonMushroom && !immortialize)
             {
                 if (mode == MainGameObjectMode.NormalFire || mode == MainGameObjectMode.Normal)
                     Mode = MainGameObjectMode.Small;

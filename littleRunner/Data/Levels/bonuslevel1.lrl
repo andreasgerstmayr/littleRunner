@@ -2,30 +2,29 @@
 <!--littleRunner level file-->
 <Level>
   <Settings>
-    <littleRunner.LevelSettings>
-      <gameWindowWidth>
-        <type>System.Int32</type>
-        <value>700</value>
-      </gameWindowWidth>
-      <gameWindowHeight>
-        <type>System.Int32</type>
-        <value>550</value>
-      </gameWindowHeight>
-      <levelWidth>
-        <type>System.Int32</type>
-        <value>700</value>
-      </levelWidth>
-      <levelHeight>
-        <type>System.Int32</type>
-        <value>550</value>
-      </levelHeight>
-      <Background>
-        <type>littleRunner.Backgrounds</type>
-        <value>None</value>
-      </Background>
-      <Script>
-        <type>System.String</type>
-        <value><![CDATA[from MovingPlatform import CreateMovingPlatform
+    <gameWindowWidth>
+      <type>System.Int32</type>
+      <value>700</value>
+    </gameWindowWidth>
+    <gameWindowHeight>
+      <type>System.Int32</type>
+      <value>550</value>
+    </gameWindowHeight>
+    <levelWidth>
+      <type>System.Int32</type>
+      <value>700</value>
+    </levelWidth>
+    <levelHeight>
+      <type>System.Int32</type>
+      <value>550</value>
+    </levelHeight>
+    <Background>
+      <type>littleRunner.Gamedata.Worlddata.Backgrounds</type>
+      <value>None</value>
+    </Background>
+    <Script>
+      <type>System.String</type>
+      <value><![CDATA[from MovingPlatform import CreateMovingPlatform
 
 CreateMovingPlatform(Plat1, handler, MGO, 1150, speed=10, startDirection=GameDirection.Right)
 
@@ -40,12 +39,11 @@ if Session.Get('bonuslevel1.lrl', 'gotLvl') == True:
    AiEventHandler(GameEvent.finishedLevel, levelFinishArgs)
 else:
    Session.Set('bonuslevel1.lrl', 'gotLvl', True)]]></value>
-      </Script>
-    </littleRunner.LevelSettings>
+    </Script>
   </Settings>
   <Data>
     <StickyElements>
-      <littleRunner.GameObjects.StickyElements.Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -70,8 +68,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -96,8 +94,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -122,8 +120,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -148,8 +146,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -174,8 +172,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -200,8 +198,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -226,8 +224,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -252,8 +250,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -278,8 +276,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -304,8 +302,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -330,8 +328,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -356,8 +354,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -382,8 +380,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -408,8 +406,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -434,8 +432,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -460,8 +458,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -486,8 +484,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -512,8 +510,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -538,8 +536,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -564,8 +562,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -590,8 +588,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -616,8 +614,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -642,8 +640,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -668,8 +666,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -694,8 +692,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -720,8 +718,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -746,8 +744,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -772,8 +770,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -798,8 +796,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -824,8 +822,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -850,8 +848,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -876,8 +874,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -902,8 +900,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -928,8 +926,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -954,8 +952,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -980,8 +978,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1006,8 +1004,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1032,8 +1030,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1058,8 +1056,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1084,8 +1082,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1110,8 +1108,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1136,8 +1134,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1162,8 +1160,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1188,8 +1186,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1214,8 +1212,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1240,8 +1238,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1266,8 +1264,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1292,8 +1290,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1318,8 +1316,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.LevelEnd>
+      </Star>
+      <LevelEnd>
         <Name>
           <type>System.String</type>
           <value>House</value>
@@ -1352,8 +1350,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.LevelEndImg</type>
           <value>House</value>
         </Image>
-      </littleRunner.GameObjects.StickyElements.LevelEnd>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </LevelEnd>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1378,8 +1376,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1404,8 +1402,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1430,8 +1428,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1456,8 +1454,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1482,8 +1480,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1508,8 +1506,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1534,8 +1532,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1560,8 +1558,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1586,8 +1584,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1612,8 +1610,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1638,8 +1636,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1664,8 +1662,8 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1690,10 +1688,10 @@ else:
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
+      </Star>
     </StickyElements>
     <MovingElements>
-      <littleRunner.GameObjects.MovingElements.Bricks>
+      <Bricks>
         <Name>
           <type>System.String</type>
           <value>Plat1</value>
@@ -1718,10 +1716,10 @@ else:
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Invisible</value>
         </Color>
-      </littleRunner.GameObjects.MovingElements.Bricks>
+      </Bricks>
     </MovingElements>
     <Enemies>
-      <littleRunner.GameObjects.Enemies.Spika>
+      <Spika>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1750,8 +1748,8 @@ else:
           <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
           <value>Green</value>
         </Color>
-      </littleRunner.GameObjects.Enemies.Spika>
-      <littleRunner.GameObjects.Enemies.Spika>
+      </Spika>
+      <Spika>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -1780,7 +1778,7 @@ else:
           <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
           <value>Orange</value>
         </Color>
-      </littleRunner.GameObjects.Enemies.Spika>
+      </Spika>
     </Enemies>
   </Data>
 </Level>

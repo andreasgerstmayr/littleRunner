@@ -4,62 +4,12 @@ using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 
+using littleRunner.Gamedata.Worlddata;
 using littleRunner.GameObjects;
 
 
 namespace littleRunner
 {
-    public enum GameEvent
-    {
-        crashInEnemy,
-        outOfRange,
-        dead,
-        gotPoints,
-        gotGoodMushroom,
-        gotPoisonMushroom,
-        gotLive,
-        gotFireFlower,
-        gotImmortialize,
-        finishedLevel
-    }
-    public enum GameDirection
-    {
-        Left,
-        Right,
-        Top,
-        Bottom,
-        None
-    }
-    public enum GameElement
-    {
-        MGO,
-        Enemy,
-        MovingElement,
-        Unknown
-    }
-    public enum GameEventArg
-    {
-        nextLevel,
-        nextLevelStartAt,
-        points
-    }
-    public enum GameKey
-    {
-        goLeft,
-        goRight,
-        jumpLeft,
-        jumpTop,
-        jumpRight,
-        fire
-    }
-    public enum MainGameObjectMode
-    {
-        NormalFire,
-        Normal,
-        Small
-    }
-
-
     public delegate void GameEventHandler(GameEvent gevent, Dictionary<GameEventArg, object> args);
     public delegate void GameCrashHandler(GameEvent gevent, GameDirection cidirection);
 
@@ -228,10 +178,10 @@ namespace littleRunner
             {
                 gameControlObj.Points += (int)args[GameEventArg.points];
 
-                if (gameControlObj.Points >= 1000)
+                if (gameControlObj.Points >= 100)
                 {
                     gameControlObj.Lives++;
-                    gameControlObj.Points -= 1000;
+                    gameControlObj.Points -= 100;
                 }
             }
             else if (gevent == GameEvent.outOfRange || gevent == GameEvent.dead)

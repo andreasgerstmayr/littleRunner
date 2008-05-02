@@ -69,19 +69,19 @@ namespace littleRunner.GameObjects.StickyElements
             switch (type)
             {
                 case BoxType.GoodMushroom:
-                    m = new Mushroom(MushroomType.Good, World.MGO.Direction, Top, Left);
+                    m = new Mushroom(MushroomType.Good, GameDirection.Right, Top, Left);
                     m.Init(World, AiEventHandler);
                     World.MovingElements.Add(m);
                     break;
 
                 case BoxType.PoisonMushroom:
-                    m = new Mushroom(MushroomType.Poison, World.MGO.Direction, Top, Left);
+                    m = new Mushroom(MushroomType.Poison, GameDirection.Right, Top, Left);
                     m.Init(World, AiEventHandler);
                     World.MovingElements.Add(m);
                     break;
 
                 case BoxType.LiveMushroom:
-                    m = new Mushroom(MushroomType.Live, World.MGO.Direction, Top, Left);
+                    m = new Mushroom(MushroomType.Live, GameDirection.Right, Top, Left);
                     m.Init(World, AiEventHandler);
                     World.MovingElements.Add(m);
                     break;
@@ -99,7 +99,7 @@ namespace littleRunner.GameObjects.StickyElements
                     break;
 
                 case BoxType.ImmortializeStar:
-                    ImmortializeStar iStar = new ImmortializeStar(World.MGO.Direction, Top, Left);
+                    ImmortializeStar iStar = new ImmortializeStar(GameDirection.Right, Top, Left);
                     iStar.Init(World, AiEventHandler);
                     World.MovingElements.Add(iStar);
                     break;

@@ -8,33 +8,55 @@
     </gameWindowWidth>
     <gameWindowHeight>
       <type>System.Int32</type>
-      <value>550</value>
+      <value>450</value>
     </gameWindowHeight>
     <levelWidth>
       <type>System.Int32</type>
-      <value>1500</value>
+      <value>1700</value>
     </levelWidth>
     <levelHeight>
       <type>System.Int32</type>
-      <value>550</value>
+      <value>450</value>
     </levelHeight>
     <Background>
       <type>littleRunner.Gamedata.Worlddata.Backgrounds</type>
-      <value>Blue_Mountains</value>
+      <value>Green_Junglehills</value>
     </Background>
     <Script>
       <type>System.String</type>
-      <value><![CDATA[from FlyingCircle import CreateFlyingCircle
-from MovingPlatform import CreateMovingPlatform
+      <value><![CDATA[from MovingPlatform import CreateMovingPlatform
 
-CreateFlyingCircle(Spika1, handler, 50, speed=5)
-
-CreateMovingPlatform(Plat1, handler, MGO, 400, startDirection=GameDirection.Right, startOnOver=False)
-CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Right)]]></value>
+CreateMovingPlatform(Plat1, handler, MGO, 290, startDirection=GameDirection.Right)]]></value>
     </Script>
   </Settings>
   <Data>
     <StickyElements>
+      <DesignElements>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>180</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>517</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>200</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>200</value>
+        </Height>
+        <Element>
+          <type>littleRunner.GameObjects.StickyElements.DesignElement</type>
+          <value>Tree</value>
+        </Element>
+      </DesignElements>
       <Floor>
         <Name>
           <type>NULL</type>
@@ -42,15 +64,15 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>461</value>
+          <value>380</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>4</value>
+          <value>7</value>
         </Left>
         <Width>
           <type>System.Int32</type>
-          <value>819</value>
+          <value>1386</value>
         </Width>
         <Height>
           <type>System.Int32</type>
@@ -61,162 +83,6 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>Green</value>
         </FloorStyle>
       </Floor>
-      <Brick>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>429</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>198</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
-          <value>Brown</value>
-        </Color>
-      </Brick>
-      <Brick>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>419</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>525</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
-          <value>Blue</value>
-        </Color>
-      </Brick>
-      <Brick>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>376</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>525</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
-          <value>Blue</value>
-        </Color>
-      </Brick>
-      <Brick>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>333</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>525</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
-          <value>Blue</value>
-        </Color>
-      </Brick>
-      <Brick>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>290</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>525</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
-          <value>Blue</value>
-        </Color>
-      </Brick>
-      <Brick>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>247</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>525</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
-          <value>Blue</value>
-        </Color>
-      </Brick>
       <Pipe>
         <Name>
           <type>NULL</type>
@@ -224,11 +90,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>365</value>
+          <value>284</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>750</value>
+          <value>525</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -250,71 +116,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>321</value>
+          <value>291</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>646</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <LevelEnd>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>307</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>1871</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>322</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>192</value>
-        </Height>
-        <NextLevel>
-          <type>System.String</type>
-          <value>level9.lrl</value>
-        </NextLevel>
-        <StartAt>
-          <type>System.Int32</type>
-          <value>0</value>
-        </StartAt>
-        <Image>
-          <type>littleRunner.GameObjects.StickyElements.LevelEndImg</type>
-          <value>Igloo</value>
-        </Image>
-      </LevelEnd>
-      <Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>266</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>449</value>
+          <value>418</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -336,11 +142,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>223</value>
+          <value>251</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>479</value>
+          <value>451</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -362,89 +168,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>194</value>
+          <value>218</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>520</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>172</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>570</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>211</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>1082</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>193</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>1124</value>
+          <value>489</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -470,137 +198,7 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>1171</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>212</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>1211</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>459</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>1629</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>398</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>1696</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>345</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>1771</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>303</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>1856</value>
+          <value>538</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -622,11 +220,501 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>200</value>
+          <value>220</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>763</value>
+          <value>719</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <BoxType>
+          <type>littleRunner.GameObjects.StickyElements.BoxType</type>
+          <value>Star</value>
+        </BoxType>
+        <BoxStyle>
+          <type>littleRunner.GameObjects.StickyElements.BoxStyle</type>
+          <value>Yellow</value>
+        </BoxStyle>
+        <Content>
+          <type>System.Int32</type>
+          <value>1</value>
+        </Content>
+      </Box>
+      <Box>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>220</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>767</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <BoxType>
+          <type>littleRunner.GameObjects.StickyElements.BoxType</type>
+          <value>Star</value>
+        </BoxType>
+        <BoxStyle>
+          <type>littleRunner.GameObjects.StickyElements.BoxStyle</type>
+          <value>Yellow</value>
+        </BoxStyle>
+        <Content>
+          <type>System.Int32</type>
+          <value>1</value>
+        </Content>
+      </Box>
+      <Box>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>220</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>814</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <BoxType>
+          <type>littleRunner.GameObjects.StickyElements.BoxType</type>
+          <value>Star</value>
+        </BoxType>
+        <BoxStyle>
+          <type>littleRunner.GameObjects.StickyElements.BoxStyle</type>
+          <value>Yellow</value>
+        </BoxStyle>
+        <Content>
+          <type>System.Int32</type>
+          <value>1</value>
+        </Content>
+      </Box>
+      <Box>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>220</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>861</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <BoxType>
+          <type>littleRunner.GameObjects.StickyElements.BoxType</type>
+          <value>Star</value>
+        </BoxType>
+        <BoxStyle>
+          <type>littleRunner.GameObjects.StickyElements.BoxStyle</type>
+          <value>Yellow</value>
+        </BoxStyle>
+        <Content>
+          <type>System.Int32</type>
+          <value>1</value>
+        </Content>
+      </Box>
+      <Box>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>220</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>908</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <BoxType>
+          <type>littleRunner.GameObjects.StickyElements.BoxType</type>
+          <value>Star</value>
+        </BoxType>
+        <BoxStyle>
+          <type>littleRunner.GameObjects.StickyElements.BoxStyle</type>
+          <value>Yellow</value>
+        </BoxStyle>
+        <Content>
+          <type>System.Int32</type>
+          <value>1</value>
+        </Content>
+      </Box>
+      <Pipe>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>220</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>951</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>64</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>160</value>
+        </Height>
+        <PipeColor>
+          <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
+          <value>Green</value>
+        </PipeColor>
+      </Pipe>
+      <Floor>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>380</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>1509</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>378</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>64</value>
+        </Height>
+        <FloorStyle>
+          <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
+          <value>Green</value>
+        </FloorStyle>
+      </Floor>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>338</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>1726</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Ice</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>338</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>1770</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Blue</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>338</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>1814</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Red</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>295</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>1770</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Ice</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>295</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>1814</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Blue</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>252</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>1814</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Ice</value>
+        </Color>
+      </Brick>
+      <Star>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>156</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>1863</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <StarStyle>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
+          <value>Yellow</value>
+        </StarStyle>
+      </Star>
+      <Star>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>108</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>1920</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <StarStyle>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
+          <value>Yellow</value>
+        </StarStyle>
+      </Star>
+      <Star>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>74</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>1986</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <StarStyle>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
+          <value>Yellow</value>
+        </StarStyle>
+      </Star>
+      <LevelEnd>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>15</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>2294</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>96</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>128</value>
+        </Height>
+        <NextLevel>
+          <type>NULL</type>
+          <value>null</value>
+        </NextLevel>
+        <StartAt>
+          <type>System.Int32</type>
+          <value>0</value>
+        </StartAt>
+        <Image>
+          <type>littleRunner.GameObjects.StickyElements.LevelEndImg</type>
+          <value>House</value>
+        </Image>
+      </LevelEnd>
+      <Box>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>220</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>1017</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -658,37 +746,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>365</value>
+          <value>145</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>818</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>99</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
-          <value>Brown</value>
-        </Color>
-      </Bricks>
-      <Bricks>
-        <Name>
-          <type>System.String</type>
-          <value />
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>256</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>1114</value>
+          <value>2005</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -700,101 +762,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
         </Height>
         <Color>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
-          <value>Ice</value>
-        </Color>
-      </Bricks>
-      <Bricks>
-        <Name>
-          <type>System.String</type>
-          <value>Plat2</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>504</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>1356</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>215</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
-          <value>Ice</value>
+          <value>Red</value>
         </Color>
       </Bricks>
     </MovingElements>
     <Enemies>
-      <Turtle>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>395</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>245</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>57</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>64</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>True</value>
-        </StartAtViewpoint>
-        <TurtleStyle>
-          <type>littleRunner.GameObjects.Enemies.TurtleStyle</type>
-          <value>Green</value>
-        </TurtleStyle>
-        <Direction>
-          <type>littleRunner.GameDirection</type>
-          <value>Right</value>
-        </Direction>
-      </Turtle>
-      <Spika>
-        <Name>
-          <type>System.String</type>
-          <value>Spika1</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>328</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>648</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>True</value>
-        </StartAtViewpoint>
-        <Color>
-          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
-          <value>Green</value>
-        </Color>
-      </Spika>
       <Gumba>
         <Name>
           <type>NULL</type>
@@ -802,11 +774,11 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>425</value>
+          <value>342</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>573</value>
+          <value>430</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -829,6 +801,172 @@ CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Righ
           <value>Right</value>
         </Direction>
       </Gumba>
+      <Gumba>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>344</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>378</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>True</value>
+        </StartAtViewpoint>
+        <Color>
+          <type>littleRunner.GameObjects.Enemies.GumbaColor</type>
+          <value>Brown</value>
+        </Color>
+        <Direction>
+          <type>littleRunner.GameDirection</type>
+          <value>Right</value>
+        </Direction>
+      </Gumba>
+      <Gumba>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>345</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>850</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>True</value>
+        </StartAtViewpoint>
+        <Color>
+          <type>littleRunner.GameObjects.Enemies.GumbaColor</type>
+          <value>Brown</value>
+        </Color>
+        <Direction>
+          <type>littleRunner.GameDirection</type>
+          <value>Right</value>
+        </Direction>
+      </Gumba>
+      <Gumba>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>344</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>774</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>True</value>
+        </StartAtViewpoint>
+        <Color>
+          <type>littleRunner.GameObjects.Enemies.GumbaColor</type>
+          <value>Brown</value>
+        </Color>
+        <Direction>
+          <type>littleRunner.GameDirection</type>
+          <value>Right</value>
+        </Direction>
+      </Gumba>
+      <Turtle>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>312</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>1311</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>57</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>64</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>True</value>
+        </StartAtViewpoint>
+        <TurtleStyle>
+          <type>littleRunner.GameObjects.Enemies.TurtleStyle</type>
+          <value>Green</value>
+        </TurtleStyle>
+        <Direction>
+          <type>littleRunner.GameDirection</type>
+          <value>Left</value>
+        </Direction>
+      </Turtle>
+      <Spika>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>344</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>1859</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>True</value>
+        </StartAtViewpoint>
+        <Color>
+          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
+          <value>Green</value>
+        </Color>
+      </Spika>
     </Enemies>
   </Data>
 </Level>

@@ -83,23 +83,24 @@
     <Compile Include="GameObjects\MovingElements\MovingImageElement.cs" />
     <Compile Include="GameObjects\Enemies\Enemy.cs" />
     <Compile Include="GameObjects\Enemies\Turtle.cs" />
-    <Compile Include="Game\Game.cs">
+    <Compile Include="Gamedata\Game.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Game\Game.Designer.cs">
+    <Compile Include="Gamedata\Game.Designer.cs">
       <DependentUpon>Game.cs</DependentUpon>
     </Compile>
-    <Compile Include="Game\GameControlObjects.cs">
+    <Compile Include="Gamedata\GameControlObjects.cs">
     </Compile>
-    <Compile Include="Game\GameAI.cs" />
+    <Compile Include="Gamedata\GameAI.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\StickyElements\StickyImageElement.cs" />
     <Compile Include="GameObjects\MainGameObjects\Tux.cs">
     </Compile>
-    <Compile Include="Game\GameInstruction.cs" />
-    <Compile Include="Game\GamePhysics.cs" />
-    <Compile Include="Game\GameSession.cs" />
-    <Compile Include="Game\Worlddata\World.Serialization.cs" />
+    <Compile Include="Gamedata\GameInstruction.cs" />
+    <Compile Include="Gamedata\GamePhysics.cs" />
+    <Compile Include="Gamedata\GameSession.cs" />
+    <Compile Include="Gamedata\Worlddata\World.Serialization.cs" />
+    <Compile Include="Gamedata\Worlddata\LevelSettings.cs" />
     <Compile Include="General.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Program.cs" />
@@ -110,7 +111,7 @@
       <DependentUpon>ProgramSwitcher.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Game\Game.resx">
+    <EmbeddedResource Include="Gamedata\Game.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Game.cs</DependentUpon>
     </EmbeddedResource>
@@ -137,7 +138,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="GameObjects\StickyElements\StickyElement.cs" />
-    <Compile Include="Game\Worlddata\World.cs" />
+    <Compile Include="Gamedata\Worlddata\World.cs" />
     <Compile Include="Script\Script.cs" />
     <Compile Include="Script\Scripteditor.cs">
       <SubType>Form</SubType>
@@ -345,6 +346,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Levels\bonuslevel1.lrl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Levels\level10.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\Levels\level6.lrl">

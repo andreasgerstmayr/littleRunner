@@ -2,36 +2,34 @@
 <!--littleRunner level file-->
 <Level>
   <Settings>
-    <littleRunner.LevelSettings>
-      <gameWindowWidth>
-        <type>System.Int32</type>
-        <value>700</value>
-      </gameWindowWidth>
-      <gameWindowHeight>
-        <type>System.Int32</type>
-        <value>500</value>
-      </gameWindowHeight>
-      <levelWidth>
-        <type>System.Int32</type>
-        <value>1000</value>
-      </levelWidth>
-      <levelHeight>
-        <type>System.Int32</type>
-        <value>500</value>
-      </levelHeight>
-      <Background>
-        <type>littleRunner.Backgrounds</type>
-        <value>Blue_Hills</value>
-      </Background>
-      <Script>
-        <type>System.String</type>
-        <value />
-      </Script>
-    </littleRunner.LevelSettings>
+    <gameWindowWidth>
+      <type>System.Int32</type>
+      <value>700</value>
+    </gameWindowWidth>
+    <gameWindowHeight>
+      <type>System.Int32</type>
+      <value>500</value>
+    </gameWindowHeight>
+    <levelWidth>
+      <type>System.Int32</type>
+      <value>1000</value>
+    </levelWidth>
+    <levelHeight>
+      <type>System.Int32</type>
+      <value>500</value>
+    </levelHeight>
+    <Background>
+      <type>littleRunner.Gamedata.Worlddata.Backgrounds</type>
+      <value>Blue_Hills</value>
+    </Background>
+    <Script>
+      <type>System.String</type>
+      <value />
+    </Script>
   </Settings>
   <Data>
     <StickyElements>
-      <littleRunner.GameObjects.StickyElements.Floor>
+      <Floor>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -56,8 +54,8 @@
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
-      </littleRunner.GameObjects.StickyElements.Floor>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Floor>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -82,8 +80,8 @@
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Red</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -108,8 +106,8 @@
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -134,8 +132,8 @@
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Ice</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -160,8 +158,8 @@
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -186,8 +184,8 @@
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Red</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -212,8 +210,8 @@
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Brick>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -238,8 +236,8 @@
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -264,8 +262,8 @@
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Star>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -290,8 +288,8 @@
           <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
         </StarStyle>
-      </littleRunner.GameObjects.StickyElements.Star>
-      <littleRunner.GameObjects.StickyElements.Floor>
+      </Star>
+      <Floor>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -316,8 +314,8 @@
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
-      </littleRunner.GameObjects.StickyElements.Floor>
-      <littleRunner.GameObjects.StickyElements.Pipe>
+      </Floor>
+      <Pipe>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -342,8 +340,8 @@
           <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
           <value>Green</value>
         </PipeColor>
-      </littleRunner.GameObjects.StickyElements.Pipe>
-      <littleRunner.GameObjects.StickyElements.Floor>
+      </Pipe>
+      <Floor>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -368,8 +366,8 @@
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
-      </littleRunner.GameObjects.StickyElements.Floor>
-      <littleRunner.GameObjects.StickyElements.DesignElements>
+      </Floor>
+      <DesignElements>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -394,19 +392,19 @@
           <type>littleRunner.GameObjects.StickyElements.DesignElement</type>
           <value>Tree</value>
         </Element>
-      </littleRunner.GameObjects.StickyElements.DesignElements>
-      <littleRunner.GameObjects.StickyElements.Box>
+      </DesignElements>
+      <Box>
         <Name>
           <type>NULL</type>
           <value>null</value>
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>230</value>
+          <value>245</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>688</value>
+          <value>691</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -418,7 +416,7 @@
         </Height>
         <BoxType>
           <type>littleRunner.GameObjects.StickyElements.BoxType</type>
-          <value>ModeDependent</value>
+          <value>ImmortializeStar</value>
         </BoxType>
         <BoxStyle>
           <type>littleRunner.GameObjects.StickyElements.BoxStyle</type>
@@ -428,8 +426,8 @@
           <type>System.Int32</type>
           <value>1</value>
         </Content>
-      </littleRunner.GameObjects.StickyElements.Box>
-      <littleRunner.GameObjects.StickyElements.Box>
+      </Box>
+      <Box>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -462,8 +460,8 @@
           <type>System.Int32</type>
           <value>1</value>
         </Content>
-      </littleRunner.GameObjects.StickyElements.Box>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Box>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -488,8 +486,8 @@
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -514,8 +512,8 @@
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Ice</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -540,8 +538,8 @@
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Red</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -566,8 +564,8 @@
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Yellow</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -592,8 +590,8 @@
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Ice</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -618,8 +616,8 @@
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.LevelEnd>
+      </Brick>
+      <LevelEnd>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -652,8 +650,8 @@
           <type>littleRunner.GameObjects.StickyElements.LevelEndImg</type>
           <value>House</value>
         </Image>
-      </littleRunner.GameObjects.StickyElements.LevelEnd>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </LevelEnd>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -678,8 +676,8 @@
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
-      <littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -704,11 +702,11 @@
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
-      </littleRunner.GameObjects.StickyElements.Brick>
+      </Brick>
     </StickyElements>
     <MovingElements />
     <Enemies>
-      <littleRunner.GameObjects.Enemies.Gumba>
+      <Gumba>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -741,8 +739,8 @@
           <type>littleRunner.GameDirection</type>
           <value>Left</value>
         </Direction>
-      </littleRunner.GameObjects.Enemies.Gumba>
-      <littleRunner.GameObjects.Enemies.Spika>
+      </Gumba>
+      <Spika>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -771,19 +769,19 @@
           <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
           <value>Green</value>
         </Color>
-      </littleRunner.GameObjects.Enemies.Spika>
-      <littleRunner.GameObjects.Enemies.Turtle>
+      </Spika>
+      <Turtle>
         <Name>
           <type>NULL</type>
           <value>null</value>
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>294</value>
+          <value>293</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>845</value>
+          <value>800</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -805,8 +803,8 @@
           <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
-      </littleRunner.GameObjects.Enemies.Turtle>
-      <littleRunner.GameObjects.Enemies.Spika>
+      </Turtle>
+      <Spika>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -835,8 +833,8 @@
           <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
           <value>Grey</value>
         </Color>
-      </littleRunner.GameObjects.Enemies.Spika>
-      <littleRunner.GameObjects.Enemies.Turtle>
+      </Spika>
+      <Turtle>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -869,8 +867,8 @@
           <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
-      </littleRunner.GameObjects.Enemies.Turtle>
-      <littleRunner.GameObjects.Enemies.Turtle>
+      </Turtle>
+      <Turtle>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -903,8 +901,8 @@
           <type>littleRunner.GameDirection</type>
           <value>Right</value>
         </Direction>
-      </littleRunner.GameObjects.Enemies.Turtle>
-      <littleRunner.GameObjects.Enemies.Spika>
+      </Turtle>
+      <Spika>
         <Name>
           <type>NULL</type>
           <value>null</value>
@@ -933,7 +931,7 @@
           <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
           <value>Orange</value>
         </Color>
-      </littleRunner.GameObjects.Enemies.Spika>
+      </Spika>
     </Enemies>
   </Data>
 </Level>

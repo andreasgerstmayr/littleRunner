@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using IronPython.Hosting;
 using IronPython.Compiler;
 
+using littleRunner.Gamedata.Worlddata;
+
 namespace littleRunner
 {
     public class Script
