@@ -393,7 +393,7 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>373</value>
+          <value>371</value>
         </Top>
         <Left>
           <type>System.Int32</type>
