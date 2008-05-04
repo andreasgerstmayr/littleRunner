@@ -89,11 +89,30 @@ namespace littleRunner
             if (World.Script != null)
                 World.Script.callFunction("AI", "Check");
 
+            List<GameKey> pressedKeys = new List<GameKey>();
+
+            #region check if key pressed
+            if (curkeys.Contains(Keys.A) || curkeys.Contains(Keys.Left))
+                pressedKeys.Add(GameKey.goLeft);
+            if (curkeys.Contains(Keys.D) || curkeys.Contains(Keys.Right))
+                pressedKeys.Add(GameKey.goRight);
+            if (curkeys.Contains(Keys.Space))
+                pressedKeys.Add(GameKey.fire);
+            if (curkeys.Contains(Keys.Q))
+                pressedKeys.Add(GameKey.jumpLeft);
+            if (curkeys.Contains(Keys.W) || curkeys.Contains(Keys.Up))
+                pressedKeys.Add(GameKey.jumpTop);
+            if (curkeys.Contains(Keys.E))
+                pressedKeys.Add(GameKey.jumpRight);
+            #endregion
+
+
+            Dictionary<string, int> newMGOpos = World.MGO.Check(pressedKeys);
+            int changeY = Math.Abs(newMGOpos["newtop"]);
+            int changeX = Math.Abs(newMGOpos["newleft"]);
+
             #region Scrolling
             bool scrolled = false;
-
-            int changeX = World.MGO.CustomScrollX == 0 ? Globals.SCROLL_CHANGE_X : World.MGO.CustomScrollX;
-            int changeY = World.MGO.CustomScrollY == 0 ? Globals.SCROLL_CHANGE_Y : World.MGO.CustomScrollY;
 
             // scrolling Top/Bottom
             if (World.Viewport.Y + World.MGO.Top < Globals.SCROLL_TOP)
@@ -128,24 +147,6 @@ namespace littleRunner
             }
             #endregion
 
-            List<GameKey> pressedKeys = new List<GameKey>();
-
-            #region check if key pressed
-            if (curkeys.Contains(Keys.A) || curkeys.Contains(Keys.Left))
-                pressedKeys.Add(GameKey.goLeft);
-            if (curkeys.Contains(Keys.D) || curkeys.Contains(Keys.Right))
-                pressedKeys.Add(GameKey.goRight);
-            if (curkeys.Contains(Keys.Space))
-                pressedKeys.Add(GameKey.fire);
-            if (curkeys.Contains(Keys.Q))
-                pressedKeys.Add(GameKey.jumpLeft);
-            if (curkeys.Contains(Keys.W) || curkeys.Contains(Keys.Up))
-                pressedKeys.Add(GameKey.jumpTop);
-            if (curkeys.Contains(Keys.E))
-                pressedKeys.Add(GameKey.jumpRight);
-            #endregion
-
-            World.MGO.Check(pressedKeys);
 
             // check of all enemies
             for (int i = 0; i < World.Enemies.Count; i++)

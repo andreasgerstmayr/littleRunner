@@ -95,7 +95,7 @@ namespace littleRunner.GameObjects.MainGameObjects
             wantNext = new Queue<WantNext>();
         }
 
-        public override void Check(List<GameKey> pressedKeys)
+        public override Dictionary<string,int> Check(List<GameKey> pressedKeys)
         {
             int newtop = 0;
             int newleft = 0;
@@ -228,6 +228,8 @@ namespace littleRunner.GameObjects.MainGameObjects
             // out of range?
             if (Top > World.Settings.LevelHeight)
                 AiEventHandler(GameEvent.outOfRange, new Dictionary<GameEventArg, object>());
+
+            return new Dictionary<string, int>() { { "newtop", newtop }, { "newleft", newleft } };
         }
 
         public override void Move(MoveType mtype, int value, GameInstruction instruction)
