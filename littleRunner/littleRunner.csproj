@@ -357,7 +357,9 @@
     <None Include="Data\Levels\level7.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\level8.lrl" />
+    <None Include="Data\Levels\level8.lrl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Data\Levels\level9.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

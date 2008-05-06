@@ -217,37 +217,41 @@ namespace littleRunner
         }
 
 
+
         static public bool SimpleCrashDetection(GameObject my, GameObject box, int newtop, int newleft)
         {
             return my.Left + newleft < box.Right && my.Right + newleft > box.Left &&
                    my.Top + newtop < box.Bottom && my.Bottom + newtop > box.Top;
         }
 
+        private static class SimpleCrashDetectionClass<T> where T : GameObject
+        {
+            public static T SimpleCrashDetections(GameObject my, List<T> list,
+                bool onlyWhenCanStandOn, int newtop, int newleft)
+            {
+                foreach (T el in list)
+                {
+                    if ((onlyWhenCanStandOn && el.canStandOn) || !onlyWhenCanStandOn)
+                    {
+                        if (SimpleCrashDetection(my, el, newtop, newleft))
+                            return el;
+                    }
+                }
+                return null;
+            }
+        }
+
         static public bool SimpleCrashDetections(GameObject my, List<StickyElement> stickyelements,
             List<MovingElement> movingelements,
             bool onlyWhenCanStandOn, int newtop, int newleft)
         {
-            foreach (StickyElement se in stickyelements)
-            {
-                if (onlyWhenCanStandOn)
-                {
-                    if (se.canStandOn && SimpleCrashDetection(my, se, newtop, newleft))
-                        return true;
-                }
-                else
-                    SimpleCrashDetection(my, se, newtop, newleft);
-            }
-            foreach (MovingElement me in movingelements)
-            {
-                if (onlyWhenCanStandOn)
-                {
-                    if (me.canStandOn && SimpleCrashDetection(my, me, newtop, newleft))
-                        return true;
-                }
-                else
-                    SimpleCrashDetection(my, me, newtop, newleft);
-            }
+            if (SimpleCrashDetectionClass<StickyElement>.SimpleCrashDetections(my, stickyelements, onlyWhenCanStandOn, newtop, newleft) != null)
+                return true;
+
+            if (SimpleCrashDetectionClass<MovingElement>.SimpleCrashDetections(my, movingelements, onlyWhenCanStandOn, newtop, newleft) != null)
+                return true;
             return false;
         }
+
     }
 }

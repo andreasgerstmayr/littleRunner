@@ -27,6 +27,7 @@
       <value><![CDATA[from MovingPlatform import CreateMovingPlatform
 
 
+Session.Set('bonuslevel1.lrl', 'gotLvl', False)
 Session.Set('bonuslevel1.lrl', 'nextLevel', 'level3.lrl')
 Session.Set('bonuslevel1.lrl', 'nextLevelStartAt', 1470)
 
@@ -43,6 +44,7 @@ if Session.Get('level3.lrl', 'gotBonusLvl') == True:
 # Write to session that the bonus level has been catched
 def removeBonusLvl(geventhandler):
    Session.Set('level3.lrl', 'gotBonusLvl', True)
+   Session.Set('bonuslevel1.lrl', 'gotLvl', False) # set to False - maybe need bonuslevel in other level too
 
 handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
     </Script>
@@ -1167,8 +1169,8 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
       </Floor>
       <LevelEnd>
         <Name>
-          <type>NULL</type>
-          <value>null</value>
+          <type>System.String</type>
+          <value />
         </Name>
         <Top>
           <type>System.Int32</type>

@@ -486,11 +486,11 @@
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>270</value>
+          <value>247</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>659</value>
+          <value>663</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -502,7 +502,7 @@
         </Height>
         <BoxType>
           <type>littleRunner.GameObjects.StickyElements.BoxType</type>
-          <value>FireFlower</value>
+          <value>Star</value>
         </BoxType>
         <BoxStyle>
           <type>littleRunner.GameObjects.StickyElements.BoxStyle</type>
@@ -510,7 +510,7 @@
         </BoxStyle>
         <Content>
           <type>System.Int32</type>
-          <value>1</value>
+          <value>10</value>
         </Content>
       </Box>
       <Pipe>
