@@ -439,8 +439,8 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
           <value>128</value>
         </Height>
         <NextLevel>
-          <type>NULL</type>
-          <value>null</value>
+          <type>System.String</type>
+          <value>level8.lrl</value>
         </NextLevel>
         <StartAt>
           <type>System.Int32</type>
@@ -1542,11 +1542,11 @@ CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>359</value>
+          <value>356</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>210</value>
+          <value>167</value>
         </Left>
         <Width>
           <type>System.Int32</type>

@@ -37,7 +37,7 @@ namespace littleRunner
             AnimateImage.Refresh = true;
             ignoreSizeChange = false;
         }
-        public Game(ProgramSwitcher programSwitcher) 
+        public Game(ProgramSwitcher programSwitcher)
             : this()
         {
             InitializeComponent();
@@ -48,7 +48,7 @@ namespace littleRunner
             lastModeIsNull = true;
             StartGame("Data/Levels/level1.lrl", PlayMode.Game);
         }
-        public Game(ProgramSwitcher programSwitcher, string filename, PlayMode playMode) 
+        public Game(ProgramSwitcher programSwitcher, string filename, PlayMode playMode)
             : this()
         {
             InitializeComponent();
@@ -71,8 +71,8 @@ namespace littleRunner
         {
             if (world.PlayMode == PlayMode.GameInEditor)
             {
-                this.Top = top+4;
-                this.Left = left+5;
+                this.Top = top + 4;
+                this.Left = left + 5;
                 this.Width--;
                 this.Height -= 2;
             }
@@ -163,7 +163,7 @@ namespace littleRunner
                 ai.Init(world, gameControlObjs);
 
                 if (!lastModeIsNull)
-                   ai.World.MGO.Mode = lastMode;
+                    ai.World.MGO.Mode = lastMode;
 
                 gameControlObjs.Sound.Start();
 

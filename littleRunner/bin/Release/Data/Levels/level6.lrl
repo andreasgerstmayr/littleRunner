@@ -50,6 +50,7 @@ if Session.Get('level6.lrl', 'gotBonusLvl') == True:
 # Write to session that the bonus level has been catched
 def removeBonusLvl(geventhandler):
    Session.Set('level6.lrl', 'gotBonusLvl', True)
+   Session.Set('bonuslevel1.lrl', 'gotLvl', False) # set to False - maybe need bonuslevel in other level too
 
 handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
     </Script>

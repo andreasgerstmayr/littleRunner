@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Threading;
+
 
 namespace littleRunner
 {
@@ -15,11 +17,11 @@ namespace littleRunner
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
+            Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
             Application.Run(new ProgramSwitcher());
         }
 
-        static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
             DebugInfo.WriteException(e.Exception);
             DebugInfo.WriteLine("\n" +

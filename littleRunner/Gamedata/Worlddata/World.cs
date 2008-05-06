@@ -99,13 +99,10 @@ namespace littleRunner.Gamedata.Worlddata
 
         public string InitScript()
         {
-            if (this.fileName == "Data/Levels/bonuslevel1.lrl")
-            {
-            }
+            Script = new Script(this);
+
             if (Settings.Script.Length > 0)
             {
-                Script = new Script(this);
-
                 try
                 {
                     foreach (GameObject go in this.AllElements)

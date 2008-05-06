@@ -11,15 +11,18 @@ namespace littleRunner
 {
     public class Script
     {
+        private static PythonEngine mainEngine;
+        private static List<string> savedGlobals;
         private PythonEngine engine;
         private World world;
-
+        
 
         public void GlobalsAdd(string name, object obj)
         {
             try
             {
                 engine.Globals.Add(name, obj);
+                Script.savedGlobals.Add(name);
             }
             catch(Exception e)
             {
@@ -54,7 +57,20 @@ namespace littleRunner
 
         void InitializePythonEngine()
         {
-            engine = new PythonEngine();
+            if (Script.mainEngine == null || Script.savedGlobals == null)
+            {
+                Script.mainEngine = new PythonEngine();
+                Script.savedGlobals = new List<string>();
+            }
+            else
+            {
+                foreach (string g in Script.savedGlobals)
+                    Script.mainEngine.Globals.Remove(g);
+                Script.savedGlobals.Clear();
+            }
+
+
+            engine = Script.mainEngine;
 
             string script = Encoding.UTF8.GetString(Properties.Resources.Script);
             engine.Execute(script);

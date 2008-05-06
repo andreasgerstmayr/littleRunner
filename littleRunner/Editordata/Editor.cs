@@ -362,6 +362,7 @@ namespace littleRunner.Editordata
             g = new Game(programSwitcher, tmpHandler.TmpFilename, PlayMode.GameInEditor, levelTop, levelLeft);
             setCurrentViewport(ref g);
 
+
             string oldtext = this.Text;
             this.Text = "littleRunner Level Editor [press ESC to quit game]";
 

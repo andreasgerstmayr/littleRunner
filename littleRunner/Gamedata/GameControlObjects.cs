@@ -17,7 +17,12 @@ namespace littleRunner
 
         public override void Draw(Graphics g)
         {
-            g.DrawString("Points: " + points.ToString().PadLeft(7), new Font(font, size, FontStyle.Bold), Brushes.Black, Left, Top);
+            Font f = new Font(font, size, FontStyle.Bold);
+            g.DrawString("Points:", f, Brushes.Black, Left, Top);
+
+            StringFormat format = new StringFormat();
+            format.Alignment = StringAlignment.Far;
+            g.DrawString(points.ToString(), f, Brushes.Black, Left+115, Top, format);
         }
 
         public int Points
@@ -43,7 +48,12 @@ namespace littleRunner
 
         public override void Draw(Graphics g)
         {
-            g.DrawString("Lives: " + lives.ToString().PadLeft(9), new Font(font, size, FontStyle.Bold), Brushes.Black, Left, Top);
+            Font f = new Font(font, size, FontStyle.Bold);
+            g.DrawString("Lives:", f, Brushes.Black, Left, Top);
+
+            StringFormat format = new StringFormat();
+            format.Alignment = StringAlignment.Far;
+            g.DrawString(lives.ToString(), f, Brushes.Black, Left + 115, Top, format);
         }
 
         public int Lives

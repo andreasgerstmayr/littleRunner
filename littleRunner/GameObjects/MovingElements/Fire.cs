@@ -69,12 +69,18 @@ namespace littleRunner.GameObjects.MovingElements
                 return;
             }
 
-            if (crashedInEnemy != null && crashedInEnemy.fireCanDelete)
+            if (crashedInEnemy != null) // crashed in some enemy
             {
-                crashedInEnemy.Remove();
-                World.MovingElements.Remove(this);
+                if (crashedInEnemy.fireCanDelete) // fire can delete it?
+                {
+                    crashedInEnemy.Remove();
+                    World.MovingElements.Remove(this);
+                }
+                else // crashed in enemy and fire can't delete it --> remove fire
+                    World.MovingElements.Remove(this);
                 return;
             }
+
 
             if (newtop != 0)
                 Top += newtop;
