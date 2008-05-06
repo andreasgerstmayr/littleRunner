@@ -36,7 +36,7 @@ namespace littleRunner.Editordata
             AnimateImage.Refresh = false;
 
             this.programSwitcher = programSwitcher;
-            World defaultWorld = getDefaultWorld();
+            World defaultWorld = new World();
             tmpHandler = new TmpFileHandler(openFile, saveFile, defaultWorld.Serialize, 5);
             defaultWorld = null;
             defaultContextMenuItems = objectContext.Items.Count;
@@ -266,17 +266,12 @@ namespace littleRunner.Editordata
         }
 
         #region Main MenuBar Events
-        private World getDefaultWorld()
-        {
-            return new World(700, 550, 1000, 550, level.Invalidate, PlayMode.Editor);
-        }
-
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (tmpHandler.New())
             {
                 this.Text = "littleRunner Level Editor";
-                world = getDefaultWorld();
+                world = new World();
                 tmpHandler.SaveHandler = world.Serialize;
                 setDelegateHandlers();
 

@@ -38,6 +38,7 @@
             this.startEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closelittleRunner = new System.Windows.Forms.Button();
+            this.worker = new System.ComponentModel.BackgroundWorker();
             this.trayIconMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,6 +113,10 @@
             this.closelittleRunner.UseVisualStyleBackColor = true;
             this.closelittleRunner.Click += new System.EventHandler(this.closelittleRunner_Click);
             // 
+            // worker
+            // 
+            this.worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.worker_DoWork);
+            // 
             // ProgramSwitcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -142,5 +147,6 @@
         private System.Windows.Forms.ToolStripMenuItem startEditorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.Button closelittleRunner;
+        private System.ComponentModel.BackgroundWorker worker;
     }
 }

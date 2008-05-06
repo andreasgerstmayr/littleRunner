@@ -76,6 +76,14 @@ namespace littleRunner.Gamedata.Worlddata
             stickyelements = new List<StickyElement>();
             movingelements = new List<MovingElement>();
         }
+        private void EmptyDraw(Graphics g)
+        {
+        }
+        public World() // get default world
+            : this(700, 550, 1000, 550, Globals.NullDelegate, PlayMode.Editor)
+        {
+        }
+
         // new world with the game
         public World(string filename, InvalidateHandler invalidate, GameEventHandler aiEventHandler, GameSession session, PlayMode playMode)
             : this(playMode)
