@@ -1,15 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using System.Reflection;
 using System.IO;
 
-using littleRunner.GameObjects;
+using littleRunner.Gamedata.Worlddata;
 using littleRunner.Editordata;
+using littleRunner.GameObjects;
 
 
 namespace littleRunner
@@ -44,6 +40,12 @@ namespace littleRunner
                     }
                 }
             }
+
+            worker.RunWorkerAsync();
+        }
+        private void worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            Script s = new Script(new World());
         }
 
 
