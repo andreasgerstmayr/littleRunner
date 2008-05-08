@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
-using System.Drawing;
+
+using littleRunner.Drawing;
 
 
 namespace littleRunner.Gamedata.Worlddata
@@ -24,7 +25,7 @@ namespace littleRunner.Gamedata.Worlddata
         private int gameWindowWidth, gameWindowHeight;
         private int levelWidth, levelHeight;
         private Backgrounds background;
-        private Image backgroundImg;
+        private Draw.Image backgroundImg;
         private string script;
 
         public Changed_Setting cLevelWidth, cLevelHeight;
@@ -90,22 +91,22 @@ namespace littleRunner.Gamedata.Worlddata
                         BackgroundImg = null;
                         break;
                     case Backgrounds.Blue_Hills:
-                        BackgroundImg = Image.FromFile(Files.background_blue_hills);
+                        BackgroundImg = Draw.Image.Open(Files.background_blue_hills);
                         break;
                     case Backgrounds.Blue_Mountains:
-                        BackgroundImg = Image.FromFile(Files.background_blue_mountains);
+                        BackgroundImg = Draw.Image.Open(Files.background_blue_mountains);
                         break;
                     case Backgrounds.Blue_Waterhills:
-                        BackgroundImg = Image.FromFile(Files.background_blue_waterhills);
+                        BackgroundImg = Draw.Image.Open(Files.background_blue_waterhills);
                         break;
                     case Backgrounds.Green_Hills1:
-                        BackgroundImg = Image.FromFile(Files.background_green_hills1);
+                        BackgroundImg = Draw.Image.Open(Files.background_green_hills1);
                         break;
                     case Backgrounds.Green_Hills2:
-                        BackgroundImg = Image.FromFile(Files.background_green_hills2);
+                        BackgroundImg = Draw.Image.Open(Files.background_green_hills2);
                         break;
                     case Backgrounds.Green_Junglehills:
-                        BackgroundImg = Image.FromFile(Files.background_green_junglehills);
+                        BackgroundImg = Draw.Image.Open(Files.background_green_junglehills);
                         break;
                 }
             }
@@ -119,12 +120,8 @@ namespace littleRunner.Gamedata.Worlddata
         }
 
 
-        private bool ThumbnailCallback()
-        {
-            return false;
-        }
         [Browsable(false)]
-        public Image BackgroundImg
+        public Draw.Image BackgroundImg
         {
             get { return backgroundImg; }
             set
@@ -136,7 +133,7 @@ namespace littleRunner.Gamedata.Worlddata
                 else
                 {
                     // create Thumbnail & keep in Cache (RAM)
-                    backgroundImg = value.GetThumbnailImage(gameWindowWidth, LevelHeight, ThumbnailCallback, IntPtr.Zero);
+                    backgroundImg = value.GetThumbnail(gameWindowWidth, LevelHeight);
                 }
             }
         }

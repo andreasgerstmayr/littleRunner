@@ -115,7 +115,6 @@
             this.tableLayout.SetRowSpan(this.level, 3);
             this.level.Size = new System.Drawing.Size(680, 550);
             this.level.TabIndex = 7;
-            this.level.Paint += new System.Windows.Forms.PaintEventHandler(this.level_Paint);
             this.level.MouseMove += new System.Windows.Forms.MouseEventHandler(this.level_MouseMove);
             this.level.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.level_MouseDoubleClick);
             this.level.MouseClick += new System.Windows.Forms.MouseEventHandler(this.level_MouseClick);

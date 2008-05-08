@@ -28,7 +28,7 @@ namespace littleRunner
             string file = Path.GetTempFileName();
             File.WriteAllText(file, text.Replace("\n", Environment.NewLine));
 
-            Process.Start(file).Start();
+            Process.Start(file);
         }
     }
 }

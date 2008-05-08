@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Drawing;
 
+using littleRunner.Drawing;
 using littleRunner.Gamedata.Worlddata;
 using littleRunner.GameObjects;
 
@@ -14,8 +15,8 @@ namespace littleRunner.Editordata
 {
     class EditorUI
     {
-        static Panel level;
-        static PropertyGrid properties;
+        static public Draw.DrawHandler drawHandler;
+        static public PropertyGrid properties;
 
 
 
@@ -118,11 +119,8 @@ namespace littleRunner.Editordata
         }
 
 
-        public static List<ToolStripItem> GenerateProperties(ref Panel level,
-            ref PropertyGrid properties)
+        public static List<ToolStripItem> GenerateProperties()
         {
-            EditorUI.level = level;
-            EditorUI.properties = properties;
             List<ToolStripItem> newitems;
 
 
@@ -153,7 +151,7 @@ namespace littleRunner.Editordata
             }
 
             properties.Refresh();
-            level.Invalidate();
+            drawHandler.Update();
         }
 
 

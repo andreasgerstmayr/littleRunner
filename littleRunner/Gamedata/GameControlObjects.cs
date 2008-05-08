@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.InteropServices;
 using System.Drawing;
 
-using System.Runtime.InteropServices;
+using littleRunner.Drawing;
 using littleRunner.GameObjects;
 
 
@@ -15,14 +16,14 @@ namespace littleRunner
         string font;
         float size;
 
-        public override void Draw(Graphics g)
+        public override void Update(Draw d)
         {
-            Font f = new Font(font, size, FontStyle.Bold);
-            g.DrawString("Points:", f, Brushes.Black, Left, Top);
+            Draw.Font f1 = new Draw.Font(font, size, new Draw.FontStyle(Draw.FontWeight.Bold), new Draw.FontFormat(Draw.FontAligment.Left));
+            Draw.Font f2 = new Draw.Font(font, size, new Draw.FontStyle(Draw.FontWeight.Bold), new Draw.FontFormat(Draw.FontAligment.Right));
+            Draw.Color color = new Draw.Color(System.Drawing.Color.Black);
 
-            StringFormat format = new StringFormat();
-            format.Alignment = StringAlignment.Far;
-            g.DrawString(points.ToString(), f, Brushes.Black, Left+115, Top, format);
+            d.DrawString("Points:", f1, color, Left, Top);
+            d.DrawString(points.ToString(), f2, color, Left+115, Top);
         }
 
         public int Points
@@ -46,14 +47,14 @@ namespace littleRunner
         string font;
         float size;
 
-        public override void Draw(Graphics g)
+        public override void Update(Draw d)
         {
-            Font f = new Font(font, size, FontStyle.Bold);
-            g.DrawString("Lives:", f, Brushes.Black, Left, Top);
+            Draw.Font f1 = new Draw.Font(font, size, new Draw.FontStyle(Draw.FontWeight.Bold), new Draw.FontFormat(Draw.FontAligment.Left));
+            Draw.Font f2 = new Draw.Font(font, size, new Draw.FontStyle(Draw.FontWeight.Bold), new Draw.FontFormat(Draw.FontAligment.Right));
+            Draw.Color color = new Draw.Color(System.Drawing.Color.Black);
 
-            StringFormat format = new StringFormat();
-            format.Alignment = StringAlignment.Far;
-            g.DrawString(lives.ToString(), f, Brushes.Black, Left + 115, Top, format);
+            d.DrawString("Lives:", f1, color, Left, Top);
+            d.DrawString(lives.ToString(), f2, color, Left + 115, Top);
         }
 
         public int Lives
@@ -129,10 +130,10 @@ namespace littleRunner
         private GameControl_Lives lives;
         private GameControl_Sound sound;
 
-        public void Draw(Graphics g)
+        public void Update(Draw d)
         {
-            points.Draw(g);
-            lives.Draw(g);
+            points.Update(d);
+            lives.Update(d);
         }
 
         public int Points

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
 using System.ComponentModel;
+
+using littleRunner.Drawing;
+
 
 namespace littleRunner.GameObjects.StickyElements
 {
@@ -13,9 +14,9 @@ namespace littleRunner.GameObjects.StickyElements
     class Pipe : StickyElement
     {
         private PipeColor color;
-        private Image imgU, imgM;
+        private Draw.Image imgU, imgM;
 
-        public override void Draw(Graphics g)
+        public override void Update(Draw d)
         {
             // Ceiling (round to x % 32 == 0)
             if (Height < 32)
@@ -30,12 +31,12 @@ namespace littleRunner.GameObjects.StickyElements
                     Height += 32 - rest;
             }
 
-            g.DrawImage(imgU, Left, Top, Width, imgU.Height);
+            d.DrawImage(imgU, Left, Top, Width, imgU.Height);
 
             int occurences = Height / 32 - 1;
             for (int i = 0; i < occurences; i++)
             {
-                g.DrawImage(imgM, Left, Top + imgU.Height + i * (32), Width, imgM.Height);
+                d.DrawImage(imgM, Left, Top + imgU.Height + i * (32), Width, imgM.Height);
             }
         }
 
@@ -54,8 +55,8 @@ namespace littleRunner.GameObjects.StickyElements
                 switch (color)
                 {
                     case PipeColor.Green:
-                        imgU = Image.FromFile(Files.pipe_green_up);
-                        imgM = Image.FromFile(Files.pipe_green_main);
+                        imgU = Draw.Image.Open(Files.pipe_green_up);
+                        imgM = Draw.Image.Open(Files.pipe_green_main);
                         break;
                 }
             }

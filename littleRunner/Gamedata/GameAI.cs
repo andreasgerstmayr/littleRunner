@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Drawing;
 using System.Windows.Forms;
 
+using littleRunner.Drawing;
 using littleRunner.Gamedata.Worlddata;
 using littleRunner.GameObjects;
 
@@ -22,13 +22,14 @@ namespace littleRunner
         private List<Keys> curkeys;
         int scrollTop;
 
-        public void Draw(Graphics g)
+
+        public void Update(Draw d)
         {
-            World.Draw(g, true);
-            gameControlObj.Draw(g);
-            g.TranslateTransform(World.Viewport.X, World.Viewport.Y);
-            World.MGO.Draw(g);
-            g.TranslateTransform(-World.Viewport.X, -World.Viewport.Y);
+            World.Update(d, true);
+            gameControlObj.Update(d);
+            d.MoveCoords(World.Viewport.X, World.Viewport.Y);
+            World.MGO.Update(d);
+            d.MoveCoords(-World.Viewport.X, -World.Viewport.Y);
         }
         public bool IsRunning
         {
@@ -165,7 +166,7 @@ namespace littleRunner
             }
 
             // Repaint
-            World.Invalidate();
+            World.DrawHandler.Update();
         }
 
         public void Interact(Keys key, bool pressed)

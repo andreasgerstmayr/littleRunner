@@ -1,17 +1,15 @@
 using System;
 using System.Collections.Generic;
-
 using System.Drawing;
-
 using IronPython.Runtime.Exceptions;
+
+using littleRunner.Drawing;
 using littleRunner.GameObjects;
 using littleRunner.GameObjects.MainGameObjects;
 
 
 namespace littleRunner.Gamedata.Worlddata
 {
-    public delegate void InvalidateHandler();
-
     public class World
     {
         List<Enemy> enemies;
@@ -22,7 +20,7 @@ namespace littleRunner.Gamedata.Worlddata
         MainGameObject mainGameObject;
         GameSession session;
         public LevelSettings Settings;
-        public InvalidateHandler Invalidate;
+        public Draw.DrawHandler DrawHandler;
         private GameEventHandler aiEventHandler;
         public PlayMode PlayMode;
         public Script Script;
@@ -61,7 +59,7 @@ namespace littleRunner.Gamedata.Worlddata
         }
         public World(int gameWindowWidth, int gameWindowHeight,
             int levelWidth, int levelHeight,
-            InvalidateHandler invalidate, PlayMode playMode)
+            Draw.DrawHandler drawHandler, PlayMode playMode)
             : this(playMode)
         {
             Settings = new LevelSettings();
@@ -69,33 +67,33 @@ namespace littleRunner.Gamedata.Worlddata
             Settings.GameWindowHeight = gameWindowHeight;
             Settings.LevelWidth = levelWidth;
             Settings.LevelHeight = levelHeight;
-            this.Invalidate = invalidate;
+            this.DrawHandler = drawHandler;
 
             this.aiEventHandler = GameAI.NullAiEventHandlerMethod;
             enemies = new List<Enemy>();
             stickyelements = new List<StickyElement>();
             movingelements = new List<MovingElement>();
         }
-        private void EmptyDraw(Graphics g)
+        private void EmptyDraw(Draw d)
         {
         }
         public World() // get default world
-            : this(700, 550, 1000, 550, Globals.NullDelegate, PlayMode.Editor)
+            : this(700, 550, 1000, 550, null, PlayMode.Editor)
         {
         }
 
         // new world with the game
-        public World(string filename, InvalidateHandler invalidate, GameEventHandler aiEventHandler, GameSession session, PlayMode playMode)
+        public World(string filename, Draw.DrawHandler drawHandler, GameEventHandler aiEventHandler, GameSession session, PlayMode playMode)
             : this(playMode)
         {
-            this.Invalidate = invalidate;
+            this.DrawHandler = drawHandler;
             this.fileName = filename;
             this.aiEventHandler = aiEventHandler;
             this.session = session;
             Deserialize();
         }
-        public World(string filename, InvalidateHandler invalidate, GameSession session, PlayMode playMode)
-            : this(filename, invalidate, GameAI.NullAiEventHandlerMethod, session, playMode)
+        public World(string filename, Draw.DrawHandler drawHandler, GameSession session, PlayMode playMode)
+            : this(filename, drawHandler, GameAI.NullAiEventHandlerMethod, session, playMode)
         {
         }
 
@@ -139,32 +137,31 @@ namespace littleRunner.Gamedata.Worlddata
             return "";
         }
 
-        public void Draw(Graphics g, bool drawBackground)
+        public void Update(Draw d, bool drawBackground)
         {
             if (drawBackground && Settings.BackgroundImg != null)
-                g.DrawImage(Settings.BackgroundImg, 0, 0, Settings.GameWindowWidth, Settings.LevelHeight);
+                d.DrawImage(Settings.BackgroundImg, 0, 0, Settings.GameWindowWidth, Settings.LevelHeight);
 
-            g.TranslateTransform(viewport.X, viewport.Y);
+            d.MoveCoords(viewport.X, viewport.Y);
             foreach (GameObject go in AllElements)
             {
-                go.Draw(g);
+                go.Update(d);
             }
-            g.TranslateTransform(-viewport.X, -viewport.Y);
+            d.MoveCoords(-viewport.X, -viewport.Y);
         }
-        public void Draw(Graphics g, bool drawBackground, object[] selected)
+        public void Update(Draw d, bool drawBackground, object[] selected)
         {
-            Draw(g, drawBackground);
+            Update(d, drawBackground);
 
-            g.TranslateTransform(viewport.X, viewport.Y);
-            Pen pen = new Pen(Color.Black);
-            pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            d.MoveCoords(viewport.X, viewport.Y);
+            Draw.Pen pen = new Draw.Pen(new Draw.Color(Color.Black.R, Color.Black.G, Color.Black.B), Draw.Pen.PenStyle.Dashed);
 
             foreach (GameObject go in AllElements)
             {
                 if (Array.IndexOf<object>(selected, go) != -1)
-                    g.DrawRectangle(pen, go.Left-2, go.Top-2, go.Width+3, go.Height+3);
+                    d.DrawRectangle(pen, go.Left-2, go.Top-2, go.Width+3, go.Height+3);
             }
-            g.TranslateTransform(-viewport.X, -viewport.Y);
+            d.MoveCoords(-viewport.X, -viewport.Y);
         }
 
 

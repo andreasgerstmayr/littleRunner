@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
-using System.Drawing;
+using littleRunner.Drawing;
+
 
 namespace littleRunner.GameObjects.Enemies
 {
@@ -14,7 +15,7 @@ namespace littleRunner.GameObjects.Enemies
     }
     class Spika : Enemy
     {
-        private Image curimg;
+        private Draw.Image curimg;
         private SpikaColor color;
         public override bool fireCanDelete
         {
@@ -29,9 +30,9 @@ namespace littleRunner.GameObjects.Enemies
                 color = value;
                 switch (color)
                 {
-                    case SpikaColor.Orange: curimg = Image.FromFile(Files.spika_orange); break;
-                    case SpikaColor.Green: curimg = Image.FromFile(Files.spika_green); break;
-                    case SpikaColor.Grey: curimg = Image.FromFile(Files.spika_grey); break;
+                    case SpikaColor.Orange: curimg = Draw.Image.Open(Files.spika_orange); break;
+                    case SpikaColor.Green: curimg = Draw.Image.Open(Files.spika_green); break;
+                    case SpikaColor.Grey: curimg = Draw.Image.Open(Files.spika_grey); break;
                 }
             }
         }
@@ -40,9 +41,9 @@ namespace littleRunner.GameObjects.Enemies
         {
             get { return false; }
         }
-        public override void Draw(Graphics g)
+        public override void Update(Draw d)
         {
-            g.DrawImage(curimg, Left, Top, Width, Height);
+            d.DrawImage(curimg, Left, Top, Width, Height);
         }
 
         public Spika()

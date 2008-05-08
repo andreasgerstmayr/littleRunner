@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
-using System.Drawing;
 
+using littleRunner.Drawing;
 using littleRunner.GameObjects.MovingElements;
 
 
@@ -88,10 +88,10 @@ namespace littleRunner.GameObjects.Enemies
             }
         }
 
-        public override void Draw(Graphics g)
+        public override void Update(Draw d)
         {
             GameDirection dir = turtleMode == TurtleMode.Normal ? direction : GameDirection.None;
-            curimg.Draw(g, dir, Left, Top, curimg.CurImage(dir).Width, Height);
+            curimg.Update(d, dir, Left, Top, curimg.CurImage(dir).Width, Height);
         }
 
 

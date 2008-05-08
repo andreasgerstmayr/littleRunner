@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-using System.Drawing;
+
+using littleRunner.Drawing;
 using littleRunner.GameObjects.MovingElements;
 
 
@@ -29,10 +30,10 @@ namespace littleRunner.GameObjects.MainGameObjects
         private Queue<WantNext> wantNext;
 
 
-        public override void Draw(Graphics g)
+        public override void Update(Draw d)
         {
             if (!immortialize || DateTime.Now.Millisecond % 4 == 0)
-                curimg.Draw(g, direction, Left, Top, Width, Height);
+                curimg.Update(d, direction, Left, Top, Width, Height);
         }
 
         public override MainGameObjectMode Mode

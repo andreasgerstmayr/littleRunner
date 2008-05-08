@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Drawing;
+using littleRunner.Drawing;
+
 
 namespace littleRunner.GameObjects.MovingElements
 {
@@ -17,15 +18,15 @@ namespace littleRunner.GameObjects.MovingElements
             get { return false; }
         }
 
-        public override void Draw(Graphics g)
+        public override void Update(Draw d)
         {
             if (DateTime.Now.Millisecond % 4 == 0)
-                base.Draw(g);
+                base.Update(d);
         }
 
         public ImmortializeStar(GameDirection direction, int top, int left)
-            : base(Image.FromFile(Files.star),
-            top - Image.FromFile(Files.star).Height,
+            : base(Draw.Image.Open(Files.star),
+            top - Draw.Image.Open(Files.star).Height,
             left)
         {
             this.direction = direction;

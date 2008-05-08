@@ -60,8 +60,16 @@ namespace littleRunner
     }
 
 
+    public enum VideoRenderMode
+    {
+        GDI,
+        SDL
+    }
+
     sealed class Globals
     {
+        public static VideoRenderMode VideoRenderMode;
+
         public const int SCROLL_TOP = 20;
         public const int SCROLL_BOTTOM = 70;
 

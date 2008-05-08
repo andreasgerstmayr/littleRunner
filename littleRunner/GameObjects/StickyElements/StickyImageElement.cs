@@ -1,29 +1,31 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
+
+using littleRunner.Drawing;
 
 
 namespace littleRunner.GameObjects.StickyElements
 {
     abstract class StickyImageElement : StickyElement
     {
-        private Image curimg;
+        private Draw.Image curimg;
         private string curimgfn;
 
-        public override void Draw(Graphics g)
+        public override void Update(Draw d)
         {
             if (curimgfn == Files.brick_invisible && World.PlayMode == PlayMode.Editor)
-                g.DrawRectangle(Pens.Black, Left, Top, Width, Height);
+            {
+                d.DrawRectangle(Draw.Pen.Black, Left, Top, Width, Height);
+            }
 
-            g.DrawImage(curimg, Left, Top, Width, Height);
+            d.DrawImage(curimg, Left, Top, Width, Height);
         }
         protected string CurImgFilename
         {
             set
             {
                 curimgfn = value;
-                curimg = Image.FromFile(curimgfn);
+                curimg = Draw.Image.Open(curimgfn);
                 Width = curimg.Width;
                 Height = curimg.Height;
             }
