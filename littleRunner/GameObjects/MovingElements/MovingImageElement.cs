@@ -2,24 +2,24 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-using System.Drawing;
+using littleRunner.Drawing;
 
 
 namespace littleRunner.GameObjects.MovingElements
 {
     abstract class MovingImageElement : MovingElement
     {
-        protected Image curimg;
+        protected Draw.Image curimg;
 
-        public override void Draw(Graphics g)
+        public override void Update(Draw d)
         {
-            g.DrawImage(curimg, Left, Top, Width, Height);
+            d.DrawImage(curimg, Left, Top, Width, Height);
         }
 
         public MovingImageElement()
         {
         }
-        public MovingImageElement(Image img, int top, int left)
+        public MovingImageElement(Draw.Image img, int top, int left)
         {
             Top = top;
             Left = left;

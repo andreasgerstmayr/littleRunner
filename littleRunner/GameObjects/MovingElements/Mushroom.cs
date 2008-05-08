@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Drawing;
+
+using littleRunner.Drawing;
 
 
 namespace littleRunner.GameObjects.MovingElements
@@ -19,15 +20,15 @@ namespace littleRunner.GameObjects.MovingElements
         int checks;
         GameDirection direction;
 
-        static Image GetMushroomImage(MushroomType mtype)
+        static Draw.Image GetMushroomImage(MushroomType mtype)
         {
             switch (mtype)
             {
-                case MushroomType.Good: return Image.FromFile(Files.mushroom_good);
-                case MushroomType.Poison: return Image.FromFile(Files.mushroom_poison);
-                case MushroomType.Live: return Image.FromFile(Files.mushroom_live);
+                case MushroomType.Good: return Draw.Image.Open(Files.mushroom_good);
+                case MushroomType.Poison: return Draw.Image.Open(Files.mushroom_poison);
+                case MushroomType.Live: return Draw.Image.Open(Files.mushroom_live);
             }
-            return new Bitmap(0, 0);
+            return Draw.Image.OpenEmpty();
         }
 
         public Mushroom(MushroomType mtype, GameDirection direction, int top, int left)

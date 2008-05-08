@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using System.Text;
-using System.Drawing;
 
+using littleRunner.Drawing;
 using littleRunner.Gamedata.Worlddata;
 
 
@@ -14,8 +13,8 @@ namespace littleRunner.GameObjects.MovingElements
         int count;
 
         public JumpingStar(int top, int left)
-            : base(Image.FromFile(Files.star),
-            top - Image.FromFile(Files.star).Height - 10,
+            : base(Draw.Image.Open(Files.star),
+            top - Draw.Image.Open(Files.star).Height - 10,
             left)
         {
             count = 0;

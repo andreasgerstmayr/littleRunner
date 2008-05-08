@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.ComponentModel;
-
 using System.Drawing;
+
+using littleRunner.Drawing;
 using littleRunner.Gamedata.Worlddata;
 
 
@@ -20,7 +20,7 @@ namespace littleRunner.GameObjects
         private string name;
 
 
-        public abstract void Draw(Graphics g);
+        public abstract void Update(Draw d);
         public virtual void onKeyPress(GameKey gkey)
         {
         }

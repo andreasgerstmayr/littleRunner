@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-using System.Drawing;
+using littleRunner.Drawing;
 
 namespace littleRunner.GameObjects.MovingElements
 {
@@ -19,7 +19,7 @@ namespace littleRunner.GameObjects.MovingElements
         }
 
         public Fire(GameDirection direction, int top, int left)
-            : base(Image.FromFile(Files.fire), top, left)
+            : base(Draw.Image.Open(Files.fire), top, left)
         {
             this.direction = direction;
             flyDirection = GameDirection.Bottom;

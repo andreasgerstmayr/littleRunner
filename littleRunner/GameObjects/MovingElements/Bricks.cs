@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
-using System.Drawing;
 
+using littleRunner.Drawing;
 using littleRunner.GameObjects.StickyElements;
 
 
@@ -11,7 +11,7 @@ namespace littleRunner.GameObjects.MovingElements
 {
     class Bricks : MovingElement
     {
-        Image image;
+        Draw.Image image;
         BrickColor color;
         int imgWidth;
 
@@ -24,12 +24,12 @@ namespace littleRunner.GameObjects.MovingElements
                 color = value;
                 switch (color)
                 {
-                    case BrickColor.Blue: image = Image.FromFile(Files.brick_blue); break;
-                    case BrickColor.Ice: image = Image.FromFile(Files.brick_ice); break;
-                    case BrickColor.Red: image = Image.FromFile(Files.brick_red); break;
-                    case BrickColor.Yellow: image = Image.FromFile(Files.brick_yellow); break;
-                    case BrickColor.Brown: image = Image.FromFile(Files.brick_brown); break;
-                    case BrickColor.Invisible: image = Image.FromFile(Files.brick_invisible); break;
+                    case BrickColor.Blue: image = Draw.Image.Open(Files.brick_blue); break;
+                    case BrickColor.Ice: image = Draw.Image.Open(Files.brick_ice); break;
+                    case BrickColor.Red: image = Draw.Image.Open(Files.brick_red); break;
+                    case BrickColor.Yellow: image = Draw.Image.Open(Files.brick_yellow); break;
+                    case BrickColor.Brown: image = Draw.Image.Open(Files.brick_brown); break;
+                    case BrickColor.Invisible: image = Draw.Image.Open(Files.brick_invisible); break;
                 }
                 imgWidth = image.Width;
 
@@ -40,7 +40,7 @@ namespace littleRunner.GameObjects.MovingElements
         {
             get { return true; }
         }
-        public override void Draw(Graphics g)
+        public override void Update(Draw d)
         {
             // Ceiling (round to x % width+1 == 0)
             if (Width < imgWidth + 1)
@@ -58,11 +58,11 @@ namespace littleRunner.GameObjects.MovingElements
             int occurences = Width / (imgWidth+1);
             int width = image.Width;
             for (int i = 0; i < occurences; i++)
-                g.DrawImage(image, Left + i * (imgWidth + 1), Top, width, Height);
+                d.DrawImage(image, Left + i * (imgWidth + 1), Top, width, Height);
 
 
             if (color == BrickColor.Invisible && World.PlayMode == PlayMode.Editor)
-                g.DrawRectangle(Pens.Black, Left, Top, Width, Height);
+                d.DrawRectangle(Draw.Pen.Black, Left, Top, Width, Height);
         }
 
 

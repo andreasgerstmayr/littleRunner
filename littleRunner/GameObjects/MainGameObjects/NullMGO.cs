@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-using System.Drawing;
+using littleRunner.Drawing;
 
 
 namespace littleRunner.GameObjects.MainGameObjects
@@ -22,7 +22,7 @@ namespace littleRunner.GameObjects.MainGameObjects
             get { throw new NotImplementedException(); }
             set { throw new NotImplementedException(); }
         } 
-        public override void Draw(Graphics g)
+        public override void Update(Draw d)
         {
             throw new NotImplementedException();
         }

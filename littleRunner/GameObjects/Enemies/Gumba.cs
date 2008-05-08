@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
-using System.Drawing;
+
+using littleRunner.Drawing;
+
 
 namespace littleRunner.GameObjects.Enemies
 {
@@ -49,7 +51,7 @@ namespace littleRunner.GameObjects.Enemies
             get { return direction; }
             set { direction = value; }
         }
-        public override void Draw(Graphics g)
+        public override void Update(Draw d)
         {
             if (small > 1)
             {
@@ -60,7 +62,7 @@ namespace littleRunner.GameObjects.Enemies
             if (Height <= 2)
                 Remove();
 
-            curimg.Draw(g, GameDirection.None, Left, Top, Width, Height);
+            curimg.Update(d, GameDirection.None, Left, Top, Width, Height);
         }
    
         public Gumba()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
+using littleRunner.Drawing;
 using littleRunner.Gamedata.Worlddata;
 using littleRunner.GameObjects;
 using littleRunner.GameObjects.Enemies;
@@ -17,6 +18,7 @@ namespace littleRunner.Editordata
         ProgramSwitcher programSwitcher;
         Game g;
         TmpFileHandler tmpHandler;
+        Draw.DrawHandler drawHandler;
 
         World world;
         GameObject focus;
@@ -33,7 +35,12 @@ namespace littleRunner.Editordata
         {
             InitializeComponent();
 
+            // extern inits
+            drawHandler = Draw.DrawHandler.Create(level, this.Update);
             AnimateImage.Refresh = false;
+            EditorUI.drawHandler = drawHandler;
+            EditorUI.properties = properties;
+
 
             this.programSwitcher = programSwitcher;
             World defaultWorld = new World();
@@ -74,15 +81,15 @@ namespace littleRunner.Editordata
             bricksToolStripMenuItem.Image = Image.FromFile(Files.brick_blue);
             bricksToolStripButton.Image = Image.FromFile(Files.brick_blue); ;
 
-            enemyToolStripMenuItem.Image = AnimateImage.FirstImage(Files.turtle_green);
-            turtleToolStripMenuItem.Image = AnimateImage.FirstImage(Files.turtle_green);
-            turtleToolStripButton.Image = AnimateImage.FirstImage(Files.turtle_green); ;
+            enemyToolStripMenuItem.Image = AnimateImage.FirstImage(Files.turtle_green).ToGDI();
+            turtleToolStripMenuItem.Image = AnimateImage.FirstImage(Files.turtle_green).ToGDI();
+            turtleToolStripButton.Image = AnimateImage.FirstImage(Files.turtle_green).ToGDI();
 
             spikaToolStripMenuItem.Image = Image.FromFile(Files.spika_green);
             spikaToolStripButton.Image = Image.FromFile(Files.spika_green); ;
 
-            gumbaToolStripMenuItem.Image = AnimateImage.FirstImage(Files.gumba_brown);
-            gumbaToolStripButton.Image = AnimateImage.FirstImage(Files.gumba_brown); ;
+            gumbaToolStripMenuItem.Image = AnimateImage.FirstImage(Files.gumba_brown).ToGDI();
+            gumbaToolStripButton.Image = AnimateImage.FirstImage(Files.gumba_brown).ToGDI();
 
             levelEndToolStripMenuItem.Image = Image.FromFile(Files.levelend_house);
             houseToolStripMenuItem.Image = Image.FromFile(Files.levelend_house);
@@ -147,12 +154,12 @@ namespace littleRunner.Editordata
                 curRectangle = Rectangle.Empty;
             }
 
-            level.Invalidate(); // paint again, with background
+            drawHandler.Update(); // paint again, with background
         }
 
         private void level_MouseMove(object sender, MouseEventArgs e)
         {
-            bool invalidate = false;
+            bool repaint = false;
 
             if (moving && focus != null)
             {
@@ -172,7 +179,7 @@ namespace littleRunner.Editordata
                     }
                 }
 
-                invalidate = true;
+                repaint = true;
             }
 
             if (startRectangle != null && focus == null)
@@ -180,12 +187,12 @@ namespace littleRunner.Editordata
                 endRectangle = new GamePoint(e.X - world.Viewport.X, e.Y - world.Viewport.Y);
                 curRectangle = GamePoint.GetRectangle(startRectangle, endRectangle);
 
-                invalidate = true;
+                repaint = true;
             }
 
 
-            if (invalidate)
-                level.Invalidate();
+            if (repaint)
+                drawHandler.Update();
         }
 
         private void level_MouseClick(object sender, MouseEventArgs e)
@@ -241,7 +248,7 @@ namespace littleRunner.Editordata
                 objectContext.Items.RemoveAt(i);            // you 've to remove always the 3. element
             }
 
-            List<ToolStripItem> newitems = EditorUI.GenerateProperties(ref level, ref properties);
+            List<ToolStripItem> newitems = EditorUI.GenerateProperties();
             objectContext.Items.AddRange(newitems.ToArray());
             objectContext.Show(Cursor.Position.X, Cursor.Position.Y);
         }
@@ -278,7 +285,7 @@ namespace littleRunner.Editordata
                 showlevelSettings_Click(sender, e);
                 hScroll.Value = hScroll.Minimum;
                 vScroll.Value = vScroll.Minimum;
-                level.Invalidate();
+                drawHandler.Update();
             }
         }
 
@@ -290,12 +297,12 @@ namespace littleRunner.Editordata
                 hScroll.Value = hScroll.Minimum;
                 vScroll.Value = vScroll.Minimum;
 
-                world = new World(tmpHandler.TmpFilename, level.Invalidate, new GameSession(), PlayMode.Editor);
+                world = new World(tmpHandler.TmpFilename, drawHandler, new GameSession(), PlayMode.Editor);
                 tmpHandler.SaveHandler = world.Serialize;
                 setDelegateHandlers();
 
                 showlevelSettings_Click(sender, e);
-                level.Invalidate();
+                drawHandler.Update();
             }
         }
 
@@ -403,7 +410,7 @@ namespace littleRunner.Editordata
                 if (Int32.TryParse(convertText, out offset))
                 {
                     EditorTransformations.Move(offset, ref world);
-                    level.Invalidate();
+                    drawHandler.Update();
                 }
                 else
                     MessageBox.Show("Please write an offset in the field below this button!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -417,7 +424,7 @@ namespace littleRunner.Editordata
         {
             go.Init(world, GameAI.NullAiEventHandlerMethod);
             world.Add(go);
-            level.Invalidate();
+            drawHandler.Update();
 
             // focus on it
             if (pressedKeys.Contains(Keys.ControlKey) || alwaysAddToSelection)
@@ -583,7 +590,7 @@ namespace littleRunner.Editordata
                 }
             }
 
-            level.Invalidate();
+            drawHandler.Update();
         }
 
         private void toBackgroundToolStripMenuItem_Click(object sender, EventArgs e)
@@ -597,7 +604,7 @@ namespace littleRunner.Editordata
                 }
             }
 
-            level.Invalidate();
+            drawHandler.Update();
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -632,7 +639,7 @@ namespace littleRunner.Editordata
             }
 
             properties.SelectedObjects = new object[] { };
-            level.Invalidate();
+            drawHandler.Update();
         }
         #endregion
 
@@ -650,7 +657,7 @@ namespace littleRunner.Editordata
                 e.Cancel = true;
         }
 
-        private void level_Paint(object sender, PaintEventArgs e)
+        private void Update(Draw d)
         {
             bool drawBg = true;
             if (enableBG)
@@ -660,23 +667,24 @@ namespace littleRunner.Editordata
                 drawBg = false;
 
 
-            world.Draw(e.Graphics, drawBg, properties.SelectedObjects);
+            world.Update(d, drawBg, properties.SelectedObjects);
 
             if (curRectangle != Rectangle.Empty)
             {
-                Graphics g = e.Graphics;
-                g.TranslateTransform(world.Viewport.X, world.Viewport.Y);
+                d.MoveCoords(world.Viewport.X, world.Viewport.Y);
 
-                g.DrawRectangle(Pens.DodgerBlue, curRectangle);
-                g.FillRectangle(new SolidBrush(Color.FromArgb(15, Color.DodgerBlue)), curRectangle);
+                d.DrawRectangle(Draw.Pen.FromGDI(Pens.DodgerBlue), curRectangle.X, curRectangle.Y, curRectangle.Width, curRectangle.Height);
+                Draw.Color color = new Draw.Color(Color.DodgerBlue);
+                color.A = 15;
+                d.FillRectangle(new Draw.Pen(color), curRectangle.X, curRectangle.Y, curRectangle.Width, curRectangle.Height);
 
-                g.TranslateTransform(-world.Viewport.X, -world.Viewport.Y);
+                d.MoveCoords(-world.Viewport.X, -world.Viewport.Y);
             }
         }
 
         private void properties_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
-            level.Invalidate();
+            drawHandler.Update();
         }
 
         #region Level-Setting changed
@@ -712,7 +720,7 @@ namespace littleRunner.Editordata
             world.Viewport.X = -(hScroll.Value - hScroll.Minimum);
             setcurScrollingText();
 
-            level.Invalidate();
+            drawHandler.Update();
         }
 
         private void hScroll_MouseCaptureChanged(object sender, EventArgs e)
@@ -726,7 +734,7 @@ namespace littleRunner.Editordata
             {
                 // enable background
                 enableBG = true;
-                level.Invalidate();
+                drawHandler.Update();
             }
         }
 
@@ -736,7 +744,7 @@ namespace littleRunner.Editordata
             world.Viewport.Y = -(vScroll.Value-vScroll.Minimum);
             setcurScrollingText();
 
-            level.Invalidate();
+            drawHandler.Update();
         }
 
         private void vScroll_MouseCaptureChanged(object sender, EventArgs e)
@@ -753,7 +761,7 @@ namespace littleRunner.Editordata
             else
                 actualFocus.Text = "selected " + properties.SelectedObjects.Length + " objects";
 
-            level.Invalidate();
+            drawHandler.Update();
         }
 
         #region Editor Key Events

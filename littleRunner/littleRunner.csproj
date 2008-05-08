@@ -40,6 +40,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Dokumente und Einstellungen\Andi\Desktop\IronPython-1.1.1-Bin\IronPython-1.1.1\IronPython.dll</HintPath>
     </Reference>
+    <Reference Include="SdlDotNet, Version=6.1.0.0, Culture=neutral, PublicKeyToken=26ad4f7e10c61408, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Dokumente und Einstellungen\Andi\Desktop\sdldotnet-6.1.0\sdldotnet-6.1.0\bin\SdlDotNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -49,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DebugInfo.cs" />
+    <Compile Include="Drawing\DrawSDL.cs" />
     <Compile Include="Editordata\Editor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,6 +64,8 @@
     <Compile Include="Editordata\EditorUI.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="Files.cs" />
+    <Compile Include="Drawing\Draw.cs" />
+    <Compile Include="Drawing\DrawGDI.cs" />
     <Compile Include="GameObjects\AnimateImage.cs" />
     <Compile Include="GameObjects\Enemies\Spika.cs" />
     <Compile Include="GameObjects\Enemies\Gumba.cs" />

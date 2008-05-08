@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-using System.Drawing;
+using littleRunner.Drawing;
 
 
 namespace littleRunner.GameObjects
@@ -11,19 +11,19 @@ namespace littleRunner.GameObjects
     class AnimateImage
     {
         static public bool Refresh;
-        Image[,] images;
+        Draw.Image[,] images;
         int milliSecPerFrame;
         int cur;
         DateTime last;
 
-        public Image CurImage(GameDirection direction)
+        public Draw.Image CurImage(GameDirection direction)
         {
             return images[(int)direction, cur];
         }
 
-        public void Draw(Graphics g, GameDirection direction, int left, int top, int width, int height)
+        public void Update(Draw d, GameDirection direction, int left, int top, int width, int height)
         {
-            g.DrawImage(images[(int)direction, cur], left, top, width, height);
+            d.DrawImage(images[(int)direction, cur], left, top, width, height);
             if ((DateTime.Now - last).TotalMilliseconds >= milliSecPerFrame && Refresh)
             {
                 cur++;
@@ -46,7 +46,7 @@ namespace littleRunner.GameObjects
         public AnimateImage(string imagesFn, int milliSecPerFrame, params GameDirection[] needDirections)
         {
             List<string> files = AnimateImage.getFiles(imagesFn);
-            images = new Image[Enum.GetNames(typeof(GameDirection)).Length, files.Count];
+            images = new Draw.Image[Enum.GetNames(typeof(GameDirection)).Length, files.Count];
 
             for (int i = 0; i < files.Count; i++)
             {
@@ -63,7 +63,7 @@ namespace littleRunner.GameObjects
 
                 foreach (GameDirection dir in needDirections)
                 {
-                    Image img = Image.FromFile(files[i]);
+                    Draw.Image img = Draw.Image.Open(files[i]);
 
                     if (imgDir == dir)
                         images[(int)imgDir, i] = img;
@@ -73,11 +73,11 @@ namespace littleRunner.GameObjects
                         {
                             case GameDirection.Left:
                                 if (imgDir == GameDirection.Right)
-                                    img.RotateFlip(RotateFlipType.RotateNoneFlipX);
+                                    img.Rotate(Draw.Image.RotateDirection.Horizontal);
                                 break;
                             case GameDirection.Right:
                                 if (imgDir == GameDirection.Left)
-                                    img.RotateFlip(RotateFlipType.RotateNoneFlipX);
+                                    img.Rotate(Draw.Image.RotateDirection.Horizontal);
                                 break;
                         }
                         images[(int)dir, i] = img;
@@ -115,9 +115,9 @@ namespace littleRunner.GameObjects
 
             return files;
         }
-        public static Image FirstImage(string filename)
+        public static Draw.Image FirstImage(string filename)
         {
-            return Image.FromFile(getFiles(filename)[0]);
+            return Draw.Image.Open(getFiles(filename)[0]);
         }
     }
 }

@@ -20,6 +20,7 @@ namespace littleRunner
         {
             InitializeComponent();
 
+            Globals.VideoRenderMode = VideoRenderMode.GDI;
             canClose = false;
         }
 

@@ -8,9 +8,11 @@ using System.Windows.Forms;
 
 using System.IO;
 
+using littleRunner.Drawing;
 using littleRunner.Gamedata.Worlddata;
 using littleRunner.GameObjects;
 using littleRunner.GameObjects.MainGameObjects;
+
 
 namespace littleRunner
 {
@@ -18,6 +20,7 @@ namespace littleRunner
     {
         ProgramSwitcher programSwitcher;
         GameAI ai;
+        Draw.DrawHandler drawHandler;
         World world;
         MainGameObjectMode lastMode;
         bool lastModeIsNull;
@@ -34,6 +37,7 @@ namespace littleRunner
 
         public Game()
         {
+            drawHandler = Draw.DrawHandler.Create(this, Update);
             AnimateImage.Refresh = true;
             ignoreSizeChange = false;
         }
@@ -52,7 +56,7 @@ namespace littleRunner
             : this()
         {
             InitializeComponent();
-
+            
             editorOpened = true;
             this.programSwitcher = programSwitcher;
 
@@ -132,7 +136,7 @@ namespace littleRunner
 
 
                 // The world
-                world = new World(filename, Invalidate, ai.getEvent, session, playMode);
+                world = new World(filename, drawHandler, ai.getEvent, session, playMode);
 
                 // Main game object
                 Tux tux = new Tux(Globals.SCROLL_TOP, Globals.SCROLL_X);
@@ -319,12 +323,6 @@ namespace littleRunner
                 programSwitcher.Show();
         }
 
-        private void Game_Paint(object sender, PaintEventArgs e)
-        {
-            if (ai != null)
-                ai.Draw(e.Graphics);
-        }
-
         private void Game_SizeChanged(object sender, EventArgs e)
         {
             if (!ignoreSizeChange)
@@ -340,6 +338,12 @@ namespace littleRunner
                         ai.Pause(true);
                 }
             }
+        }
+
+        private void Update(Draw d)
+        {
+            if (ai != null)
+                ai.Update(d);
         }
     }
 }
