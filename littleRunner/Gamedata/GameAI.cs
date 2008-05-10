@@ -105,6 +105,8 @@ namespace littleRunner
                 pressedKeys.Add(GameKey.jumpTop);
             if (curkeys.Contains(Keys.E))
                 pressedKeys.Add(GameKey.jumpRight);
+            if (curkeys.Contains(Keys.ControlKey))
+                pressedKeys.Add(GameKey.runFast);
             #endregion
 
 

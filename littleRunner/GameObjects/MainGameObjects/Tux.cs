@@ -200,6 +200,15 @@ namespace littleRunner.GameObjects.MainGameObjects
                 firePressed = false;
             #endregion
 
+            if (newleft != 0 && pressedKeys.Contains(GameKey.runFast))
+            {
+                if (newleft < 0)
+                    newleft -= 5;
+                else
+                    newleft += 5;
+            }
+
+
             // jumping?
             GamePhysics.Jumping(ref jumping, ref newtop, ref newleft);
 

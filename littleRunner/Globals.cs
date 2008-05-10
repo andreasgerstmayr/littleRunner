@@ -44,7 +44,8 @@ namespace littleRunner
         jumpLeft,
         jumpTop,
         jumpRight,
-        fire
+        fire,
+        runFast
     }
     public enum MainGameObjectMode
     {
