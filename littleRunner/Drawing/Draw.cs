@@ -21,7 +21,6 @@ namespace littleRunner.Drawing
                 this.updateHandler = updateHandler;
             }
 
-
             abstract public void Update();
 
 
