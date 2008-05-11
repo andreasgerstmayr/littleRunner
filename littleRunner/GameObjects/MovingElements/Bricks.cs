@@ -4,6 +4,7 @@ using System.Text;
 using System.ComponentModel;
 
 using littleRunner.Drawing;
+using littleRunner.Drawing.Helpers;
 using littleRunner.GameObjects.StickyElements;
 
 
@@ -11,7 +12,7 @@ namespace littleRunner.GameObjects.MovingElements
 {
     class Bricks : MovingElement
     {
-        Draw.Image image;
+        dImage image;
         BrickColor color;
         int imgWidth;
 
@@ -24,12 +25,12 @@ namespace littleRunner.GameObjects.MovingElements
                 color = value;
                 switch (color)
                 {
-                    case BrickColor.Blue: image = Draw.Image.Open(Files.brick_blue); break;
-                    case BrickColor.Ice: image = Draw.Image.Open(Files.brick_ice); break;
-                    case BrickColor.Red: image = Draw.Image.Open(Files.brick_red); break;
-                    case BrickColor.Yellow: image = Draw.Image.Open(Files.brick_yellow); break;
-                    case BrickColor.Brown: image = Draw.Image.Open(Files.brick_brown); break;
-                    case BrickColor.Invisible: image = Draw.Image.Open(Files.brick_invisible); break;
+                    case BrickColor.Blue: image = GetDraw.Image(Files.brick_blue); break;
+                    case BrickColor.Ice: image = GetDraw.Image(Files.brick_ice); break;
+                    case BrickColor.Red: image = GetDraw.Image(Files.brick_red); break;
+                    case BrickColor.Yellow: image = GetDraw.Image(Files.brick_yellow); break;
+                    case BrickColor.Brown: image = GetDraw.Image(Files.brick_brown); break;
+                    case BrickColor.Invisible: image = GetDraw.Image(Files.brick_invisible); break;
                 }
                 imgWidth = image.Width;
 
@@ -62,7 +63,7 @@ namespace littleRunner.GameObjects.MovingElements
 
 
             if (color == BrickColor.Invisible && World.PlayMode == PlayMode.Editor)
-                d.DrawRectangle(Draw.Pen.Black, Left, Top, Width, Height);
+                d.DrawRectangle(dPen.Black, Left, Top, Width, Height);
         }
 
 

@@ -20,7 +20,7 @@ namespace littleRunner.Gamedata.Worlddata
         MainGameObject mainGameObject;
         GameSession session;
         public LevelSettings Settings;
-        public Draw.DrawHandler DrawHandler;
+        public Drawing.DrawHandler DrawHandler;
         private GameEventHandler aiEventHandler;
         public PlayMode PlayMode;
         public Script Script;
@@ -59,7 +59,7 @@ namespace littleRunner.Gamedata.Worlddata
         }
         public World(int gameWindowWidth, int gameWindowHeight,
             int levelWidth, int levelHeight,
-            Draw.DrawHandler drawHandler, PlayMode playMode)
+            Drawing.DrawHandler drawHandler, PlayMode playMode)
             : this(playMode)
         {
             Settings = new LevelSettings();
@@ -83,7 +83,7 @@ namespace littleRunner.Gamedata.Worlddata
         }
 
         // new world with the game
-        public World(string filename, Draw.DrawHandler drawHandler, GameEventHandler aiEventHandler, GameSession session, PlayMode playMode)
+        public World(string filename, Drawing.DrawHandler drawHandler, GameEventHandler aiEventHandler, GameSession session, PlayMode playMode)
             : this(playMode)
         {
             this.DrawHandler = drawHandler;
@@ -92,7 +92,7 @@ namespace littleRunner.Gamedata.Worlddata
             this.session = session;
             Deserialize();
         }
-        public World(string filename, Draw.DrawHandler drawHandler, GameSession session, PlayMode playMode)
+        public World(string filename, Drawing.DrawHandler drawHandler, GameSession session, PlayMode playMode)
             : this(filename, drawHandler, GameAI.NullAiEventHandlerMethod, session, playMode)
         {
         }
@@ -154,7 +154,7 @@ namespace littleRunner.Gamedata.Worlddata
             Update(d, drawBackground);
 
             d.MoveCoords(viewport.X, viewport.Y);
-            Draw.Pen pen = new Draw.Pen(new Draw.Color(Color.Black.R, Color.Black.G, Color.Black.B), Draw.Pen.PenStyle.Dashed);
+            dPen pen = new dPen(new dColor(Color.Black.R, Color.Black.G, Color.Black.B), dPenStyle.Dashed);
 
             foreach (GameObject go in AllElements)
             {

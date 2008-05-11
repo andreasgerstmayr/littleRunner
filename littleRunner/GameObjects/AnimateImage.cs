@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 using littleRunner.Drawing;
+using littleRunner.Drawing.Helpers;
 
 
 namespace littleRunner.GameObjects
@@ -11,12 +12,12 @@ namespace littleRunner.GameObjects
     class AnimateImage
     {
         static public bool Refresh;
-        Draw.Image[,] images;
+        dImage[,] images;
         int milliSecPerFrame;
         int cur;
         DateTime last;
 
-        public Draw.Image CurImage(GameDirection direction)
+        public dImage CurImage(GameDirection direction)
         {
             return images[(int)direction, cur];
         }
@@ -46,7 +47,7 @@ namespace littleRunner.GameObjects
         public AnimateImage(string imagesFn, int milliSecPerFrame, params GameDirection[] needDirections)
         {
             List<string> files = AnimateImage.getFiles(imagesFn);
-            images = new Draw.Image[Enum.GetNames(typeof(GameDirection)).Length, files.Count];
+            images = new dImage[Enum.GetNames(typeof(GameDirection)).Length, files.Count];
 
             for (int i = 0; i < files.Count; i++)
             {
@@ -63,7 +64,7 @@ namespace littleRunner.GameObjects
 
                 foreach (GameDirection dir in needDirections)
                 {
-                    Draw.Image img = Draw.Image.Open(files[i]);
+                    dImage img = GetDraw.Image(files[i]);
 
                     if (imgDir == dir)
                         images[(int)imgDir, i] = img;
@@ -73,11 +74,11 @@ namespace littleRunner.GameObjects
                         {
                             case GameDirection.Left:
                                 if (imgDir == GameDirection.Right)
-                                    img.Rotate(Draw.Image.RotateDirection.Horizontal);
+                                    img.Rotate(dImage.RotateDirection.Horizontal);
                                 break;
                             case GameDirection.Right:
                                 if (imgDir == GameDirection.Left)
-                                    img.Rotate(Draw.Image.RotateDirection.Horizontal);
+                                    img.Rotate(dImage.RotateDirection.Horizontal);
                                 break;
                         }
                         images[(int)dir, i] = img;
@@ -115,9 +116,9 @@ namespace littleRunner.GameObjects
 
             return files;
         }
-        public static Draw.Image FirstImage(string filename)
+        public static dImage FirstImage(string filename)
         {
-            return Draw.Image.Open(getFiles(filename)[0]);
+            return GetDraw.Image(getFiles(filename)[0]);
         }
     }
 }

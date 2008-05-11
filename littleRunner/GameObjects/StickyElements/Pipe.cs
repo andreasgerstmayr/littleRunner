@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 
 using littleRunner.Drawing;
+using littleRunner.Drawing.Helpers;
 
 
 namespace littleRunner.GameObjects.StickyElements
@@ -14,7 +15,7 @@ namespace littleRunner.GameObjects.StickyElements
     class Pipe : StickyElement
     {
         private PipeColor color;
-        private Draw.Image imgU, imgM;
+        private dImage imgU, imgM;
 
         public override void Update(Draw d)
         {
@@ -55,8 +56,8 @@ namespace littleRunner.GameObjects.StickyElements
                 switch (color)
                 {
                     case PipeColor.Green:
-                        imgU = Draw.Image.Open(Files.pipe_green_up);
-                        imgM = Draw.Image.Open(Files.pipe_green_main);
+                        imgU = GetDraw.Image(Files.pipe_green_up);
+                        imgM = GetDraw.Image(Files.pipe_green_main);
                         break;
                 }
             }

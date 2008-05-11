@@ -64,7 +64,7 @@ namespace littleRunner
     public enum VideoRenderMode
     {
         GDI,
-        SDL
+        Irrlicht
     }
 
     sealed class Globals

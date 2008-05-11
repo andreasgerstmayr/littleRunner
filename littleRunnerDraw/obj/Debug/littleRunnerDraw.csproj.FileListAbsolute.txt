@@ -1,0 +1,5 @@
+D:\programs\littleRunner\littleRunnerDraw\bin\Debug\littleRunnerDraw.dll
+D:\programs\littleRunner\littleRunnerDraw\bin\Debug\littleRunnerDraw.pdb
+D:\programs\littleRunner\littleRunnerDraw\obj\Debug\ResolveAssemblyReference.cache
+D:\programs\littleRunner\littleRunnerDraw\obj\Debug\littleRunnerDraw.dll
+D:\programs\littleRunner\littleRunnerDraw\obj\Debug\littleRunnerDraw.pdb

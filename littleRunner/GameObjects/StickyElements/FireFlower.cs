@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 using littleRunner.Drawing;
+using littleRunner.Drawing.Helpers;
 
 
 namespace littleRunner.GameObjects.StickyElements
@@ -42,7 +43,7 @@ namespace littleRunner.GameObjects.StickyElements
         {
         }
         public FireFlower(int top, int left)
-            : base(top - Draw.Image.Open(Files.fire_flower).Height, left,
+            : base(top - GetDraw.Image(Files.fire_flower).Height, left,
                    Files.fire_flower)
         {
         }

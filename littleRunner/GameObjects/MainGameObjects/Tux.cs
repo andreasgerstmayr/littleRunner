@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-
 using littleRunner.Drawing;
 using littleRunner.GameObjects.MovingElements;
 

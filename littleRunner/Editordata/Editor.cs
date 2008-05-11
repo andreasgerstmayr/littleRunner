@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 using littleRunner.Drawing;
+using littleRunner.Drawing.Helpers;
 using littleRunner.Gamedata.Worlddata;
 using littleRunner.GameObjects;
 using littleRunner.GameObjects.Enemies;
@@ -18,7 +19,7 @@ namespace littleRunner.Editordata
         ProgramSwitcher programSwitcher;
         Game g;
         TmpFileHandler tmpHandler;
-        Draw.DrawHandler drawHandler;
+        Drawing.DrawHandler drawHandler;
 
         World world;
         GameObject focus;
@@ -36,7 +37,7 @@ namespace littleRunner.Editordata
             InitializeComponent();
 
             // extern inits
-            drawHandler = Draw.DrawHandler.Create(level, this.Update);
+            drawHandler = GetDraw.DrawHandler(level, this.Update);
             AnimateImage.Refresh = false;
             EditorUI.drawHandler = drawHandler;
             EditorUI.properties = properties;
@@ -673,10 +674,10 @@ namespace littleRunner.Editordata
             {
                 d.MoveCoords(world.Viewport.X, world.Viewport.Y);
 
-                d.DrawRectangle(Draw.Pen.FromGDI(Pens.DodgerBlue), curRectangle.X, curRectangle.Y, curRectangle.Width, curRectangle.Height);
-                Draw.Color color = new Draw.Color(Color.DodgerBlue);
+                d.DrawRectangle(dPen.FromGDI(Pens.DodgerBlue), curRectangle.X, curRectangle.Y, curRectangle.Width, curRectangle.Height);
+                dColor color = new dColor(Color.DodgerBlue);
                 color.A = 15;
-                d.FillRectangle(new Draw.Pen(color), curRectangle.X, curRectangle.Y, curRectangle.Width, curRectangle.Height);
+                d.FillRectangle(new dPen(color), curRectangle.X, curRectangle.Y, curRectangle.Width, curRectangle.Height);
 
                 d.MoveCoords(-world.Viewport.X, -world.Viewport.Y);
             }

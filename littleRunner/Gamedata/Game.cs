@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.IO;
 
 using littleRunner.Drawing;
+using littleRunner.Drawing.Helpers;
 using littleRunner.Gamedata.Worlddata;
 using littleRunner.GameObjects;
 using littleRunner.GameObjects.MainGameObjects;
@@ -20,7 +21,7 @@ namespace littleRunner
     {
         ProgramSwitcher programSwitcher;
         GameAI ai;
-        Draw.DrawHandler drawHandler;
+        Drawing.DrawHandler drawHandler;
         World world;
         MainGameObjectMode lastMode;
         bool lastModeIsNull;
@@ -37,7 +38,7 @@ namespace littleRunner
 
         public Game()
         {
-            drawHandler = Draw.DrawHandler.Create(this, Update);
+            drawHandler = GetDraw.DrawHandler(this, Update);
             AnimateImage.Refresh = true;
             ignoreSizeChange = false;
         }

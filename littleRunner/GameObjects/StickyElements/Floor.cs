@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 
 using littleRunner.Drawing;
+using littleRunner.Drawing.Helpers;
 
 
 namespace littleRunner.GameObjects.StickyElements
@@ -14,7 +15,7 @@ namespace littleRunner.GameObjects.StickyElements
     class Floor : StickyElement
     {
         private FloorColor color;
-        private Draw.Image imgL, imgM, imgR;
+        private dImage imgL, imgM, imgR;
 
         public override void Update(Draw d)
         {
@@ -34,7 +35,7 @@ namespace littleRunner.GameObjects.StickyElements
             int occurences = Width / 63 ;
             for (int i = 0; i < occurences; i++)
             {
-                Draw.Image paint = i==0?imgL: (i+1==occurences ? imgR : imgM);
+                dImage paint = i==0?imgL: (i+1==occurences ? imgR : imgM);
                 d.DrawImage(paint, Left + i * 63, Top, paint.Width, Height);
             }
         }
@@ -54,9 +55,9 @@ namespace littleRunner.GameObjects.StickyElements
                 switch (color)
                 {
                     case FloorColor.Green:
-                        imgL = Draw.Image.Open(Files.floor_left);
-                        imgM = Draw.Image.Open(Files.floor_middle);
-                        imgR = Draw.Image.Open(Files.floor_right);
+                        imgL = GetDraw.Image(Files.floor_left);
+                        imgM = GetDraw.Image(Files.floor_middle);
+                        imgR = GetDraw.Image(Files.floor_right);
                         break;
                 }
             }

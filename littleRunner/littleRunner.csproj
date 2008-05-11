@@ -40,9 +40,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Dokumente und Einstellungen\Andi\Desktop\IronPython-1.1.1-Bin\IronPython-1.1.1\IronPython.dll</HintPath>
     </Reference>
-    <Reference Include="SdlDotNet, Version=6.1.0.0, Culture=neutral, PublicKeyToken=26ad4f7e10c61408, processorArchitecture=MSIL">
+    <Reference Include="littleRunnerDraw, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Dokumente und Einstellungen\Andi\Desktop\sdldotnet-6.1.0\sdldotnet-6.1.0\bin\SdlDotNet.dll</HintPath>
+      <HintPath>..\littleRunnerDraw\bin\Release\littleRunnerDraw.dll</HintPath>
+    </Reference>
+    <Reference Include="littleRunnerDrawGDI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\littleRunnerDrawGDI\bin\Release\littleRunnerDrawGDI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -50,14 +54,10 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Tao.OpenGl, Version=2.1.0.12, Culture=neutral, PublicKeyToken=1ca010269a4501ef, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Dokumente und Einstellungen\Andi\Desktop\sdldotnet-6.1.0\sdldotnet-6.1.0\source\lib\net-2.0\Tao.OpenGl.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DebugInfo.cs" />
-    <Compile Include="Drawing\DrawSDL.cs" />
+    <Compile Include="Drawing\Helpers\GetDraw.cs" />
     <Compile Include="Editordata\Editor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,8 +68,6 @@
     <Compile Include="Editordata\EditorUI.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="Files.cs" />
-    <Compile Include="Drawing\Draw.cs" />
-    <Compile Include="Drawing\DrawGDI.cs" />
     <Compile Include="GameObjects\AnimateImage.cs" />
     <Compile Include="GameObjects\Enemies\Spika.cs" />
     <Compile Include="GameObjects\Enemies\Gumba.cs" />
@@ -444,6 +442,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\Images\GameItem\mushroom_live.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Irrlicht.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="IrrlichtW.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="TuxIcon.ico" />

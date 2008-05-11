@@ -1,0 +1,7 @@
+D:\programs\littleRunner\littleRunnerDrawGDI\obj\Release\ResolveAssemblyReference.cache
+D:\programs\littleRunner\littleRunnerDrawGDI\bin\Release\littleRunnerDrawGDI.dll
+D:\programs\littleRunner\littleRunnerDrawGDI\bin\Release\littleRunnerDrawGDI.pdb
+D:\programs\littleRunner\littleRunnerDrawGDI\bin\Release\littleRunnerDraw.dll
+D:\programs\littleRunner\littleRunnerDrawGDI\bin\Release\littleRunnerDraw.pdb
+D:\programs\littleRunner\littleRunnerDrawGDI\obj\Release\littleRunnerDrawGDI.dll
+D:\programs\littleRunner\littleRunnerDrawGDI\obj\Release\littleRunnerDrawGDI.pdb
