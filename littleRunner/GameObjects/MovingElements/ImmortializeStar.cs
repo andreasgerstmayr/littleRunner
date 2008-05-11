@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+
 using littleRunner.Drawing;
+using littleRunner.Drawing.Helpers;
 
 
 namespace littleRunner.GameObjects.MovingElements
@@ -25,8 +27,8 @@ namespace littleRunner.GameObjects.MovingElements
         }
 
         public ImmortializeStar(GameDirection direction, int top, int left)
-            : base(Draw.Image.Open(Files.star),
-            top - Draw.Image.Open(Files.star).Height,
+            : base(GetDraw.Image(Files.star),
+            top - GetDraw.Image(Files.star).Height,
             left)
         {
             this.direction = direction;

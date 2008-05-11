@@ -15,7 +15,7 @@ namespace littleRunner.Editordata
 {
     class EditorUI
     {
-        static public Draw.DrawHandler drawHandler;
+        static public Drawing.DrawHandler drawHandler;
         static public PropertyGrid properties;
 
 

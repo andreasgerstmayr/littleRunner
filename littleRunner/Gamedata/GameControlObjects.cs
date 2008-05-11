@@ -18,9 +18,9 @@ namespace littleRunner
 
         public override void Update(Draw d)
         {
-            Draw.Font f1 = new Draw.Font(font, size, new Draw.FontStyle(Draw.FontWeight.Bold), new Draw.FontFormat(Draw.FontAligment.Left));
-            Draw.Font f2 = new Draw.Font(font, size, new Draw.FontStyle(Draw.FontWeight.Bold), new Draw.FontFormat(Draw.FontAligment.Right));
-            Draw.Color color = new Draw.Color(System.Drawing.Color.Black);
+            dFont f1 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Left));
+            dFont f2 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Right));
+            dColor color = new dColor(System.Drawing.Color.Black);
 
             d.DrawString("Points:", f1, color, Left, Top);
             d.DrawString(points.ToString(), f2, color, Left+115, Top);
@@ -49,9 +49,9 @@ namespace littleRunner
 
         public override void Update(Draw d)
         {
-            Draw.Font f1 = new Draw.Font(font, size, new Draw.FontStyle(Draw.FontWeight.Bold), new Draw.FontFormat(Draw.FontAligment.Left));
-            Draw.Font f2 = new Draw.Font(font, size, new Draw.FontStyle(Draw.FontWeight.Bold), new Draw.FontFormat(Draw.FontAligment.Right));
-            Draw.Color color = new Draw.Color(System.Drawing.Color.Black);
+            dFont f1 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Left));
+            dFont f2 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Right));
+            dColor color = new dColor(System.Drawing.Color.Black);
 
             d.DrawString("Lives:", f1, color, Left, Top);
             d.DrawString(lives.ToString(), f2, color, Left + 115, Top);

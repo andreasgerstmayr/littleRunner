@@ -9,7 +9,7 @@ namespace littleRunner.GameObjects.MovingElements
 {
     abstract class MovingImageElement : MovingElement
     {
-        protected Draw.Image curimg;
+        protected dImage curimg;
 
         public override void Update(Draw d)
         {
@@ -19,7 +19,7 @@ namespace littleRunner.GameObjects.MovingElements
         public MovingImageElement()
         {
         }
-        public MovingImageElement(Draw.Image img, int top, int left)
+        public MovingImageElement(dImage img, int top, int left)
         {
             Top = top;
             Left = left;
