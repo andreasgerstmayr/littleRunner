@@ -8,12 +8,8 @@ namespace littleRunner.Drawing.GDI
     {
         System.Drawing.Image img;
 
-        public dImage_GDI()
-            : base()
-        {
-        }
         public dImage_GDI(string filename)
-            : base()
+            : base(filename)
         {
             img = System.Drawing.Image.FromFile(filename);
         }
@@ -44,7 +40,7 @@ namespace littleRunner.Drawing.GDI
             }
         }
 
-        public override System.Drawing.Image ToGDI()
+        public System.Drawing.Image ToGDI()
         {
             return img;
         }

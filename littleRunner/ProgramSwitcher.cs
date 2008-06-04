@@ -21,6 +21,7 @@ namespace littleRunner
             InitializeComponent();
 
             Globals.VideoRenderMode = VideoRenderMode.GDI;
+            Highscore.FileName = "Highscore.lhs";
             canClose = false;
         }
 
@@ -30,7 +31,7 @@ namespace littleRunner
             foreach (string filename in Files.All())
             {
                 List<string> files = AnimateImage.getFiles(filename);
-
+                
                 foreach (string file in files)
                 {
                     if (!File.Exists(file))

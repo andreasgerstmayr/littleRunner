@@ -12,7 +12,6 @@ namespace littleRunner.Drawing
         public abstract void DrawRectangle(dPen pen, int x, int y, int width, int height);
         public abstract void FillRectangle(dPen pen, int x, int y, int width, int height);
         public abstract void DrawString(string text, dFont font, dColor color, int x, int y);
-
         public abstract void MoveCoords(int x, int y);
     }
 }

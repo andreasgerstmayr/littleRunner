@@ -36,6 +36,11 @@ namespace littleRunner
             get { return mainTimer.Enabled; }
         }
 
+        public int Points
+        {
+            get { return gameControlObj.Points; }
+        }
+
         public void Pause(bool start)
         {
             if (start)

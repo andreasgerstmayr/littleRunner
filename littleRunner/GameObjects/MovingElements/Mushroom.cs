@@ -29,7 +29,7 @@ namespace littleRunner.GameObjects.MovingElements
                 case MushroomType.Poison: return GetDraw.Image(Files.mushroom_poison);
                 case MushroomType.Live: return GetDraw.Image(Files.mushroom_live);
             }
-            return GetDraw.Image();
+            return null;
         }
 
         public Mushroom(MushroomType mtype, GameDirection direction, int top, int left)

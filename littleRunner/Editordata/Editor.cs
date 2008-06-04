@@ -82,15 +82,15 @@ namespace littleRunner.Editordata
             bricksToolStripMenuItem.Image = Image.FromFile(Files.brick_blue);
             bricksToolStripButton.Image = Image.FromFile(Files.brick_blue); ;
 
-            enemyToolStripMenuItem.Image = AnimateImage.FirstImage(Files.turtle_green).ToGDI();
-            turtleToolStripMenuItem.Image = AnimateImage.FirstImage(Files.turtle_green).ToGDI();
-            turtleToolStripButton.Image = AnimateImage.FirstImage(Files.turtle_green).ToGDI();
+            enemyToolStripMenuItem.Image = Image.FromFile(AnimateImage.FirstImageStr(Files.turtle_green));
+            turtleToolStripMenuItem.Image = Image.FromFile(AnimateImage.FirstImageStr(Files.turtle_green));
+            turtleToolStripButton.Image = Image.FromFile(AnimateImage.FirstImageStr(Files.turtle_green));
 
             spikaToolStripMenuItem.Image = Image.FromFile(Files.spika_green);
             spikaToolStripButton.Image = Image.FromFile(Files.spika_green); ;
 
-            gumbaToolStripMenuItem.Image = AnimateImage.FirstImage(Files.gumba_brown).ToGDI();
-            gumbaToolStripButton.Image = AnimateImage.FirstImage(Files.gumba_brown).ToGDI();
+            gumbaToolStripMenuItem.Image = Image.FromFile(AnimateImage.FirstImageStr(Files.gumba_brown));
+            gumbaToolStripButton.Image = Image.FromFile(AnimateImage.FirstImageStr(Files.gumba_brown));
 
             levelEndToolStripMenuItem.Image = Image.FromFile(Files.levelend_house);
             houseToolStripMenuItem.Image = Image.FromFile(Files.levelend_house);
@@ -360,8 +360,8 @@ namespace littleRunner.Editordata
         {
             tmpHandler.updateTMP();
 
-            int levelTop = this.Top + menu.Top + menubar.Top + tableLayout.Top + level.Top;
-            int levelLeft = this.Left + tableLayout.Left + level.Left;
+            int levelTop = this.Top + SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Height + tableLayout.Top + level.Top;
+            int levelLeft = this.Left + SystemInformation.FrameBorderSize.Width + tableLayout.Left + level.Left;
             g = new Game(programSwitcher, tmpHandler.TmpFilename, PlayMode.GameInEditor, levelTop, levelLeft);
             setCurrentViewport(ref g);
 

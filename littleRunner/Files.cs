@@ -186,6 +186,15 @@ namespace littleRunner
         {
             get { return "Data/Images/Main/TuxIcon.png"; }
         }
+
+        public static string needExtra1
+        {
+            get { return "IronPython.dll"; }
+        }
+        public static string needExtra2
+        {
+            get { return "IronMath.dll"; }
+        }
         #endregion
 
 

@@ -36,17 +36,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IronMath, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Dokumente und Einstellungen\Andi\Desktop\IronPython-1.1.1-Bin\IronPython-1.1.1\IronMath.dll</HintPath>
+    </Reference>
     <Reference Include="IronPython, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Dokumente und Einstellungen\Andi\Desktop\IronPython-1.1.1-Bin\IronPython-1.1.1\IronPython.dll</HintPath>
-    </Reference>
-    <Reference Include="littleRunnerDraw, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\littleRunnerDraw\bin\Release\littleRunnerDraw.dll</HintPath>
-    </Reference>
-    <Reference Include="littleRunnerDrawGDI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\littleRunnerDrawGDI\bin\Release\littleRunnerDrawGDI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -57,6 +53,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DebugInfo.cs" />
+    <Compile Include="Drawing\DrawGDI\dImage_GDI.cs" />
+    <Compile Include="Drawing\DrawGDI\DrawHandler_GDI.cs" />
+    <Compile Include="Drawing\DrawGDI\Draw_GDI.cs" />
+    <Compile Include="Drawing\Draw\dColor.cs" />
+    <Compile Include="Drawing\Draw\dFont.cs" />
+    <Compile Include="Drawing\Draw\dImage.cs" />
+    <Compile Include="Drawing\Draw\dPen.cs" />
+    <Compile Include="Drawing\Draw\Draw.cs" />
+    <Compile Include="Drawing\Draw\DrawHandler.cs" />
     <Compile Include="Drawing\Helpers\GetDraw.cs" />
     <Compile Include="Editordata\Editor.cs">
       <SubType>Form</SubType>
@@ -112,6 +117,15 @@
     <Compile Include="Gamedata\Worlddata\LevelSettings.cs" />
     <Compile Include="General.cs" />
     <Compile Include="Globals.cs" />
+    <Compile Include="Highscoredata\Highscore.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Highscoredata\HighscoreForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Highscoredata\HighscoreForm.Designer.cs">
+      <DependentUpon>HighscoreForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="ProgramSwitcher.cs">
       <SubType>Form</SubType>
@@ -192,6 +206,10 @@
   <ItemGroup>
     <EmbeddedResource Include="Editordata\Editor.resx">
       <DependentUpon>Editor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Highscoredata\HighscoreForm.resx">
+      <DependentUpon>HighscoreForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Script\Scripteditor.resx">
@@ -442,12 +460,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\Images\GameItem\mushroom_live.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Irrlicht.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="IrrlichtW.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="TuxIcon.ico" />

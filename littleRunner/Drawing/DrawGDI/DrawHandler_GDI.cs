@@ -21,7 +21,7 @@ namespace littleRunner.Drawing.GDI
 
         void c_Paint(object sender, PaintEventArgs e)
         {
-            updateHandler(new DrawGDI(e.Graphics));
+            updateHandler(new Draw_GDI(e.Graphics));
         }
     }
 }

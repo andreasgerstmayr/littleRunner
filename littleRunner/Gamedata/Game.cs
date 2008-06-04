@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -76,8 +75,8 @@ namespace littleRunner
         {
             if (world.PlayMode == PlayMode.GameInEditor)
             {
-                this.Top = top + 4;
-                this.Left = left + 5;
+                this.Top = top + 1;
+                this.Left = left + 1;
                 this.Width--;
                 this.Height -= 2;
             }
@@ -157,7 +156,7 @@ namespace littleRunner
                 // GameControls
                 if (gameControlObjs == null) // first run or complete new run (after game over)
                 {
-                    GameControl_Points gameControlObjPoints = new GameControl_Points(18, Width - 140, "Verdana", 12);
+                    GameControl_Score gameControlObjPoints = new GameControl_Score(18, Width - 140, "Verdana", 12);
                     GameControl_Lives gameControlObjLives = new GameControl_Lives(4, 40, Width - 140, "Verdana", 12);
                     GameControl_Sound gameControlObjSound = new GameControl_Sound();
 
@@ -207,7 +206,12 @@ namespace littleRunner
                 {
                     if (world.PlayMode == PlayMode.Game || world.PlayMode == PlayMode.Editor)
                     {
-                        DialogResult dr = MessageBox.Show("Game Over.\n\nPlay again?", "Game Over", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                        MessageBox.Show("Game Over.", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        
+                        Highscoredata.HighscoreForm hForm = new littleRunner.Highscoredata.HighscoreForm(ai.Points);
+                        hForm.ShowDialog();
+
+                        DialogResult dr = MessageBox.Show("Play again?", "Game Over", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                         lastModeIsNull = true; // start normal.
 
                         if (dr == DialogResult.Yes)

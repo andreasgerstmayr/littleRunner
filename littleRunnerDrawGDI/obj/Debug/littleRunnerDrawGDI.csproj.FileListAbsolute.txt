@@ -1,7 +1,0 @@
-D:\programs\littleRunner\littleRunnerDrawGDI\bin\Debug\littleRunnerDrawGDI.dll
-D:\programs\littleRunner\littleRunnerDrawGDI\bin\Debug\littleRunnerDrawGDI.pdb
-D:\programs\littleRunner\littleRunnerDrawGDI\bin\Debug\littleRunnerDraw.dll
-D:\programs\littleRunner\littleRunnerDrawGDI\bin\Debug\littleRunnerDraw.pdb
-D:\programs\littleRunner\littleRunnerDrawGDI\obj\Debug\ResolveAssemblyReference.cache
-D:\programs\littleRunner\littleRunnerDrawGDI\obj\Debug\littleRunnerDrawGDI.dll
-D:\programs\littleRunner\littleRunnerDrawGDI\obj\Debug\littleRunnerDrawGDI.pdb

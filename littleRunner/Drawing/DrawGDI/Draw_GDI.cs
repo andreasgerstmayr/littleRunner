@@ -5,11 +5,11 @@ using littleRunner.Drawing;
 
 namespace littleRunner.Drawing.GDI
 {
-    class DrawGDI : Draw
+    class Draw_GDI : Draw
     {
         System.Drawing.Graphics g;
 
-        public DrawGDI(System.Drawing.Graphics g)
+        public Draw_GDI(System.Drawing.Graphics g)
         {
             this.g = g;
         }
@@ -18,7 +18,8 @@ namespace littleRunner.Drawing.GDI
 
         public override void DrawImage(dImage image, int x, int y, int width, int height)
         {
-            g.DrawImage(((dImage_GDI)image).ToGDI(), x, y, width, height);
+            dImage_GDI gdiImage = (dImage_GDI)image;
+            g.DrawImage(gdiImage.ToGDI(), x, y, width, height);
         }
         public override void DrawRectangle(dPen pen, int x, int y, int width, int height)
         {
