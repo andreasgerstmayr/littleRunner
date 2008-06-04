@@ -139,6 +139,7 @@
             this.Controls.Add(this.name);
             this.Controls.Add(this.lName);
             this.Name = "HighscoreForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Highscore";
             ((System.ComponentModel.ISupportInitialize)(this.errProv)).EndInit();
             this.ResumeLayout(false);
