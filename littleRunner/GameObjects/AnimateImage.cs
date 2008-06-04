@@ -120,5 +120,9 @@ namespace littleRunner.GameObjects
         {
             return GetDraw.Image(getFiles(filename)[0]);
         }
+        public static string FirstImageStr(string filename)
+        {
+            return getFiles(filename)[0];
+        }
     }
 }

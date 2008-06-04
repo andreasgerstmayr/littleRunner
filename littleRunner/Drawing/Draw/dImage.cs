@@ -13,9 +13,6 @@ namespace littleRunner.Drawing
             Vertical
         }
 
-        public dImage()
-        {
-        }
         public dImage(string filename)
         {
         }
@@ -24,8 +21,5 @@ namespace littleRunner.Drawing
 
         public abstract dImage GetThumbnail(int width, int height);
         public abstract void Rotate(RotateDirection direction);
-
-
-        public abstract System.Drawing.Image ToGDI();
     }
 }

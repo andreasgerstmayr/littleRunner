@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 
 using littleRunner.Drawing;
-using littleRunner.Drawing.GDI;
+using System.Reflection;
 
 
 namespace littleRunner.Drawing.Helpers
@@ -16,26 +16,27 @@ namespace littleRunner.Drawing.Helpers
         }
 
 
-
-        public static dImage Image()
+        static string GetSmallModeName()
         {
-            string mode = Enum.GetName(typeof(VideoRenderMode), Globals.VideoRenderMode);
-            string type = "littleRunner.Drawing." + mode + ".dImage_" + mode + ", littleRunnerDraw" + mode;
-
-            return (dImage)getInstance(type);
+            switch (Globals.VideoRenderMode)
+            {
+                case VideoRenderMode.GDI: return "GDI";
+                default: return null;
+            }
         }
+
         public static dImage Image(string filename)
         {
-            string mode = Enum.GetName(typeof(VideoRenderMode), Globals.VideoRenderMode);
-            string type = "littleRunner.Drawing." + mode + ".dImage_" + mode + ", littleRunnerDraw" + mode;
+            string mode = GetSmallModeName();
+            string type = "littleRunner.Drawing." + mode + ".dImage_" + mode;
 
             return (dImage)getInstance(type, filename);
         }
 
         public static DrawHandler DrawHandler(Control c, UpdateHandler updateHandler)
         {
-            string mode = Enum.GetName(typeof(VideoRenderMode), Globals.VideoRenderMode);
-            string type = "littleRunner.Drawing." + mode + ".DrawHandler_" + mode + ", littleRunnerDraw" + mode;
+            string mode = GetSmallModeName();
+            string type = "littleRunner.Drawing." + mode + ".DrawHandler_" + mode;
 
             return (DrawHandler)getInstance(type, c, updateHandler);
         }

@@ -6,6 +6,7 @@ syntax: glob
 .*.swp
 
 littleRunner/bin/Debug/*
+littleRunner/bin/*/Highscore.lhs
 littleRunner/obj/*
 littleRunner.suo
 

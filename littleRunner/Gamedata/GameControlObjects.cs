@@ -10,9 +10,9 @@ using littleRunner.GameObjects;
 
 namespace littleRunner
 {
-    public class GameControl_Points : GameObject
+    public class GameControl_Score : GameObject
     {
-        int points;
+        int score;
         string font;
         float size;
 
@@ -22,19 +22,19 @@ namespace littleRunner
             dFont f2 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Right));
             dColor color = new dColor(System.Drawing.Color.Black);
 
-            d.DrawString("Points:", f1, color, Left, Top);
-            d.DrawString(points.ToString(), f2, color, Left+115, Top);
+            d.DrawString("Score:", f1, color, Left, Top);
+            d.DrawString(score.ToString(), f2, color, Left+115, Top);
         }
 
         public int Points
         {
-            get { return points; }
-            set { points = value; }
+            get { return score; }
+            set { score = value; }
         }
 
-        public GameControl_Points(int top, int left, string font, float size)
+        public GameControl_Score(int top, int left, string font, float size)
         {
-            points = 0;
+            score = 0;
             Top = top;
             Left = left;
             this.font = font;
@@ -126,7 +126,7 @@ namespace littleRunner
 
     public class GameControlObjects
     {
-        private GameControl_Points points;
+        private GameControl_Score points;
         private GameControl_Lives lives;
         private GameControl_Sound sound;
 
@@ -152,7 +152,7 @@ namespace littleRunner
         }
 
 
-        public GameControlObjects(GameControl_Points points, GameControl_Lives lives, GameControl_Sound sound)
+        public GameControlObjects(GameControl_Score points, GameControl_Lives lives, GameControl_Sound sound)
         {
             this.points = points;
             this.lives = lives;

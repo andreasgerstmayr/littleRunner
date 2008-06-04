@@ -15,9 +15,7 @@ namespace littleRunner.GameObjects.StickyElements
         public override void Update(Draw d)
         {
             if (curimgfn == Files.brick_invisible && World.PlayMode == PlayMode.Editor)
-            {
                 d.DrawRectangle(dPen.Black, Left, Top, Width, Height);
-            }
 
             d.DrawImage(curimg, Left, Top, Width, Height);
         }
