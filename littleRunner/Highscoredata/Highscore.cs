@@ -56,14 +56,14 @@ namespace littleRunner
             FileStream fs = new FileStream(FileName, FileMode.OpenOrCreate);
             BinaryReader br = new BinaryReader(fs);
 
-            List<byte> decrypted = new List<byte>();
+            byte[] decrypted = new byte[fs.Length];
             for (long i = 0; i < fs.Length; i++)
             {
-                decrypted.Add((byte)(br.ReadByte() ^ GUID[i % GUID.Length]));
+                decrypted[i] = (byte)(br.ReadByte() ^ GUID[i % GUID.Length]);
             }
             br.Close();
 
-            return new String(Encoding.UTF8.GetChars(decrypted.ToArray()));
+            return new String(Encoding.UTF8.GetChars(decrypted));
         }
         static void WriteFile(string text)
         {

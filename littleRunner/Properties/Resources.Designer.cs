@@ -88,6 +88,13 @@ namespace littleRunner.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap logo {
+            get {
+                object obj = ResourceManager.GetObject("logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static byte[] Script {
             get {
                 object obj = ResourceManager.GetObject("Script", resourceCulture);
