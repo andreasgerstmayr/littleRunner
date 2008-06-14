@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 
 using littleRunner.Gamedata.Worlddata;
 using littleRunner.Editordata;
@@ -14,7 +15,6 @@ namespace littleRunner
     {
         Game game;
         Editor editor;
-        bool canClose;
 
         public ProgramSwitcher()
         {
@@ -22,7 +22,6 @@ namespace littleRunner
 
             Globals.VideoRenderMode = VideoRenderMode.GDI;
             Highscore.FileName = "Highscore.lhs";
-            canClose = false;
         }
 
         private void ProgramSwitcher_Shown(object sender, EventArgs e)
@@ -31,13 +30,13 @@ namespace littleRunner
             foreach (string filename in Files.All())
             {
                 List<string> files = AnimateImage.getFiles(filename);
-                
+
                 foreach (string file in files)
                 {
                     if (!File.Exists(file))
                     {
                         MessageBox.Show("File " + file + " not found!\n\nClosing ...", "Fatal error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        closeToolStripMenuItem_Click(sender, e);
+                        closelittleRunner_Click(sender, e);
                         break;
                     }
                 }
@@ -49,6 +48,7 @@ namespace littleRunner
         {
             Script s = new Script(new World());
         }
+
 
 
         private void startgame_Click(object sender, EventArgs e)
@@ -71,48 +71,21 @@ namespace littleRunner
             }
         }
 
-
         private void closelittleRunner_Click(object sender, EventArgs e)
         {
-            canClose = true;
             Close();
         }
 
-        private void trayIcon_DoubleClick(object sender, EventArgs e)
-        {
-            Show();
-            this.WindowState = FormWindowState.Normal;
-        }
-
-        private void startGameToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            startgame_Click(sender, e);
-        }
-
-        private void startEditorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            starteditor_Click(sender, e);
-        }
-
-        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            canClose = true;
-            Close();
-        }
-
-        private void ProgramSwitcher_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (!canClose)
-            {
-                e.Cancel = true;
-                Hide();
-            }
-        }
 
         private void ProgramSwitcher_SizeChanged(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Minimized)
                 Hide();
+        }
+
+        private void homepage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(homepage.Text);
         }
     }
 }

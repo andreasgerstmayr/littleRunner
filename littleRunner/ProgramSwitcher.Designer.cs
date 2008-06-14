@@ -28,26 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgramSwitcher));
             this.startgame = new System.Windows.Forms.Button();
             this.starteditor = new System.Windows.Forms.Button();
-            this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.trayIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.startGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.startEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closelittleRunner = new System.Windows.Forms.Button();
             this.worker = new System.ComponentModel.BackgroundWorker();
-            this.trayIconMenu.SuspendLayout();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.homepage = new System.Windows.Forms.LinkLabel();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // startgame
             // 
-            this.startgame.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startgame.Location = new System.Drawing.Point(63, 23);
+            this.startgame.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.startgame.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.startgame.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.startgame.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.startgame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.startgame.Font = new System.Drawing.Font("Bitstream Vera Sans", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startgame.Location = new System.Drawing.Point(176, 353);
             this.startgame.Name = "startgame";
-            this.startgame.Size = new System.Drawing.Size(132, 37);
+            this.startgame.Size = new System.Drawing.Size(212, 62);
             this.startgame.TabIndex = 0;
             this.startgame.Text = "Game";
             this.startgame.UseVisualStyleBackColor = true;
@@ -55,59 +56,28 @@
             // 
             // starteditor
             // 
-            this.starteditor.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.starteditor.Location = new System.Drawing.Point(218, 23);
+            this.starteditor.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.starteditor.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.starteditor.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.starteditor.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.starteditor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.starteditor.Font = new System.Drawing.Font("Bitstream Vera Sans", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.starteditor.Location = new System.Drawing.Point(406, 353);
             this.starteditor.Name = "starteditor";
-            this.starteditor.Size = new System.Drawing.Size(134, 37);
+            this.starteditor.Size = new System.Drawing.Size(212, 62);
             this.starteditor.TabIndex = 1;
             this.starteditor.Text = "Editor";
             this.starteditor.UseVisualStyleBackColor = true;
             this.starteditor.Click += new System.EventHandler(this.starteditor_Click);
             // 
-            // trayIcon
-            // 
-            this.trayIcon.ContextMenuStrip = this.trayIconMenu;
-            this.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("trayIcon.Icon")));
-            this.trayIcon.Text = "littleRunner";
-            this.trayIcon.Visible = true;
-            this.trayIcon.DoubleClick += new System.EventHandler(this.trayIcon_DoubleClick);
-            // 
-            // trayIconMenu
-            // 
-            this.trayIconMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.startGameToolStripMenuItem,
-            this.startEditorToolStripMenuItem,
-            this.closeToolStripMenuItem});
-            this.trayIconMenu.Name = "trayIconMenu";
-            this.trayIconMenu.Size = new System.Drawing.Size(141, 70);
-            // 
-            // startGameToolStripMenuItem
-            // 
-            this.startGameToolStripMenuItem.Name = "startGameToolStripMenuItem";
-            this.startGameToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.startGameToolStripMenuItem.Text = "Start game";
-            this.startGameToolStripMenuItem.Click += new System.EventHandler(this.startGameToolStripMenuItem_Click);
-            // 
-            // startEditorToolStripMenuItem
-            // 
-            this.startEditorToolStripMenuItem.Name = "startEditorToolStripMenuItem";
-            this.startEditorToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.startEditorToolStripMenuItem.Text = "Start editor";
-            this.startEditorToolStripMenuItem.Click += new System.EventHandler(this.startEditorToolStripMenuItem_Click);
-            // 
-            // closeToolStripMenuItem
-            // 
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.closeToolStripMenuItem.Text = "Close";
-            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
-            // 
             // closelittleRunner
             // 
-            this.closelittleRunner.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closelittleRunner.Location = new System.Drawing.Point(141, 84);
+            this.closelittleRunner.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.closelittleRunner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closelittleRunner.Font = new System.Drawing.Font("Bitstream Vera Sans", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closelittleRunner.Location = new System.Drawing.Point(204, 496);
             this.closelittleRunner.Name = "closelittleRunner";
-            this.closelittleRunner.Size = new System.Drawing.Size(132, 36);
+            this.closelittleRunner.Size = new System.Drawing.Size(387, 41);
             this.closelittleRunner.TabIndex = 2;
             this.closelittleRunner.Text = "Close";
             this.closelittleRunner.UseVisualStyleBackColor = true;
@@ -117,23 +87,53 @@
             // 
             this.worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.worker_DoWork);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pictureBox1.Image = global::littleRunner.Properties.Resources.logo;
+            this.pictureBox1.Location = new System.Drawing.Point(147, 59);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(500, 150);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
+            // homepage
+            // 
+            this.homepage.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.homepage.AutoSize = true;
+            this.homepage.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.homepage.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.homepage.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.homepage.Location = new System.Drawing.Point(581, 565);
+            this.homepage.Name = "homepage";
+            this.homepage.Size = new System.Drawing.Size(201, 16);
+            this.homepage.TabIndex = 4;
+            this.homepage.TabStop = true;
+            this.homepage.Text = "http://littlerunner.andihit.net";
+            this.homepage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.homepage_LinkClicked);
+            // 
             // ProgramSwitcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 134);
+            this.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.ClientSize = new System.Drawing.Size(794, 590);
+            this.Controls.Add(this.homepage);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.starteditor);
             this.Controls.Add(this.closelittleRunner);
             this.Controls.Add(this.startgame);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ProgramSwitcher";
-            this.Text = "littleRunner - Start program";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "littleRunner";
             this.SizeChanged += new System.EventHandler(this.ProgramSwitcher_SizeChanged);
             this.Shown += new System.EventHandler(this.ProgramSwitcher_Shown);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProgramSwitcher_FormClosing);
-            this.trayIconMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -141,12 +141,9 @@
 
         private System.Windows.Forms.Button startgame;
         private System.Windows.Forms.Button starteditor;
-        private System.Windows.Forms.NotifyIcon trayIcon;
-        private System.Windows.Forms.ContextMenuStrip trayIconMenu;
-        private System.Windows.Forms.ToolStripMenuItem startGameToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem startEditorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.Button closelittleRunner;
         private System.ComponentModel.BackgroundWorker worker;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.LinkLabel homepage;
     }
 }

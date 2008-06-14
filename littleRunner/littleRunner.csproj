@@ -462,6 +462,7 @@
     <None Include="Data\Images\GameItem\mushroom_live.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\logo.png" />
     <Content Include="TuxIcon.ico" />
   </ItemGroup>
   <ItemGroup>
