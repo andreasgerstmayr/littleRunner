@@ -63,6 +63,9 @@
     <Compile Include="Drawing\Draw\Draw.cs" />
     <Compile Include="Drawing\Draw\DrawHandler.cs" />
     <Compile Include="Drawing\Helpers\GetDraw.cs" />
+    <Compile Include="Editordata\DoubleBufferPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Editordata\Editor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +128,12 @@
     </Compile>
     <Compile Include="Highscoredata\HighscoreForm.Designer.cs">
       <DependentUpon>HighscoreForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gamedata\LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gamedata\LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="ProgramSwitcher.cs">
@@ -210,6 +219,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Highscoredata\HighscoreForm.resx">
       <DependentUpon>HighscoreForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gamedata\LoadingForm.resx">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Script\Scripteditor.resx">
@@ -376,6 +389,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\Levels\level10.lrl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Levels\level11.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\Levels\level6.lrl">

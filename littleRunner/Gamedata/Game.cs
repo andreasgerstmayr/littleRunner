@@ -18,7 +18,6 @@ namespace littleRunner
 {
     public partial class Game : Form
     {
-        ProgramSwitcher programSwitcher;
         GameAI ai;
         Drawing.DrawHandler drawHandler;
         World world;
@@ -26,7 +25,6 @@ namespace littleRunner
         bool lastModeIsNull;
         GameControlObjects gameControlObjs;
         GameSession session;
-        bool editorOpened;
         bool ignoreSizeChange;
         int top, left;
 
@@ -35,36 +33,25 @@ namespace littleRunner
             get { return ai; }
         }
 
-        public Game()
+        public Game(string filename, PlayMode playMode)
         {
+            InitializeComponent();
+            SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+
             drawHandler = GetDraw.DrawHandler(this, Update);
             AnimateImage.Refresh = true;
             ignoreSizeChange = false;
-        }
-        public Game(ProgramSwitcher programSwitcher)
-            : this()
-        {
-            InitializeComponent();
-
-            editorOpened = false;
-            this.programSwitcher = programSwitcher;
-
-            lastModeIsNull = true;
-            StartGame("Data/Levels/level1.lrl", PlayMode.Game);
-        }
-        public Game(ProgramSwitcher programSwitcher, string filename, PlayMode playMode)
-            : this()
-        {
-            InitializeComponent();
-            
-            editorOpened = true;
-            this.programSwitcher = programSwitcher;
 
             lastModeIsNull = true;
             StartGame(filename, playMode);
         }
-        public Game(ProgramSwitcher programSwitcher, string filename, PlayMode playMode, int top, int left)
-            : this(programSwitcher, filename, playMode)
+        public Game(): this("Data/Levels/level1.lrl", PlayMode.Game)
+        {
+            
+        }
+        
+        public Game(string filename, PlayMode playMode, int top, int left)
+            : this(filename, playMode)
         {
             this.top = top;
             this.left = left;
@@ -92,16 +79,10 @@ namespace littleRunner
             }
             else
             {
-                /* set loading-label
-                Label loading = new Label();
-                loading.Top = this.Height/2 - 70;
-                loading.Left = this.Width/2 + 40;
-                loading.Text = "Loading ...";
-                loading.Font = new Font("Verdana", 10, FontStyle.Bold);
-                Controls.Add(loading);
-                */
+                LoadingForm f = new LoadingForm();
+                f.Show();
 
-
+                f.Message("Set title");
                 // set form title
                 string title = "";
 
@@ -127,7 +108,9 @@ namespace littleRunner
                 }
 
                 // main game AI - world neets AiEventHandler
+                f.Message("Creating Game AI"); 
                 ai = new GameAI(GameAIInteract);
+                
 
                 if (session == null) // first run or complete new run (after game over)
                 {
@@ -136,13 +119,18 @@ namespace littleRunner
 
 
                 // The world
+                f.Message("Creating World");
                 world = new World(filename, drawHandler, ai.getEvent, session, playMode);
+                
 
                 // Main game object
+                f.Message("Creating MGO");
                 Tux tux = new Tux(Globals.SCROLL_TOP, Globals.SCROLL_X);
                 tux.Init(world, ai.getEvent); // can init
+                
 
                 // got MGO!
+                f.Message("Initializing World");
                 world.Init(tux);
 
 
@@ -154,6 +142,7 @@ namespace littleRunner
 
 
                 // GameControls
+                f.Message("Creating GameControlObjects");
                 if (gameControlObjs == null) // first run or complete new run (after game over)
                 {
                     GameControl_Score gameControlObjPoints = new GameControl_Score(18, Width - 140, "Verdana", 12);
@@ -162,16 +151,23 @@ namespace littleRunner
 
                     gameControlObjs = new GameControlObjects(gameControlObjPoints, gameControlObjLives, gameControlObjSound);
                 }
+               
 
                 // init AI with the world - now we have the GameControlObjects
+                f.Message("Initializing Game AI");
                 ai.Init(world, gameControlObjs);
+
+                // init Script Engine
+                f.Message("Initializing ScriptEngine");
+                ai.InitScript();
+
 
                 if (!lastModeIsNull)
                     ai.World.MGO.Mode = lastMode;
 
+                f.Message("Initializing Sound");
                 gameControlObjs.Sound.Start();
-
-                // Controls.Remove(loading);
+                f.Close();
             }
         }
 
@@ -320,12 +316,6 @@ namespace littleRunner
 
             if (gameControlObjs != null)
                 gameControlObjs.Sound.Stop();
-        }
-
-        private void Game_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (!editorOpened)
-                programSwitcher.Show();
         }
 
         private void Game_SizeChanged(object sender, EventArgs e)

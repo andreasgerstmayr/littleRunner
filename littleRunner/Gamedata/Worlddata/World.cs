@@ -137,9 +137,9 @@ namespace littleRunner.Gamedata.Worlddata
             return "";
         }
 
-        public void Update(Draw d, bool drawBackground)
+        public void Update(Draw d)
         {
-            if (drawBackground && Settings.BackgroundImg != null)
+            if (Settings.BackgroundImg != null)
                 d.DrawImage(Settings.BackgroundImg, 0, 0, Settings.GameWindowWidth, Settings.LevelHeight);
 
             d.MoveCoords(viewport.X, viewport.Y);
@@ -149,9 +149,9 @@ namespace littleRunner.Gamedata.Worlddata
             }
             d.MoveCoords(-viewport.X, -viewport.Y);
         }
-        public void Update(Draw d, bool drawBackground, object[] selected)
+        public void Update(Draw d, object[] selected)
         {
-            Update(d, drawBackground);
+            Update(d);
 
             d.MoveCoords(viewport.X, viewport.Y);
             dPen pen = new dPen(new dColor(Color.Black.R, Color.Black.G, Color.Black.B), dPenStyle.Dashed);

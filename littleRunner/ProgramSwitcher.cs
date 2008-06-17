@@ -41,34 +41,35 @@ namespace littleRunner
                     }
                 }
             }
-
-            worker.RunWorkerAsync();
-        }
-        private void worker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-        {
-            Script s = new Script(new World());
         }
 
 
 
         private void startgame_Click(object sender, EventArgs e)
         {
-            game = new Game(this);
+            game = new Game();
             if (!game.IsDisposed)
             {
+                game.FormClosing += new FormClosingEventHandler(childrenFormClosing);
                 game.Show();
                 Hide();
             }
         }
-
         private void starteditor_Click(object sender, EventArgs e)
         {
-            editor = new Editor(this);
+            editor = new Editor();
             if (!editor.IsDisposed)
             {
+                editor.FormClosing += new FormClosingEventHandler(childrenFormClosing);
                 editor.Show();
                 Hide();
             }
+        }
+
+        void childrenFormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!e.Cancel)
+                Show();
         }
 
         private void closelittleRunner_Click(object sender, EventArgs e)

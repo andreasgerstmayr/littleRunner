@@ -31,8 +31,8 @@ from FlyingCircle import CreateFlyingCircle
 
 CreateMovingPlatform(Plat1, handler, MGO, 200, startDirection=GameDirection.Top)
 
-CreateMovingObject(Spika1, handler, 250, speed=2, direction=GameDirection.Right)
-CreateMovingObject(Spika1, handler, 250, speed=2, direction=GameDirection.Bottom)
+CreateMovingObject(Spika1, handler, 125, speed=2, direction=GameDirection.Right)
+CreateMovingObject(Spika1, handler, 125, speed=2, direction=GameDirection.Bottom)
 
 
 

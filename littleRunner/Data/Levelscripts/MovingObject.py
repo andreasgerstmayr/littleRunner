@@ -13,26 +13,34 @@ class CreateMovingObject:
       self.direction = direction
 
 
-   def __Check(self, newpos):
-      wantmove = self.speed
+   def __flipDirection(self):
+      if self.direction == GameDirection.Right:
+         self.direction = GameDirection.Left
+      elif self.direction == GameDirection.Left:
+         self.direction = GameDirection.Right
       
-      if self.direction == GameDirection.Bottom or self.direction == GameDirection.Right:
-         pass # do nothing
-      elif self.direction == GameDirection.Top or self.direction == GameDirection.Left:
-         wantmove = wantmove * (-1)
+      elif self.direction == GameDirection.Top:
+         self.direction = GameDirection.Bottom
+      elif self.direction == GameDirection.Bottom:
+         self.direction = GameDirection.Top
+     
+
+   def __Check(self, newpos):     
+      self.curDistance += self.speed
+      move = self.speed
       
-      
-      if self.curDistance > (self.maxDistance / 2):
-         wantmove = wantmove * (-1)
-      
-      
-      if self.direction == GameDirection.Top or self.direction == GameDirection.Bottom:
-         self.obj.Top += wantmove
-      else:
-         self.obj.Left += wantmove
-        
-        
       if self.curDistance > self.maxDistance:
+         move = self.curDistance-self.maxDistance
+
+      if self.direction == GameDirection.Top:
+         self.obj.Top -= move
+      elif self.direction == GameDirection.Bottom:
+         self.obj.Top += move
+      elif self.direction == GameDirection.Left:
+         self.obj.Left -= move
+      elif self.direction == GameDirection.Right:
+         self.obj.Left += move
+         
+      if self.curDistance > self.maxDistance:
+         self.__flipDirection()
          self.curDistance = 0
-      else:
-         self.curDistance += self.speed

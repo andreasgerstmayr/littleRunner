@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Editor));
-            this.level = new System.Windows.Forms.Panel();
+            this.level = new DoubleBufferPanel();
             this.properties = new System.Windows.Forms.PropertyGrid();
             this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.menubar = new System.Windows.Forms.ToolStrip();
@@ -116,7 +116,6 @@
             this.level.Size = new System.Drawing.Size(680, 550);
             this.level.TabIndex = 7;
             this.level.MouseMove += new System.Windows.Forms.MouseEventHandler(this.level_MouseMove);
-            this.level.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.level_MouseDoubleClick);
             this.level.MouseClick += new System.Windows.Forms.MouseEventHandler(this.level_MouseClick);
             this.level.MouseDown += new System.Windows.Forms.MouseEventHandler(this.level_MouseDown);
             this.level.MouseUp += new System.Windows.Forms.MouseEventHandler(this.level_MouseUp);
@@ -754,7 +753,6 @@
             this.hScroll.Name = "hScroll";
             this.hScroll.Size = new System.Drawing.Size(686, 15);
             this.hScroll.TabIndex = 20;
-            this.hScroll.MouseCaptureChanged += new System.EventHandler(this.hScroll_MouseCaptureChanged);
             this.hScroll.ValueChanged += new System.EventHandler(this.hScroll_ValueChanged);
             // 
             // vScroll
@@ -769,7 +767,6 @@
             this.vScroll.Size = new System.Drawing.Size(15, 556);
             this.vScroll.TabIndex = 21;
             this.vScroll.Value = 550;
-            this.vScroll.MouseCaptureChanged += new System.EventHandler(this.vScroll_MouseCaptureChanged);
             this.vScroll.ValueChanged += new System.EventHandler(this.vScroll_ValueChanged);
             // 
             // Editor
@@ -780,11 +777,11 @@
             this.Controls.Add(this.menubar);
             this.Controls.Add(this.tableLayout);
             this.Controls.Add(this.menu);
-            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "Editor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "littleRunner Level Editor";
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Editor_KeyUp);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Editor_FormClosing);
@@ -803,7 +800,7 @@
         #endregion
 
         private System.Windows.Forms.ToolStripMenuItem pointStarToolStripMenuItem;
-        private System.Windows.Forms.Panel level;
+        private DoubleBufferPanel level;
         private System.Windows.Forms.PropertyGrid properties;
         private System.Windows.Forms.OpenFileDialog openFile;
         private System.Windows.Forms.ToolStrip menubar;
