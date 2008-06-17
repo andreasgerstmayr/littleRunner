@@ -70,6 +70,8 @@ namespace littleRunner
     {
         public static VideoRenderMode VideoRenderMode;
 
+        public const int GO_LEFT = 6;
+
         public const int SCROLL_TOP = 20;
         public const int SCROLL_BOTTOM = 70;
 

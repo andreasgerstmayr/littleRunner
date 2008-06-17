@@ -152,14 +152,14 @@ namespace littleRunner.GameObjects.MainGameObjects
             if (pressedKeys.Contains(GameKey.goLeft) &&
                 (jumping.direction == GameDirection.None || jumping.direction == GameDirection.Top))
             {
-                newleft -= 7;
+                newleft -= Globals.GO_LEFT;
                 if (direction != GameDirection.Left)
                     Direction = GameDirection.Left;
             }
             if (pressedKeys.Contains(GameKey.goRight) &&
                 (jumping.direction == GameDirection.None || jumping.direction == GameDirection.Top))
             {
-                newleft += 7;
+                newleft += Globals.GO_LEFT;
                 if (direction != GameDirection.Right)
                     Direction = GameDirection.Right;
             }

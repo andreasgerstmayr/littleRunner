@@ -32,7 +32,6 @@
             this.startgame = new System.Windows.Forms.Button();
             this.starteditor = new System.Windows.Forms.Button();
             this.closelittleRunner = new System.Windows.Forms.Button();
-            this.worker = new System.ComponentModel.BackgroundWorker();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.homepage = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -75,17 +74,13 @@
             this.closelittleRunner.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.closelittleRunner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closelittleRunner.Font = new System.Drawing.Font("Bitstream Vera Sans", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closelittleRunner.Location = new System.Drawing.Point(204, 496);
+            this.closelittleRunner.Location = new System.Drawing.Point(204, 478);
             this.closelittleRunner.Name = "closelittleRunner";
             this.closelittleRunner.Size = new System.Drawing.Size(387, 41);
             this.closelittleRunner.TabIndex = 2;
             this.closelittleRunner.Text = "Close";
             this.closelittleRunner.UseVisualStyleBackColor = true;
             this.closelittleRunner.Click += new System.EventHandler(this.closelittleRunner_Click);
-            // 
-            // worker
-            // 
-            this.worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.worker_DoWork);
             // 
             // pictureBox1
             // 
@@ -142,7 +137,6 @@
         private System.Windows.Forms.Button startgame;
         private System.Windows.Forms.Button starteditor;
         private System.Windows.Forms.Button closelittleRunner;
-        private System.ComponentModel.BackgroundWorker worker;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.LinkLabel homepage;
     }

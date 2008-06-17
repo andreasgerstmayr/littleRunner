@@ -25,7 +25,7 @@ namespace littleRunner
 
         public void Update(Draw d)
         {
-            World.Update(d, true);
+            World.Update(d);
             gameControlObj.Update(d);
             d.MoveCoords(World.Viewport.X, World.Viewport.Y);
             World.MGO.Update(d);
@@ -73,10 +73,8 @@ namespace littleRunner
 
             this.gameControlObj = gameControlObj;
             this.World = world;
-
-            this.InitScript();
         }
-        private void InitScript()
+        public void InitScript()
         {
             // Init script
             string msg = this.World.InitScript();

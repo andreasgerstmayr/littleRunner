@@ -1,6 +1,6 @@
 ﻿namespace littleRunner
 {
-    partial class Game
+    partial class LoadingForm
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -28,32 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Game));
+            this.txt = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // Game
+            // txt
+            // 
+            this.txt.Font = new System.Drawing.Font("Bitstream Vera Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt.Location = new System.Drawing.Point(12, 9);
+            this.txt.Name = "txt";
+            this.txt.Size = new System.Drawing.Size(344, 21);
+            this.txt.TabIndex = 0;
+            this.txt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LoadingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(504, 483);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.KeyPreview = true;
-            this.MaximizeBox = false;
-            this.Name = "Game";
+            this.ClientSize = new System.Drawing.Size(368, 39);
+            this.ControlBox = false;
+            this.Controls.Add(this.txt);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Name = "LoadingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "littleRunner";
-            this.SizeChanged += new System.EventHandler(this.Game_SizeChanged);
-            this.Shown += new System.EventHandler(this.Game_Shown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Game_KeyPress);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Game_KeyUp);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Game_FormClosing);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Game_KeyDown);
+            this.Text = "Loading";
+            this.TopMost = true;
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Label txt;
     }
 }
-

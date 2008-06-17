@@ -12,11 +12,11 @@
     </gameWindowHeight>
     <levelWidth>
       <type>System.Int32</type>
-      <value>1500</value>
+      <value>1000</value>
     </levelWidth>
     <levelHeight>
       <type>System.Int32</type>
-      <value>650</value>
+      <value>550</value>
     </levelHeight>
     <Background>
       <type>littleRunner.Gamedata.Worlddata.Backgrounds</type>
@@ -24,35 +24,12 @@
     </Background>
     <Script>
       <type>System.String</type>
-      <value><![CDATA[from MovingPlatform import CreateMovingPlatform
-from MovingObject import CreateMovingObject
+      <value><![CDATA[from MovingObject import CreateMovingObject
 
-Session.Set('bonuslevel1.lrl', 'nextLevel', 'level6.lrl')
-Session.Set('bonuslevel1.lrl', 'nextLevelStartAt', 1040)
-
-CreateMovingPlatform(Plat1, handler, MGO, 200, startDirection=GameDirection.Top, moveBack=False)
-
-CreateMovingPlatform(Plat2, handler, MGO, 500, speed=7, moveBack=False)
-
-CreateMovingObject(Spika1, handler, 135, speed=7, direction=GameDirection.Top)
-
-
-CreateMovingPlatform(Plat3, handler, MGO, 700, speed=15, moveBack=False)
-CreateMovingPlatform(Plat4, handler, MGO, 400, speed=20, startDirection=GameDirection.Left, moveBack=False)
-
-CreateMovingPlatform(Plat5, handler, MGO, 100, startDirection=GameDirection.Top)
-
-
-# Remove Bonus-Level-House if already catched
-if Session.Get('level6.lrl', 'gotBonusLvl') == True:
-   World.StickyElements.Remove(BonusHouse)
-
-# Write to session that the bonus level has been catched
-def removeBonusLvl(geventhandler):
-   Session.Set('level6.lrl', 'gotBonusLvl', True)
-   Session.Set('bonuslevel1.lrl', 'gotLvl', False) # set to False - maybe need bonuslevel in other level too
-
-handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
+CreateMovingObject(Spika1_horiz, handler, 640, speed=40, direction=GameDirection.Right)
+CreateMovingObject(Spika2_horiz, handler, 640, speed=40, direction=GameDirection.Left)
+CreateMovingObject(Spika1_vert, handler, 154, speed=15, direction=GameDirection.Bottom)
+CreateMovingObject(Spika2_vert, handler, 154, speed=15, direction=GameDirection.Top)]]></value>
     </Script>
   </Settings>
   <Data>
@@ -64,15 +41,15 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>525</value>
+          <value>476</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>3</value>
+          <value>4</value>
         </Left>
         <Width>
           <type>System.Int32</type>
-          <value>504</value>
+          <value>1008</value>
         </Width>
         <Height>
           <type>System.Int32</type>
@@ -83,70 +60,18 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>Green</value>
         </FloorStyle>
       </Floor>
-      <DesignElements>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>-5</value>
+          <value>235</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>995</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>200</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>200</value>
-        </Height>
-        <Element>
-          <type>littleRunner.GameObjects.StickyElements.DesignElement</type>
-          <value>Tree</value>
-        </Element>
-      </DesignElements>
-      <Floor>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>195</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>758</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>504</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>64</value>
-        </Height>
-        <FloorStyle>
-          <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
-          <value>Green</value>
-        </FloorStyle>
-      </Floor>
-      <Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>178</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>1300</value>
+          <value>149</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -156,101 +81,23 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <Star>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Blue</value>
+        </Color>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>218</value>
+          <value>235</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
-          <value>1302</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>255</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>1286</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>297</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>1277</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
           <type>System.Int32</type>
           <value>336</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>1282</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -260,45 +107,37 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <LevelEnd>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Blue</value>
+        </Color>
+      </Brick>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>0</value>
+          <value>235</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>1646</value>
+          <value>523</value>
         </Left>
         <Width>
           <type>System.Int32</type>
-          <value>96</value>
+          <value>42</value>
         </Width>
         <Height>
           <type>System.Int32</type>
-          <value>128</value>
+          <value>42</value>
         </Height>
-        <NextLevel>
-          <type>System.String</type>
-          <value>level7.lrl</value>
-        </NextLevel>
-        <StartAt>
-          <type>System.Int32</type>
-          <value>0</value>
-        </StartAt>
-        <Image>
-          <type>littleRunner.GameObjects.StickyElements.LevelEndImg</type>
-          <value>House</value>
-        </Image>
-      </LevelEnd>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Blue</value>
+        </Color>
+      </Brick>
       <Star>
         <Name>
           <type>NULL</type>
@@ -306,11 +145,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>376</value>
+          <value>377</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>1278</value>
+          <value>89</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -332,11 +171,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>413</value>
+          <value>377</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>1261</value>
+          <value>136</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -351,186 +190,177 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>Yellow</value>
         </StarStyle>
       </Star>
-      <LevelEnd>
+      <Star>
         <Name>
-          <type>System.String</type>
-          <value>BonusHouse</value>
+          <type>NULL</type>
+          <value>null</value>
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>354</value>
+          <value>377</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>1111</value>
+          <value>183</value>
         </Left>
         <Width>
           <type>System.Int32</type>
-          <value>96</value>
+          <value>42</value>
         </Width>
         <Height>
           <type>System.Int32</type>
-          <value>128</value>
+          <value>42</value>
         </Height>
-        <NextLevel>
-          <type>System.String</type>
-          <value>bonuslevel1.lrl</value>
-        </NextLevel>
-        <StartAt>
+        <StarStyle>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
+          <value>Yellow</value>
+        </StarStyle>
+      </Star>
+      <Star>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
           <type>System.Int32</type>
-          <value>0</value>
-        </StartAt>
-        <Image>
-          <type>littleRunner.GameObjects.StickyElements.LevelEndImg</type>
-          <value>House</value>
-        </Image>
-      </LevelEnd>
+          <value>377</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>230</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <StarStyle>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
+          <value>Yellow</value>
+        </StarStyle>
+      </Star>
+      <Star>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>424</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>91</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <StarStyle>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
+          <value>Yellow</value>
+        </StarStyle>
+      </Star>
+      <Star>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>424</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>138</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <StarStyle>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
+          <value>Yellow</value>
+        </StarStyle>
+      </Star>
+      <Star>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>424</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>185</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <StarStyle>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
+          <value>Yellow</value>
+        </StarStyle>
+      </Star>
+      <Star>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>424</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>232</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <StarStyle>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
+          <value>Yellow</value>
+        </StarStyle>
+      </Star>
     </StickyElements>
-    <MovingElements>
-      <Bricks>
-        <Name>
-          <type>System.String</type>
-          <value>Plat1</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>371</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>114</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>86</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
-          <value>Blue</value>
-        </Color>
-      </Bricks>
-      <Bricks>
-        <Name>
-          <type>System.String</type>
-          <value>Plat2</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>104</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>253</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>129</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
-          <value>Red</value>
-        </Color>
-      </Bricks>
-      <Bricks>
-        <Name>
-          <type>System.String</type>
-          <value>Plat3</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>487</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>1270</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>43</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
-          <value>Blue</value>
-        </Color>
-      </Bricks>
-      <Bricks>
-        <Name>
-          <type>System.String</type>
-          <value>Plat4</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>404</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>2038</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>86</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
-          <value>Red</value>
-        </Color>
-      </Bricks>
-      <Bricks>
-        <Name>
-          <type>System.String</type>
-          <value>Plat5</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>275</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>1373</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>215</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
-          <value>Invisible</value>
-        </Color>
-      </Bricks>
-    </MovingElements>
+    <MovingElements />
     <Enemies>
       <Spika>
         <Name>
           <type>System.String</type>
-          <value>Spika1</value>
+          <value>Spika1_vert</value>
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>160</value>
+          <value>290</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>1020</value>
+          <value>15</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -549,52 +379,18 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>Green</value>
         </Color>
       </Spika>
-      <Turtle>
+      <Spika>
         <Name>
-          <type>NULL</type>
-          <value>null</value>
+          <type>System.String</type>
+          <value>Spika1_horiz</value>
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>458</value>
+          <value>290</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>29</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>57</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>64</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>True</value>
-        </StartAtViewpoint>
-        <TurtleStyle>
-          <type>littleRunner.GameObjects.Enemies.TurtleStyle</type>
-          <value>Green</value>
-        </TurtleStyle>
-        <Direction>
-          <type>littleRunner.GameDirection</type>
-          <value>Right</value>
-        </Direction>
-      </Turtle>
-      <Gumba>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>488</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>151</value>
+          <value>15</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -609,14 +405,70 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>True</value>
         </StartAtViewpoint>
         <Color>
-          <type>littleRunner.GameObjects.Enemies.GumbaColor</type>
-          <value>Brown</value>
+          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
+          <value>Green</value>
         </Color>
-        <Direction>
-          <type>littleRunner.GameDirection</type>
-          <value>Left</value>
-        </Direction>
-      </Gumba>
+      </Spika>
+      <Spika>
+        <Name>
+          <type>System.String</type>
+          <value>Spika2_vert</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>442</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>650</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>True</value>
+        </StartAtViewpoint>
+        <Color>
+          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
+          <value>Green</value>
+        </Color>
+      </Spika>
+      <Spika>
+        <Name>
+          <type>System.String</type>
+          <value>Spika2_horiz</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>290</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>650</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>True</value>
+        </StartAtViewpoint>
+        <Color>
+          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
+          <value>Green</value>
+        </Color>
+      </Spika>
     </Enemies>
   </Data>
 </Level>

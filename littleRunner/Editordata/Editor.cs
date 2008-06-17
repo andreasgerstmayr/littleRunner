@@ -16,7 +16,6 @@ namespace littleRunner.Editordata
 {
     public partial class Editor : Form
     {
-        ProgramSwitcher programSwitcher;
         Game g;
         TmpFileHandler tmpHandler;
         Drawing.DrawHandler drawHandler;
@@ -25,16 +24,18 @@ namespace littleRunner.Editordata
         GameObject focus;
         int defaultContextMenuItems;
         bool moving;
-        bool enableBG;
         int mouseX, mouseY;
         List<Keys> pressedKeys;
 
         GamePoint startRectangle, endRectangle;
         Rectangle curRectangle;
 
-        public Editor(ProgramSwitcher programSwitcher)
+        public Editor()
         {
             InitializeComponent();
+            SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint |
+ControlStyles.OptimizedDoubleBuffer, true);
+
 
             // extern inits
             drawHandler = GetDraw.DrawHandler(level, this.Update);
@@ -43,7 +44,6 @@ namespace littleRunner.Editordata
             EditorUI.properties = properties;
 
 
-            this.programSwitcher = programSwitcher;
             World defaultWorld = new World();
             tmpHandler = new TmpFileHandler(openFile, saveFile, defaultWorld.Serialize, 5);
             defaultWorld = null;
@@ -54,7 +54,6 @@ namespace littleRunner.Editordata
             moving = false;
             mouseX = 0;
             mouseY = 0;
-            enableBG = true;
             pressedKeys = new List<Keys>();
 
 
@@ -128,11 +127,40 @@ namespace littleRunner.Editordata
                 }
             }
 
-
             if (found)
             {
-                if (!pressedKeys.Contains(Keys.ControlKey))
-                    properties.SelectedObjects = new object[] { focus };
+                // check if current selected object is already in list
+                if (Array.IndexOf<object>(properties.SelectedObjects, focus) == -1)
+                {
+                    // not in list & STRG-Key press
+                    if (pressedKeys.Contains(Keys.ControlKey))
+                    {
+                        if (properties.SelectedObjects.Length == 1 && properties.SelectedObject is LevelSettings)
+                        {
+                            properties.SelectedObjects = new object[] { focus };
+                        }
+                        else
+                        {
+                            object[] selected = properties.SelectedObjects;
+                            Array.Resize<object>(ref selected, selected.Length + 1);
+                            selected[selected.Length - 1] = focus;
+
+                            properties.SelectedObjects = selected;
+                        }
+
+                    }
+                    else // no STRG Key - remove selection of other objects, add only one selection to current
+                    {
+                        properties.SelectedObjects = new object[] { focus };
+                    }
+                }
+                // object selected (in array) & STRG -> remove selection
+                else if (pressedKeys.Contains(Keys.ControlKey))
+                {
+                     List<object> selected = new List<object>(properties.SelectedObjects);
+                     selected.Remove(focus);
+                     properties.SelectedObjects = selected.ToArray();
+                }
             }
             else
             {
@@ -155,7 +183,8 @@ namespace littleRunner.Editordata
                 curRectangle = Rectangle.Empty;
             }
 
-            drawHandler.Update(); // paint again, with background
+            properties.Refresh();
+            drawHandler.Update();
         }
 
         private void level_MouseMove(object sender, MouseEventArgs e)
@@ -200,44 +229,12 @@ namespace littleRunner.Editordata
         {
             if (focus != null)
             {
-                if (!pressedKeys.Contains(Keys.ControlKey))
-                    properties.SelectedObjects = new object[] { focus };
-                else
-                {
-                    if (Array.IndexOf<object>(properties.SelectedObjects, focus) == -1)
-                    {
-                        if (properties.SelectedObjects.Length == 1 && properties.SelectedObject is LevelSettings)
-                        {
-                            properties.SelectedObjects = new object[] { focus };
-                        }
-                        else
-                        {
-                            object[] selected = properties.SelectedObjects;
-                            Array.Resize<object>(ref selected, selected.Length + 1);
-                            selected[selected.Length - 1] = focus;
-
-                            properties.SelectedObjects = selected;
-                        }
-                    }
-                }
-
-
                 if (e.Button == MouseButtons.Right)
                 {
                     ViewContextMenue(Cursor.Position.X, Cursor.Position.Y);
                     mouseX = e.X - focus.Left;
                     mouseY = e.Y - focus.Top;
                 }
-            }
-        }
-
-        private void level_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            if (focus != null && Array.IndexOf<object>(properties.SelectedObjects, focus) != -1)
-            {
-                List<object> selected = new List<object>(properties.SelectedObjects);
-                selected.Remove(focus);
-                properties.SelectedObjects = selected.ToArray();
             }
         }
 
@@ -329,7 +326,7 @@ namespace littleRunner.Editordata
         {
             tmpHandler.updateTMP();
 
-            g = new Game(programSwitcher, tmpHandler.TmpFilename, PlayMode.Game);
+            g = new Game(tmpHandler.TmpFilename, PlayMode.Game);
 
             g.ShowDialog();
             g = null;
@@ -348,7 +345,7 @@ namespace littleRunner.Editordata
         {
             tmpHandler.updateTMP();
 
-            g = new Game(programSwitcher, tmpHandler.TmpFilename, PlayMode.Game);
+            g = new Game(tmpHandler.TmpFilename, PlayMode.Game);
             setCurrentViewport(ref g);
 
             g.ShowDialog();
@@ -362,7 +359,7 @@ namespace littleRunner.Editordata
 
             int levelTop = this.Top + SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Height + tableLayout.Top + level.Top;
             int levelLeft = this.Left + SystemInformation.FrameBorderSize.Width + tableLayout.Left + level.Left;
-            g = new Game(programSwitcher, tmpHandler.TmpFilename, PlayMode.GameInEditor, levelTop, levelLeft);
+            g = new Game(tmpHandler.TmpFilename, PlayMode.GameInEditor, levelTop, levelLeft);
             setCurrentViewport(ref g);
 
 
@@ -612,17 +609,33 @@ namespace littleRunner.Editordata
         {
             object[] selected = properties.SelectedObjects;
             properties.SelectedObjects = new object[] { };
+            int most_left = 0;
+            int most_right = 0;
 
             foreach (object o in selected)
             {
                 if (!(o is LevelSettings))
                 {
                     GameObject go = (GameObject)o;
-                    Dictionary<string,object> serialized = go.Serialize();
+
+                    if (go.Left < most_left || most_right == 0) // rightest==0 -> first run
+                        most_left = go.Left;
+                    if (go.Right > most_right)
+                        most_right = go.Left;
+                }
+            }
+
+            int distance = most_right - most_left;
+            foreach (object o in selected)
+            {
+                if (!(o is LevelSettings))
+                {
+                    GameObject go = (GameObject)o;
+                    Dictionary<string, object> serialized = go.Serialize();
 
                     GameObject cloned = (GameObject)Activator.CreateInstance(go.GetType());
                     cloned.Deserialize(serialized);
-                    cloned.Left = go.Right + 5;
+                    cloned.Left = go.Right + distance + 5;
                     addElement(cloned, true);
                 }
             }
@@ -651,8 +664,6 @@ namespace littleRunner.Editordata
             {
                 tmpHandler.Dispose();
                 tmpHandler = null;
-
-                programSwitcher.Show();
             }
             else
                 e.Cancel = true;
@@ -660,15 +671,7 @@ namespace littleRunner.Editordata
 
         private void Update(Draw d)
         {
-            bool drawBg = true;
-            if (enableBG)
-                drawBg = !moving; // when moving == true, drawBg = false
-
-            if (drawBg && curRectangle != Rectangle.Empty)
-                drawBg = false;
-
-
-            world.Update(d, drawBg, properties.SelectedObjects);
+            world.Update(d, properties.SelectedObjects);
 
             if (curRectangle != Rectangle.Empty)
             {
@@ -724,21 +727,6 @@ namespace littleRunner.Editordata
             drawHandler.Update();
         }
 
-        private void hScroll_MouseCaptureChanged(object sender, EventArgs e)
-        {
-            if (enableBG)
-            {
-                // disable background
-                enableBG = false;
-            }
-            else
-            {
-                // enable background
-                enableBG = true;
-                drawHandler.Update();
-            }
-        }
-
 
         private void vScroll_ValueChanged(object sender, EventArgs e)
         {
@@ -746,11 +734,6 @@ namespace littleRunner.Editordata
             setcurScrollingText();
 
             drawHandler.Update();
-        }
-
-        private void vScroll_MouseCaptureChanged(object sender, EventArgs e)
-        {
-            hScroll_MouseCaptureChanged(sender, e);
         }
         #endregion
 
