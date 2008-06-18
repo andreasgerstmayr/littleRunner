@@ -25,6 +25,9 @@ namespace littleRunner
 
         public void Update(Draw d)
         {
+            if (World == null)
+                return;
+
             World.Update(d);
             gameControlObj.Update(d);
             d.MoveCoords(World.Viewport.X, World.Viewport.Y);

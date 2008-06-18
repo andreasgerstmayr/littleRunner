@@ -11,7 +11,6 @@ namespace littleRunner
     class Highscore
     {
         public static string FileName;
-        private static HighscoreSort HighscoreSorter = new HighscoreSort();
         private static char[] GUID = GetGuid().ToCharArray();
 
 
@@ -126,7 +125,7 @@ namespace littleRunner
             List<Highscore.Data> list = new List<Highscore.Data>(Read());
             list.Add(data);
 
-            list.Sort(HighscoreSorter);
+            list.Sort(new HighscoreSort());
 
 
             string text = "";

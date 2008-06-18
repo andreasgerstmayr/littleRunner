@@ -26,6 +26,8 @@ namespace littleRunner
 
         private void ProgramSwitcher_Shown(object sender, EventArgs e)
         {
+            Application.DoEvents();
+
             // check all files
             foreach (string filename in Files.All())
             {

@@ -88,6 +88,20 @@ namespace littleRunner.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap horiz_align {
+            get {
+                object obj = ResourceManager.GetObject("horiz_align", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap horiz_spacejustify {
+            get {
+                object obj = ResourceManager.GetObject("horiz_spacejustify", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap logo {
             get {
                 object obj = ResourceManager.GetObject("logo", resourceCulture);
@@ -119,6 +133,20 @@ namespace littleRunner.Properties {
         internal static System.Drawing.Bitmap text_x_script {
             get {
                 object obj = ResourceManager.GetObject("text-x-script", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap vert_align {
+            get {
+                object obj = ResourceManager.GetObject("vert_align", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap vert_spacejustify {
+            get {
+                object obj = ResourceManager.GetObject("vert_spacejustify", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

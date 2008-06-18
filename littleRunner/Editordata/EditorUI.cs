@@ -16,8 +16,8 @@ namespace littleRunner.Editordata
     class EditorUI
     {
         static public Drawing.DrawHandler drawHandler;
+        static public DoubleBufferPanel level;
         static public PropertyGrid properties;
-
 
 
         public static bool HasProperty(object obj, string name, Type propertyType, out string value)
@@ -168,5 +168,138 @@ namespace littleRunner.Editordata
             properties.SelectedObjects = selected.ToArray();
         }
 
+
+
+        public static void horizAlign()
+        {
+            if (properties.SelectedObject is LevelSettings || properties.SelectedObjects.Length < 2)
+                return;
+
+            int most_top = ((GameObject)properties.SelectedObjects[0]).Top;
+
+            foreach (object o in properties.SelectedObjects)
+            {
+                GameObject gameObject = (GameObject)o;
+                if (gameObject.Top < most_top)
+                    most_top = gameObject.Top;
+            }
+            foreach (object o in properties.SelectedObjects)
+            {
+                GameObject gameObject = (GameObject)o;
+                gameObject.Top = most_top;
+            }
+
+            level.Invalidate();
+            properties.Refresh();
+        }
+        public static void vertAlign()
+        {
+            if (properties.SelectedObject is LevelSettings || properties.SelectedObjects.Length < 2)
+                return;
+
+            int most_left = ((GameObject)properties.SelectedObjects[0]).Left;
+
+            foreach (object o in properties.SelectedObjects)
+            {
+                GameObject gameObject = (GameObject)o;
+                if (gameObject.Left < most_left)
+                    most_left = gameObject.Left;
+            }
+            foreach (object o in properties.SelectedObjects)
+            {
+                GameObject gameObject = (GameObject)o;
+                gameObject.Left = most_left;
+            }
+
+            level.Invalidate();
+            properties.Refresh();
+        }
+
+
+        class GameObjectHorizSort : IComparer<GameObject>
+        {
+            public int Compare(GameObject a, GameObject b)
+            {
+                if (a.Left > b.Left)
+                    return 1;
+                else if (a.Left < b.Left)
+                    return -1;
+                else
+                    return 0;
+            }
+        }
+        public static void horizSpaceAdjust()
+        {
+            if (properties.SelectedObject is LevelSettings || properties.SelectedObjects.Length < 2)
+                return;
+
+            List<GameObject> sortedSelectedObjs = new List<GameObject>(properties.SelectedObjects.Length);
+            int fullObjsWidth = 0;
+
+            foreach (object o in properties.SelectedObjects)
+            {
+                GameObject go = (GameObject)o;
+                sortedSelectedObjs.Add(go);
+                fullObjsWidth += go.Width;
+            }
+            sortedSelectedObjs.Sort(new GameObjectHorizSort());
+
+
+            int allSpacesLength = sortedSelectedObjs[sortedSelectedObjs.Count - 1].Right - sortedSelectedObjs[0].Left - fullObjsWidth;
+            int spaceLenPerObj = allSpacesLength / (properties.SelectedObjects.Length - 1);
+
+            int curleft = sortedSelectedObjs[0].Left;
+            foreach (GameObject go in sortedSelectedObjs)
+            {
+                go.Left = curleft;
+                curleft += go.Width + spaceLenPerObj;
+            }
+
+            level.Invalidate();
+            properties.Refresh();
+        }
+
+        class GameObjectVertSort : IComparer<GameObject>
+        {
+            public int Compare(GameObject a, GameObject b)
+            {
+                if (a.Top > b.Top)
+                    return 1;
+                else if (a.Top < b.Top)
+                    return -1;
+                else
+                    return 0;
+            }
+        }
+        public static void vertSpaceAdjust()
+        {
+            if (properties.SelectedObject is LevelSettings || properties.SelectedObjects.Length < 2)
+                return;
+
+            List<GameObject> sortedSelectedObjs = new List<GameObject>(properties.SelectedObjects.Length);
+            int fullObjsHeight = 0;
+
+            foreach (object o in properties.SelectedObjects)
+            {
+                GameObject go = (GameObject)o;
+                sortedSelectedObjs.Add(go);
+                fullObjsHeight += go.Height;
+            }
+            sortedSelectedObjs.Sort(new GameObjectVertSort());
+
+
+            int allSpacesLength = sortedSelectedObjs[sortedSelectedObjs.Count - 1].Bottom - sortedSelectedObjs[0].Top - fullObjsHeight;
+            int spaceLenPerObj = allSpacesLength / (properties.SelectedObjects.Length - 1);
+
+            int curtop = sortedSelectedObjs[0].Top;
+            foreach (GameObject go in sortedSelectedObjs)
+            {
+                go.Top = curtop;
+                curtop += go.Height + spaceLenPerObj;
+            }
+
+            level.Invalidate();
+            properties.Refresh();
+        }
     }
 }

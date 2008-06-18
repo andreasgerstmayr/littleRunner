@@ -86,6 +86,7 @@
     <Compile Include="GameObjects\MovingElements\Bricks.cs" />
     <Compile Include="GameObjects\MovingElements\Fire.cs">
     </Compile>
+    <Compile Include="GameObjects\NullGameObject.cs" />
     <Compile Include="GameObjects\StickyElements\Box.cs" />
     <Compile Include="GameObjects\StickyElements\Brick.cs" />
     <Compile Include="GameObjects\StickyElements\DesignElement.cs" />
@@ -479,6 +480,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\logo.png" />
+    <None Include="Resources\horiz_align.png" />
+    <None Include="Resources\vert_align.png" />
+    <None Include="Resources\horiz_spacejustify.png" />
+    <None Include="Resources\vert_spacejustify.png" />
     <Content Include="TuxIcon.ico" />
   </ItemGroup>
   <ItemGroup>

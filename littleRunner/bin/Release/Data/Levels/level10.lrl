@@ -691,8 +691,8 @@ CreateMovingPlatform(Plat1, handler, MGO, 290, startDirection=GameDirection.Righ
           <value>128</value>
         </Height>
         <NextLevel>
-          <type>NULL</type>
-          <value>null</value>
+          <type>System.String</type>
+          <value>level11.lrl</value>
         </NextLevel>
         <StartAt>
           <type>System.Int32</type>
