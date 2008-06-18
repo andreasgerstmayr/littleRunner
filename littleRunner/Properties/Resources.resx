@@ -121,6 +121,9 @@
   <data name="text-x-generic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\text-x-generic.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Script" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Script.py;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="system-shutdown" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\system-shutdown.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -136,13 +139,22 @@
   <data name="document-new" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\document-new.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Script" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Script.py;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vert_align" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vert_align.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="document-save-as" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\document-save-as.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="horiz_spacejustify" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\horiz_spacejustify.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="horiz_align" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\horiz_align.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vert_spacejustify" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vert_spacejustify.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

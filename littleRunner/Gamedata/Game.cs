@@ -12,6 +12,7 @@ using littleRunner.Drawing.Helpers;
 using littleRunner.Gamedata.Worlddata;
 using littleRunner.GameObjects;
 using littleRunner.GameObjects.MainGameObjects;
+using littleRunner.Highscoredata;
 
 
 namespace littleRunner
@@ -204,7 +205,7 @@ namespace littleRunner
                     {
                         MessageBox.Show("Game Over.", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         
-                        Highscoredata.HighscoreForm hForm = new littleRunner.Highscoredata.HighscoreForm(ai.Points);
+                        HighscoreForm hForm = new HighscoreForm(ai.Points);
                         hForm.ShowDialog();
 
                         DialogResult dr = MessageBox.Show("Play again?", "Game Over", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
@@ -248,11 +249,16 @@ namespace littleRunner
                     }
                     else
                     {
+                        int gotPoints = ai.Points;
                         ai.Quit();
                         ai = null;
                         lastModeIsNull = true;
 
                         MessageBox.Show("Congratulations!\nYou 've played all predefined littleRunner levels.\n\nNow start making your own level with the level-editor :-).", "Congratulations", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        HighscoreForm hForm = new HighscoreForm(gotPoints);
+                        hForm.ShowDialog();
+
                         Close();
                     }
                 }

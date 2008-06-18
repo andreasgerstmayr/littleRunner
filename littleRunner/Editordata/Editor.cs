@@ -41,6 +41,7 @@ ControlStyles.OptimizedDoubleBuffer, true);
             drawHandler = GetDraw.DrawHandler(level, this.Update);
             AnimateImage.Refresh = false;
             EditorUI.drawHandler = drawHandler;
+            EditorUI.level = level;
             EditorUI.properties = properties;
 
 
@@ -157,9 +158,9 @@ ControlStyles.OptimizedDoubleBuffer, true);
                 // object selected (in array) & STRG -> remove selection
                 else if (pressedKeys.Contains(Keys.ControlKey))
                 {
-                     List<object> selected = new List<object>(properties.SelectedObjects);
-                     selected.Remove(focus);
-                     properties.SelectedObjects = selected.ToArray();
+                    List<object> selected = new List<object>(properties.SelectedObjects);
+                    selected.Remove(focus);
+                    properties.SelectedObjects = selected.ToArray();
                 }
             }
             else
@@ -425,13 +426,14 @@ ControlStyles.OptimizedDoubleBuffer, true);
             drawHandler.Update();
 
             // focus on it
-            if (pressedKeys.Contains(Keys.ControlKey) || alwaysAddToSelection)
+            if ((pressedKeys.Contains(Keys.ControlKey) || alwaysAddToSelection))
             {
-                object[] selected = properties.SelectedObjects;
-                Array.Resize<object>(ref selected, selected.Length + 1);
-                selected[selected.Length - 1] = go;
+                List<object> selected = new List<object>(properties.SelectedObjects);
+                if (selected.Contains(world.Settings))
+                    selected.Remove(world.Settings);
 
-                properties.SelectedObjects = selected;
+                selected.Add(go);
+                properties.SelectedObjects = selected.ToArray();
             }
             else if (properties.SelectedObjects.Length == 1)
             {
@@ -572,7 +574,20 @@ ControlStyles.OptimizedDoubleBuffer, true);
 
             else if (e.ClickedItem == checkScriptToolStripButton)
                 checkScriptToolStripMenuItem_Click(sender, e);
+
+
+            else if (e.ClickedItem == horizAlignToolStripButton)
+                EditorUI.horizAlign();
+            else if (e.ClickedItem == vertAlignToolStripButton)
+                EditorUI.vertAlign();
+
+            else if (e.ClickedItem == horizSpaceAlignToolStripButton)
+                EditorUI.horizSpaceAdjust();
+            else if (e.ClickedItem == vertSpaceAlignToolStripButton)
+                EditorUI.vertSpaceAdjust();
         }
+
+
         #endregion
 
 
@@ -607,37 +622,37 @@ ControlStyles.OptimizedDoubleBuffer, true);
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (properties.SelectedObject is LevelSettings || properties.SelectedObjects.Length < 1)
+                return;
+
             object[] selected = properties.SelectedObjects;
             properties.SelectedObjects = new object[] { };
-            int most_left = 0;
-            int most_right = 0;
+            int most_left = ((GameObject)selected[0]).Left;
+            int most_right = ((GameObject)selected[0]).Right;
 
             foreach (object o in selected)
             {
-                if (!(o is LevelSettings))
-                {
-                    GameObject go = (GameObject)o;
+                GameObject go = (GameObject)o;
 
-                    if (go.Left < most_left || most_right == 0) // rightest==0 -> first run
-                        most_left = go.Left;
-                    if (go.Right > most_right)
-                        most_right = go.Left;
-                }
+                if (go.Left < most_left)
+                    most_left = go.Left;
+                if (go.Left > most_right)
+                    most_right = go.Left;
             }
 
             int distance = most_right - most_left;
+            if (selected.Length == 1)
+                distance = 0;
+
             foreach (object o in selected)
             {
-                if (!(o is LevelSettings))
-                {
-                    GameObject go = (GameObject)o;
-                    Dictionary<string, object> serialized = go.Serialize();
+                GameObject go = (GameObject)o;
+                Dictionary<string, object> serialized = go.Serialize();
 
-                    GameObject cloned = (GameObject)Activator.CreateInstance(go.GetType());
-                    cloned.Deserialize(serialized);
-                    cloned.Left = go.Right + distance + 5;
-                    addElement(cloned, true);
-                }
+                GameObject cloned = (GameObject)Activator.CreateInstance(go.GetType());
+                cloned.Deserialize(serialized);
+                cloned.Left = go.Right + distance + 5;
+                addElement(cloned, true);
             }
         }
 
@@ -730,7 +745,7 @@ ControlStyles.OptimizedDoubleBuffer, true);
 
         private void vScroll_ValueChanged(object sender, EventArgs e)
         {
-            world.Viewport.Y = -(vScroll.Value-vScroll.Minimum);
+            world.Viewport.Y = -(vScroll.Value - vScroll.Minimum);
             setcurScrollingText();
 
             drawHandler.Update();
@@ -754,14 +769,15 @@ ControlStyles.OptimizedDoubleBuffer, true);
             if (!pressedKeys.Contains(e.KeyCode))
                 pressedKeys.Add(e.KeyCode);
 
-            if (e.Control)
+            switch (e.KeyCode)
             {
-                switch (e.KeyCode)
-                {
-                    case Keys.Delete:
-                        deleteToolStripMenuItem_Click(sender, e);
-                        break;
-                }
+                case Keys.Escape:
+                    properties.SelectedObjects = new object[] { };
+                    break;
+
+                //case Keys.Delete:
+                //    deleteToolStripMenuItem_Click(sender, e);
+                //    break;
             }
         }
 
