@@ -903,6 +903,32 @@ CreateMovingPlatform(Plat1, handler, MGO, 300, startDirection=GameDirection.Top)
           <value>Brown</value>
         </Color>
       </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>285</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>793</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
     </StickyElements>
     <MovingElements>
       <Bricks>
