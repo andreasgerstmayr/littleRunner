@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--littleRunner level file-->
 <Level>
-  <Settings>
+  <LevelSettings>
     <gameWindowWidth>
       <type>System.Int32</type>
       <value>700</value>
@@ -28,7 +28,7 @@
 
 CreateMovingPlatform(Plat1, handler, MGO, 300, startDirection=GameDirection.Top)]]></value>
     </Script>
-  </Settings>
+  </LevelSettings>
   <Data>
     <StickyElements>
       <Floor>

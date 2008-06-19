@@ -59,12 +59,34 @@ namespace littleRunner.Gamedata.Worlddata
         #endregion
 
 
+        #region Dictionary Sort
+        class DictionarySort : IComparer<KeyValuePair<string, object>>
+        {
+            public int Compare(KeyValuePair<string, object> a, KeyValuePair<string, object> b)
+            {
+                return String.Compare(a.Key, b.Key);
+            }
+        }
+
+        public static List<KeyValuePair<string, object>> SortDirectory(Dictionary<string, object> s)
+        {
+            List<KeyValuePair<string, object>> sorted = new List<KeyValuePair<string, object>>();
+
+            foreach (KeyValuePair<string, object> keypair in s)
+            {
+                sorted.Add(keypair);
+            }
+
+            sorted.Sort(new DictionarySort());
+            return sorted;
+        }
+        #endregion
+
         #region Serialize
         private static void Serialize(ref XmlTextWriter xmlWriter, Type type,
-            Dictionary<string, object> serialized, bool writeStartElement)
+            IEnumerable<KeyValuePair<string, object>> serialized)
         {
-            if (writeStartElement)
-                xmlWriter.WriteStartElement(type.Name);
+            xmlWriter.WriteStartElement(type.Name);
 
             foreach (KeyValuePair<string, object> keypair in serialized)
             {
@@ -88,8 +110,7 @@ namespace littleRunner.Gamedata.Worlddata
                 xmlWriter.WriteEndElement();
             }
 
-            if (writeStartElement)
-                xmlWriter.WriteEndElement();
+            xmlWriter.WriteEndElement();
         }
 
         public static void Serialize(string filename,
@@ -105,9 +126,7 @@ namespace littleRunner.Gamedata.Worlddata
 
             xmlWriter.WriteStartElement("Level");
 
-            xmlWriter.WriteStartElement("Settings");
-            Serialize(ref xmlWriter, settings.GetType(), settings.Serialize(), false);
-            xmlWriter.WriteEndElement();
+            Serialize(ref xmlWriter, settings.GetType(), SortDirectory(settings.Serialize()));
 
 
             xmlWriter.WriteStartElement("Data");
@@ -116,21 +135,21 @@ namespace littleRunner.Gamedata.Worlddata
             xmlWriter.WriteStartElement("StickyElements");
             foreach (StickyElement se in stickyelements)
             {
-                Serialize(ref xmlWriter, se.GetType(), se.Serialize(), true);
+                Serialize(ref xmlWriter, se.GetType(), se.Serialize());
             }
             xmlWriter.WriteEndElement();
 
             xmlWriter.WriteStartElement("MovingElements");
             foreach (MovingElement me in movingelements)
             {
-                Serialize(ref xmlWriter, me.GetType(), me.Serialize(), true);
+                Serialize(ref xmlWriter, me.GetType(), me.Serialize());
             }
             xmlWriter.WriteEndElement();
 
             xmlWriter.WriteStartElement("Enemies");
             foreach (Enemy e in enemies)
             {
-                Serialize(ref xmlWriter, e.GetType(), e.Serialize(), true);
+                Serialize(ref xmlWriter, e.GetType(), e.Serialize());
             }
             xmlWriter.WriteEndElement();
 
@@ -267,11 +286,9 @@ namespace littleRunner.Gamedata.Worlddata
             {
                 XmlTextReader xmlReader = new XmlTextReader(filename);
                 xmlReader.ReadStartElement("Level");
-                settings.Deserialize(Deserialize(ref xmlReader, "Settings"));
-
+                settings.Deserialize(Deserialize(ref xmlReader, "LevelSettings"));
 
                 xmlReader.ReadStartElement("Data");
-
 
                 stickyelements = createObjectsStickyElements(ref xmlReader, world, aiEventHandler);
                 movingelements = createObjectsMovingElements(ref xmlReader, world, aiEventHandler);

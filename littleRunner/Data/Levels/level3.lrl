@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--littleRunner level file-->
 <Level>
-  <Settings>
+  <LevelSettings>
     <gameWindowWidth>
       <type>System.Int32</type>
       <value>700</value>
@@ -48,7 +48,7 @@ def removeBonusLvl(geventhandler):
 
 handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
     </Script>
-  </Settings>
+  </LevelSettings>
   <Data>
     <StickyElements>
       <Floor>
