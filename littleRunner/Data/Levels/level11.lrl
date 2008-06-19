@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--littleRunner level file-->
 <Level>
-  <Settings>
+  <LevelSettings>
     <gameWindowWidth>
       <type>System.Int32</type>
       <value>700</value>
@@ -37,7 +37,7 @@ CreateMovingObject(Spika2_vert, handler, 154, speed=15, direction=GameDirection.
 CreateMovingPlatform(Plat1, handler, MGO, 500, speed=15, startDirection=GameDirection.Right)
 CreateMovingPlatform(Plat2, handler, MGO, 800, speed=10, startDirection=GameDirection.Right, startOnOver=False)]]></value>
     </Script>
-  </Settings>
+  </LevelSettings>
   <Data>
     <StickyElements>
       <Floor>

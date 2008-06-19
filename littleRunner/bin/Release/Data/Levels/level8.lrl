@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--littleRunner level file-->
 <Level>
-  <Settings>
+  <LevelSettings>
     <gameWindowWidth>
       <type>System.Int32</type>
       <value>700</value>
@@ -32,7 +32,7 @@ CreateFlyingCircle(Spika1, handler, 50, speed=5)
 CreateMovingPlatform(Plat1, handler, MGO, 400, startDirection=GameDirection.Right, startOnOver=False)
 CreateMovingPlatform(Plat2, handler, MGO, 250, startDirection=GameDirection.Right)]]></value>
     </Script>
-  </Settings>
+  </LevelSettings>
   <Data>
     <StickyElements>
       <Floor>
