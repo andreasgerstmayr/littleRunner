@@ -26,7 +26,7 @@ namespace littleRunner
             d.DrawString(score.ToString(), f2, color, Left+115, Top);
         }
 
-        public int Points
+        public int Score
         {
             get { return score; }
             set { score = value; }
@@ -35,6 +35,37 @@ namespace littleRunner
         public GameControl_Score(int top, int left, string font, float size)
         {
             score = 0;
+            Top = top;
+            Left = left;
+            this.font = font;
+            this.size = size;
+        }
+    }
+    public class GameControl_Points : GameObject
+    {
+        int points;
+        string font;
+        float size;
+
+        public override void Update(Draw d)
+        {
+            dFont f1 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Left));
+            dFont f2 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Right));
+            dColor color = new dColor(System.Drawing.Color.Black);
+
+            d.DrawString("Points:", f1, color, Left, Top);
+            d.DrawString(points.ToString(), f2, color, Left + 115, Top);
+        }
+
+        public int Points
+        {
+            get { return points; }
+            set { points = value; }
+        }
+
+        public GameControl_Points(int top, int left, string font, float size)
+        {
+            points = 0;
             Top = top;
             Left = left;
             this.font = font;
@@ -63,7 +94,7 @@ namespace littleRunner
             set { lives = value; }
         }
 
-        public GameControl_Lives(int lives, int top, int left, string font, float size)
+        public GameControl_Lives(int top, int left, int lives, string font, float size)
         {
             this.lives = lives;
             Top = top;
@@ -126,16 +157,23 @@ namespace littleRunner
 
     public class GameControlObjects
     {
-        private GameControl_Score points;
+        private GameControl_Score score;
+        private GameControl_Points points;
         private GameControl_Lives lives;
         private GameControl_Sound sound;
 
         public void Update(Draw d)
         {
+            score.Update(d);
             points.Update(d);
             lives.Update(d);
         }
 
+        public int Score
+        {
+            get { return score.Score; }
+            set { score.Score = value; }
+        }
         public int Points
         {
             get { return points.Points; }
@@ -152,8 +190,9 @@ namespace littleRunner
         }
 
 
-        public GameControlObjects(GameControl_Score points, GameControl_Lives lives, GameControl_Sound sound)
+        public GameControlObjects(GameControl_Score score, GameControl_Points points, GameControl_Lives lives, GameControl_Sound sound)
         {
+            this.score = score;
             this.points = points;
             this.lives = lives;
             this.sound = sound;

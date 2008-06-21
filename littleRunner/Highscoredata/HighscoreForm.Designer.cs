@@ -112,12 +112,12 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.highscores.BackColor = System.Drawing.SystemColors.Control;
             this.highscores.ColumnCount = 2;
-            this.highscores.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.highscores.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.highscores.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.highscores.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.highscores.Location = new System.Drawing.Point(26, 222);
             this.highscores.Name = "highscores";
             this.highscores.RowCount = 1;
-            this.highscores.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.highscores.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 177F));
             this.highscores.Size = new System.Drawing.Size(301, 0);
             this.highscores.TabIndex = 6;
             // 

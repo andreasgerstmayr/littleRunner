@@ -2,26 +2,26 @@
 <!--littleRunner level file-->
 <Level>
   <LevelSettings>
-    <gameWindowWidth>
-      <type>System.Int32</type>
-      <value>700</value>
-    </gameWindowWidth>
-    <gameWindowHeight>
-      <type>System.Int32</type>
-      <value>550</value>
-    </gameWindowHeight>
-    <levelWidth>
-      <type>System.Int32</type>
-      <value>2100</value>
-    </levelWidth>
-    <levelHeight>
-      <type>System.Int32</type>
-      <value>550</value>
-    </levelHeight>
     <Background>
       <type>littleRunner.Gamedata.Worlddata.Backgrounds</type>
       <value>Green_Hills1</value>
     </Background>
+    <gameWindowHeight>
+      <type>System.Int32</type>
+      <value>550</value>
+    </gameWindowHeight>
+    <gameWindowWidth>
+      <type>System.Int32</type>
+      <value>700</value>
+    </gameWindowWidth>
+    <levelHeight>
+      <type>System.Int32</type>
+      <value>550</value>
+    </levelHeight>
+    <levelWidth>
+      <type>System.Int32</type>
+      <value>2100</value>
+    </levelWidth>
     <Script>
       <type>System.String</type>
       <value />
