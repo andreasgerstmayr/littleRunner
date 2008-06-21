@@ -146,11 +146,12 @@ namespace littleRunner
                 f.Message("Creating GameControlObjects");
                 if (gameControlObjs == null) // first run or complete new run (after game over)
                 {
-                    GameControl_Score gameControlObjPoints = new GameControl_Score(18, Width - 140, "Verdana", 12);
-                    GameControl_Lives gameControlObjLives = new GameControl_Lives(4, 40, Width - 140, "Verdana", 12);
+                    GameControl_Score gameControlObjScore = new GameControl_Score(15, 20, "Verdana", 12);
+                    GameControl_Points gameControlObjPoints = new GameControl_Points(15, Width/2 - 120/2, "Verdana", 12);
+                    GameControl_Lives gameControlObjLives = new GameControl_Lives(15, Width - 140, 4, "Verdana", 12);
                     GameControl_Sound gameControlObjSound = new GameControl_Sound();
 
-                    gameControlObjs = new GameControlObjects(gameControlObjPoints, gameControlObjLives, gameControlObjSound);
+                    gameControlObjs = new GameControlObjects(gameControlObjScore, gameControlObjPoints, gameControlObjLives, gameControlObjSound);
                 }
                
 
@@ -205,7 +206,7 @@ namespace littleRunner
                     {
                         MessageBox.Show("Game Over.", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         
-                        HighscoreForm hForm = new HighscoreForm(ai.Points);
+                        HighscoreForm hForm = new HighscoreForm(ai.FullScore);
                         hForm.ShowDialog();
 
                         DialogResult dr = MessageBox.Show("Play again?", "Game Over", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
@@ -249,14 +250,14 @@ namespace littleRunner
                     }
                     else
                     {
-                        int gotPoints = ai.Points;
+                        int gotScore = ai.FullScore;
                         ai.Quit();
                         ai = null;
                         lastModeIsNull = true;
 
                         MessageBox.Show("Congratulations!\nYou 've played all predefined littleRunner levels.\n\nNow start making your own level with the level-editor :-).", "Congratulations", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        HighscoreForm hForm = new HighscoreForm(gotPoints);
+                        HighscoreForm hForm = new HighscoreForm(gotScore);
                         hForm.ShowDialog();
 
                         Close();

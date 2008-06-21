@@ -39,9 +39,9 @@ namespace littleRunner
             get { return mainTimer.Enabled; }
         }
 
-        public int Points
+        public int FullScore
         {
-            get { return gameControlObj.Points; }
+            get { return gameControlObj.Score + gameControlObj.Lives * 100; }
         }
 
         public void Pause(bool start)
@@ -54,6 +54,7 @@ namespace littleRunner
         public void Quit()
         {
             Pause(false);
+            gameControlObj.Score = 0;
             gameControlObj.Points = 0;
         }
 
@@ -189,6 +190,7 @@ namespace littleRunner
         {
             if (gevent == GameEvent.gotPoints)
             {
+                gameControlObj.Score += (int)args[GameEventArg.points]; 
                 gameControlObj.Points += (int)args[GameEventArg.points];
 
                 if (gameControlObj.Points >= 100)

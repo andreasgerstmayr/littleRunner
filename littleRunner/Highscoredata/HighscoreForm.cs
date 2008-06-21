@@ -50,11 +50,14 @@ namespace littleRunner.Highscoredata
                 Label nameLabel = new Label();
                 nameLabel.Text = data.Name;
                 nameLabel.Font = new Font("Verdana", 12F, FontStyle.Bold);
+                nameLabel.AutoSize = true;
                 highscores.Controls.Add(nameLabel, 0, row);
 
                 Label scoreLabel = new Label();
                 scoreLabel.Text = data.Points.ToString();
                 scoreLabel.Font = new Font("Verdana", 12F, FontStyle.Regular);
+                scoreLabel.AutoSize = true;
+                scoreLabel.TextAlign = ContentAlignment.MiddleRight;
                 highscores.Controls.Add(scoreLabel, 1, row);
 
                 row++;

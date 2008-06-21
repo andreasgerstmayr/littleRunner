@@ -159,7 +159,6 @@ namespace littleRunner
             }
             else
             {
-                originalFile = "";
                 return false;
             }
 

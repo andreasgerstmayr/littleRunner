@@ -2,26 +2,26 @@
 <!--littleRunner level file-->
 <Level>
   <LevelSettings>
-    <gameWindowWidth>
-      <type>System.Int32</type>
-      <value>700</value>
-    </gameWindowWidth>
-    <gameWindowHeight>
-      <type>System.Int32</type>
-      <value>550</value>
-    </gameWindowHeight>
-    <levelWidth>
-      <type>System.Int32</type>
-      <value>1250</value>
-    </levelWidth>
-    <levelHeight>
-      <type>System.Int32</type>
-      <value>550</value>
-    </levelHeight>
     <Background>
       <type>littleRunner.Gamedata.Worlddata.Backgrounds</type>
       <value>Blue_Waterhills</value>
     </Background>
+    <gameWindowHeight>
+      <type>System.Int32</type>
+      <value>550</value>
+    </gameWindowHeight>
+    <gameWindowWidth>
+      <type>System.Int32</type>
+      <value>700</value>
+    </gameWindowWidth>
+    <levelHeight>
+      <type>System.Int32</type>
+      <value>550</value>
+    </levelHeight>
+    <levelWidth>
+      <type>System.Int32</type>
+      <value>1250</value>
+    </levelWidth>
     <Script>
       <type>System.String</type>
       <value />
@@ -92,7 +92,7 @@
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>284</value>
+          <value>338</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -114,37 +114,37 @@
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>387</value>
+          <value>385</value>
+        </Top>
+        <Left>
+          <type>System.Int32</type>
+          <value>290</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <StarStyle>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
+          <value>Yellow</value>
+        </StarStyle>
+      </Star>
+      <Star>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Int32</type>
+          <value>385</value>
         </Top>
         <Left>
           <type>System.Int32</type>
           <value>240</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
-          <value>387</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>197</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -170,7 +170,7 @@
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>129</value>
+          <value>160</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -877,45 +877,11 @@
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>254</value>
-        </Top>
-        <Left>
-          <type>System.Int32</type>
-          <value>391</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>57</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>64</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>True</value>
-        </StartAtViewpoint>
-        <TurtleStyle>
-          <type>littleRunner.GameObjects.Enemies.TurtleStyle</type>
-          <value>Green</value>
-        </TurtleStyle>
-        <Direction>
-          <type>littleRunner.GameDirection</type>
-          <value>Right</value>
-        </Direction>
-      </Turtle>
-      <Turtle>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Int32</type>
           <value>248</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>247</value>
+          <value>371</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -945,11 +911,11 @@
         </Name>
         <Top>
           <type>System.Int32</type>
-          <value>194</value>
+          <value>247</value>
         </Top>
         <Left>
           <type>System.Int32</type>
-          <value>329</value>
+          <value>277</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -969,7 +935,7 @@
         </TurtleStyle>
         <Direction>
           <type>littleRunner.GameDirection</type>
-          <value>Right</value>
+          <value>Left</value>
         </Direction>
       </Turtle>
       <Gumba>
