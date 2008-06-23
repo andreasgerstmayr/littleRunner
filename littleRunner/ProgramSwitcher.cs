@@ -88,7 +88,13 @@ namespace littleRunner
 
         private void homepage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(homepage.Text);
+            try
+            {
+                Process.Start(homepage.Text);
+            }
+            catch(Exception)
+            {
+            }
         }
     }
 }
