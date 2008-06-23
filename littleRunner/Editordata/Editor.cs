@@ -105,6 +105,8 @@ ControlStyles.OptimizedDoubleBuffer, true);
             #endregion
 
             newToolStripMenuItem_Click(new object(), new EventArgs());
+            world.Settings.GameWindowWidth = 700;
+            world.Settings.GameWindowHeight = 550;
         }
 
 

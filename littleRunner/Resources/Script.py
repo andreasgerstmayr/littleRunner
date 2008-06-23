@@ -49,5 +49,5 @@ class EventAttrDict(AttrDict):
 
 
 handler = AttrDict()
-handler.AI = AttrDict()
+handler.AI = EventAttrDict()
 args = []

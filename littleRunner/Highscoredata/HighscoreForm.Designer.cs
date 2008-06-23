@@ -43,6 +43,7 @@
             // 
             // lName
             // 
+            this.lName.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lName.AutoSize = true;
             this.lName.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lName.Location = new System.Drawing.Point(66, 85);
@@ -53,6 +54,7 @@
             // 
             // name
             // 
+            this.name.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.name.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.name.Location = new System.Drawing.Point(170, 85);
             this.name.Name = "name";
@@ -61,6 +63,7 @@
             // 
             // lScore
             // 
+            this.lScore.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lScore.AutoSize = true;
             this.lScore.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lScore.Location = new System.Drawing.Point(65, 116);
@@ -71,6 +74,7 @@
             // 
             // score
             // 
+            this.score.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.score.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.score.Location = new System.Drawing.Point(170, 116);
             this.score.Name = "score";
@@ -81,6 +85,7 @@
             // 
             // bButton
             // 
+            this.bButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.bButton.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bButton.Location = new System.Drawing.Point(109, 160);
             this.bButton.Name = "bButton";
@@ -92,6 +97,7 @@
             // 
             // lHighscores
             // 
+            this.lHighscores.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lHighscores.AutoSize = true;
             this.lHighscores.Font = new System.Drawing.Font("Bitstream Vera Sans", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lHighscores.Location = new System.Drawing.Point(93, 20);
@@ -107,9 +113,7 @@
             // 
             // highscores
             // 
-            this.highscores.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.highscores.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.highscores.BackColor = System.Drawing.SystemColors.Control;
             this.highscores.ColumnCount = 2;
             this.highscores.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));

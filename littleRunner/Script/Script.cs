@@ -50,7 +50,15 @@ namespace littleRunner
                 ((Dictionary<object, object>)handlers[name]).ContainsKey(function))
             {
                 engine.Globals["args"] = args;
-                engine.Execute("handler." + name + "." + function + "(*args)");
+                try
+                {
+                    engine.Execute("handler." + name + "." + function + "(*args)");
+                }
+                catch (Exception e)
+                {
+                    DebugInfo.WriteException(e);
+                    throw new littleRunnerScriptFunctionException("Error calling '"+name+"."+function+"' handler");
+                }
             }
         }
 
