@@ -36,7 +36,7 @@ namespace littleRunner.GameObjects.StickyElements
             : base()
         {
         }
-        public DesignElements(int top, int left, DesignElement element)
+        public DesignElements(float top, float left, DesignElement element)
             : base(top, left)
         {
             Element = element;

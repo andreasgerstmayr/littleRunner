@@ -13,7 +13,7 @@ namespace littleRunner.GameObjects.MovingElements
     {
         int count;
 
-        public JumpingStar(int top, int left)
+        public JumpingStar(float top, float left)
             : base(GetDraw.Image(Files.star),
             top - GetDraw.Image(Files.star).Height - 10,
             left)
@@ -36,13 +36,13 @@ namespace littleRunner.GameObjects.MovingElements
         {
             get { return false; }
         }
-        public override void Check(out Dictionary<string, int> newpos)
+        public override void Check(out Dictionary<string, float> newpos)
         {
             base.Check(out newpos);
-            int newtop = newpos["top"];
-            int newleft = newpos["left"];
+            float newtop = newpos["top"];
+            float newleft = newpos["left"];
 
-            newtop -= (int)Math.Pow(1.3, count+5);
+            newtop -= (int)Math.Pow(Globals.JumpingStar.Y*GameAI.FrameFactor, count+5);
             Top += newtop;
 
             count++;

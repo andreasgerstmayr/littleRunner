@@ -42,7 +42,7 @@ namespace littleRunner.GameObjects.StickyElements
             : base()
         {
         }
-        public FireFlower(int top, int left)
+        public FireFlower(float top, float left)
             : base(top - GetDraw.Image(Files.fire_flower).Height, left,
                    Files.fire_flower)
         {

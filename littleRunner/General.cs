@@ -6,21 +6,21 @@ namespace littleRunner
 {
     public class GamePoint
     {
-        int x;
-        int y;
+        float x;
+        float y;
 
-        public GamePoint(int x, int y)
+        public GamePoint(float x, float y)
         {
             this.x = x;
             this.y = y;
         }
 
-        public int X
+        public float X
         {
             get { return x; }
             set { x = value; }
         }
-        public int Y
+        public float Y
         {
             get { return y; }
             set { y = value; }
@@ -28,10 +28,10 @@ namespace littleRunner
 
         static public Rectangle GetRectangle(GamePoint start, GamePoint end)
         {
-            int x = 0;
-            int y = 0;
-            int width = 0;
-            int height = 0;
+            float x = 0;
+            float y = 0;
+            float width = 0;
+            float height = 0;
 
             if (start.X < end.X && start.Y < end.Y)
             {
@@ -62,7 +62,7 @@ namespace littleRunner
                 height = start.Y - y;
             }
 
-            return new Rectangle(x, y, width, height);
+            return new Rectangle((int)x, (int)y, (int)width, (int)height);
         }
     }
 }

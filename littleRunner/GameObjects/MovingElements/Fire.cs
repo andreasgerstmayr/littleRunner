@@ -20,7 +20,7 @@ namespace littleRunner.GameObjects.MovingElements
             get { return false; }
         }
 
-        public Fire(GameDirection direction, int top, int left)
+        public Fire(GameDirection direction, float top, float left)
             : base(GetDraw.Image(Files.fire), top, left)
         {
             this.direction = direction;
@@ -29,24 +29,24 @@ namespace littleRunner.GameObjects.MovingElements
             runs = 0;
         }
 
-        public override void Check(out Dictionary<string, int> newpos)
+        public override void Check(out Dictionary<string, float> newpos)
         {
             base.Check(out newpos);
-            int newtop = newpos["top"];
-            int newleft = newpos["left"];
+            float newtop = newpos["top"];
+            float newleft = newpos["left"];
 
             switch (direction)
             {
-                case GameDirection.Right: newleft += 5; break;
-                case GameDirection.Left: newleft -= 5; break;
+                case GameDirection.Right: newleft += Globals.FireMove.X * GameAI.FrameFactor; break;
+                case GameDirection.Left: newleft -= Globals.FireMove.X * GameAI.FrameFactor; break;
             }
 
             if (runs >= 50)
             {
                 switch(flyDirection)
                 {
-                    case GameDirection.Bottom: newtop += 3; break;
-                    case GameDirection.Top: newtop -= 3; break;
+                    case GameDirection.Bottom: newtop += Globals.FireMove.Y * GameAI.FrameFactor; break;
+                    case GameDirection.Top: newtop -= Globals.FireMove.Y * GameAI.FrameFactor; break;
                 }
             }
             runs++;

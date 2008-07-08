@@ -13,7 +13,7 @@ namespace littleRunner
         public static class FallingClass<T> where T : GameObject
         {
             public static bool CheckFalling(List<T> list, GameObject go,
-                int newtop, int newleft)
+                float newtop, float newleft)
             {
                 bool falling = true;
 
@@ -21,6 +21,10 @@ namespace littleRunner
                 {
                     if (el.canStandOn)
                     {
+                        if (go is MainGameObject && el is littleRunner.GameObjects.MovingElements.Bricks && go.Bottom > 365)
+                        {
+                        }
+
                         if (go.Right+newleft > el.Left && go.Left+newleft < el.Right && // left+right ok?
                             go.Bottom+newtop == el.Top)
                         {
@@ -37,8 +41,8 @@ namespace littleRunner
         static public bool Falling(List<StickyElement> stickyelements,
             List<MovingElement> movingelements,
             List<Enemy> enemies,
-            int newtop,
-            int newleft,
+            float newtop,
+            float newleft,
             GameObject go)
         {
             if (!FallingClass<StickyElement>.CheckFalling(stickyelements, go, newtop, newleft))
@@ -57,7 +61,7 @@ namespace littleRunner
             public GameDirection direction;
             public int value;
         }
-        static public void Jumping(ref JumpData jumping, ref int newtop, ref int newleft)
+        static public void Jumping(ref JumpData jumping, ref float newtop, ref float newleft)
         {
             if (jumping.direction == GameDirection.None)
                 return;
@@ -68,13 +72,13 @@ namespace littleRunner
             {
                 if (jumping.value <= 20)
                 {
-                    newleft -= 5;
-                    newtop -= 10;
+                    newleft -= Globals.MGOMove.GO_X * GameAI.FrameFactor;
+                    newtop -= Globals.MGOMove.Jump * GameAI.FrameFactor;
                 }
                 else
                 {
-                    newleft -= 5;
-                    newtop += 10;
+                    newleft -= Globals.MGOMove.GO_X * GameAI.FrameFactor;
+                    newtop += Globals.MGOMove.Jump * GameAI.FrameFactor;
                 }
             }
 
@@ -82,9 +86,9 @@ namespace littleRunner
             if (jumping.direction == GameDirection.Top)
             {
                 if (jumping.value <= 20)
-                    newtop -= 10;
+                    newtop -= Globals.MGOMove.Jump * GameAI.FrameFactor;
                 else
-                    newtop += 10;
+                    newtop += Globals.MGOMove.Jump * GameAI.FrameFactor;
             }
 
             // jump right
@@ -92,13 +96,13 @@ namespace littleRunner
             {
                 if (jumping.value <= 20)
                 {
-                    newleft += 5;
-                    newtop -= 10;
+                    newleft += Globals.MGOMove.GO_X * GameAI.FrameFactor;
+                    newtop -= Globals.MGOMove.Jump * GameAI.FrameFactor;
                 }
                 else
                 {
-                    newleft += 5;
-                    newtop += 10;
+                    newleft += Globals.MGOMove.GO_X * GameAI.FrameFactor;
+                    newtop += Globals.MGOMove.Jump * GameAI.FrameFactor;
                 }
             }
 
@@ -111,7 +115,7 @@ namespace littleRunner
         }
 
 
-        static public bool SingleCrashDetection(GameObject go, GameObject go2, out GameDirection direction, ref int newtop, ref int newleft, bool change)
+        static public bool SingleCrashDetection(GameObject go, GameObject go2, out GameDirection direction, ref float newtop, ref float newleft, bool change)
         {
             bool crashedIn = false;
             direction = GameDirection.None;
@@ -164,7 +168,7 @@ namespace littleRunner
         }
 
 
-        static public void CrashDetection(GameObject go, List<StickyElement> stickyelements, List<MovingElement> movingelements, GameEventHandler geventhandler, ref int newtop, ref int newleft)
+        static public void CrashDetection(GameObject go, List<StickyElement> stickyelements, List<MovingElement> movingelements, GameEventHandler geventhandler, ref float newtop, ref float newleft)
         {
             for (int i = 0; i < stickyelements.Count; i++)
             {
@@ -194,7 +198,7 @@ namespace littleRunner
         }
 
 
-        static public Enemy CrashEnemy(GameObject go, List<Enemy> enemies, GameEventHandler geventhandler, ref int newtop, ref int newleft)
+        static public Enemy CrashEnemy(GameObject go, List<Enemy> enemies, GameEventHandler geventhandler, ref float newtop, ref float newleft)
         {
             Enemy crashedIn = null;
 
@@ -218,7 +222,7 @@ namespace littleRunner
 
 
 
-        static public bool SimpleCrashDetection(GameObject my, GameObject box, int newtop, int newleft)
+        static public bool SimpleCrashDetection(GameObject my, GameObject box, float newtop, float newleft)
         {
             return my.Left + newleft < box.Right && my.Right + newleft > box.Left &&
                    my.Top + newtop < box.Bottom && my.Bottom + newtop > box.Top;
@@ -227,7 +231,7 @@ namespace littleRunner
         private static class SimpleCrashDetectionClass<T> where T : GameObject
         {
             public static T SimpleCrashDetections(GameObject my, List<T> list,
-                bool onlyWhenCanStandOn, int newtop, int newleft)
+                bool onlyWhenCanStandOn, float newtop, float newleft)
             {
                 foreach (T el in list)
                 {
@@ -243,7 +247,7 @@ namespace littleRunner
 
         static public bool SimpleCrashDetections(GameObject my, List<StickyElement> stickyelements,
             List<MovingElement> movingelements,
-            bool onlyWhenCanStandOn, int newtop, int newleft)
+            bool onlyWhenCanStandOn, float newtop, float newleft)
         {
             if (SimpleCrashDetectionClass<StickyElement>.SimpleCrashDetections(my, stickyelements, onlyWhenCanStandOn, newtop, newleft) != null)
                 return true;

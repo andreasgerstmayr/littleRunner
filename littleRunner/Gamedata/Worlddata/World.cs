@@ -47,6 +47,10 @@ namespace littleRunner.Gamedata.Worlddata
             get { return viewport; }
             set { viewport = value; }
         }
+        public Script pScript
+        {
+            get { return Script; }
+        }
 
         // new world with the editor
         private World(PlayMode playMode)
@@ -125,7 +129,9 @@ namespace littleRunner.Gamedata.Worlddata
                     Script.GlobalsAdd("World", this);
                     Script.GlobalsAdd("Session", session);
                     Script.GlobalsAdd("AiEventHandler", aiEventHandler);
+                    Script.GlobalsAdd("GetFrameFactor", new GameAI.GetFrameFactorDelegate(GameAI.GetFrameFactor));
 
+                    Script.Execute("lr = littleRunner(MGO, World, handler, Session, AiEventHandler, GetFrameFactor)");
                     Script.Execute(Settings.Script);
                 }
                 catch (Exception e)

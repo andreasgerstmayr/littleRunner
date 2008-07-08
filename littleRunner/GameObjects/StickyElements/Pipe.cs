@@ -4,6 +4,7 @@ using System.ComponentModel;
 
 using littleRunner.Drawing;
 using littleRunner.Drawing.Helpers;
+using littleRunner.Editordata;
 
 
 namespace littleRunner.GameObjects.StickyElements
@@ -16,28 +17,29 @@ namespace littleRunner.GameObjects.StickyElements
     {
         private PipeColor color;
         private dImage imgU, imgM;
+        int blocks;
 
+
+        public int Blocks
+        {
+            get { return blocks; }
+            set
+            {
+                blocks = value;
+                height = imgU.Height + blocks * imgM.Height;
+            }
+        }
+        public override int Height
+        {
+            set { Editor.ShowErrorBox(this, "You have to set the 'blocks' property."); }
+        }
         public override void Update(Draw d)
         {
-            // Ceiling (round to x % 32 == 0)
-            if (Height < 32)
-                Height = 32;
-
-            int rest = Height % 32;
-            if (rest != 0)
-            {
-                if (rest < 16)
-                    Height -= rest;
-                else
-                    Height += 32 - rest;
-            }
-
             d.DrawImage(imgU, Left, Top, Width, imgU.Height);
 
-            int occurences = Height / 32 - 1;
-            for (int i = 0; i < occurences; i++)
+            for (int i = 0; i < blocks; i++)
             {
-                d.DrawImage(imgM, Left, Top + imgU.Height + i * (32), Width, imgM.Height);
+                d.DrawImage(imgM, Left, Top + imgU.Height + i * imgM.Height, Width, imgM.Height);
             }
         }
 
@@ -67,7 +69,7 @@ namespace littleRunner.GameObjects.StickyElements
             : base()
         {
         }
-        public Pipe(int top, int left, PipeColor color)
+        public Pipe(float top, float left, PipeColor color)
             : this()
         {
             Top = top;
@@ -76,19 +78,21 @@ namespace littleRunner.GameObjects.StickyElements
             Color = color;
 
             Width = imgU.Width;
-            Height = imgU.Height + imgM.Height;
+            Blocks = 1;
         }
 
         public override Dictionary<string, object> Serialize()
         {
             Dictionary<string, object> ser = new Dictionary<string, object>(base.Serialize());
             ser["PipeColor"] = color;
+            ser["Blocks"] = blocks;
             return ser;
         }
         public override void Deserialize(Dictionary<string, object> ser)
         {
             base.Deserialize(ser);
             Color = (PipeColor)ser["PipeColor"];
+            Blocks = (int)ser["Blocks"];
         }
     }
 }

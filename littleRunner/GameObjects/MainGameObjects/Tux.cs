@@ -11,7 +11,7 @@ namespace littleRunner.GameObjects.MainGameObjects
     struct WantNext
     {
         public MoveType type;
-        public int value;
+        public float value;
         public GameInstruction instruction;
     }
 
@@ -95,10 +95,10 @@ namespace littleRunner.GameObjects.MainGameObjects
             wantNext = new Queue<WantNext>();
         }
 
-        public override Dictionary<string,int> Check(List<GameKey> pressedKeys)
+        public override Dictionary<string, float> Check(List<GameKey> pressedKeys)
         {
-            int newtop = 0;
-            int newleft = 0;
+            float newtop = 0;
+            float newleft = 0;
 
 
             if (wantNext.Count > 0)
@@ -152,17 +152,18 @@ namespace littleRunner.GameObjects.MainGameObjects
             if (pressedKeys.Contains(GameKey.goLeft) &&
                 (jumping.direction == GameDirection.None || jumping.direction == GameDirection.Top))
             {
-                newleft -= Globals.GO_LEFT;
+                newleft -= Globals.MGOMove.GO_X * GameAI.FrameFactor;
                 if (direction != GameDirection.Left)
                     Direction = GameDirection.Left;
             }
             if (pressedKeys.Contains(GameKey.goRight) &&
                 (jumping.direction == GameDirection.None || jumping.direction == GameDirection.Top))
             {
-                newleft += Globals.GO_LEFT;
+                newleft += Globals.MGOMove.GO_X * GameAI.FrameFactor;
                 if (direction != GameDirection.Right)
                     Direction = GameDirection.Right;
             }
+
             if (pressedKeys.Contains(GameKey.jumpLeft) && !falling)
             {
                 jumping.direction = GameDirection.Left;
@@ -188,7 +189,7 @@ namespace littleRunner.GameObjects.MainGameObjects
                 if (!firePressed)
                 {
                     firePressed = true;
-                    int startFireLeft = direction == GameDirection.Right ? Right + 5 : Left - 5;
+                    float startFireLeft = direction == GameDirection.Right ? Right + 5 : Left - 5;
 
                     Fire f = new Fire(direction, Top + 20, startFireLeft);
                     f.Init(World, AiEventHandler);
@@ -238,10 +239,10 @@ namespace littleRunner.GameObjects.MainGameObjects
             if (Top > World.Settings.LevelHeight)
                 AiEventHandler(GameEvent.outOfRange, new Dictionary<GameEventArg, object>());
 
-            return new Dictionary<string, int>() { { "newtop", newtop }, { "newleft", newleft } };
+            return new Dictionary<string, float>() { { "newtop", newtop }, { "newleft", newleft } };
         }
 
-        public override void Move(MoveType mtype, int value, GameInstruction instruction)
+        public override void Move(MoveType mtype, float value, GameInstruction instruction)
         {
             WantNext next = new WantNext();
             next.type = mtype;

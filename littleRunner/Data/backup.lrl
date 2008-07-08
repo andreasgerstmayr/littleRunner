@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--littleRunner level file-->
+<Level>
+  <LevelSettings>
+    <Background>
+      <type>littleRunner.Gamedata.Worlddata.Backgrounds</type>
+      <value>None</value>
+    </Background>
+    <gameWindowHeight>
+      <type>System.Int32</type>
+      <value>550</value>
+    </gameWindowHeight>
+    <gameWindowWidth>
+      <type>System.Int32</type>
+      <value>700</value>
+    </gameWindowWidth>
+    <levelHeight>
+      <type>System.Int32</type>
+      <value>550</value>
+    </levelHeight>
+    <levelWidth>
+      <type>System.Int32</type>
+      <value>1000</value>
+    </levelWidth>
+    <Script>
+      <type>System.String</type>
+      <value />
+    </Script>
+  </LevelSettings>
+  <Data>
+    <StickyElements />
+    <MovingElements />
+    <Enemies />
+  </Data>
+</Level>

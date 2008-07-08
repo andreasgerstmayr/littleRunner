@@ -22,7 +22,7 @@ namespace littleRunner.GameObjects
             return images[(int)direction, cur];
         }
 
-        public void Update(Draw d, GameDirection direction, int left, int top, int width, int height)
+        public void Update(Draw d, GameDirection direction, float left, float top, int width, int height)
         {
             d.DrawImage(images[(int)direction, cur], left, top, width, height);
             if ((DateTime.Now - last).TotalMilliseconds >= milliSecPerFrame && Refresh)

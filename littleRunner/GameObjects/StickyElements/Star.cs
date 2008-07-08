@@ -51,7 +51,7 @@ namespace littleRunner.GameObjects.StickyElements
             : base()
         {
         }
-        public Star(int top, int left)
+        public Star(float top, float left)
             : base(top, left)
         {
             Style = StarStyle.Yellow;

@@ -76,7 +76,7 @@ namespace littleRunner.GameObjects.StickyElements
         {
             Color = BrickColor.Blue;
         }
-        public Brick(int top, int left, BrickColor color)
+        public Brick(float top, float left, BrickColor color)
             : base(top, left)
         {
             Color = color;

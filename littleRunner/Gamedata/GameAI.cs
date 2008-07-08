@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 using littleRunner.Drawing;
@@ -20,7 +20,8 @@ namespace littleRunner
         public World World;
         private GameControlObjects gameControlObj;
         private List<Keys> curkeys;
-        int scrollTop;
+        float scrollTop;
+        private static Stopwatch watch;
 
 
         public void Update(Draw d)
@@ -34,11 +35,21 @@ namespace littleRunner
             World.MGO.Update(d);
             d.MoveCoords(-World.Viewport.X, -World.Viewport.Y);
         }
+
+
+        public static float FrameFactor
+        {
+            get { return (float)watch.Elapsed.TotalSeconds; }
+        }
+        public delegate float GetFrameFactorDelegate();
+        public static float GetFrameFactor()
+        {
+            return FrameFactor;
+        }
         public bool IsRunning
         {
             get { return mainTimer.Enabled; }
         }
-
         public int FullScore
         {
             get { return gameControlObj.Score + gameControlObj.Lives * 100; }
@@ -60,6 +71,7 @@ namespace littleRunner
 
         public GameAI(GameEventHandler forminteract)
         {
+            watch = new Stopwatch();
             scrollTop = 0;
             this.forminteract = forminteract;
             this.curkeys = new List<Keys>();
@@ -97,6 +109,7 @@ namespace littleRunner
             if (World.Script != null)
                 World.Script.callFunction("AI", "Check");
 
+
             List<GameKey> pressedKeys = new List<GameKey>();
 
             #region check if key pressed
@@ -117,30 +130,31 @@ namespace littleRunner
             #endregion
 
 
-            Dictionary<string, int> newMGOpos = World.MGO.Check(pressedKeys);
-            int changeY = Math.Abs(newMGOpos["newtop"]);
-            int changeX = Math.Abs(newMGOpos["newleft"]);
+            Dictionary<string, float> newMGOpos = World.MGO.Check(pressedKeys);
+            float changeY = Math.Abs(newMGOpos["newtop"]);
+            float changeX = Math.Abs(newMGOpos["newleft"]);
+
 
             #region Scrolling
             bool scrolled = false;
 
             // scrolling Top/Bottom
-            if (World.Viewport.Y + World.MGO.Top < Globals.SCROLL_TOP)
+            if (World.Viewport.Y + World.MGO.Top < Globals.Scroll.Top)
             {
                 World.Viewport.Y += changeY; // scroll top
                 scrollTop += changeY;
                 scrolled = true;
             }
-            else if (World.Settings.GameWindowHeight - World.Viewport.Y - World.MGO.Bottom < Globals.SCROLL_BOTTOM)
+            else if (World.Settings.GameWindowHeight - World.Viewport.Y - World.MGO.Bottom < Globals.Scroll.Bottom)
             {
                 World.Viewport.Y -= changeY; // scroll bottom
                 scrolled = true;
             }
 
             // scrolling Left/Right
-            if (World.Viewport.X + World.MGO.Left < Globals.SCROLL_X)
+            if (World.Viewport.X + World.MGO.Left < Globals.Scroll.X)
                 World.Viewport.X += changeX; // scroll left
-            else if (World.Settings.GameWindowWidth - World.Viewport.X - World.MGO.Right < Globals.SCROLL_X)
+            else if (World.Settings.GameWindowWidth - World.Viewport.X - World.MGO.Right < Globals.Scroll.X)
                 World.Viewport.X -= changeX; // scroll right
 
             // if not scrolled
@@ -149,8 +163,8 @@ namespace littleRunner
             //    and when scroll down don't need to scroll top
             // scroll down in pieces (SCROLL_CHANGE_Y).
             if (!scrolled && scrollTop > 0 &&
-                !(World.Viewport.Y + World.MGO.Top < Globals.SCROLL_TOP) &&
-                !(World.Viewport.Y - changeY + World.MGO.Top < Globals.SCROLL_TOP))
+                !(World.Viewport.Y + World.MGO.Top < Globals.Scroll.Top) &&
+                !(World.Viewport.Y - changeY + World.MGO.Top < Globals.Scroll.Top))
             {
                 World.Viewport.Y -= changeY;
                 scrollTop -= changeY;
@@ -163,19 +177,27 @@ namespace littleRunner
             {
                 if (!World.Enemies[i].StartAtViewpoint || World.Enemies[i].Left < World.Settings.GameWindowWidth - World.Viewport.X)
                 {
-                    Dictionary<string, int> newpos;
+                    Dictionary<string, float> newpos;
                     World.Enemies[i].Check(out newpos);
                 }
             }
             // check of all moving elements
             for (int i = 0; i < World.MovingElements.Count; i++)
             {
-                Dictionary<string, int> newpos;
+                Dictionary<string, float> newpos;
                 World.MovingElements[i].Check(out newpos);
             }
 
             // Repaint
             World.DrawHandler.Update();
+
+
+            if (FrameFactor != 0.0)
+                gameControlObj.FPS = (int)(1.0 / FrameFactor);
+
+
+            watch.Reset(); // reset current
+            watch.Start(); // current frame calculating finished. now, start counting.
         }
 
         public void Interact(Keys key, bool pressed)
@@ -190,7 +212,7 @@ namespace littleRunner
         {
             if (gevent == GameEvent.gotPoints)
             {
-                gameControlObj.Score += (int)args[GameEventArg.points]; 
+                gameControlObj.Score += (int)args[GameEventArg.points];
                 gameControlObj.Points += (int)args[GameEventArg.points];
 
                 if (gameControlObj.Points >= 100)
@@ -201,6 +223,7 @@ namespace littleRunner
             }
             else if (gevent == GameEvent.outOfRange || gevent == GameEvent.dead)
             {
+                gameControlObj.Points = 0;
                 Pause(false);
                 forminteract(gevent, args);
             }

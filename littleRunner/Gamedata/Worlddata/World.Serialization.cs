@@ -25,12 +25,12 @@ namespace littleRunner.Gamedata.Worlddata
             {
                 s = "";
                 string[] array = (string[])o;
-                for(int i=0; i<array.Length; i++)
+                for (int i = 0; i < array.Length; i++)
                 {
-                    s += array[i] + (i+1 == array.Length ? "" : "\n");
+                    s += array[i] + (i + 1 == array.Length ? "" : "\n");
                 }
             }
-            else if (o.GetType() == typeof(int))
+            else if (o.GetType() == typeof(int) || o.GetType() == typeof(float))
                 s = o.ToString();
             else if (o.GetType().IsEnum)
                 s = Enum.GetName(o.GetType(), o);
@@ -40,7 +40,7 @@ namespace littleRunner.Gamedata.Worlddata
         private static object StrToObj(Type t, string s)
         {
             object o = null;
-            
+
             if (t == null && s == "null")
                 o = null;
             else if (t == typeof(bool))
@@ -51,6 +51,8 @@ namespace littleRunner.Gamedata.Worlddata
                 o = s.Trim('\n').Split(new char[] { '\n' });
             else if (t == typeof(int))
                 o = Convert.ToInt32(s);
+            else if (t == typeof(float))
+                o = Convert.ToSingle(s);
             else if (t.IsEnum)
                 o = Enum.Parse(t, s);
 

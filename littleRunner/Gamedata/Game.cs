@@ -24,6 +24,7 @@ namespace littleRunner
         World world;
         MainGameObjectMode lastMode;
         bool lastModeIsNull;
+        string levelpack;
         GameControlObjects gameControlObjs;
         GameSession session;
         bool ignoreSizeChange;
@@ -44,13 +45,15 @@ namespace littleRunner
             ignoreSizeChange = false;
 
             lastModeIsNull = true;
+            levelpack = "";
             StartGame(filename, playMode);
         }
-        public Game(): this("Data/Levels/level1.lrl", PlayMode.Game)
+        public Game(string levelpack, string filename)
+            : this("Data/Levels/" + levelpack + "/" + filename, PlayMode.Game)
         {
-            
+            this.levelpack = levelpack + "/";
         }
-        
+
         public Game(string filename, PlayMode playMode, int top, int left)
             : this(filename, playMode)
         {
@@ -77,100 +80,101 @@ namespace littleRunner
             {
                 MessageBox.Show("Can't load " + filename + "!", "Error - File not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Close();
+                return;
+            }
+
+            LoadingForm f = new LoadingForm();
+            f.Show();
+
+            f.Message("Set title");
+            // set form title
+            string title = "";
+
+            if (filename.StartsWith(Path.GetTempPath()))
+            {
+                Text = "littleRunner";
             }
             else
             {
-                LoadingForm f = new LoadingForm();
-                f.Show();
-
-                f.Message("Set title");
-                // set form title
-                string title = "";
-
-                if (filename.StartsWith(Path.GetTempPath()))
-                {
-                    Text = "littleRunner";
-                }
+                int lastBackslash = filename.LastIndexOf("/");
+                if (lastBackslash == -1)
+                    title = filename.Substring(0);
                 else
+                    title = filename.Substring(lastBackslash + 1);
+
+                int lastDot = title.LastIndexOf(".");
+                if (lastDot != -1)
                 {
-                    int lastBackslash = filename.LastIndexOf("/");
-                    if (lastBackslash == -1)
-                        title = filename.Substring(0);
-                    else
-                        title = filename.Substring(lastBackslash + 1);
-
-                    int lastDot = title.LastIndexOf(".");
-                    if (lastDot != -1)
-                    {
-                        title = title.Substring(0, lastDot);
-                    }
-
-                    Text = "littleRunner - " + title;
+                    title = title.Substring(0, lastDot);
                 }
 
-                // main game AI - world neets AiEventHandler
-                f.Message("Creating Game AI"); 
-                ai = new GameAI(GameAIInteract);
-                
-
-                if (session == null) // first run or complete new run (after game over)
-                {
-                    session = new GameSession();
-                }
-
-
-                // The world
-                f.Message("Creating World");
-                world = new World(filename, drawHandler, ai.getEvent, session, playMode);
-                
-
-                // Main game object
-                f.Message("Creating MGO");
-                Tux tux = new Tux(Globals.SCROLL_TOP, Globals.SCROLL_X);
-                tux.Init(world, ai.getEvent); // can init
-                
-
-                // got MGO!
-                f.Message("Initializing World");
-                world.Init(tux);
-
-
-                // change window size
-                ignoreSizeChange = true;
-                Width = world.Settings.GameWindowWidth + 5;
-                Height = world.Settings.GameWindowHeight + 29;
-                ignoreSizeChange = false;
-
-
-                // GameControls
-                f.Message("Creating GameControlObjects");
-                if (gameControlObjs == null) // first run or complete new run (after game over)
-                {
-                    GameControl_Score gameControlObjScore = new GameControl_Score(15, 20, "Verdana", 12);
-                    GameControl_Points gameControlObjPoints = new GameControl_Points(15, Width/2 - 120/2, "Verdana", 12);
-                    GameControl_Lives gameControlObjLives = new GameControl_Lives(15, Width - 140, 4, "Verdana", 12);
-                    GameControl_Sound gameControlObjSound = new GameControl_Sound();
-
-                    gameControlObjs = new GameControlObjects(gameControlObjScore, gameControlObjPoints, gameControlObjLives, gameControlObjSound);
-                }
-               
-
-                // init AI with the world - now we have the GameControlObjects
-                f.Message("Initializing Game AI");
-                ai.Init(world, gameControlObjs);
-
-                // init Script Engine
-                f.Message("Initializing ScriptEngine");
-                ai.InitScript();
-
-
-                if (!lastModeIsNull)
-                    ai.World.MGO.Mode = lastMode;
-
-                f.Message("Initializing Sound");
-                gameControlObjs.Sound.Start();
-                f.Close();
+                Text = "littleRunner - " + title;
             }
+
+            // main game AI - world neets AiEventHandler
+            f.Message("Creating Game AI");
+            ai = new GameAI(GameAIInteract);
+
+
+            if (session == null) // first run or complete new run (after game over)
+            {
+                session = new GameSession();
+            }
+
+
+            // The world
+            f.Message("Creating World");
+            world = new World(filename, drawHandler, ai.getEvent, session, playMode);
+
+
+            // Main game object
+            f.Message("Creating MGO");
+            Tux tux = new Tux(Globals.Scroll.Top, Globals.Scroll.X);
+            tux.Init(world, ai.getEvent); // can init
+
+
+            // got MGO!
+            f.Message("Initializing World");
+            world.Init(tux);
+
+
+            // change window size
+            ignoreSizeChange = true;
+            Width = world.Settings.GameWindowWidth + 5;
+            Height = world.Settings.GameWindowHeight + 29;
+            ignoreSizeChange = false;
+
+
+            // GameControls
+            f.Message("Creating GameControlObjects");
+            if (gameControlObjs == null) // first run or complete new run (after game over)
+            {
+                GameControl_Score gameControlObjScore = new GameControl_Score(15, 20, "Verdana", 12);
+                GameControl_Points gameControlObjPoints = new GameControl_Points(15, Width / 2 - 120 / 2, "Verdana", 12);
+                GameControl_Lives gameControlObjLives = new GameControl_Lives(15, Width - 140, 4, "Verdana", 12);
+                GameControl_FPS gameControlObjFPS = new GameControl_FPS(40, Width - 140, "Verdana", 12);
+                GameControl_Sound gameControlObjSound = new GameControl_Sound();
+
+                gameControlObjs = new GameControlObjects(gameControlObjScore, gameControlObjPoints, gameControlObjLives, gameControlObjFPS, gameControlObjSound);
+                gameControlObjs.OnKeyPress('f');
+            }
+
+
+            // init AI with the world - now we have the GameControlObjects
+            f.Message("Initializing Game AI");
+            ai.Init(world, gameControlObjs);
+
+            // init Script Engine
+            f.Message("Initializing ScriptEngine");
+            ai.InitScript();
+
+
+            if (!lastModeIsNull)
+                ai.World.MGO.Mode = lastMode;
+
+            f.Message("Initializing Sound");
+            gameControlObjs.Sound.Start();
+            f.Close();
         }
 
         private void CloseGame()
@@ -205,7 +209,7 @@ namespace littleRunner
                     if (world.PlayMode == PlayMode.Game || world.PlayMode == PlayMode.Editor)
                     {
                         MessageBox.Show("Game Over.", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        
+
                         HighscoreForm hForm = new HighscoreForm(ai.FullScore);
                         hForm.ShowDialog();
 
@@ -219,7 +223,7 @@ namespace littleRunner
                             gameControlObjs = null; // set new points+sound!
                             session = null; // new session
 
-                            StartGame("Data/Levels/level1.lrl", world.PlayMode);
+                            StartGame("Data/Levels/" + levelpack + "start.lrl", world.PlayMode);
                         }
                         else if (dr == DialogResult.No)
                             CloseGame();
@@ -241,7 +245,7 @@ namespace littleRunner
 
                         ai = null;
                         int nextLevelStartAt = (int)args[GameEventArg.nextLevelStartAt];
-                        StartGame("Data/Levels/" + nextLevel, world.PlayMode);
+                        StartGame("Data/Levels/" + levelpack + nextLevel, world.PlayMode);
                         if (ai != null)
                         {
                             ai.World.MGO.Left += nextLevelStartAt;

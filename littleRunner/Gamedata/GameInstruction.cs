@@ -18,13 +18,13 @@ namespace littleRunner
         InstructionType type;
         GameObject go;
         GameDirection direction;
-        int value;
+        float value;
 
         public GameInstruction()
         {
             this.type = InstructionType.Nothing;
         }
-        public GameInstruction(InstructionType type, GameObject go, GameDirection direction, int value)
+        public GameInstruction(InstructionType type, GameObject go, GameDirection direction, float value)
         {
             this.type = type;
             this.go = go;

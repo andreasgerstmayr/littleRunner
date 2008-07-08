@@ -6,9 +6,12 @@ from littleRunner.GameObjects import GameObject
 
 import sys
 sys.path.append('Data/Levelscripts')
+from MovingPlatform import MovingPlatform
+from MovingObject import MovingObject
+from FlyingCircle import FlyingCircle
+
 
 from System.Collections.Generic import Dictionary
-
 
 class Event(object):
    def __init__(self, *funcs):
@@ -39,13 +42,36 @@ class AttrDict(Dictionary[object, object]):
    def __delattr__(self, key):
       self.Remove(key)
 
-
 class EventAttrDict(AttrDict):
    def __getattr__(self, key):
       if key not in self:
          AttrDict.__setattr__(self, key, Event())
 
       return AttrDict.__getattr__(self, key)
+
+def DebugWrite(msg):
+   f = open("C:/debug.txt", "a")
+   f.write(msg+"\n")
+   f.close()
+
+
+class littleRunner:
+   def __init__(self, mgo, world, handler, session, AiEventHandler, GetFrameFactor):
+      self.MGO = mgo
+      self.World = world
+      self.Handler = handler
+      self.Session = session
+      self.AiEventHandler = AiEventHandler
+      self.GetFrameFactor = GetFrameFactor
+
+   @property
+   def FrameFactor(self):
+      return self.GetFrameFactor()
+
+
+   def createMovingPlatform(self, *args, **kwargs): return MovingPlatform(self, *args, **kwargs)
+   def createMovingObject(self, *args, **kwargs): return MovingObject(self, *args, **kwargs)
+   def createFlyingCircle(self, *args, **kwargs): return FlyingCircle(self, *args, **kwargs)
 
 
 handler = AttrDict()

@@ -175,7 +175,7 @@ namespace littleRunner.Editordata
             if (properties.SelectedObject is LevelSettings || properties.SelectedObjects.Length < 2)
                 return;
 
-            int most_top = ((GameObject)properties.SelectedObjects[0]).Top;
+            float most_top = ((GameObject)properties.SelectedObjects[0]).Top;
 
             foreach (object o in properties.SelectedObjects)
             {
@@ -197,7 +197,7 @@ namespace littleRunner.Editordata
             if (properties.SelectedObject is LevelSettings || properties.SelectedObjects.Length < 2)
                 return;
 
-            int most_left = ((GameObject)properties.SelectedObjects[0]).Left;
+            float most_left = ((GameObject)properties.SelectedObjects[0]).Left;
 
             foreach (object o in properties.SelectedObjects)
             {
@@ -245,10 +245,10 @@ namespace littleRunner.Editordata
             sortedSelectedObjs.Sort(new GameObjectHorizSort());
 
 
-            int allSpacesLength = sortedSelectedObjs[sortedSelectedObjs.Count - 1].Right - sortedSelectedObjs[0].Left - fullObjsWidth;
-            int spaceLenPerObj = allSpacesLength / (properties.SelectedObjects.Length - 1);
+            float allSpacesLength = sortedSelectedObjs[sortedSelectedObjs.Count - 1].Right - sortedSelectedObjs[0].Left - fullObjsWidth;
+            float spaceLenPerObj = allSpacesLength / (properties.SelectedObjects.Length - 1);
 
-            int curleft = sortedSelectedObjs[0].Left;
+            float curleft = sortedSelectedObjs[0].Left;
             foreach (GameObject go in sortedSelectedObjs)
             {
                 go.Left = curleft;
@@ -288,10 +288,10 @@ namespace littleRunner.Editordata
             sortedSelectedObjs.Sort(new GameObjectVertSort());
 
 
-            int allSpacesLength = sortedSelectedObjs[sortedSelectedObjs.Count - 1].Bottom - sortedSelectedObjs[0].Top - fullObjsHeight;
-            int spaceLenPerObj = allSpacesLength / (properties.SelectedObjects.Length - 1);
+            float allSpacesLength = sortedSelectedObjs[sortedSelectedObjs.Count - 1].Bottom - sortedSelectedObjs[0].Top - fullObjsHeight;
+            float spaceLenPerObj = allSpacesLength / (properties.SelectedObjects.Length - 1);
 
-            int curtop = sortedSelectedObjs[0].Top;
+            float curtop = sortedSelectedObjs[0].Top;
             foreach (GameObject go in sortedSelectedObjs)
             {
                 go.Top = curtop;

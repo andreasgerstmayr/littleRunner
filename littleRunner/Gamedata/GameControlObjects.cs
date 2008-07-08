@@ -103,6 +103,56 @@ namespace littleRunner
             this.size = size;
         }
     }
+    public class GameControl_FPS : GameObject
+    {
+        public bool Visible;
+        List<int> fps;
+        int average;
+        string font;
+        float size;
+
+        public override void Update(Draw d)
+        {
+            if (Visible)
+            {
+                dFont f1 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Left));
+                dFont f2 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Right));
+                dColor color = new dColor(System.Drawing.Color.Black);
+
+                d.DrawString("FPS:", f1, color, Left, Top);
+                d.DrawString(average.ToString(), f2, color, Left + 115, Top);
+            }
+        }
+
+        public int FPS
+        {
+            get { return average; }
+            set
+            {
+                if (fps.Count > 10)
+                    fps.RemoveAt(0);
+
+                fps.Add(value);
+
+                int tmp = 0;
+                foreach (int cFps in fps)
+                {
+                    tmp += cFps;
+                }
+                average = Convert.ToInt32(Convert.ToSingle(tmp) / fps.Count);
+            }
+        }
+
+        public GameControl_FPS(int top, int left, string font, float size)
+        {
+            Visible = false;
+            this.fps = new List<int>();
+            Top = top;
+            Left = left;
+            this.font = font;
+            this.size = size;
+        }
+    }
     public class GameControl_Sound
     {
         [DllImport("winmm.dll")]
@@ -160,6 +210,7 @@ namespace littleRunner
         private GameControl_Score score;
         private GameControl_Points points;
         private GameControl_Lives lives;
+        private GameControl_FPS fps;
         private GameControl_Sound sound;
 
         public void Update(Draw d)
@@ -167,6 +218,7 @@ namespace littleRunner
             score.Update(d);
             points.Update(d);
             lives.Update(d);
+            fps.Update(d);
         }
 
         public int Score
@@ -184,17 +236,27 @@ namespace littleRunner
             get { return lives.Lives; }
             set { lives.Lives = value; }
         }
+        public int FPS
+        {
+            get { return fps.FPS; }
+            set { fps.FPS = value; }
+        }
         public GameControl_Sound Sound
         {
             get { return sound; }
         }
 
 
-        public GameControlObjects(GameControl_Score score, GameControl_Points points, GameControl_Lives lives, GameControl_Sound sound)
+        public GameControlObjects(GameControl_Score score,
+            GameControl_Points points,
+            GameControl_Lives lives,
+            GameControl_FPS fps,
+            GameControl_Sound sound)
         {
             this.score = score;
             this.points = points;
             this.lives = lives;
+            this.fps = fps;
             this.sound = sound;
         }
 
@@ -205,6 +267,9 @@ namespace littleRunner
                 sound.Stop();
             else if (c == 'p')
                 sound.Start();
+
+            else if (c == 'f')
+                fps.Visible = !fps.Visible;
         }
     }
 }

@@ -70,7 +70,7 @@ namespace littleRunner.GameObjects.StickyElements
             : base()
         {
         }
-        public LevelEnd(int top, int left, LevelEndImg img)
+        public LevelEnd(float top, float left, LevelEndImg img)
             : base(top, left)
         {
             Image = img;

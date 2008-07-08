@@ -65,19 +65,52 @@ namespace littleRunner
     {
         GDI
     }
+    
 
     sealed class Globals
     {
         public static VideoRenderMode VideoRenderMode;
 
-        public const int GO_LEFT = 6;
+        public struct MGOMove
+        {
+            public const int GO_X = 200;
+            public const int Jump = 620;
+        }
+        public struct FireMove
+        {
+            public const int X = 300;
+            public const int Y = 200;
+        }
+        public struct ImmortializeStarMove
+        {
+            public const int X = 200;
+            public const int Y = 500;
+        }
+        public struct JumpingStar
+        {
+            public const int Y = 70;
+        }
+        public const int ObjFalling = 350;
+        public const int Gumba_X = 50;
+        public struct Turtle
+        {
+            public const int Normal = 80;
+            public const int Fast = 1200;
+        }
 
-        public const int SCROLL_TOP = 20;
-        public const int SCROLL_BOTTOM = 70;
+        public struct Scroll
+        {
+            public const int Top = 20;
+            public const int Bottom = 70;
 
-        public const int SCROLL_X = 170;
-        public const int SCROLL_CHANGE_Y = 10;
-        public const int SCROLL_CHANGE_X = 7;
+            public const int X = 170;
+
+            public struct Change
+            {
+                public const int Y = 10;
+                public const int X = 7;
+            }
+        }
 
 
         public static void NullDelegate()

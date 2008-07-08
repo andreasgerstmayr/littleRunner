@@ -13,10 +13,10 @@ namespace littleRunner.GameObjects
     {
         private World world;
         private GameEventHandler aiEventHandler;
-        private int top;
-        private int left;
-        private int width;
-        private int height;
+        private float top;
+        private float left;
+        protected int width;
+        protected int height;
         private string name;
 
 
@@ -49,43 +49,43 @@ namespace littleRunner.GameObjects
         }
 
         [Category("Position")]
-        public int Top
+        public float Top
         {
             get { return top; }
             set { top = value; }
         }
         [Category("Position")]
-        public int Bottom
+        public float Bottom
         {
             get { return top + height; }
             set { top = value - height; }
         }
         [Category("Position")]
-        public int Left
+        public float Left
         {
             get { return left; }
             set { left = value; }
         }
         [Category("Position")]
-        public int Right
+        public float Right
         {
             get { return left + width; }
             set { left = value - width; }
         }
         [Category("Size")]
-        public int Width
+        public virtual int Width
         {
             get { return width; }
             set { width = value; }
         }
         [Category("Size")]
-        public int Height
+        public virtual int Height
         {
             get { return height; }
             set { height = value; }
         }
 
-        public bool Hit(int top, int left)
+        public bool Hit(float top, float left)
         {
             if (top >= Top && top <= Bottom && left >= Left && left <= Right)
                 return true;
@@ -120,8 +120,8 @@ namespace littleRunner.GameObjects
         public virtual void Deserialize(Dictionary<string, object> ser)
         {
             name = (string)ser["Name"];
-            top = (int)ser["Top"];
-            left = (int)ser["Left"];
+            top = (float)ser["Top"];
+            left = (float)ser["Left"];
             width = (int)ser["Width"];
             height = (int)ser["Height"];
         }

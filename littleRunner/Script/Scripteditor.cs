@@ -16,6 +16,9 @@ namespace littleRunner
             script.Categories.Add(SyntaxCategory.General,
                 new CategoryInfo(script.ForeColor, script.Font)
             );
+            script.Categories.Add(SyntaxCategory.Builtin,
+                new CategoryInfo(Color.Teal, new Font(script.Font, FontStyle.Regular))
+            );
             script.Categories.Add(SyntaxCategory.MainKeyword,
                 new CategoryInfo(Color.SteelBlue, new Font(script.Font, FontStyle.Bold))
             );
@@ -39,10 +42,12 @@ namespace littleRunner
             );
 
 
-            script.Highl.Add(new Syntax(SyntaxCategory.MainKeyword, @"(import|from|class|def|if|elif|else)"));
+            script.Highl.Add(new Syntax(SyntaxCategory.MainKeyword, @"(import|from|^\s*class|^\s*def|^\s*if|^\s*elif|^\s*else|^\s*for|^\s*while)"));
+            script.Highl.Add(new Syntax(SyntaxCategory.Builtin, @"((x|)range|float|int)"));
             script.Highl.Add(new Syntax(SyntaxCategory.ImporantVariableName, @"class (?<h>\w+)((\(\w+\))|):"));
             script.Highl.Add(new Syntax(SyntaxCategory.ImporantVariableName, @"class (\w+)((\((?<h>\w+)\))|):"));
             script.Highl.Add(new Syntax(SyntaxCategory.ImporantVariableName, @"from (?<h>\w+) "));
+            script.Highl.Add(new Syntax(SyntaxCategory.ImporantVariableName, @"(FrameFactor)"));
             script.Highl.Add(new Syntax(SyntaxCategory.Number, @"(\W)(?<h>\d+)(\W)"));
             script.Highl.Add(new Syntax(SyntaxCategory.Constant, @"(True|False)"));
             script.Highl.Add(new Syntax(SyntaxCategory.Keyword, @"(self|pass|return)"));
@@ -62,5 +67,6 @@ namespace littleRunner
             script.HighlightAll();
             script.Focus();
         }
+
     }
 }

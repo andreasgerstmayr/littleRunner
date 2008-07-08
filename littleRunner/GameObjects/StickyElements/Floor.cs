@@ -4,6 +4,7 @@ using System.ComponentModel;
 
 using littleRunner.Drawing;
 using littleRunner.Drawing.Helpers;
+using littleRunner.Editordata;
 
 
 namespace littleRunner.GameObjects.StickyElements
@@ -16,27 +17,28 @@ namespace littleRunner.GameObjects.StickyElements
     {
         private FloorColor color;
         private dImage imgL, imgM, imgR;
+        int blocks;
 
+
+        public int Blocks
+        {
+            get { return blocks; }
+            set
+            {
+                blocks = value;
+                width = (blocks + 2) * (imgM.Width - 1);
+            }
+        }
+        public override int Width
+        {
+            set { Editor.ShowErrorBox(this, "You have to set the 'blocks' property."); }
+        }
         public override void Update(Draw d)
         {
-            // Ceiling (round to x % 64 == 0)
-            if (Width < 63)
-                Width = 63;
-
-            int rest = Width % 63;
-            if (rest != 0)
+            for (int i = 0; i < blocks + 2; i++)
             {
-                if (rest < 31)
-                    Width -= rest;
-                else
-                    Width += 63 - rest;
-            }
-
-            int occurences = Width / 63 ;
-            for (int i = 0; i < occurences; i++)
-            {
-                dImage paint = i==0?imgL: (i+1==occurences ? imgR : imgM);
-                d.DrawImage(paint, Left + i * 63, Top, paint.Width, Height);
+                dImage paint = i == 0 ? imgL : (i + 1 == blocks + 2 ? imgR : imgM);
+                d.DrawImage(paint, Left + i * (paint.Width - 1), Top, paint.Width, Height);
             }
         }
 
@@ -67,7 +69,7 @@ namespace littleRunner.GameObjects.StickyElements
             : base()
         {
         }
-        public Floor(int top, int left, FloorColor style)
+        public Floor(float top, float left, FloorColor style)
             : this()
         {
             Top = top;
@@ -75,7 +77,7 @@ namespace littleRunner.GameObjects.StickyElements
 
             Color = style;
 
-            Width = (imgM.Width-1)*3;
+            Blocks = 1;
             Height = imgL.Height;
         }
 
@@ -83,12 +85,14 @@ namespace littleRunner.GameObjects.StickyElements
         {
             Dictionary<string, object> ser = new Dictionary<string, object>(base.Serialize());
             ser["FloorStyle"] = color;
+            ser["Blocks"] = blocks;
             return ser;
         }
         public override void Deserialize(Dictionary<string, object> ser)
         {
             base.Deserialize(ser);
             Color = (FloorColor)ser["FloorStyle"];
+            Blocks = (int)ser["Blocks"];
         }
     }
 }
