@@ -33,12 +33,13 @@ namespace littleRunner.GameObjects.StickyElements
         public StickyImageElement()
         {
         }
-        public StickyImageElement(int top, int left)
+        public StickyImageElement(float top, float left)
         {
             Top = top;
             Left = left;
         }
-        public StickyImageElement(int top, int left, string imgfn) : this(top, left)
+        public StickyImageElement(float top, float left, string imgfn)
+            : this(top, left)
         {
             CurImgFilename = imgfn;
         }

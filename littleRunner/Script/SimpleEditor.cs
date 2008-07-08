@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Text.RegularExpressions;
+using System.IO;
 
 
 namespace littleRunner
@@ -10,7 +11,7 @@ namespace littleRunner
     enum SyntaxCategory
     {
         General,
-        Syntax,
+        Builtin,
         MainKeyword,
         ImporantVariableName,
         Number,
@@ -45,18 +46,73 @@ namespace littleRunner
     }
 
 
+    class CodeChecker
+    {
+        Dictionary<string, string> signatures;
+
+
+        public CodeChecker()
+        {
+            signatures = new Dictionary<string, string>();
+        }
+
+
+        private void GetClasses(string file)
+        {
+            Regex r = new Regex(@"class (?<name>\w+)((\(\w+\))|):(.*)def __init__(| )\(\w+(|, \w+, (?<sig>[^)]+))\)", RegexOptions.Singleline);
+
+            foreach (Match match in r.Matches(file))
+            {
+                string name = match.Groups["name"].Value;
+                string value = match.Groups["sig"].Value;
+
+                signatures.Add(name, value);
+            }
+        }
+
+        public void ReadFile(string filename)
+        {
+            string file = File.ReadAllText(filename);
+            GetClasses(file);
+        }
+
+        public string GetPossibilities(string line)
+        {
+            foreach (KeyValuePair<string, string> sig in signatures)
+            {
+                if (line.IndexOf(sig.Key + "(") != -1)
+                    return sig.Value;
+            }
+
+            return "";
+        }
+    }
+
     class SimpleEditor : RichTextBox
     {
         public List<Syntax> Highl;
         public Dictionary<SyntaxCategory, CategoryInfo> Categories;
         bool canPaint = true;
         bool ignoreTextChange = false;
-
+        CodeChecker checker;
+        string defaultCaption;
 
         public SimpleEditor()
         {
             Highl = new List<Syntax>();
             Categories = new Dictionary<SyntaxCategory, CategoryInfo>();
+
+            checker = new CodeChecker();
+            foreach (string file in Directory.GetFiles("Data/Levelscripts"))
+            {
+                checker.ReadFile(file);
+            }
+        }
+
+        protected override void OnParentVisibleChanged(EventArgs e)
+        {
+            base.OnParentVisibleChanged(e);
+            defaultCaption = Parent.Text;
         }
 
         protected override void WndProc(ref System.Windows.Forms.Message m)
@@ -145,6 +201,13 @@ namespace littleRunner
                 canPaint = false;
                 ResetLine(startLine, endLine);
                 HighlightLine(line, startLine);
+
+                string possibilities = checker.GetPossibilities(line);
+                if (possibilities != "")
+                    Parent.Text = possibilities;
+                else
+                    Parent.Text = defaultCaption;
+
                 canPaint = true;
             }
         }

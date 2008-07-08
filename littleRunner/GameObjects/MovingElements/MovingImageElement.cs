@@ -19,7 +19,7 @@ namespace littleRunner.GameObjects.MovingElements
         public MovingImageElement()
         {
         }
-        public MovingImageElement(dImage img, int top, int left)
+        public MovingImageElement(dImage img, float top, float left)
         {
             Top = top;
             Left = left;

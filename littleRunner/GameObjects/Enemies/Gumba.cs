@@ -72,7 +72,7 @@ namespace littleRunner.GameObjects.Enemies
             small = 1;
         }
 
-        public Gumba(int top, int left)
+        public Gumba(float top, float left)
             : this()
         {
             Top = top;
@@ -91,18 +91,18 @@ namespace littleRunner.GameObjects.Enemies
             AiEventHandler(GameEvent.gotPoints, pointsArgs);
         }
 
-        public override void Check(out Dictionary<string, int> newpos)
+        public override void Check(out Dictionary<string, float> newpos)
         {
             base.Check(out newpos);
-            int newtop = newpos["top"];
-            int newleft = newpos["left"];
+            float newtop = newpos["top"];
+            float newleft = newpos["left"];
 
 
             // falling?
             bool falling = GamePhysics.Falling(World.StickyElements, World.MovingElements, World.Enemies, newtop, newleft, this);
 
             if (falling)
-                newtop += 6;
+                newtop += Globals.ObjFalling * GameAI.FrameFactor;
 
             if (direction == GameDirection.None)
             {
@@ -113,8 +113,8 @@ namespace littleRunner.GameObjects.Enemies
             {
                 switch (direction)
                 {
-                    case GameDirection.Left: newleft -= 1; break;
-                    case GameDirection.Right: newleft += 1; break;
+                    case GameDirection.Left: newleft -= Globals.Gumba_X * GameAI.FrameFactor; break;
+                    case GameDirection.Right: newleft += Globals.Gumba_X * GameAI.FrameFactor; break;
                 }
             }
 

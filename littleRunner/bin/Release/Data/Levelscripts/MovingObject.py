@@ -2,10 +2,11 @@
 from littleRunner import GameDirection
 
 
-class CreateMovingObject:
+class MovingObject:
 
-   def __init__(self, obj, handler, maxDistance, speed=10, direction=GameDirection.Bottom):
-      handler[obj.Name].Check += self.__Check
+   def __init__(self, lr, obj, maxDistance, speed=150, direction=GameDirection.Bottom):
+      self.lr = lr
+      lr.Handler[obj.Name].Check += self.__Check
       self.curDistance = 0
       self.obj = obj
       self.maxDistance = maxDistance
@@ -26,8 +27,8 @@ class CreateMovingObject:
      
 
    def __Check(self, newpos):     
-      self.curDistance += self.speed
-      move = self.speed
+      self.curDistance += self.speed * self.lr.FrameFactor
+      move = self.speed * self.lr.FrameFactor
       
       if self.curDistance > self.maxDistance:
          move = self.curDistance-self.maxDistance

@@ -13,7 +13,7 @@ namespace littleRunner.GameObjects.MainGameObjects
         {
             get { return GameDirection.None; }
         }
-        public override void Move(MoveType mtype, int value, GameInstruction instruction)
+        public override void Move(MoveType mtype, float value, GameInstruction instruction)
         {
             throw new NotImplementedException();
         }

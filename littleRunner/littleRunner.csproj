@@ -76,6 +76,12 @@
     <Compile Include="Editordata\EditorUI.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="Files.cs" />
+    <Compile Include="Gamedata\LevelPackSwitcher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gamedata\LevelPackSwitcher.Designer.cs">
+      <DependentUpon>LevelPackSwitcher.cs</DependentUpon>
+    </Compile>
     <Compile Include="GameObjects\AnimateImage.cs" />
     <Compile Include="GameObjects\Enemies\Spika.cs" />
     <Compile Include="GameObjects\Enemies\Gumba.cs" />
@@ -216,6 +222,10 @@
   <ItemGroup>
     <EmbeddedResource Include="Editordata\Editor.resx">
       <DependentUpon>Editor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gamedata\LevelPackSwitcher.resx">
+      <DependentUpon>LevelPackSwitcher.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Highscoredata\HighscoreForm.resx">
@@ -369,42 +379,42 @@
     <None Include="Data\Images\Enemie\Turtle\Green\walk_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\level1.lrl">
+    <None Include="Data\Levels\General\start.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\level2.lrl">
+    <None Include="Data\Levels\General\level2.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\level3.lrl">
+    <None Include="Data\Levels\General\level3.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\level4.lrl">
+    <None Include="Data\Levels\General\level4.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\level5.lrl">
+    <None Include="Data\Levels\General\level5.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\Levels\bonuslevel1.lrl">
+    <None Include="Data\Levels\General\bonuslevel1.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\level10.lrl">
+    <None Include="Data\Levels\General\level10.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\level11.lrl">
+    <None Include="Data\Levels\General\level11.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\level6.lrl">
+    <None Include="Data\Levels\General\level6.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\level7.lrl">
+    <None Include="Data\Levels\General\level7.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\level8.lrl">
+    <None Include="Data\Levels\General\level8.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\level9.lrl">
+    <None Include="Data\Levels\General\level9.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\Script.py" />

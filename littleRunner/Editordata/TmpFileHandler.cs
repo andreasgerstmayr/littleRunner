@@ -88,7 +88,7 @@ namespace littleRunner
             }
         }
 
-        public bool saveChanges()
+        public bool SaveChanges()
         {
             if (OriginalIsOld)
             {
@@ -112,7 +112,7 @@ namespace littleRunner
         public bool New()
         {
             //save old?
-            if (!saveChanges())
+            if (!SaveChanges())
                 return false;
 
             originalFile = "";
@@ -123,7 +123,7 @@ namespace littleRunner
         public bool Open()
         {
             // maybe save old
-            if (!saveChanges())
+            if (!SaveChanges())
                 return false;
 
 
@@ -148,6 +148,11 @@ namespace littleRunner
                 File.Copy(tmpFilename, originalFile, true);
             }
         }
+        public void SaveBackup()
+        {
+            updateTMP();
+            File.Copy(tmpFilename, "backup.lrl", true);
+        }
         public bool SaveAsReal()
         {
 
@@ -167,6 +172,9 @@ namespace littleRunner
         public void Dispose()
         {
             File.Delete(tmpFilename);
+
+            if (File.Exists("backup.lrl"))
+                File.Delete("backup.lrl");
         }   
     }
 }

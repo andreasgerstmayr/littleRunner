@@ -35,11 +35,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>263</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>524</value>
         </Left>
         <Width>
@@ -61,11 +61,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>463</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>2</value>
         </Left>
         <Width>
@@ -80,6 +80,10 @@
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>9</value>
+        </Blocks>
       </Floor>
       <Star>
         <Name>
@@ -87,11 +91,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>416</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>561</value>
         </Left>
         <Width>
@@ -113,11 +117,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>326</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>439</value>
         </Left>
         <Width>
@@ -139,11 +143,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>326</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>304</value>
         </Left>
         <Width>
@@ -165,11 +169,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>398</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>625</value>
         </Left>
         <Width>
@@ -184,6 +188,10 @@
           <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
           <value>Green</value>
         </PipeColor>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>1</value>
+        </Blocks>
       </Pipe>
       <Star>
         <Name>
@@ -191,11 +199,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>388</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>692</value>
         </Left>
         <Width>
@@ -217,11 +225,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>417</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>713</value>
         </Left>
         <Width>
@@ -243,11 +251,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>446</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>735</value>
         </Left>
         <Width>
@@ -269,11 +277,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>416</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>757</value>
         </Left>
         <Width>
@@ -295,11 +303,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>386</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>736</value>
         </Left>
         <Width>
@@ -321,11 +329,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>460</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>701</value>
         </Left>
         <Width>
@@ -347,11 +355,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>458</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>772</value>
         </Left>
         <Width>
@@ -373,11 +381,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>485</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>737</value>
         </Left>
         <Width>
@@ -399,11 +407,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>505</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>795</value>
         </Left>
         <Width>
@@ -425,11 +433,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>395</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>855</value>
         </Left>
         <Width>
@@ -444,6 +452,10 @@
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>9</value>
+        </Blocks>
       </Floor>
       <LevelEnd>
         <Name>
@@ -451,11 +463,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>181</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>2289</value>
         </Left>
         <Width>
@@ -485,11 +497,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>247</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>663</value>
         </Left>
         <Width>
@@ -519,11 +531,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>362</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1487</value>
         </Left>
         <Width>
@@ -538,6 +550,10 @@
           <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
           <value>Green</value>
         </PipeColor>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>0</value>
+        </Blocks>
       </Pipe>
       <Pipe>
         <Name>
@@ -545,11 +561,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>362</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>853</value>
         </Left>
         <Width>
@@ -564,6 +580,10 @@
           <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
           <value>Green</value>
         </PipeColor>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>0</value>
+        </Blocks>
       </Pipe>
       <Box>
         <Name>
@@ -571,11 +591,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>68</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>729</value>
         </Left>
         <Width>
@@ -605,11 +625,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>142</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>510</value>
         </Left>
         <Width>
@@ -631,11 +651,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>323</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1557</value>
         </Left>
         <Width>
@@ -657,11 +677,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>301</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1599</value>
         </Left>
         <Width>
@@ -683,11 +703,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>350</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1671</value>
         </Left>
         <Width>
@@ -709,11 +729,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>321</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1724</value>
         </Left>
         <Width>
@@ -735,11 +755,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>297</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1784</value>
         </Left>
         <Width>
@@ -761,11 +781,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>358</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1815</value>
         </Left>
         <Width>
@@ -787,11 +807,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>305</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1859</value>
         </Left>
         <Width>
@@ -813,11 +833,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>261</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1908</value>
         </Left>
         <Width>
@@ -839,11 +859,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>119</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>2095</value>
         </Left>
         <Width>
@@ -865,11 +885,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>303</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1650</value>
         </Left>
         <Width>
@@ -891,11 +911,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>348</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1615</value>
         </Left>
         <Width>
@@ -917,11 +937,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>358</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1757</value>
         </Left>
         <Width>
@@ -943,11 +963,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>278</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1709</value>
         </Left>
         <Width>
@@ -969,11 +989,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>279</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1823</value>
         </Left>
         <Width>
@@ -995,11 +1015,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>344</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1861</value>
         </Left>
         <Width>
@@ -1021,11 +1041,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>307</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1908</value>
         </Left>
         <Width>
@@ -1047,11 +1067,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>238</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1866</value>
         </Left>
         <Width>
@@ -1073,11 +1093,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>217</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1900</value>
         </Left>
         <Width>
@@ -1099,11 +1119,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>247</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1754</value>
         </Left>
         <Width>
@@ -1125,11 +1145,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>200</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1683</value>
         </Left>
         <Width>
@@ -1151,11 +1171,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>208</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1571</value>
         </Left>
         <Width>
@@ -1177,11 +1197,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>144</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1831</value>
         </Left>
         <Width>
@@ -1203,11 +1223,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>226</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1637</value>
         </Left>
         <Width>
@@ -1229,11 +1249,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>141</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1568</value>
         </Left>
         <Width>
@@ -1255,11 +1275,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>221</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1532</value>
         </Left>
         <Width>
@@ -1281,11 +1301,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>146</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1670</value>
         </Left>
         <Width>
@@ -1307,11 +1327,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>197</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1808</value>
         </Left>
         <Width>
@@ -1333,11 +1353,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>101</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1775</value>
         </Left>
         <Width>
@@ -1359,11 +1379,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>126</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>2061</value>
         </Left>
         <Width>
@@ -1385,11 +1405,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>112</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>2019</value>
         </Left>
         <Width>
@@ -1411,11 +1431,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>135</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1970</value>
         </Left>
         <Width>
@@ -1437,11 +1457,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>311</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>2203</value>
         </Left>
         <Width>
@@ -1456,6 +1476,10 @@
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>1</value>
+        </Blocks>
       </Floor>
       <Star>
         <Name>
@@ -1463,11 +1487,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>67</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>2000</value>
         </Left>
         <Width>
@@ -1489,11 +1513,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>89</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1936</value>
         </Left>
         <Width>
@@ -1515,11 +1539,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>67</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>2109</value>
         </Left>
         <Width>
@@ -1541,11 +1565,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>277</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>2081</value>
         </Left>
         <Width>
@@ -1567,11 +1591,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>353</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1992</value>
         </Left>
         <Width>
@@ -1601,11 +1625,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>59</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>2058</value>
         </Left>
         <Width>
@@ -1627,11 +1651,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>155</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1738</value>
         </Left>
         <Width>
@@ -1664,11 +1688,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>427</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>316</value>
         </Left>
         <Width>
@@ -1698,11 +1722,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>427</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>250</value>
         </Left>
         <Width>
@@ -1728,11 +1752,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>428</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>374</value>
         </Left>
         <Width>
@@ -1758,11 +1782,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>426</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>432</value>
         </Left>
         <Width>
@@ -1792,11 +1816,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>427</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>490</value>
         </Left>
         <Width>
@@ -1822,11 +1846,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>329</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>918</value>
         </Left>
         <Width>
@@ -1856,11 +1880,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>330</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1053</value>
         </Left>
         <Width>
@@ -1890,11 +1914,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>329</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1207</value>
         </Left>
         <Width>
@@ -1924,11 +1948,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>328</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1373</value>
         </Left>
         <Width>
@@ -1958,11 +1982,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>278</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>995</value>
         </Left>
         <Width>
@@ -1992,11 +2016,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>157</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>996</value>
         </Left>
         <Width>
@@ -2026,11 +2050,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>276</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1302</value>
         </Left>
         <Width>
@@ -2060,11 +2084,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>162</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1305</value>
         </Left>
         <Width>
@@ -2094,11 +2118,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>201</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1304</value>
         </Left>
         <Width>
@@ -2128,11 +2152,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>241</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1301</value>
         </Left>
         <Width>
@@ -2162,11 +2186,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>238</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>996</value>
         </Left>
         <Width>
@@ -2196,11 +2220,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>196</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>997</value>
         </Left>
         <Width>
@@ -2230,11 +2254,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>316</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>998</value>
         </Left>
         <Width>
@@ -2260,11 +2284,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>316</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1304</value>
         </Left>
         <Width>
@@ -2290,11 +2314,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>100</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>2062</value>
         </Left>
         <Width>
@@ -2320,11 +2344,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>102</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1978</value>
         </Left>
         <Width>
@@ -2350,11 +2374,11 @@
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>150</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>2033</value>
         </Left>
         <Width>

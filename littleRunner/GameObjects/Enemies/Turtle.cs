@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.ComponentModel;
+using System.Windows.Forms;
 
 using littleRunner.Drawing;
+using littleRunner.Editordata;
 using littleRunner.GameObjects.MovingElements;
 
 
@@ -25,7 +26,6 @@ namespace littleRunner.GameObjects.Enemies
         private AnimateImage imgRunning, imgShell;
         private AnimateImage curimg;
         private TurtleMode turtleMode;
-        private int speed;
         private DateTime startSmall;
         private TurtleStyle style;
 
@@ -60,7 +60,13 @@ namespace littleRunner.GameObjects.Enemies
         public GameDirection Direction
         {
             get { return direction; }
-            set { direction = value; }
+            set
+            {
+                if (value == GameDirection.None)
+                    Editor.ShowErrorBox(this, "Can't set direction = None!");
+                else
+                    direction = value;
+            }
         }
         [Category("Turtle"),Browsable(false)]
         public TurtleMode TurtleMode
@@ -98,11 +104,10 @@ namespace littleRunner.GameObjects.Enemies
         public Turtle()
             : base()
         {
-            speed = 1;
             startSmall = DateTime.Now;
         }
 
-        public Turtle(int top, int left, TurtleStyle style)
+        public Turtle(float top, float left, TurtleStyle style)
             : this()
         {
             Top = top;
@@ -123,22 +128,21 @@ namespace littleRunner.GameObjects.Enemies
             AiEventHandler(GameEvent.gotPoints, pointsArgs);
         }
 
-        public override void Check(out Dictionary<string, int> newpos)
+        public override void Check(out Dictionary<string, float> newpos)
         {
             base.Check(out newpos);
-            int newtop = newpos["top"];
-            int newleft = newpos["left"];
+            float newtop = newpos["top"];
+            float newleft = newpos["left"];
 
 
             // falling?
             bool falling = GamePhysics.Falling(World.StickyElements, World.MovingElements, World.Enemies, newtop, newleft, this);
 
             if (falling)
-                newtop += 6;
+                newtop += Globals.ObjFalling * GameAI.FrameFactor;
 
             if (turtleMode == TurtleMode.Small && (DateTime.Now - startSmall).Seconds >= 3)
             {
-                speed = 1;
                 TurtleMode = TurtleMode.Normal;
             }
 
@@ -146,10 +150,19 @@ namespace littleRunner.GameObjects.Enemies
             // direction
             if (!falling)
             {
+                float move = 0;
+
+                switch (turtleMode)
+                {
+                    case TurtleMode.Normal: move = Globals.Turtle.Normal * GameAI.FrameFactor; break;
+                    case TurtleMode.Small: move = 0; break;
+                    case TurtleMode.SmallRunning: move = Globals.Turtle.Fast * GameAI.FrameFactor; break;
+                }
+
                 if (direction == GameDirection.Right)
-                    newleft += speed;
+                    newleft += move;
                 else
-                    newleft -= speed;
+                    newleft -= move;
             }
 
 
@@ -199,20 +212,15 @@ namespace littleRunner.GameObjects.Enemies
                 {
                     case TurtleMode.Normal:
                         TurtleMode = TurtleMode.Small;
-                        speed = 0;
-                        startSmall = DateTime.Now;
                         break;
                     case TurtleMode.Small:
                         TurtleMode = TurtleMode.SmallRunning;
-                        speed = 20;
-                        startSmall = DateTime.Now;
                         break;
                     case TurtleMode.SmallRunning:
                         TurtleMode = TurtleMode.Small;
-                        speed = 0;
-                        startSmall = DateTime.Now;
                         break;
                 }
+                startSmall = DateTime.Now;
                 World.MGO.Move(MoveType.jumpTop, -1, GameInstruction.Nothing);
 
                 return true;
@@ -223,7 +231,6 @@ namespace littleRunner.GameObjects.Enemies
                 {
                     turtleMode = TurtleMode.SmallRunning;
                     direction = cidirection == GameDirection.Left ? GameDirection.Right : GameDirection.Left;
-                    speed = 20;
 
                     return true;
                 }

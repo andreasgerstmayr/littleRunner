@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
 
+using littleRunner.Editordata;
 using littleRunner.Drawing;
 using littleRunner.Drawing.Helpers;
 using littleRunner.GameObjects.StickyElements;
@@ -15,6 +16,7 @@ namespace littleRunner.GameObjects.MovingElements
         dImage image;
         BrickColor color;
         int imgWidth;
+        int blocks;
 
         [Category("Bricks")]
         public BrickColor Color
@@ -41,26 +43,30 @@ namespace littleRunner.GameObjects.MovingElements
         {
             get { return true; }
         }
+        public int Blocks
+        {
+            get { return blocks; }
+            set
+            {
+                if (value == 0)
+                    Editor.ShowErrorBox(this, "Can't set 0 blocks!");
+                else
+                {
+                    blocks = value;
+                    width = blocks * (imgWidth+1) - 1; // one px distance between blocks
+                }
+            }
+        }
+        public override int Width
+        {
+            set { Editor.ShowErrorBox(this, "You have to set the 'blocks' property."); }
+        }
+
         public override void Update(Draw d)
         {
-            // Ceiling (round to x % width+1 == 0)
-            if (Width < imgWidth + 1)
-                Width = imgWidth+1;
-
-            int rest = Width % (imgWidth + 1);
-            if (rest != 0)
-            {
-                if (rest < imgWidth / 2)
-                    Width -= rest;
-                else
-                    Width += imgWidth + 1 - rest;
-            }
-
-            int occurences = Width / (imgWidth+1);
             int width = image.Width;
-            for (int i = 0; i < occurences; i++)
+            for (int i = 0; i < blocks; i++)
                 d.DrawImage(image, Left + i * (imgWidth + 1), Top, width, Height);
-
 
             if (color == BrickColor.Invisible && World.PlayMode == PlayMode.Editor)
                 d.DrawRectangle(dPen.Black, Left, Top, Width, Height);
@@ -102,22 +108,23 @@ namespace littleRunner.GameObjects.MovingElements
         {
             imgWidth = 0;
         }
-        public Bricks(int top, int left, BrickColor color) : this()
+        public Bricks(float top, float left, BrickColor color)
+            : this()
         {
             Top = top;
             Left = left;
 
             Color = color;
 
-            Width = image.Width * 5;
+            Blocks = 5;
             // Height in Color-Property
         }
 
-        public override void Check(out Dictionary<string, int> newpos)
+        public override void Check(out Dictionary<string, float> newpos)
         {
             base.Check(out newpos);
-            int newtop = newpos["top"];
-            int newleft = newpos["left"];
+            float newtop = newpos["top"];
+            float newleft = newpos["left"];
 
 
             if (newtop != 0)
@@ -131,12 +138,14 @@ namespace littleRunner.GameObjects.MovingElements
         {
             Dictionary<string, object> ser = new Dictionary<string, object>(base.Serialize());
             ser["Color"] = color;
+            ser["Blocks"] = blocks;
             return ser;
         }
         public override void Deserialize(Dictionary<string, object> ser)
         {
             base.Deserialize(ser);
             Color = (BrickColor)ser["Color"];
+            Blocks = (int)ser["Blocks"];
         }
     }
 }

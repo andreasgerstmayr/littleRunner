@@ -3,10 +3,11 @@ from littleRunner import GameDirection
 import math
 
 
-class CreateFlyingCircle(object):
+class FlyingCircle(object):
 
-   def __init__(self, obj, handler, radius, speed=5, dockObj=None, direction=GameDirection.Right):
-      handler[obj.Name].Check += self.__Check
+   def __init__(self, lr, obj, radius, speed=5, dockObj=None, direction=GameDirection.Right):
+      self.lr = lr
+      lr.handler[obj.Name].Check += self.__Check
       self.obj = obj
       self.dockObj = dockObj
       
@@ -20,13 +21,16 @@ class CreateFlyingCircle(object):
       self.r = radius
       self.direction = direction
       self.speed = speed
-      self.deg = 90
+      
+      if direction == GameDirection.Right:
+         self.deg = 270
+      else:
+         self.deg = 90
 
 
    def __Check(self, newpos):
-      mod = 1
       if self.direction == GameDirection.Left:
-         mod = -1
+         self.deg *= -1
       
       if self.dockObj == None:
          self.obj.Left = self.xm + self.r * math.cos(math.radians(self.deg))
@@ -35,7 +39,11 @@ class CreateFlyingCircle(object):
          self.obj.Left = self.dockObj.Left + self.dockX + self.r * math.cos(math.radians(self.deg))
          self.obj.Top = self.dockObj.Top + self.dockY + self.r * math.sin(math.radians(self.deg))
 
+      if self.direction == GameDirection.Left:
+         self.deg *= -1
+
+
       if self.deg > 360:
          self.deg = 0
       else:
-         self.deg += self.speed
+         self.deg += self.speed * self.lr.FrameFactor

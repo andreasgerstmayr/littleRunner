@@ -5,10 +5,11 @@ from littleRunner.GamePhysics import SimpleCrashDetection
 import time
 
 
-class CreateMovingPlatform(object):
+class MovingPlatform(object):
 
-   def __init__ (self, obj, handler, MGO, maxDistance, speed=4, startDirection=GameDirection.Right, moveBack=True, startOnOver=True):
-      self.handler = handler
+   def __init__ (self, lr, obj, maxDistance, speed=200, startDirection=GameDirection.Right, moveBack=True, startOnOver=True):
+      self.lr = lr
+      self.handler = lr.Handler
       self.startOnOver = startOnOver
       
       self.handler[obj.Name].onOver += self.__onOver
@@ -17,7 +18,7 @@ class CreateMovingPlatform(object):
          
       self.obj = obj
       self.mgoOnTop = False
-      self.MGO = MGO
+      self.MGO = lr.MGO
       self.speed = speed
       self.curDistance = 0
       self.maxDistance = maxDistance
@@ -28,11 +29,12 @@ class CreateMovingPlatform(object):
       
 
    def __move(self):
-      doThen = GameInstruction(InstructionType.MoveElement, self.obj, self.direction, self.speed)
+      moveDistance = self.speed * self.lr.FrameFactor
+      doThen = GameInstruction(InstructionType.MoveElement, self.obj, self.direction, moveDistance)
       centripetalForce = self.releaseMGOtime != 0 and time.time()-0.3 < self.releaseMGOtime
-      
+      self.mgoOnTop = True
       if self.mgoOnTop or centripetalForce:
-         self.MGO.Move(self.__moveDirection(), self.speed, doThen)
+         self.MGO.Move(self.__moveDirection(), moveDistance, doThen)
       else:
          doThen.Do()
          
@@ -75,7 +77,7 @@ class CreateMovingPlatform(object):
 
    def __Check(self, newpos):
       self.__move()
-      self.curDistance += self.speed
+      self.curDistance += self.speed * self.lr.FrameFactor
          
       if self.curDistance > self.maxDistance:
          if self.startOnOver:
@@ -89,7 +91,7 @@ class CreateMovingPlatform(object):
       if self.mgoOnTop and not newMgoOnTop and self.releaseMGOtime == 0: # jump off the platform
          self.releaseMGOtime = time.time()
 
-      self.mgoOnTop = newMgoOnTop
+      self.mgoOnTop = True#newMgoOnTop
 
 
    def __onOver(self, geventhandler, who, direction):

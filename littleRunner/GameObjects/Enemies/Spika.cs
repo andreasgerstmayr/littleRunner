@@ -54,7 +54,7 @@ namespace littleRunner.GameObjects.Enemies
             Color = SpikaColor.Green;
         }
 
-        public Spika(int top, int left)
+        public Spika(float top, float left)
             : this()
         {
             Top = top;

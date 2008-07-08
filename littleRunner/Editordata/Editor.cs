@@ -24,7 +24,7 @@ namespace littleRunner.Editordata
         GameObject focus;
         int defaultContextMenuItems;
         bool moving;
-        int mouseX, mouseY;
+        float mouseX, mouseY;
         List<Keys> pressedKeys;
 
         GamePoint startRectangle, endRectangle;
@@ -103,12 +103,11 @@ ControlStyles.OptimizedDoubleBuffer, true);
             startGameCurrentToolStripMenuItem.Image = Image.FromFile(Files.icon_png);
             startGameCurrentToolStripButton.Image = Image.FromFile(Files.icon_png);
             #endregion
-
-            newToolStripMenuItem_Click(new object(), new EventArgs());
-            world.Settings.GameWindowWidth = 700;
-            world.Settings.GameWindowHeight = 550;
         }
-
+        private void Editor_Shown(object sender, EventArgs e)
+        {
+            newToolStripMenuItem_Click(new object(), new EventArgs());
+        }
 
         #region Drag 'n' Drop Events
         private void level_MouseDown(object sender, MouseEventArgs e)
@@ -196,8 +195,8 @@ ControlStyles.OptimizedDoubleBuffer, true);
 
             if (moving && focus != null)
             {
-                int movementTop = (e.Y - mouseY) - focus.Top;
-                int movementLeft = (e.X - mouseX) - focus.Left;
+                float movementTop = (e.Y - mouseY) - focus.Top;
+                float movementLeft = (e.X - mouseX) - focus.Left;
 
                 focus.Top += movementTop;
                 focus.Left += movementLeft;
@@ -629,8 +628,8 @@ ControlStyles.OptimizedDoubleBuffer, true);
 
             object[] selected = properties.SelectedObjects;
             properties.SelectedObjects = new object[] { };
-            int most_left = ((GameObject)selected[0]).Left;
-            int most_right = ((GameObject)selected[0]).Right;
+            float most_left = ((GameObject)selected[0]).Left;
+            float most_right = ((GameObject)selected[0]).Right;
 
             foreach (object o in selected)
             {
@@ -642,7 +641,7 @@ ControlStyles.OptimizedDoubleBuffer, true);
                     most_right = go.Left;
             }
 
-            int distance = most_right - most_left;
+            float distance = most_right - most_left;
             if (selected.Length == 1)
                 distance = 0;
 
@@ -677,7 +676,7 @@ ControlStyles.OptimizedDoubleBuffer, true);
 
         private void Editor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (tmpHandler.saveChanges())
+            if (tmpHandler.SaveChanges())
             {
                 tmpHandler.Dispose();
                 tmpHandler = null;
@@ -696,7 +695,7 @@ ControlStyles.OptimizedDoubleBuffer, true);
 
                 d.DrawRectangle(dPen.FromGDI(Pens.DodgerBlue), curRectangle.X, curRectangle.Y, curRectangle.Width, curRectangle.Height);
                 dColor color = new dColor(Color.DodgerBlue);
-                color.A = 15;
+                color.A = 25;
                 d.FillRectangle(new dPen(color), curRectangle.X, curRectangle.Y, curRectangle.Width, curRectangle.Height);
 
                 d.MoveCoords(-world.Viewport.X, -world.Viewport.Y);
@@ -798,6 +797,19 @@ ControlStyles.OptimizedDoubleBuffer, true);
 
                 showlevelSettings_Click(sender, e);
             }
+        }
+
+
+        public static void ShowErrorBox(GameObject sender, string message)
+        {
+            string name = sender.Name == null || sender.Name.Length == 0 ? "" : " (" + sender.Name + ")";
+            MessageBox.Show(message, "Editor error - " + sender.GetType().Name + name, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+        private void backup_Tick(object sender, EventArgs e)
+        {
+            tmpHandler.SaveBackup();
         }
 
     }

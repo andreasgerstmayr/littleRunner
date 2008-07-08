@@ -30,6 +30,10 @@ namespace littleRunner
                 throw new littleRunnerScriptVariablesException("That (Script-)Name exists already.");
             }
         }
+        public void GlobalOverride(string name, object val)
+        {
+            engine.Globals[name] = val;
+        }
         public void Execute(string command)
         {
             engine.Execute(command);

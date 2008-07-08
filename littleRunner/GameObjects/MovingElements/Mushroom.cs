@@ -32,7 +32,7 @@ namespace littleRunner.GameObjects.MovingElements
             return null;
         }
 
-        public Mushroom(MushroomType mtype, GameDirection direction, int top, int left)
+        public Mushroom(MushroomType mtype, GameDirection direction, float top, float left)
             : base(Mushroom.GetMushroomImage(mtype),
             top - Mushroom.GetMushroomImage(mtype).Height,
             left)
@@ -65,11 +65,11 @@ namespace littleRunner.GameObjects.MovingElements
             World.MovingElements.Remove(this);
         }
 
-        public override void Check(out Dictionary<string, int> newpos)
+        public override void Check(out Dictionary<string, float> newpos)
         {
             base.Check(out newpos);
-            int newtop = newpos["top"];
-            int newleft = newpos["left"];
+            float newtop = newpos["top"];
+            float newleft = newpos["left"];
 
 
             bool falling = false;

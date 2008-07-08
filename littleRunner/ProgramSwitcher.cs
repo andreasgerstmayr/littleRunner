@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 
+using littleRunner.Gamedata;
 using littleRunner.Gamedata.Worlddata;
 using littleRunner.Editordata;
 using littleRunner.GameObjects;
@@ -13,9 +14,6 @@ namespace littleRunner
 {
     public partial class ProgramSwitcher : Form
     {
-        Game game;
-        Editor editor;
-
         public ProgramSwitcher()
         {
             InitializeComponent();
@@ -49,23 +47,23 @@ namespace littleRunner
 
         private void startgame_Click(object sender, EventArgs e)
         {
-            game = new Game();
-            if (!game.IsDisposed)
-            {
-                game.FormClosing += new FormClosingEventHandler(childrenFormClosing);
-                game.Show();
-                Hide();
-            }
+            FormClosingEventHandler progSwitchClosingHandler = new FormClosingEventHandler(childrenFormClosing);
+
+            LevelPackSwitcher switcher = new LevelPackSwitcher(progSwitchClosingHandler);
+            switcher.FormClosing += progSwitchClosingHandler; 
+            
+            if (!switcher.IsDisposed) // Maybe it's not showed because there is only one levelpack
+                switcher.Show();
+
+            Hide();
         }
         private void starteditor_Click(object sender, EventArgs e)
         {
-            editor = new Editor();
-            if (!editor.IsDisposed)
-            {
-                editor.FormClosing += new FormClosingEventHandler(childrenFormClosing);
-                editor.Show();
-                Hide();
-            }
+            Editor editor = new Editor();
+            editor.FormClosing += new FormClosingEventHandler(childrenFormClosing);
+            editor.Show();
+
+            Hide();
         }
 
         void childrenFormClosing(object sender, FormClosingEventArgs e)
@@ -92,7 +90,7 @@ namespace littleRunner
             {
                 Process.Start(homepage.Text);
             }
-            catch(Exception)
+            catch (Exception)
             {
             }
         }

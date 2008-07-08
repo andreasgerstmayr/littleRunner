@@ -26,7 +26,7 @@ namespace littleRunner.GameObjects.MovingElements
                 base.Update(d);
         }
 
-        public ImmortializeStar(GameDirection direction, int top, int left)
+        public ImmortializeStar(GameDirection direction, float top, float left)
             : base(GetDraw.Image(Files.star),
             top - GetDraw.Image(Files.star).Height,
             left)
@@ -49,21 +49,21 @@ namespace littleRunner.GameObjects.MovingElements
         }
 
 
-        public override void Check(out Dictionary<string, int> newpos)
+        public override void Check(out Dictionary<string, float> newpos)
         {
             base.Check(out newpos);
-            int newtop = newpos["top"];
-            int newleft = newpos["left"];
+            float newtop = newpos["top"];
+            float newleft = newpos["left"];
 
             switch (direction)
             {
-                case GameDirection.Right: newleft += 4; break;
-                case GameDirection.Left: newleft -= 4; break;
+                case GameDirection.Right: newleft += Globals.ImmortializeStarMove.X * GameAI.FrameFactor; break;
+                case GameDirection.Left: newleft -= Globals.ImmortializeStarMove.X * GameAI.FrameFactor; break;
             }
             switch (flyDirection)
             {
-                case GameDirection.Top: newtop -= 5; break;
-                case GameDirection.Bottom: newtop += 5; break;
+                case GameDirection.Top: newtop -= Globals.ImmortializeStarMove.Y * GameAI.FrameFactor; break;
+                case GameDirection.Bottom: newtop += Globals.ImmortializeStarMove.Y * GameAI.FrameFactor; break;
             }
 
             if (flyDirection == GameDirection.Top)

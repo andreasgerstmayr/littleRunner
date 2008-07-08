@@ -57,11 +57,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>150</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>2</value>
         </Left>
         <Width>
@@ -76,6 +76,10 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>2</value>
+        </Blocks>
       </Floor>
       <Floor>
         <Name>
@@ -83,11 +87,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>297</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>235</value>
         </Left>
         <Width>
@@ -102,6 +106,10 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>2</value>
+        </Blocks>
       </Floor>
       <Brick>
         <Name>
@@ -109,11 +117,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>254</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>238</value>
         </Left>
         <Width>
@@ -135,11 +143,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>254</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>440</value>
         </Left>
         <Width>
@@ -161,11 +169,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>201</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>488</value>
         </Left>
         <Width>
@@ -180,6 +188,10 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
           <value>Green</value>
         </PipeColor>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>4</value>
+        </Blocks>
       </Pipe>
       <Floor>
         <Name>
@@ -187,11 +199,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>217</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>601</value>
         </Left>
         <Width>
@@ -206,6 +218,10 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>1</value>
+        </Blocks>
       </Floor>
       <Star>
         <Name>
@@ -213,11 +229,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>154</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>505</value>
         </Left>
         <Width>
@@ -239,11 +255,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>296</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>561</value>
         </Left>
         <Width>
@@ -265,11 +281,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>295</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>614</value>
         </Left>
         <Width>
@@ -291,11 +307,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>295</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>668</value>
         </Left>
         <Width>
@@ -317,11 +333,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>295</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>723</value>
         </Left>
         <Width>
@@ -343,11 +359,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>452</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>556</value>
         </Left>
         <Width>
@@ -369,11 +385,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>454</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>669</value>
         </Left>
         <Width>
@@ -395,11 +411,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>453</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>765</value>
         </Left>
         <Width>
@@ -421,11 +437,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>321</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>819</value>
         </Left>
         <Width>
@@ -447,11 +463,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>259</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>820</value>
         </Left>
         <Width>
@@ -481,11 +497,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>453</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>846</value>
         </Left>
         <Width>
@@ -500,6 +516,10 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>1</value>
+        </Blocks>
       </Floor>
       <Pipe>
         <Name>
@@ -507,11 +527,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>388</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>972</value>
         </Left>
         <Width>
@@ -526,6 +546,10 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
           <value>Green</value>
         </PipeColor>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>1</value>
+        </Blocks>
       </Pipe>
       <Pipe>
         <Name>
@@ -533,11 +557,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>324</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1004</value>
         </Left>
         <Width>
@@ -552,6 +576,10 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
           <value>Green</value>
         </PipeColor>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>1</value>
+        </Blocks>
       </Pipe>
       <Pipe>
         <Name>
@@ -559,11 +587,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>260</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1032</value>
         </Left>
         <Width>
@@ -578,6 +606,10 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
           <value>Green</value>
         </PipeColor>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>1</value>
+        </Blocks>
       </Pipe>
       <Pipe>
         <Name>
@@ -585,11 +617,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>196</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1056</value>
         </Left>
         <Width>
@@ -604,6 +636,10 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
           <value>Green</value>
         </PipeColor>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>1</value>
+        </Blocks>
       </Pipe>
       <Pipe>
         <Name>
@@ -611,11 +647,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>196</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1128</value>
         </Left>
         <Width>
@@ -630,6 +666,10 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
           <value>Green</value>
         </PipeColor>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>1</value>
+        </Blocks>
       </Pipe>
       <Floor>
         <Name>
@@ -637,11 +677,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>466</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1336</value>
         </Left>
         <Width>
@@ -656,6 +696,10 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>3</value>
+        </Blocks>
       </Floor>
       <DesignElements>
         <Name>
@@ -663,11 +707,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>264</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1414</value>
         </Left>
         <Width>
@@ -689,11 +733,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>BonusHouse</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>337</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1508</value>
         </Left>
         <Width>
@@ -723,11 +767,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>127</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1220</value>
         </Left>
         <Width>
@@ -749,11 +793,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>138</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1283</value>
         </Left>
         <Width>
@@ -775,11 +819,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>169</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1334</value>
         </Left>
         <Width>
@@ -801,11 +845,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>198</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1382</value>
         </Left>
         <Width>
@@ -827,11 +871,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>241</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1429</value>
         </Left>
         <Width>
@@ -853,11 +897,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>287</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1470</value>
         </Left>
         <Width>
@@ -879,11 +923,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>423</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1340</value>
         </Left>
         <Width>
@@ -905,11 +949,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>424</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1607</value>
         </Left>
         <Width>
@@ -931,11 +975,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>208</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1196</value>
         </Left>
         <Width>
@@ -950,6 +994,10 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>1</value>
+        </Blocks>
       </Floor>
       <Brick>
         <Name>
@@ -957,11 +1005,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>265</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1392</value>
         </Left>
         <Width>
@@ -983,11 +1031,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>277</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1457</value>
         </Left>
         <Width>
@@ -1009,11 +1057,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>261</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1514</value>
         </Left>
         <Width>
@@ -1035,11 +1083,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>244</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1577</value>
         </Left>
         <Width>
@@ -1061,11 +1109,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>212</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1645</value>
         </Left>
         <Width>
@@ -1087,11 +1135,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>316</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1511</value>
         </Left>
         <Width>
@@ -1113,11 +1161,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>89</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1664</value>
         </Left>
         <Width>
@@ -1147,11 +1195,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>227</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1756</value>
         </Left>
         <Width>
@@ -1166,6 +1214,10 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
           <value>Green</value>
         </FloorStyle>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>3</value>
+        </Blocks>
       </Floor>
       <LevelEnd>
         <Name>
@@ -1173,11 +1225,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value />
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>98</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1912</value>
         </Left>
         <Width>
@@ -1207,11 +1259,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>193</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>2005</value>
         </Left>
         <Width>
@@ -1226,6 +1278,10 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
           <value>Green</value>
         </PipeColor>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>0</value>
+        </Blocks>
       </Pipe>
       <Box>
         <Name>
@@ -1233,11 +1289,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>217</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1713</value>
         </Left>
         <Width>
@@ -1267,11 +1323,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>74</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1791</value>
         </Left>
         <Width>
@@ -1293,11 +1349,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>87</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1866</value>
         </Left>
         <Width>
@@ -1319,11 +1375,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>83</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>2027</value>
         </Left>
         <Width>
@@ -1345,11 +1401,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>243</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>554</value>
         </Left>
         <Width>
@@ -1381,16 +1437,16 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>Plat1</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>154</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>2137</value>
         </Left>
         <Width>
           <type>System.Int32</type>
-          <value>43</value>
+          <value>42</value>
         </Width>
         <Height>
           <type>System.Int32</type>
@@ -1400,6 +1456,10 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Blue</value>
         </Color>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>1</value>
+        </Blocks>
       </Bricks>
       <Bricks>
         <Name>
@@ -1407,16 +1467,16 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>Plat2</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>379</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>2077</value>
         </Left>
         <Width>
           <type>System.Int32</type>
-          <value>43</value>
+          <value>42</value>
         </Width>
         <Height>
           <type>System.Int32</type>
@@ -1426,6 +1486,10 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
           <value>Yellow</value>
         </Color>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>1</value>
+        </Blocks>
       </Bricks>
     </MovingElements>
     <Enemies>
@@ -1435,11 +1499,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>84</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>163</value>
         </Left>
         <Width>
@@ -1469,11 +1533,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>214</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>447</value>
         </Left>
         <Width>
@@ -1499,11 +1563,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>417</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>936</value>
         </Left>
         <Width>
@@ -1529,11 +1593,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>429</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1391</value>
         </Left>
         <Width>
@@ -1563,11 +1627,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>429</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1482</value>
         </Left>
         <Width>
@@ -1597,11 +1661,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>425</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1570</value>
         </Left>
         <Width>
@@ -1631,11 +1695,11 @@ handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
           <value>null</value>
         </Name>
         <Top>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>162</value>
         </Top>
         <Left>
-          <type>System.Int32</type>
+          <type>System.Single</type>
           <value>1922</value>
         </Left>
         <Width>

@@ -8,9 +8,9 @@ namespace littleRunner.GameObjects
     public abstract class MovingElement : StickyElement
     {
 
-        virtual public void Check(out Dictionary<string, int> newpos)
+        virtual public void Check(out Dictionary<string, float> newpos)
         {
-            newpos = new Dictionary<string, int>();
+            newpos = new Dictionary<string, float>();
             newpos["top"] = 0;
             newpos["left"] = 0;
 
