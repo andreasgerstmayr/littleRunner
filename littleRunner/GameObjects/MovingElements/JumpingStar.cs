@@ -42,7 +42,7 @@ namespace littleRunner.GameObjects.MovingElements
             float newtop = newpos["top"];
             float newleft = newpos["left"];
 
-            newtop -= (int)Math.Pow(Globals.JumpingStar.Y*GameAI.FrameFactor, count+5);
+            newtop -= (int)Math.Pow(Globals.JumpingStarMove.Y * GameAI.FrameFactor, count+5);
             Top += newtop;
 
             count++;

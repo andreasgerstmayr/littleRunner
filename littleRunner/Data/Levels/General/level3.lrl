@@ -24,17 +24,15 @@
     </levelWidth>
     <Script>
       <type>System.String</type>
-      <value><![CDATA[from MovingPlatform import CreateMovingPlatform
-
-
+      <value><![CDATA[
 Session.Set('bonuslevel1.lrl', 'gotLvl', False)
 Session.Set('bonuslevel1.lrl', 'nextLevel', 'level3.lrl')
 Session.Set('bonuslevel1.lrl', 'nextLevelStartAt', 1470)
 
 
-CreateMovingPlatform(Plat1, handler, MGO, 210, startDirection=GameDirection.Bottom)
+lr.createMovingPlatform(Plat1, 210, startDirection=GameDirection.Bottom)
 
-CreateMovingPlatform(Plat2, handler, MGO, 450, speed=3, startDirection=GameDirection.Left, startOnOver=False)
+lr.createMovingPlatform(Plat2, 450, speed=180, startDirection=GameDirection.Left, startOnOver=False)
 
 
 # Remove Bonus-Level-House if already catched

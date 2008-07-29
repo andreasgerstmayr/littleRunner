@@ -18,7 +18,7 @@ namespace littleRunner.GameObjects.MovingElements
     class Mushroom : MovingImageElement
     {
         MushroomType mtype;
-        int checks;
+        float distance;
         GameDirection direction;
 
         static dImage GetMushroomImage(MushroomType mtype)
@@ -38,7 +38,7 @@ namespace littleRunner.GameObjects.MovingElements
             left)
         {
             this.mtype = mtype;
-            checks = 0;
+            distance = 0;
             this.direction = direction;
         }
 
@@ -73,10 +73,10 @@ namespace littleRunner.GameObjects.MovingElements
 
 
             bool falling = false;
-            if (checks < 20)
+            if (distance < 180)
             {
-                newtop -= 4;
-                checks++;
+                newtop -= Globals.MushroomMove.GO_Y * GameAI.FrameFactor;
+                distance += Globals.MushroomMove.GO_Y * GameAI.FrameFactor;
             }
             else
             {
@@ -84,13 +84,13 @@ namespace littleRunner.GameObjects.MovingElements
                 falling = GamePhysics.Falling(World.StickyElements, World.MovingElements, World.Enemies, newtop, newleft, this);
 
                 if (falling)
-                    newtop += 4;
+                    newtop += Globals.MushroomMove.GO_Y * GameAI.FrameFactor;
             }
 
             if (direction == GameDirection.Left)
-                newleft -= 3;
+                newleft -= Globals.MushroomMove.GO_X * GameAI.FrameFactor;
             else if (direction == GameDirection.Right)
-                newleft += 3;
+                newleft += Globals.MushroomMove.GO_X * GameAI.FrameFactor;
 
 
             // check if direction is ok

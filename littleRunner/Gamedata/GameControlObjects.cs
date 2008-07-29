@@ -269,7 +269,10 @@ namespace littleRunner
                 sound.Start();
 
             else if (c == 'f')
+            {
                 fps.Visible = !fps.Visible;
+                //System.Threading.Thread.Sleep(3000);
+            }
         }
     }
 }

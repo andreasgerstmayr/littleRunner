@@ -89,7 +89,7 @@ namespace littleRunner.GameObjects.MainGameObjects
             
             GamePhysics.JumpData jumping = new GamePhysics.JumpData();
             jumping.direction = GameDirection.None;
-            jumping.value = 1;
+            jumping.distance = 0;
             this.jumping = jumping;
 
             wantNext = new Queue<WantNext>();
@@ -121,15 +121,15 @@ namespace littleRunner.GameObjects.MainGameObjects
                         break;
                     case MoveType.jumpLeft:
                         jumping.direction = GameDirection.Left;
-                        jumping.value = 1;
+                        jumping.distance = 0;
                         break;
                     case MoveType.jumpTop:
                         jumping.direction = GameDirection.Top;
-                        jumping.value = 1;
+                        jumping.distance = 0;
                         break;
                     case MoveType.jumpRight:
                         jumping.direction = GameDirection.Right;
-                        jumping.value = 1;
+                        jumping.distance = 0;
                         break;
                 }
 
@@ -167,21 +167,21 @@ namespace littleRunner.GameObjects.MainGameObjects
             if (pressedKeys.Contains(GameKey.jumpLeft) && !falling)
             {
                 jumping.direction = GameDirection.Left;
-                jumping.value = 1;
+                jumping.distance = 0;
                 if (direction != GameDirection.Left)
                     Direction = GameDirection.Left;
             }
             if (pressedKeys.Contains(GameKey.jumpRight) && !falling)
             {
                 jumping.direction = GameDirection.Right;
-                jumping.value = 1;
+                jumping.distance = 0;
                 if (direction != GameDirection.Right)
                     Direction = GameDirection.Right;
             }
             if (pressedKeys.Contains(GameKey.jumpTop) && !falling)
             {
                 jumping.direction = GameDirection.Top;
-                jumping.value = 1;
+                jumping.distance = 0;
             }
 
             if (pressedKeys.Contains(GameKey.fire) && mode == MainGameObjectMode.NormalFire)
@@ -203,9 +203,9 @@ namespace littleRunner.GameObjects.MainGameObjects
             if (newleft != 0 && pressedKeys.Contains(GameKey.runFast))
             {
                 if (newleft < 0)
-                    newleft -= 5;
+                    newleft -= Globals.MGOMove.GO_X * GameAI.FrameFactor;
                 else
-                    newleft += 5;
+                    newleft += Globals.MGOMove.GO_X * GameAI.FrameFactor;
             }
 
 
@@ -214,7 +214,7 @@ namespace littleRunner.GameObjects.MainGameObjects
 
             // now we can fall (if we don't jump)
             if (falling && jumping.direction == GameDirection.None)
-                newtop += 7;
+                newtop += Globals.MGOMove.Falling * GameAI.FrameFactor;
 
 
             // check if direction is ok

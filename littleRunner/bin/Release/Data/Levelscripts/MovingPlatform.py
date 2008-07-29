@@ -32,7 +32,7 @@ class MovingPlatform(object):
       moveDistance = self.speed * self.lr.FrameFactor
       doThen = GameInstruction(InstructionType.MoveElement, self.obj, self.direction, moveDistance)
       centripetalForce = self.releaseMGOtime != 0 and time.time()-0.3 < self.releaseMGOtime
-      self.mgoOnTop = True
+
       if self.mgoOnTop or centripetalForce:
          self.MGO.Move(self.__moveDirection(), moveDistance, doThen)
       else:
@@ -91,7 +91,7 @@ class MovingPlatform(object):
       if self.mgoOnTop and not newMgoOnTop and self.releaseMGOtime == 0: # jump off the platform
          self.releaseMGOtime = time.time()
 
-      self.mgoOnTop = True#newMgoOnTop
+      self.mgoOnTop = newMgoOnTop
 
 
    def __onOver(self, geventhandler, who, direction):

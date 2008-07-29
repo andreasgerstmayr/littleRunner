@@ -20,6 +20,7 @@ namespace littleRunner
         public World World;
         private GameControlObjects gameControlObj;
         private List<Keys> curkeys;
+        private List<GameKey> pressedKeys;
         float scrollTop;
         private static Stopwatch watch;
 
@@ -75,6 +76,7 @@ namespace littleRunner
             scrollTop = 0;
             this.forminteract = forminteract;
             this.curkeys = new List<Keys>();
+            this.pressedKeys = new List<GameKey>();
 
             mainTimer = new Timer();
             mainTimer.Tick += new EventHandler(Check);
@@ -108,26 +110,6 @@ namespace littleRunner
         {
             if (World.Script != null)
                 World.Script.callFunction("AI", "Check");
-
-
-            List<GameKey> pressedKeys = new List<GameKey>();
-
-            #region check if key pressed
-            if (curkeys.Contains(Keys.A) || curkeys.Contains(Keys.Left))
-                pressedKeys.Add(GameKey.goLeft);
-            if (curkeys.Contains(Keys.D) || curkeys.Contains(Keys.Right))
-                pressedKeys.Add(GameKey.goRight);
-            if (curkeys.Contains(Keys.Space))
-                pressedKeys.Add(GameKey.fire);
-            if (curkeys.Contains(Keys.Q))
-                pressedKeys.Add(GameKey.jumpLeft);
-            if (curkeys.Contains(Keys.W) || curkeys.Contains(Keys.Up))
-                pressedKeys.Add(GameKey.jumpTop);
-            if (curkeys.Contains(Keys.E))
-                pressedKeys.Add(GameKey.jumpRight);
-            if (curkeys.Contains(Keys.ControlKey))
-                pressedKeys.Add(GameKey.runFast);
-            #endregion
 
 
             Dictionary<string, float> newMGOpos = World.MGO.Check(pressedKeys);
@@ -206,6 +188,26 @@ namespace littleRunner
                 curkeys.Add(key);
             else if (!pressed)
                 curkeys.Remove(key);
+
+
+            pressedKeys.Clear();
+
+            #region check if key pressed
+            if (curkeys.Contains(Keys.A) || curkeys.Contains(Keys.Left))
+                pressedKeys.Add(GameKey.goLeft);
+            if (curkeys.Contains(Keys.D) || curkeys.Contains(Keys.Right))
+                pressedKeys.Add(GameKey.goRight);
+            if (curkeys.Contains(Keys.Space))
+                pressedKeys.Add(GameKey.fire);
+            if (curkeys.Contains(Keys.Q))
+                pressedKeys.Add(GameKey.jumpLeft);
+            if (curkeys.Contains(Keys.W) || curkeys.Contains(Keys.Up))
+                pressedKeys.Add(GameKey.jumpTop);
+            if (curkeys.Contains(Keys.E))
+                pressedKeys.Add(GameKey.jumpRight);
+            if (curkeys.Contains(Keys.ControlKey))
+                pressedKeys.Add(GameKey.runFast);
+            #endregion
         }
 
         public void getEvent(GameEvent gevent, Dictionary<GameEventArg, object> args)

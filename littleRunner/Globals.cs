@@ -70,11 +70,13 @@ namespace littleRunner
     sealed class Globals
     {
         public static VideoRenderMode VideoRenderMode;
+        public static float Approximation = 0.5F;
 
         public struct MGOMove
         {
-            public const int GO_X = 200;
+            public const int GO_X = 300;
             public const int Jump = 620;
+            public const int Falling = 400;
         }
         public struct FireMove
         {
@@ -86,10 +88,16 @@ namespace littleRunner
             public const int X = 200;
             public const int Y = 500;
         }
-        public struct JumpingStar
+        public struct JumpingStarMove
         {
             public const int Y = 70;
         }
+        public struct MushroomMove
+        {
+            public const int GO_X = 180;
+            public const int GO_Y = 250;
+        }
+
         public const int ObjFalling = 350;
         public const int Gumba_X = 50;
         public struct Turtle

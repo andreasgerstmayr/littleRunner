@@ -328,27 +328,20 @@ ControlStyles.OptimizedDoubleBuffer, true);
         {
             tmpHandler.updateTMP();
 
-            g = new Game(tmpHandler.TmpFilename, PlayMode.Game);
+            g = new Game(tmpHandler.TmpFilename, PlayMode.Game, 0, 0);
 
             g.ShowDialog();
             g = null;
             AnimateImage.Refresh = false;
         }
 
-        private void setCurrentViewport(ref Game g)
-        {
-            g.AI.World.MGO.Left += hScroll.Value - hScroll.Minimum;
-            g.AI.World.MGO.Top += (vScroll.Value - vScroll.Minimum);
-            g.AI.World.Viewport.X -= hScroll.Value - hScroll.Minimum;
-            g.AI.World.Viewport.Y -= vScroll.Value - vScroll.Minimum;
-        }
-
         private void gameWindowToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tmpHandler.updateTMP();
 
-            g = new Game(tmpHandler.TmpFilename, PlayMode.Game);
-            setCurrentViewport(ref g);
+            g = new Game(tmpHandler.TmpFilename, PlayMode.Game, 
+                vScroll.Value - vScroll.Minimum,
+                hScroll.Value - hScroll.Minimum);
 
             g.ShowDialog();
             g = null;
@@ -361,8 +354,9 @@ ControlStyles.OptimizedDoubleBuffer, true);
 
             int levelTop = this.Top + SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Height + tableLayout.Top + level.Top;
             int levelLeft = this.Left + SystemInformation.FrameBorderSize.Width + tableLayout.Left + level.Left;
-            g = new Game(tmpHandler.TmpFilename, PlayMode.GameInEditor, levelTop, levelLeft);
-            setCurrentViewport(ref g);
+            g = new Game(tmpHandler.TmpFilename, PlayMode.GameInEditor, levelTop, levelLeft,
+                vScroll.Value - vScroll.Minimum,
+                hScroll.Value - hScroll.Minimum);
 
 
             string oldtext = this.Text;
