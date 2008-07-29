@@ -21,12 +21,8 @@ namespace littleRunner
                 {
                     if (el.canStandOn)
                     {
-                        if (go is MainGameObject && el is littleRunner.GameObjects.MovingElements.Bricks && go.Bottom > 365)
-                        {
-                        }
-
                         if (go.Right+newleft > el.Left && go.Left+newleft < el.Right && // left+right ok?
-                            go.Bottom+newtop == el.Top)
+                            Math.Abs(go.Bottom+newtop - el.Top) < Globals.Approximation)
                         {
                             falling = false;
                             break;
@@ -59,7 +55,7 @@ namespace littleRunner
         public struct JumpData
         {
             public GameDirection direction;
-            public int value;
+            public float distance;
         }
         static public void Jumping(ref JumpData jumping, ref float newtop, ref float newleft)
         {
@@ -70,48 +66,53 @@ namespace littleRunner
             // jump left
             if (jumping.direction == GameDirection.Left)
             {
-                if (jumping.value <= 20)
+                if (jumping.distance <= 250)
                 {
                     newleft -= Globals.MGOMove.GO_X * GameAI.FrameFactor;
                     newtop -= Globals.MGOMove.Jump * GameAI.FrameFactor;
                 }
-                else
+                else if (jumping.distance <= 500)
                 {
                     newleft -= Globals.MGOMove.GO_X * GameAI.FrameFactor;
                     newtop += Globals.MGOMove.Jump * GameAI.FrameFactor;
                 }
+                else
+                    jumping.direction = GameDirection.None;
+
+                jumping.distance += Globals.MGOMove.GO_X * GameAI.FrameFactor + Globals.MGOMove.Jump * GameAI.FrameFactor;
             }
 
             // jump top
             if (jumping.direction == GameDirection.Top)
             {
-                if (jumping.value <= 20)
+                if (jumping.distance <= 200)
                     newtop -= Globals.MGOMove.Jump * GameAI.FrameFactor;
-                else
+                else if (jumping.distance <= 400)
                     newtop += Globals.MGOMove.Jump * GameAI.FrameFactor;
+                else
+                    jumping.direction = GameDirection.None;
+
+                jumping.distance += Globals.MGOMove.Jump * GameAI.FrameFactor;
             }
 
             // jump right
             if (jumping.direction == GameDirection.Right)
             {
-                if (jumping.value <= 20)
+                if (jumping.distance <= 250)
                 {
                     newleft += Globals.MGOMove.GO_X * GameAI.FrameFactor;
                     newtop -= Globals.MGOMove.Jump * GameAI.FrameFactor;
                 }
-                else
+                else if (jumping.distance <= 500)
                 {
                     newleft += Globals.MGOMove.GO_X * GameAI.FrameFactor;
                     newtop += Globals.MGOMove.Jump * GameAI.FrameFactor;
                 }
+                else
+                    jumping.direction = GameDirection.None;
+
+                jumping.distance += Globals.MGOMove.GO_X * GameAI.FrameFactor + Globals.MGOMove.Jump * GameAI.FrameFactor;
             }
-
-
-            if (jumping.direction != GameDirection.None)
-                jumping.value++;
-
-            if (jumping.value == 41)
-                jumping.direction = GameDirection.None;
         }
 
 

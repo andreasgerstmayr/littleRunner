@@ -12,7 +12,7 @@ namespace littleRunner.GameObjects.MovingElements
     {
         private GameDirection direction;
         private GameDirection flyDirection;
-        private int flyTopCount;
+        private float distance;
         private int runs;
 
         public override bool canStandOn
@@ -33,7 +33,7 @@ namespace littleRunner.GameObjects.MovingElements
         {
             this.direction = direction;
             flyDirection = GameDirection.Top;
-            flyTopCount = 0;
+            distance = 0;
             runs = 0;
         }
 
@@ -67,12 +67,12 @@ namespace littleRunner.GameObjects.MovingElements
             }
 
             if (flyDirection == GameDirection.Top)
-                flyTopCount++;
+                distance += Globals.ImmortializeStarMove.Y * GameAI.FrameFactor;
 
-            if (flyTopCount > 20)
+            if (distance > 200)
             {
                 flyDirection = GameDirection.Bottom;
-                flyTopCount = 0;
+                distance = 0;
             }
 
 

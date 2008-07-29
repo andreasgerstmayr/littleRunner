@@ -29,13 +29,10 @@ namespace littleRunner
         GameSession session;
         bool ignoreSizeChange;
         int top, left;
+        int mgoChangeTop, mgoChangeLeft;
 
-        public GameAI AI
-        {
-            get { return ai; }
-        }
 
-        public Game(string filename, PlayMode playMode)
+        public Game(string filename, PlayMode playMode, int mgotop, int mgoleft)
         {
             InitializeComponent();
             SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
@@ -46,20 +43,34 @@ namespace littleRunner
 
             lastModeIsNull = true;
             levelpack = "";
+
+            mgoChangeTop = mgotop;
+            mgoChangeLeft = mgoleft;
+
             StartGame(filename, playMode);
         }
         public Game(string levelpack, string filename)
-            : this("Data/Levels/" + levelpack + "/" + filename, PlayMode.Game)
+            : this("Data/Levels/" + levelpack + "/" + filename, PlayMode.Game, 0, 0)
         {
             this.levelpack = levelpack + "/";
         }
 
-        public Game(string filename, PlayMode playMode, int top, int left)
-            : this(filename, playMode)
+        public Game(string filename, PlayMode playMode, int top, int left, int mgotop, int mgoleft)
+            : this(filename, playMode, mgotop, mgoleft)
         {
             this.top = top;
             this.left = left;
             this.FormBorderStyle = FormBorderStyle.None;
+        }
+
+
+
+        private void setCurrentViewport()
+        {
+            world.MGO.Left += mgoChangeLeft;
+            world.MGO.Top += mgoChangeTop;
+            world.Viewport.X -= mgoChangeLeft;
+            world.Viewport.Y -= mgoChangeTop;
         }
 
         private void Game_Shown(object sender, EventArgs e)
@@ -72,6 +83,7 @@ namespace littleRunner
                 this.Height -= 2;
             }
         }
+
 
         private void StartGame(string filename, PlayMode playMode)
         {
@@ -136,6 +148,11 @@ namespace littleRunner
             // got MGO!
             f.Message("Initializing World");
             world.Init(tux);
+
+
+            // change MGO if needed
+            if (mgoChangeTop != 0 || mgoChangeLeft != 0)
+                setCurrentViewport();
 
 
             // change window size
