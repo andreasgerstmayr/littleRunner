@@ -4,7 +4,11 @@ from littleRunner.GameObjects import MoveType
 from littleRunner.GamePhysics import SimpleCrashDetection
 import time
 
-
+def DebugWrite(msg):
+   f = open("C:/debug.txt", "a")
+   f.write(msg+"\n")
+   f.close()
+   
 class MovingPlatform(object):
 
    def __init__ (self, lr, obj, maxDistance, speed=200, startDirection=GameDirection.Right, moveBack=True, startOnOver=True):

@@ -115,24 +115,27 @@ namespace littleRunner.Gamedata.Worlddata
             {
                 try
                 {
-                    foreach (GameObject go in this.AllElements)
-                    {
-                        if (go.Name != null && go.Name != "")
-                        {
-                            Script.GlobalsAdd(go.Name, go);
-                            Script.Execute("handler." + go.Name + " = EventAttrDict()");
-                        }
-                    }
-
-
                     Script.GlobalsAdd("MGO", MGO);
                     Script.GlobalsAdd("World", this);
                     Script.GlobalsAdd("Session", session);
                     Script.GlobalsAdd("AiEventHandler", aiEventHandler);
                     Script.GlobalsAdd("GetFrameFactor", new GameAI.GetFrameFactorDelegate(GameAI.GetFrameFactor));
 
-                    Script.Execute("lr = littleRunner(MGO, World, handler, Session, AiEventHandler, GetFrameFactor)");
+                    Script.Execute("lr = littleRunner(MGO, World, Session, AiEventHandler, GetFrameFactor)");
+
+
+                    foreach (GameObject go in this.AllElements)
+                    {
+                        if (go.Name != null && go.Name != "")
+                        {
+                            Script.GlobalsAdd(go.Name, go);
+                            Script.Execute("lr.Handler." + go.Name + " = EventAttrDict()");
+                        }
+                    }
+
+                    Script.Execute("handler = lr.Handler"); // very important! because Script.cs needs access to Globals["handler"].
                     Script.Execute(Settings.Script);
+                    Script.Init = false;
                 }
                 catch (Exception e)
                 {

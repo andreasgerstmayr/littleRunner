@@ -15,6 +15,7 @@ namespace littleRunner
         private static List<string> savedGlobals;
         private PythonEngine engine;
         private World world;
+        public bool Init;
         
 
         public void GlobalsAdd(string name, object obj)
@@ -41,6 +42,7 @@ namespace littleRunner
 
         public Script(World world)
         {
+            this.Init = true;
             InitializePythonEngine();
 
             this.world = world;
@@ -49,6 +51,9 @@ namespace littleRunner
 
         public void callFunction(string name, string function, params object[] args)
         {
+            if (Init)
+                return;
+
             Dictionary<object, object> handlers = (Dictionary<object, object>)engine.Globals["handler"];
             if (handlers.ContainsKey(name) &&
                 ((Dictionary<object, object>)handlers[name]).ContainsKey(function))
