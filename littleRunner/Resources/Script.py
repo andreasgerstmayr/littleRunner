@@ -13,6 +13,7 @@ from FlyingCircle import FlyingCircle
 
 from System.Collections.Generic import Dictionary
 
+
 class Event(object):
    def __init__(self, *funcs):
       self.funcs = list(funcs)
@@ -42,27 +43,31 @@ class AttrDict(Dictionary[object, object]):
    def __delattr__(self, key):
       self.Remove(key)
 
+
 class EventAttrDict(AttrDict):
    def __getattr__(self, key):
+      newCreated = False
       if key not in self:
          AttrDict.__setattr__(self, key, Event())
+         newCreated = True
+         
+      x = AttrDict.__getattr__(self, key)
+      if not newCreated and len(x.funcs) == 0: # Event exists, but has 0 functions -> delete it!
+         AttrDict.__delattr__(self, key)
 
-      return AttrDict.__getattr__(self, key)
-
-def DebugWrite(msg):
-   f = open("C:/debug.txt", "a")
-   f.write(msg+"\n")
-   f.close()
+      return x
 
 
 class littleRunner:
-   def __init__(self, mgo, world, handler, session, AiEventHandler, GetFrameFactor):
+   def __init__(self, mgo, world, session, AiEventHandler, GetFrameFactor):
       self.MGO = mgo
       self.World = world
-      self.Handler = handler
+      self.Handler = AttrDict()
+      self.Handler.AI = EventAttrDict()
       self.Session = session
       self.AiEventHandler = AiEventHandler
       self.GetFrameFactor = GetFrameFactor
+
 
    @property
    def FrameFactor(self):
@@ -74,6 +79,5 @@ class littleRunner:
    def createFlyingCircle(self, *args, **kwargs): return FlyingCircle(self, *args, **kwargs)
 
 
-handler = AttrDict()
-handler.AI = EventAttrDict()
 args = []
+# lr = littleRunner(...) in World.cs!
