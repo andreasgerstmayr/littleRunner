@@ -90,7 +90,7 @@ namespace littleRunner
         }
         public struct JumpingStarMove
         {
-            public const int Y = 70;
+            public const int Y = 400;
         }
         public struct MushroomMove
         {

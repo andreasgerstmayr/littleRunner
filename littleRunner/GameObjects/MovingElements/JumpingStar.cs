@@ -11,14 +11,14 @@ namespace littleRunner.GameObjects.MovingElements
 {
     class JumpingStar : MovingImageElement
     {
-        int count;
+        float distance;
 
         public JumpingStar(float top, float left)
             : base(GetDraw.Image(Files.star),
             top - GetDraw.Image(Files.star).Height - 10,
             left)
         {
-            count = 0;
+            distance = 0;
         }
 
         public override void Init(World world, GameEventHandler aiEventHandler)
@@ -42,14 +42,27 @@ namespace littleRunner.GameObjects.MovingElements
             float newtop = newpos["top"];
             float newleft = newpos["left"];
 
-            newtop -= (int)Math.Pow(Globals.JumpingStarMove.Y * GameAI.FrameFactor, count+5);
-            Top += newtop;
 
-            count++;
+            int speedStep = 1;
+
+            if (distance < 50)
+                speedStep = 1;
+            else if (distance < 70)
+                speedStep = 2;
+            else if (distance < 90)
+                speedStep = 3;
+            else if (distance <= 110)
+                speedStep = 4;
+            else if (distance <= 130)
+                speedStep = 5;
+
+            newtop -= Globals.JumpingStarMove.Y * speedStep * GameAI.FrameFactor;
+            distance += Globals.JumpingStarMove.Y * speedStep * GameAI.FrameFactor;
+            Top += newtop;
 
 
             // gone
-            if (count > 10)
+            if (distance > 130)
                 World.MovingElements.Remove(this);
         }
     }

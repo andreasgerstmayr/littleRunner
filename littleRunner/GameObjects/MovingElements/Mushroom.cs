@@ -73,7 +73,7 @@ namespace littleRunner.GameObjects.MovingElements
 
 
             bool falling = false;
-            if (distance < 180)
+            if (distance < 120)
             {
                 newtop -= Globals.MushroomMove.GO_Y * GameAI.FrameFactor;
                 distance += Globals.MushroomMove.GO_Y * GameAI.FrameFactor;
