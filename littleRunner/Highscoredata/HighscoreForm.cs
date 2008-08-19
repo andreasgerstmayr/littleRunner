@@ -47,18 +47,24 @@ namespace littleRunner.Highscoredata
             {
                 highscores.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
+                Label rankLabel = new Label();
+                rankLabel.Text = (row + 1).ToString() + ".";
+                rankLabel.Font = new Font("Verdana", 12F, FontStyle.Bold);
+                rankLabel.AutoSize = true;
+                highscores.Controls.Add(rankLabel, 0, row);
+
                 Label nameLabel = new Label();
                 nameLabel.Text = data.Name;
                 nameLabel.Font = new Font("Verdana", 12F, FontStyle.Bold);
                 nameLabel.AutoSize = true;
-                highscores.Controls.Add(nameLabel, 0, row);
+                highscores.Controls.Add(nameLabel, 1, row);
 
                 Label scoreLabel = new Label();
                 scoreLabel.Text = data.Points.ToString();
                 scoreLabel.Font = new Font("Verdana", 12F, FontStyle.Regular);
                 scoreLabel.AutoSize = true;
                 scoreLabel.TextAlign = ContentAlignment.MiddleRight;
-                highscores.Controls.Add(scoreLabel, 1, row);
+                highscores.Controls.Add(scoreLabel, 2, row);
 
                 row++;
             }
