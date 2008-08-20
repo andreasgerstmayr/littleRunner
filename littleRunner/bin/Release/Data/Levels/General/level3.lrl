@@ -44,7 +44,7 @@ def removeBonusLvl(geventhandler):
    Session.Set('level3.lrl', 'gotBonusLvl', True)
    Session.Set('bonuslevel1.lrl', 'gotLvl', False) # set to False - maybe need bonuslevel in other level too
 
-handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
+lr.Handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
     </Script>
   </LevelSettings>
   <Data>

@@ -66,52 +66,60 @@ namespace littleRunner
             // jump left
             if (jumping.direction == GameDirection.Left)
             {
+                float nleft = Globals.MGOMove.GO_X * GameAI.FrameFactor;
+                float ntop = Globals.MGOMove.Jump * GameAI.FrameFactor;
+
                 if (jumping.distance <= 250)
                 {
-                    newleft -= Globals.MGOMove.GO_X * GameAI.FrameFactor;
-                    newtop -= Globals.MGOMove.Jump * GameAI.FrameFactor;
+                    newleft -= nleft;
+                    newtop -= ntop;
                 }
                 else if (jumping.distance <= 500)
                 {
-                    newleft -= Globals.MGOMove.GO_X * GameAI.FrameFactor;
-                    newtop += Globals.MGOMove.Jump * GameAI.FrameFactor;
+                    newleft -= nleft;
+                    newtop += ntop;
                 }
                 else
                     jumping.direction = GameDirection.None;
 
-                jumping.distance += Globals.MGOMove.GO_X * GameAI.FrameFactor + Globals.MGOMove.Jump * GameAI.FrameFactor;
+                jumping.distance += nleft + ntop;
             }
 
             // jump top
             if (jumping.direction == GameDirection.Top)
             {
+                float ntop = Globals.MGOMove.Jump * GameAI.FrameFactor;
+
                 if (jumping.distance <= 200)
-                    newtop -= Globals.MGOMove.Jump * GameAI.FrameFactor;
+                    newtop -= ntop;
                 else if (jumping.distance <= 400)
-                    newtop += Globals.MGOMove.Jump * GameAI.FrameFactor;
+                    newtop += ntop;
                 else
                     jumping.direction = GameDirection.None;
 
-                jumping.distance += Globals.MGOMove.Jump * GameAI.FrameFactor;
+                jumping.distance += ntop;
             }
 
             // jump right
             if (jumping.direction == GameDirection.Right)
             {
+                float nleft = Globals.MGOMove.GO_X * GameAI.FrameFactor;
+                float ntop = Globals.MGOMove.Jump * GameAI.FrameFactor;
+
                 if (jumping.distance <= 250)
                 {
-                    newleft += Globals.MGOMove.GO_X * GameAI.FrameFactor;
-                    newtop -= Globals.MGOMove.Jump * GameAI.FrameFactor;
+                    newleft += nleft;
+                    newtop -= ntop;
                 }
                 else if (jumping.distance <= 500)
                 {
-                    newleft += Globals.MGOMove.GO_X * GameAI.FrameFactor;
-                    newtop += Globals.MGOMove.Jump * GameAI.FrameFactor;
+                    newleft += nleft;
+                    newtop += ntop;
                 }
                 else
                     jumping.direction = GameDirection.None;
 
-                jumping.distance += Globals.MGOMove.GO_X * GameAI.FrameFactor + Globals.MGOMove.Jump * GameAI.FrameFactor;
+                jumping.distance += nleft + ntop;
             }
         }
 

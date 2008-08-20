@@ -26,9 +26,9 @@ class MovingObject:
          self.direction = GameDirection.Top
      
 
-   def __Check(self, newpos):     
-      self.curDistance += self.speed * self.lr.FrameFactor
+   def __Check(self, newpos):
       move = self.speed * self.lr.FrameFactor
+      self.curDistance += move
       
       if self.curDistance > self.maxDistance:
          move = self.curDistance-self.maxDistance
