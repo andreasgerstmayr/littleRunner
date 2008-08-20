@@ -56,8 +56,9 @@ namespace littleRunner.GameObjects.MovingElements
             else if (distance <= 130)
                 speedStep = 5;
 
-            newtop -= Globals.JumpingStarMove.Y * speedStep * GameAI.FrameFactor;
-            distance += Globals.JumpingStarMove.Y * speedStep * GameAI.FrameFactor;
+            float move = Globals.JumpingStarMove.Y * speedStep * GameAI.FrameFactor;
+            newtop -= move;
+            distance += move;
             Top += newtop;
 
 
