@@ -375,51 +375,42 @@
     <None Include="Data\Images\Enemie\Turtle\Green\walk_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\General\level1.lrl">
+    <None Include="Data\Levelpacks\General\level1.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\General\level2.lrl">
+    <None Include="Data\Levelpacks\General\level2.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\General\level3.lrl">
+    <None Include="Data\Levelpacks\General\level3.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\General\level4.lrl">
+    <None Include="Data\Levelpacks\General\level4.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\General\level5.lrl">
+    <None Include="Data\Levelpacks\General\level5.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\Levels\General\bonuslevel1.lrl">
+    <None Include="Data\Levelpacks\General\bonuslevel1.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\General\level10.lrl">
+    <None Include="Data\Levelpacks\General\level10.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\General\level11.lrl">
+    <None Include="Data\Levelpacks\General\level11.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\General\level6.lrl">
+    <None Include="Data\Levelpacks\General\level6.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\General\level7.lrl">
+    <None Include="Data\Levelpacks\General\level7.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\General\level8.lrl">
+    <None Include="Data\Levelpacks\General\level8.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\General\level9.lrl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\Levels\Badis_Levelpack\Ice.lrl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\Levels\Badis_Levelpack\Labyrinth.lrl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\Levels\Badis_Levelpack\Gersti.lrl">
+    <None Include="Data\Levelpacks\General\level9.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\Script.py" />
@@ -499,10 +490,7 @@
     <None Include="Resources\vert_align.png" />
     <None Include="Resources\horiz_spacejustify.png" />
     <None Include="Resources\vert_spacejustify.png" />
-    <None Include="Data\Levels\General\info.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\Levels\Badis_Levelpack\info.txt">
+    <None Include="Data\Levelpacks\General\info.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="TuxIcon.ico" />

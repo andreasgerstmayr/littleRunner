@@ -51,7 +51,7 @@ namespace littleRunner
             StartGame(filename, playMode);
         }
         public Game(string levelpack, string filename)
-            : this("Data/Levels/" + levelpack + "/" + filename, PlayMode.Game, 0, 0)
+            : this("Data/Levelpacks/" + levelpack + "/" + filename, PlayMode.Game, 0, 0)
         {
             this.levelpack = levelpack + "/";
         }
@@ -240,7 +240,7 @@ namespace littleRunner
                             gameControlObjs = null; // set new points+sound!
                             session = null; // new session
 
-                            StartGame("Data/Levels/" + levelpack + LevelPackSwitcher.GetStartLevelName(levelpack, true), world.PlayMode);
+                            StartGame("Data/Levelpacks/" + levelpack + LevelPackSwitcher.GetStartLevelName(levelpack, true), world.PlayMode);
                         }
                         else if (dr == DialogResult.No)
                             CloseGame();
@@ -262,7 +262,7 @@ namespace littleRunner
 
                         ai = null;
                         int nextLevelStartAt = (int)args[GameEventArg.nextLevelStartAt];
-                        StartGame("Data/Levels/" + levelpack + nextLevel, world.PlayMode);
+                        StartGame("Data/Levelpacks/" + levelpack + nextLevel, world.PlayMode);
                         if (ai != null)
                         {
                             ai.World.MGO.Left += nextLevelStartAt;
