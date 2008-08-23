@@ -9,6 +9,7 @@ using System.IO;
 
 using littleRunner.Drawing;
 using littleRunner.Drawing.Helpers;
+using littleRunner.Gamedata;
 using littleRunner.Gamedata.Worlddata;
 using littleRunner.GameObjects;
 using littleRunner.GameObjects.MainGameObjects;
@@ -173,7 +174,6 @@ namespace littleRunner
                 GameControl_Sound gameControlObjSound = new GameControl_Sound();
 
                 gameControlObjs = new GameControlObjects(gameControlObjScore, gameControlObjPoints, gameControlObjLives, gameControlObjFPS, gameControlObjSound);
-                gameControlObjs.OnKeyPress('f');
             }
 
 
@@ -240,7 +240,7 @@ namespace littleRunner
                             gameControlObjs = null; // set new points+sound!
                             session = null; // new session
 
-                            StartGame("Data/Levels/" + levelpack + "start.lrl", world.PlayMode);
+                            StartGame("Data/Levels/" + levelpack + LevelPackSwitcher.GetStartLevelName(levelpack, true), world.PlayMode);
                         }
                         else if (dr == DialogResult.No)
                             CloseGame();
