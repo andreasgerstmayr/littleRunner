@@ -46,7 +46,7 @@
             this.levelpacks.Size = new System.Drawing.Size(296, 92);
             this.levelpacks.Sorted = true;
             this.levelpacks.TabIndex = 0;
-            this.levelpacks.DoubleClick += new System.EventHandler(this.levelpacks_DoubleClick);
+            this.levelpacks.Click += new System.EventHandler(this.levelpacks_Click);
             // 
             // label1
             // 

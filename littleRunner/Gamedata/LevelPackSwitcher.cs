@@ -15,6 +15,13 @@ namespace littleRunner.Gamedata
     {
         FormClosingEventHandler progSwitchHandler;
 
+        public static string GetStartLevelName(string levelpack, bool slashed)
+        {
+            string[] infofile = File.ReadAllLines("Data/Levels/" + levelpack + (slashed ? "" : "/") + "info.txt");
+            return infofile[0].Substring(7);
+        }
+
+
         public LevelPackSwitcher(FormClosingEventHandler progSwitchHandler)
         {
             InitializeComponent();
@@ -32,17 +39,17 @@ namespace littleRunner.Gamedata
             if (levelpacks.Items.Count == 1)
             {
                 levelpacks.SelectedIndex = 0;
-                levelpacks_DoubleClick(this, new EventArgs());
+                levelpacks_Click(this, new EventArgs());
             }
         }
 
-        private void levelpacks_DoubleClick(object sender, EventArgs e)
+        private void levelpacks_Click(object sender, EventArgs e)
         {
             this.FormClosing -= progSwitchHandler;
             Close();
 
             string selectedLevelPack = levelpacks.SelectedItem.ToString();
-            Game game = new Game(selectedLevelPack, "start.lrl");
+            Game game = new Game(selectedLevelPack, GetStartLevelName(selectedLevelPack, false));
             game.FormClosing += new FormClosingEventHandler(progSwitchHandler);
             game.Show();
         }

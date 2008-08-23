@@ -375,7 +375,7 @@
     <None Include="Data\Images\Enemie\Turtle\Green\walk_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Levels\General\start.lrl">
+    <None Include="Data\Levels\General\level1.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\Levels\General\level2.lrl">
@@ -411,6 +411,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\Levels\General\level9.lrl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Levels\Badis_Levelpack\Ice.lrl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Levels\Badis_Levelpack\Labyrinth.lrl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Levels\Badis_Levelpack\Gersti.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\Script.py" />
@@ -490,6 +499,12 @@
     <None Include="Resources\vert_align.png" />
     <None Include="Resources\horiz_spacejustify.png" />
     <None Include="Resources\vert_spacejustify.png" />
+    <None Include="Data\Levels\General\info.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Levels\Badis_Levelpack\info.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="TuxIcon.ico" />
   </ItemGroup>
   <ItemGroup>

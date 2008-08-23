@@ -1,0 +1,2 @@
+Start: level1.lrl
+Copyright: andihit <Andreas G.>
