@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.Threading;
 
 using littleRunner.Drawing;
 using littleRunner.Gamedata.Worlddata;
@@ -16,13 +17,15 @@ namespace littleRunner
     public class GameAI
     {
         private GameEventHandler forminteract;
-        private Timer mainTimer;
+        private System.Windows.Forms.Timer mainTimer;
         public World World;
         private GameControlObjects gameControlObj;
         private List<Keys> curkeys;
         private List<GameKey> pressedKeys;
         float scrollTop;
         private static Stopwatch watch;
+        private static Stopwatch tempwatch;
+        private Thread checkThread;
 
 
         public void Update(Draw d)
@@ -40,7 +43,7 @@ namespace littleRunner
 
         public static float FrameFactor
         {
-            get { return (float)watch.Elapsed.TotalSeconds; }
+            get { return Thread.CurrentThread.Name == null ? (float)watch.Elapsed.TotalSeconds : (float)tempwatch.Elapsed.TotalSeconds; }
         }
         public delegate float GetFrameFactorDelegate();
         public static float GetFrameFactor()
@@ -73,12 +76,14 @@ namespace littleRunner
         public GameAI(GameEventHandler forminteract)
         {
             watch = new Stopwatch();
+            tempwatch = new Stopwatch();
+
             scrollTop = 0;
             this.forminteract = forminteract;
             this.curkeys = new List<Keys>();
             this.pressedKeys = new List<GameKey>();
 
-            mainTimer = new Timer();
+            mainTimer = new System.Windows.Forms.Timer();
             mainTimer.Tick += new EventHandler(Check);
             mainTimer.Interval = 1;
             mainTimer.Enabled = false;
@@ -108,10 +113,6 @@ namespace littleRunner
 
         public void Check(object sender, EventArgs e)
         {
-            if (World.Script != null)
-                World.Script.callFunction("AI", "Check");
-
-
             Dictionary<string, float> newMGOpos = World.MGO.Check(pressedKeys);
             float changeY = Math.Abs(newMGOpos["newtop"]);
             float changeX = Math.Abs(newMGOpos["newleft"]);
@@ -154,6 +155,31 @@ namespace littleRunner
             #endregion
 
 
+            if (checkThread == null || checkThread.ThreadState == System.Threading.ThreadState.Stopped)
+            {
+                checkThread = new Thread(CheckThread);
+                checkThread.Name = "Checker2";
+                checkThread.Start();
+            }
+
+
+            // Repaint
+            World.DrawHandler.Update();
+
+
+            if (FrameFactor != 0.0)
+                gameControlObj.FPS = (int)(1.0 / FrameFactor);
+
+            watch.Reset(); // reset current
+            watch.Start(); // current frame calculating finished. now, start counting.
+        }
+
+        private void CheckThread()
+        {
+            if (World.Script != null)
+                World.Script.callFunction("AI", "Check");
+
+
             // check of all enemies
             for (int i = 0; i < World.Enemies.Count; i++)
             {
@@ -170,17 +196,10 @@ namespace littleRunner
                 World.MovingElements[i].Check(out newpos);
             }
 
-            // Repaint
-            World.DrawHandler.Update();
-
-
-            if (FrameFactor != 0.0)
-                gameControlObj.FPS = (int)(1.0 / FrameFactor);
-
-
-            watch.Reset(); // reset current
-            watch.Start(); // current frame calculating finished. now, start counting.
+            tempwatch.Reset(); // reset current
+            tempwatch.Start(); // reset current
         }
+
 
         public void Interact(Keys key, bool pressed)
         {

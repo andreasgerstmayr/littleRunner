@@ -24,23 +24,19 @@
     </levelWidth>
     <Script>
       <type>System.String</type>
-      <value><![CDATA[from MovingPlatform import CreateMovingPlatform
-from MovingObject import CreateMovingObject
-from FlyingCircle import CreateFlyingCircle
+      <value><![CDATA[
+lr.createMovingPlatform(Plat1, 200, startDirection=GameDirection.Top)
 
-
-CreateMovingPlatform(Plat1, handler, MGO, 200, startDirection=GameDirection.Top)
-
-CreateMovingObject(Spika1, handler, 125, speed=2, direction=GameDirection.Right)
-CreateMovingObject(Spika1, handler, 125, speed=2, direction=GameDirection.Bottom)
+lr.createMovingObject(Spika1, 125, speed=180, direction=GameDirection.Right)
+lr.createMovingObject(Spika1, 125, speed=150, direction=GameDirection.Bottom)
 
 
 
-CreateFlyingCircle(Spika2, handler, 100)
+lr.createFlyingCircle(Spika2, 100, speed=230)
 
 
-CreateMovingPlatform(Plat2, handler, MGO, 200, startDirection=GameDirection.Right, startOnOver=False)
-CreateFlyingCircle(Spika3, handler, 100, dockObj=Plat2, speed=5)]]></value>
+lr.createMovingPlatform(Plat2, 200, startDirection=GameDirection.Right, startOnOver=False)
+lr.createFlyingCircle(Spika3, 100, dockObj=Plat2, speed=250)]]></value>
     </Script>
   </LevelSettings>
   <Data>

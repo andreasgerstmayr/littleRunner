@@ -54,19 +54,22 @@ namespace littleRunner
             if (Init)
                 return;
 
-            Dictionary<object, object> handlers = (Dictionary<object, object>)engine.Globals["handler"];
-            if (handlers.ContainsKey(name) &&
-                ((Dictionary<object, object>)handlers[name]).ContainsKey(function))
+            lock (engine)
             {
-                engine.Globals["args"] = args;
-                try
+                Dictionary<object, object> handlers = (Dictionary<object, object>)engine.Globals["handler"];
+                if (handlers.ContainsKey(name) &&
+                    ((Dictionary<object, object>)handlers[name]).ContainsKey(function))
                 {
-                    engine.Execute("handler." + name + "." + function + "(*args)");
-                }
-                catch (Exception e)
-                {
-                    DebugInfo.WriteException(e);
-                    throw new littleRunnerScriptFunctionException("Error calling '"+name+"."+function+"' handler");
+                    engine.Globals["args"] = args;
+                    try
+                    {
+                        engine.Execute("handler." + name + "." + function + "(*args)");
+                    }
+                    catch (Exception e)
+                    {
+                        DebugInfo.WriteException(e);
+                        throw new littleRunnerScriptFunctionException("Error calling '" + name + "." + function + "' handler");
+                    }
                 }
             }
         }
