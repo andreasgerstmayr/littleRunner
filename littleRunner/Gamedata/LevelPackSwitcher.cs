@@ -17,7 +17,7 @@ namespace littleRunner.Gamedata
 
         public static string GetStartLevelName(string levelpack, bool slashed)
         {
-            string[] infofile = File.ReadAllLines("Data/Levels/" + levelpack + (slashed ? "" : "/") + "info.txt");
+            string[] infofile = File.ReadAllLines("Data/Levelpacks/" + levelpack + (slashed ? "" : "/") + "info.txt");
             return infofile[0].Substring(7);
         }
 
@@ -27,7 +27,7 @@ namespace littleRunner.Gamedata
             InitializeComponent();
             this.progSwitchHandler = progSwitchHandler;
 
-            foreach (string levelpackdir in Directory.GetDirectories("Data/Levels"))
+            foreach (string levelpackdir in Directory.GetDirectories("Data/Levelpacks"))
             {
                 string[] levelpackPieces = levelpackdir.Split('/', '\\');
                 string levelpack = levelpackPieces[levelpackPieces.Length - 1];
