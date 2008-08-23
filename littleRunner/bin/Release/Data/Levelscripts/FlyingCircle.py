@@ -5,9 +5,9 @@ import math
 
 class FlyingCircle(object):
 
-   def __init__(self, lr, obj, radius, speed=5, dockObj=None, direction=GameDirection.Right):
+   def __init__(self, lr, obj, radius, speed=230, dockObj=None, direction=GameDirection.Right):
       self.lr = lr
-      lr.handler[obj.Name].Check += self.__Check
+      lr.Handler[obj.Name].Check += self.__Check
       self.obj = obj
       self.dockObj = dockObj
       

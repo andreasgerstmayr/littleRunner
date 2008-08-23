@@ -24,9 +24,8 @@
     </levelWidth>
     <Script>
       <type>System.String</type>
-      <value><![CDATA[from MovingPlatform import CreateMovingPlatform
-
-CreateMovingPlatform(Plat1, handler, MGO, 300, startDirection=GameDirection.Top)]]></value>
+      <value><![CDATA[
+lr.createMovingPlatform(Plat1, 300, startDirection=GameDirection.Top)]]></value>
     </Script>
   </LevelSettings>
   <Data>
@@ -909,32 +908,6 @@ CreateMovingPlatform(Plat1, handler, MGO, 300, startDirection=GameDirection.Top)
         <Left>
           <type>System.Single</type>
           <value>2549</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
-          <value>Brown</value>
-        </Color>
-      </Brick>
-      <Brick>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>285</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>793</value>
         </Left>
         <Width>
           <type>System.Int32</type>

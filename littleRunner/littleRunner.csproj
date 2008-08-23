@@ -36,13 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IronMath, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Dokumente und Einstellungen\Andi\Desktop\IronPython-1.1.1-Bin\IronPython-1.1.1\IronMath.dll</HintPath>
-    </Reference>
     <Reference Include="IronPython, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Dokumente und Einstellungen\Andi\Desktop\IronPython-1.1.1-Bin\IronPython-1.1.1\IronPython.dll</HintPath>
+      <HintPath>C:\Dokumente und Einstellungen\Andi\Desktop\IronPython-1.1.2-Bin\IronPython-1.1.2\IronPython.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

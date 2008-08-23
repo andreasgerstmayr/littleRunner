@@ -32,6 +32,7 @@ class MovingObject:
       
       if self.curDistance > self.maxDistance:
          move = self.curDistance-self.maxDistance
+         self.curDistance = self.maxDistance
 
       if self.direction == GameDirection.Top:
          self.obj.Top -= move
@@ -42,6 +43,6 @@ class MovingObject:
       elif self.direction == GameDirection.Right:
          self.obj.Left += move
          
-      if self.curDistance > self.maxDistance:
+      if self.curDistance == self.maxDistance:
          self.__flipDirection()
          self.curDistance = 0

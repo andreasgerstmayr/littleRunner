@@ -49,11 +49,12 @@ namespace littleRunner
     class CodeChecker
     {
         Dictionary<string, string> signatures;
-
+        public Dictionary<string, string> ClassMapper;
 
         public CodeChecker()
         {
             signatures = new Dictionary<string, string>();
+            ClassMapper = new Dictionary<string, string>();
         }
 
 
@@ -65,6 +66,9 @@ namespace littleRunner
             {
                 string name = match.Groups["name"].Value;
                 string value = match.Groups["sig"].Value;
+
+                if (ClassMapper.ContainsKey(name))
+                    name = ClassMapper[name];
 
                 signatures.Add(name, value);
             }
@@ -94,7 +98,7 @@ namespace littleRunner
         public Dictionary<SyntaxCategory, CategoryInfo> Categories;
         bool canPaint = true;
         bool ignoreTextChange = false;
-        CodeChecker checker;
+        public CodeChecker CodeChecker;
         string defaultCaption;
 
         public SimpleEditor()
@@ -102,10 +106,14 @@ namespace littleRunner
             Highl = new List<Syntax>();
             Categories = new Dictionary<SyntaxCategory, CategoryInfo>();
 
-            checker = new CodeChecker();
+            CodeChecker = new CodeChecker();
+        }
+
+        public void InitCodeChecker()
+        {
             foreach (string file in Directory.GetFiles("Data/Levelscripts"))
             {
-                checker.ReadFile(file);
+                CodeChecker.ReadFile(file);
             }
         }
 
@@ -202,7 +210,7 @@ namespace littleRunner
                 ResetLine(startLine, endLine);
                 HighlightLine(line, startLine);
 
-                string possibilities = checker.GetPossibilities(line);
+                string possibilities = CodeChecker.GetPossibilities(line);
                 if (possibilities != "")
                     Parent.Text = possibilities;
                 else

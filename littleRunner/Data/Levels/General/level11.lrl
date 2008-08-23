@@ -24,18 +24,15 @@
     </levelWidth>
     <Script>
       <type>System.String</type>
-      <value><![CDATA[from MovingPlatform import CreateMovingPlatform
-from MovingObject import CreateMovingObject
+      <value><![CDATA[
+lr.createMovingObject(Spika1_horiz, 640, speed=2800, direction=GameDirection.Right)
+lr.createMovingObject(Spika2_horiz, 640, speed=2800, direction=GameDirection.Left)
+lr.createMovingObject(Spika1_vert, 154, speed=1000, direction=GameDirection.Bottom)
+lr.createMovingObject(Spika2_vert, 154, speed=1000, direction=GameDirection.Top)
 
 
-CreateMovingObject(Spika1_horiz, handler, 640, speed=40, direction=GameDirection.Right)
-CreateMovingObject(Spika2_horiz, handler, 640, speed=40, direction=GameDirection.Left)
-CreateMovingObject(Spika1_vert, handler, 154, speed=15, direction=GameDirection.Bottom)
-CreateMovingObject(Spika2_vert, handler, 154, speed=15, direction=GameDirection.Top)
-
-
-CreateMovingPlatform(Plat1, handler, MGO, 500, speed=15, startDirection=GameDirection.Right)
-CreateMovingPlatform(Plat2, handler, MGO, 800, speed=10, startDirection=GameDirection.Right, startOnOver=False)]]></value>
+lr.createMovingPlatform(Plat1, 500, speed=1000, startDirection=GameDirection.Right)
+lr.createMovingPlatform(Plat2, 800, speed=650, startDirection=GameDirection.Right, startOnOver=False)]]></value>
     </Script>
   </LevelSettings>
   <Data>

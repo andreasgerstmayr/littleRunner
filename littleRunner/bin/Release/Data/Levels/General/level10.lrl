@@ -24,9 +24,8 @@
     </levelWidth>
     <Script>
       <type>System.String</type>
-      <value><![CDATA[from MovingPlatform import CreateMovingPlatform
-
-CreateMovingPlatform(Plat1, handler, MGO, 290, startDirection=GameDirection.Right)]]></value>
+      <value><![CDATA[
+lr.createMovingPlatform(Plat1, 290, startDirection=GameDirection.Right)]]></value>
     </Script>
   </LevelSettings>
   <Data>

@@ -13,6 +13,7 @@ namespace littleRunner
         {
             InitializeComponent();
 
+            // Syntax Highlighter
             script.Categories.Add(SyntaxCategory.General,
                 new CategoryInfo(script.ForeColor, script.Font)
             );
@@ -54,6 +55,13 @@ namespace littleRunner
             script.Highl.Add(new Syntax(SyntaxCategory.String, @""".*?"""));
             script.Highl.Add(new Syntax(SyntaxCategory.String, @"'.*?'"));
             script.Highl.Add(new Syntax(SyntaxCategory.Comment, @"#(.*)$"));
+
+
+            // CodeChecker
+            script.CodeChecker.ClassMapper.Add("MovingPlatform", "lr.createMovingPlatform");
+            script.CodeChecker.ClassMapper.Add("MovingObject", "lr.createMovingObject");
+            script.CodeChecker.ClassMapper.Add("FlyingCircle", "lr.createFlyingCircle");
+            script.InitCodeChecker();
         }
 
         public string ScriptText
