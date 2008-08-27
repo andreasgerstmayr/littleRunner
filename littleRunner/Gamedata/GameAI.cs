@@ -14,7 +14,7 @@ namespace littleRunner
     public delegate void GameEventHandler(GameEvent gevent, Dictionary<GameEventArg, object> args);
     public delegate void GameCrashHandler(GameEvent gevent, GameDirection cidirection);
 
-    public class GameAI
+    public class GameAI : IDisposable
     {
         private GameEventHandler forminteract;
         private System.Windows.Forms.Timer mainTimer;
@@ -59,16 +59,23 @@ namespace littleRunner
             get { return gameControlObj.Score + gameControlObj.Lives * 100; }
         }
 
+
+        void IDisposable.Dispose()
+        {
+            if (checkThread.ThreadState == System.Threading.ThreadState.Running ||
+                checkThread.ThreadState == System.Threading.ThreadState.WaitSleepJoin)
+                checkThread.Abort();
+        }
+
         public void Pause(bool start)
         {
             if (start)
                 mainTimer.Enabled = true;
             else
             {
-                if (checkThread.ThreadState == System.Threading.ThreadState.Running ||
-                    checkThread.ThreadState == System.Threading.ThreadState.WaitSleepJoin)
-                    checkThread.Abort();
                 mainTimer.Enabled = false;
+                watch.Reset();
+                tempwatch.Reset();
             }
         }
         public void Quit()
@@ -107,7 +114,8 @@ namespace littleRunner
             // Init script
             string msg = this.World.InitScript();
 
-            if (msg != "")
+            // NOTE: if msg == null, the levelscript has closed the game [finished level/BonusLevel]
+            if (msg != null && msg != "")
             {
                 if (this.World.PlayMode == PlayMode.Game)
                     throw new littleRunnerScriptException(msg);

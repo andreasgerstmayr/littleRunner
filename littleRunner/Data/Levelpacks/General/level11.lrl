@@ -25,10 +25,9 @@
     <Script>
       <type>System.String</type>
       <value><![CDATA[
-lr.createMovingObject(Spika1_horiz, 640, speed=2800, direction=GameDirection.Right)
-lr.createMovingObject(Spika2_horiz, 640, speed=2800, direction=GameDirection.Left)
-lr.createMovingObject(Spika1_vert, 154, speed=1000, direction=GameDirection.Bottom)
-lr.createMovingObject(Spika2_vert, 154, speed=1000, direction=GameDirection.Top)
+lr.createFlyingCircle(Spika1, 130)
+lr.createFlyingCircle(Spika2, 150)
+lr.createFlyingCircle(Spika3, 130)
 
 
 lr.createMovingPlatform(Plat1, 500, speed=1000, startDirection=GameDirection.Right)
@@ -74,11 +73,11 @@ lr.createMovingPlatform(Plat2, 800, speed=650, startDirection=GameDirection.Righ
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>234</value>
+          <value>291</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>158</value>
+          <value>163</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -100,11 +99,11 @@ lr.createMovingPlatform(Plat2, 800, speed=650, startDirection=GameDirection.Righ
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>234</value>
+          <value>255</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>340</value>
+          <value>347</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -126,11 +125,11 @@ lr.createMovingPlatform(Plat2, 800, speed=650, startDirection=GameDirection.Righ
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>234</value>
+          <value>222</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>522</value>
+          <value>525</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -620,7 +619,7 @@ lr.createMovingPlatform(Plat2, 800, speed=650, startDirection=GameDirection.Righ
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>306</value>
+          <value>337</value>
         </Top>
         <Left>
           <type>System.Single</type>
@@ -1011,8 +1010,8 @@ lr.createMovingPlatform(Plat2, 800, speed=650, startDirection=GameDirection.Righ
           <value>128</value>
         </Height>
         <NextLevel>
-          <type>NULL</type>
-          <value>null</value>
+          <type>System.String</type>
+          <value>level12.lrl</value>
         </NextLevel>
         <StartAt>
           <type>System.Int32</type>
@@ -1116,15 +1115,15 @@ lr.createMovingPlatform(Plat2, 800, speed=650, startDirection=GameDirection.Righ
       <Spika>
         <Name>
           <type>System.String</type>
-          <value>Spika1_vert</value>
+          <value>Spika2</value>
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>290</value>
+          <value>260</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>15</value>
+          <value>352</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -1146,15 +1145,15 @@ lr.createMovingPlatform(Plat2, 800, speed=650, startDirection=GameDirection.Righ
       <Spika>
         <Name>
           <type>System.String</type>
-          <value>Spika1_horiz</value>
+          <value>Spika1</value>
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>290</value>
+          <value>296</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>15</value>
+          <value>167</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -1176,45 +1175,15 @@ lr.createMovingPlatform(Plat2, 800, speed=650, startDirection=GameDirection.Righ
       <Spika>
         <Name>
           <type>System.String</type>
-          <value>Spika2_vert</value>
+          <value>Spika3</value>
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>442</value>
+          <value>227</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>655</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>True</value>
-        </StartAtViewpoint>
-        <Color>
-          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
-          <value>Green</value>
-        </Color>
-      </Spika>
-      <Spika>
-        <Name>
-          <type>System.String</type>
-          <value>Spika2_horiz</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>290</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>655</value>
+          <value>529</value>
         </Left>
         <Width>
           <type>System.Int32</type>

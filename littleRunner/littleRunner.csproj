@@ -392,6 +392,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\Levelpacks\General\level12.lrl" />
     <None Include="Data\Levelpacks\General\bonuslevel1.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
