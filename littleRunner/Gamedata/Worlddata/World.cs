@@ -122,7 +122,7 @@ namespace littleRunner.Gamedata.Worlddata
                     Script.GlobalsAdd("GetFrameFactor", new GameAI.GetFrameFactorDelegate(GameAI.GetFrameFactor));
 
                     Script.Execute("lr = littleRunner(MGO, World, Session, AiEventHandler, GetFrameFactor)");
-
+                    Script.GlobalsAdd("lr");
 
                     foreach (GameObject go in this.AllElements)
                     {
@@ -134,8 +134,13 @@ namespace littleRunner.Gamedata.Worlddata
                     }
 
                     Script.Execute("handler = lr.Handler"); // very important! because Script.cs needs access to Globals["handler"].
+                    Script.GlobalsAdd("handler");
                     Script.Execute(Settings.Script);
                     Script.Init = false;
+                }
+                catch (NullReferenceException)
+                {
+                    return null; // Script closed game!
                 }
                 catch (Exception e)
                 {

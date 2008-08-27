@@ -428,7 +428,7 @@ ControlStyles.OptimizedDoubleBuffer, true);
             drawHandler.Update();
 
             // focus on it
-            if ((pressedKeys.Contains(Keys.ControlKey) || alwaysAddToSelection))
+            if (pressedKeys.Contains(Keys.ControlKey) || alwaysAddToSelection)
             {
                 List<object> selected = new List<object>(properties.SelectedObjects);
                 if (selected.Contains(world.Settings))
@@ -437,7 +437,7 @@ ControlStyles.OptimizedDoubleBuffer, true);
                 selected.Add(go);
                 properties.SelectedObjects = selected.ToArray();
             }
-            else if (properties.SelectedObjects.Length == 1)
+            else
             {
                 properties.SelectedObjects = new object[] { go };
             }
@@ -638,14 +638,12 @@ ControlStyles.OptimizedDoubleBuffer, true);
 
                 if (go.Left < most_left)
                     most_left = go.Left;
-                if (go.Left > most_right)
-                    most_right = go.Left;
+                if (go.Right > most_right)
+                    most_right = go.Right;
             }
 
-            float distance = most_right - most_left;
-            if (selected.Length == 1)
-                distance = 0;
 
+            float distance = most_right - most_left;
             foreach (object o in selected)
             {
                 GameObject go = (GameObject)o;
@@ -653,7 +651,7 @@ ControlStyles.OptimizedDoubleBuffer, true);
 
                 GameObject cloned = (GameObject)Activator.CreateInstance(go.GetType());
                 cloned.Deserialize(serialized);
-                cloned.Left = go.Right + distance + 5;
+                cloned.Left += distance + 5.0F;
                 addElement(cloned, true);
             }
         }

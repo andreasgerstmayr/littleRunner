@@ -16,7 +16,7 @@ namespace littleRunner
         private PythonEngine engine;
         private World world;
         public bool Init;
-        
+
 
         public void GlobalsAdd(string name, object obj)
         {
@@ -25,15 +25,23 @@ namespace littleRunner
                 engine.Globals.Add(name, obj);
                 Script.savedGlobals.Add(name);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 DebugInfo.WriteException(e);
                 throw new littleRunnerScriptVariablesException("That (Script-)Name exists already.");
             }
         }
-        public void GlobalOverride(string name, object val)
+        public void GlobalsAdd(string name)
         {
-            engine.Globals[name] = val;
+            try
+            {
+                Script.savedGlobals.Add(name);
+            }
+            catch (Exception e)
+            {
+                DebugInfo.WriteException(e);
+                throw new littleRunnerScriptVariablesException("That (Script-)Name exists already.");
+            }
         }
         public void Execute(string command)
         {
@@ -56,6 +64,10 @@ namespace littleRunner
 
             lock (this)
             {
+                if (!engine.Globals.ContainsKey("handler"))
+                    return;
+
+
                 Dictionary<object, object> handlers = (Dictionary<object, object>)engine.Globals["handler"];
                 if (handlers.ContainsKey(name) &&
                     ((Dictionary<object, object>)handlers[name]).ContainsKey(function))
@@ -71,6 +83,7 @@ namespace littleRunner
                         throw new littleRunnerScriptFunctionException("Error calling '" + name + "." + function + "' handler");
                     }
                 }
+
             }
         }
 
