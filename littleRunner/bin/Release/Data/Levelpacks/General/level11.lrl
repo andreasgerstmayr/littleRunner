@@ -1010,8 +1010,8 @@ lr.createMovingPlatform(Plat2, 800, speed=650, startDirection=GameDirection.Righ
           <value>128</value>
         </Height>
         <NextLevel>
-          <type>NULL</type>
-          <value>null</value>
+          <type>System.String</type>
+          <value>level12.lrl</value>
         </NextLevel>
         <StartAt>
           <type>System.Int32</type>

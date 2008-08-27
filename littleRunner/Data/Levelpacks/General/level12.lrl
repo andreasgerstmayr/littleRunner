@@ -29,6 +29,32 @@
   </LevelSettings>
   <Data>
     <StickyElements>
+      <DesignElements>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>312</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>1764</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>200</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>200</value>
+        </Height>
+        <Element>
+          <type>littleRunner.GameObjects.StickyElements.DesignElement</type>
+          <value>Tree</value>
+        </Element>
+      </DesignElements>
       <Floor>
         <Name>
           <type>NULL</type>
@@ -2032,11 +2058,11 @@
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>380</value>
+          <value>384</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>1783</value>
+          <value>1774</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -2059,6 +2085,36 @@
           <value>House</value>
         </Image>
       </LevelEnd>
+      <Floor>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>512</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>1703</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>189</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>64</value>
+        </Height>
+        <FloorStyle>
+          <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
+          <value>Green</value>
+        </FloorStyle>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>1</value>
+        </Blocks>
+      </Floor>
     </StickyElements>
     <MovingElements />
     <Enemies>
