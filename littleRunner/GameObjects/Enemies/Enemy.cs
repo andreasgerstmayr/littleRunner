@@ -41,11 +41,14 @@ namespace littleRunner.GameObjects
         abstract public bool getCrashEvent(GameObject go, GameDirection cidirection); // true: survived, false: loose one livepoint
         virtual public void Remove()
         {
-            World.Enemies.Remove(this);
+            Remove(this);
         }
         virtual public void Remove(Enemy e)
         {
             World.Enemies.Remove(e);
+
+            if (base.Name != null && base.Name != "" && World.Script != null)
+                World.Script.callFunction(base.Name, "dead");
         }
 
 

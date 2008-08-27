@@ -8,7 +8,7 @@ import time
 
 class MovingPlatform(object):
 
-   def __init__ (self, lr, obj, maxDistance, speed=200, startDirection=GameDirection.Right, moveBack=True, startOnOver=True):
+   def __init__ (self, lr, obj, maxDistance, speed=220, startDirection=GameDirection.Right, moveBack=True, startOnOver=True):
       self.lr = lr
       self.handler = lr.Handler
       self.startOnOver = startOnOver
