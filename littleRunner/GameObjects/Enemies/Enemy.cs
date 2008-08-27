@@ -48,7 +48,7 @@ namespace littleRunner.GameObjects
             World.Enemies.Remove(e);
 
             if (base.Name != null && base.Name != "" && World.Script != null)
-                World.Script.callFunction(base.Name, "dead");
+                World.Script.callFunction(base.Name, "Dead");
         }
 
 
