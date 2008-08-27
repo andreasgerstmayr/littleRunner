@@ -212,7 +212,7 @@ namespace littleRunner
 
                 string possibilities = CodeChecker.GetPossibilities(line);
                 if (possibilities != "")
-                    Parent.Text = possibilities;
+                    Parent.Text = "function signature: " + possibilities;
                 else
                     Parent.Text = defaultCaption;
 
