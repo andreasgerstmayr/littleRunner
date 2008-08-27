@@ -12,6 +12,7 @@ namespace littleRunner.GameObjects.MainGameObjects
     {
         public MoveType type;
         public float value;
+        public bool frameFactor;
         public GameInstruction instruction;
     }
 
@@ -104,6 +105,9 @@ namespace littleRunner.GameObjects.MainGameObjects
             if (wantNext.Count > 0)
             {
                 WantNext next = wantNext.Peek();
+
+                if (next.frameFactor)
+                    next.value *= GameAI.FrameFactor;
 
                 switch (next.type)
                 {
@@ -242,11 +246,12 @@ namespace littleRunner.GameObjects.MainGameObjects
             return new Dictionary<string, float>() { { "newtop", newtop }, { "newleft", newleft } };
         }
 
-        public override void Move(MoveType mtype, float value, GameInstruction instruction)
+        public override void Move(MoveType mtype, float value, bool frameFactor, GameInstruction instruction)
         {
             WantNext next = new WantNext();
             next.type = mtype;
             next.value = value;
+            next.frameFactor = frameFactor;
             next.instruction = instruction;
 
             wantNext.Enqueue(next);

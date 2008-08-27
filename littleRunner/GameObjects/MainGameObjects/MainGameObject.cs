@@ -36,7 +36,7 @@ namespace littleRunner.GameObjects
         {
             return new Dictionary<string, float>() { { "newtop", 0 }, { "newleft", 0 } };
         }
-        public abstract void Move(MoveType mtype, float value, GameInstruction instruction);
+        public abstract void Move(MoveType mtype, float value, bool frameFactor, GameInstruction instruction);
         
         public virtual void getEvent(GameEvent gevent, Dictionary<GameEventArg, object> args)
         {

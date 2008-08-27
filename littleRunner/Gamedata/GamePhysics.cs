@@ -176,7 +176,6 @@ namespace littleRunner
             return crashedIn;
         }
 
-
         static public void CrashDetection(GameObject go, List<StickyElement> stickyelements, List<MovingElement> movingelements, GameEventHandler geventhandler, ref float newtop, ref float newleft)
         {
             for (int i = 0; i < stickyelements.Count; i++)
@@ -194,18 +193,18 @@ namespace littleRunner
 
             for (int i = 0; i < movingelements.Count; i++)
             {
-                MovingElement se = movingelements[i];
-                if (se != go)
+                MovingElement me = movingelements[i];
+                if (me != go)
                 {
                     GameDirection direction = GameDirection.None;
-                    if (SingleCrashDetection(go, se, out direction, ref newtop, ref newleft, se.canStandOn))
+                    if (SingleCrashDetection(go, me, out direction, ref newtop, ref newleft, me.canStandOn))
                     {
-                        se.onOver(geventhandler, GameAI.WhoIsIt(go), direction);
+                        me.onOver(geventhandler, GameAI.WhoIsIt(go), direction);
                     }
                 }
             }
         }
-
+       
 
         static public Enemy CrashEnemy(GameObject go, List<Enemy> enemies, GameEventHandler geventhandler, ref float newtop, ref float newleft)
         {

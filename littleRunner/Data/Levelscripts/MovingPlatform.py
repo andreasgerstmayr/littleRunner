@@ -35,12 +35,14 @@ class MovingPlatform(object):
       centripetalForce = self.releaseMGOtime != 0 and time.time()-0.3 < self.releaseMGOtime
 
       if self.mgoOnTop or centripetalForce:
-         self.MGO.Move(self.__moveDirection(), moveDistance, doThen)
+         self.MGO.Move(self.__moveDirection(), moveDistance, False, doThen)
       else:
          doThen.Do()
          
       if self.releaseMGOtime != 0 and not centripetalForce:
          self.releaseMGOtime = 0
+         
+      return moveDistance
        
        
    def __moveDirection(self):
@@ -77,8 +79,7 @@ class MovingPlatform(object):
       
 
    def __Check(self, newpos):
-      self.__move()
-      self.curDistance += self.speed * self.lr.FrameFactor
+      self.curDistance += self.__move()
          
       if self.curDistance > self.maxDistance:
          if self.startOnOver:
