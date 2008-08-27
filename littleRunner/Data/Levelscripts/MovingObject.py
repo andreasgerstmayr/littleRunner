@@ -4,7 +4,7 @@ from littleRunner import GameDirection
 
 class MovingObject:
 
-   def __init__(self, lr, obj, maxDistance, speed=150, direction=GameDirection.Bottom):
+   def __init__(self, lr, obj, maxDistance, speed=150, direction=GameDirection.Right):
       self.lr = lr
       lr.Handler[obj.Name].Check += self.__Check
       self.curDistance = 0

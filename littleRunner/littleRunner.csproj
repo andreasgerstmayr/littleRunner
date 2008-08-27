@@ -416,6 +416,9 @@
     <None Include="Data\Levelpacks\General\level9.lrl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Data\Levelpacks\General\level13.lrl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\Script.py" />
     <None Include="Data\Levelscripts\MovingPlatform.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

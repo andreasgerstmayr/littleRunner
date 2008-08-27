@@ -51,7 +51,7 @@ namespace littleRunner
             script.Highl.Add(new Syntax(SyntaxCategory.ImporantVariableName, @"(FrameFactor)"));
             script.Highl.Add(new Syntax(SyntaxCategory.Number, @"(\W)(?<h>\d+)(\W)"));
             script.Highl.Add(new Syntax(SyntaxCategory.Constant, @"(True|False)"));
-            script.Highl.Add(new Syntax(SyntaxCategory.Keyword, @"(self|pass|return)"));
+            script.Highl.Add(new Syntax(SyntaxCategory.Keyword, @"(self|pass|return|global)"));
             script.Highl.Add(new Syntax(SyntaxCategory.String, @""".*?"""));
             script.Highl.Add(new Syntax(SyntaxCategory.String, @"'.*?'"));
             script.Highl.Add(new Syntax(SyntaxCategory.Comment, @"#(.*)$"));

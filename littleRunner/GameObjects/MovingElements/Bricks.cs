@@ -36,6 +36,9 @@ namespace littleRunner.GameObjects.MovingElements
                 }
                 imgWidth = image.Width;
 
+
+                if (Blocks != 0)
+                    Blocks = Blocks; // set width
                 Height = image.Height;
             }
         }
