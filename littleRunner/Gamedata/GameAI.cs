@@ -16,7 +16,8 @@ namespace littleRunner
 
     public class GameAI : IDisposable
     {
-        private GameEventHandler forminteract;
+        private SynchronizationContext guiContext;
+        private GameEventHandler guiinteract;
         private System.Windows.Forms.Timer mainTimer;
         public World World;
         private GameControlObjects gameControlObj;
@@ -87,11 +88,16 @@ namespace littleRunner
 
         public GameAI(GameEventHandler forminteract)
         {
+            guiContext = SynchronizationContext.Current;
+            if (guiContext == null)
+                guiContext = new SynchronizationContext();
+
+
             watch = new Stopwatch();
             tempwatch = new Stopwatch();
 
             scrollTop = 0;
-            this.forminteract = forminteract;
+            this.guiinteract = forminteract;
             this.curkeys = new List<Keys>();
             this.pressedKeys = new List<GameKey>();
 
@@ -100,7 +106,31 @@ namespace littleRunner
             mainTimer.Interval = 1;
             mainTimer.Enabled = false;
         }
+        private void forminteract2(object state)
+        {
+            // now make the real call.
+            object[] arr = (object[])state;
+            GameEvent gevent = (GameEvent)arr[0];
+            Dictionary<GameEventArg, object> args = (Dictionary<GameEventArg, object>)arr[1];
 
+            guiinteract(gevent, args);
+        }
+        private void forminteract(GameEvent gevent, Dictionary<GameEventArg, object> args)
+        {
+            if (Thread.CurrentThread.Name == null)
+            {
+                guiinteract(gevent, args);
+                return;
+            }
+
+
+            // maybe in other thread, so make data array and move to GUI-Thread!
+            object[] state = new object[2];
+            state[0] = gevent;
+            state[1] = args;
+
+            guiContext.Send(forminteract2, state);
+        }
 
         public void Init(World world, GameControlObjects gameControlObj)
         {
