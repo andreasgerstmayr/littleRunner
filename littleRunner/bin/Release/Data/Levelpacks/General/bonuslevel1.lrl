@@ -25,7 +25,7 @@
     <Script>
       <type>System.String</type>
       <value><![CDATA[
-lr.createMovingPlatform(Plat1, 1150, speed=580, startDirection=GameDirection.Right, moveBack=False)
+lr.createMovingPlatform(Plat1, 1150, speed=550, startDirection=GameDirection.Right, moveBack=False)
 
 
 nextLevel = Session.Get('bonuslevel1.lrl', 'nextLevel')
@@ -1718,7 +1718,7 @@ else:
         </Height>
         <Color>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
-          <value>Invisible</value>
+          <value>Blue</value>
         </Color>
         <Blocks>
           <type>System.Int32</type>

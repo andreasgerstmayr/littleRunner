@@ -519,11 +519,11 @@ lr.Handler.BonusHouse.finishedLevel += removeBonusLvl]]></value>
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>314</value>
+          <value>254</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>1486</value>
+          <value>1467</value>
         </Left>
         <Width>
           <type>System.Int32</type>
