@@ -64,7 +64,12 @@ namespace littleRunner
             if (start)
                 mainTimer.Enabled = true;
             else
+            {
+                if (checkThread.ThreadState == System.Threading.ThreadState.Running ||
+                    checkThread.ThreadState == System.Threading.ThreadState.WaitSleepJoin)
+                    checkThread.Abort();
                 mainTimer.Enabled = false;
+            }
         }
         public void Quit()
         {
@@ -176,28 +181,34 @@ namespace littleRunner
 
         private void CheckThread()
         {
-            if (World.Script != null)
-                World.Script.callFunction("AI", "Check");
-
-
-            // check of all enemies
-            for (int i = 0; i < World.Enemies.Count; i++)
+            try
             {
-                if (!World.Enemies[i].StartAtViewpoint || World.Enemies[i].Left < World.Settings.GameWindowWidth - World.Viewport.X)
+                if (World.Script != null)
+                    World.Script.callFunction("AI", "Check");
+
+
+                // check of all enemies
+                for (int i = 0; i < World.Enemies.Count; i++)
+                {
+                    if (!World.Enemies[i].StartAtViewpoint || World.Enemies[i].Left < World.Settings.GameWindowWidth - World.Viewport.X)
+                    {
+                        Dictionary<string, float> newpos;
+                        World.Enemies[i].Check(out newpos);
+                    }
+                }
+                // check of all moving elements
+                for (int i = 0; i < World.MovingElements.Count; i++)
                 {
                     Dictionary<string, float> newpos;
-                    World.Enemies[i].Check(out newpos);
+                    World.MovingElements[i].Check(out newpos);
                 }
-            }
-            // check of all moving elements
-            for (int i = 0; i < World.MovingElements.Count; i++)
-            {
-                Dictionary<string, float> newpos;
-                World.MovingElements[i].Check(out newpos);
-            }
 
-            tempwatch.Reset(); // reset current
-            tempwatch.Start(); // reset current
+                tempwatch.Reset(); // reset current
+                tempwatch.Start(); // reset current
+            }
+            catch (ThreadAbortException)
+            {
+            }
         }
 
 

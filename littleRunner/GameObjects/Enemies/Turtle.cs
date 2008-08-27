@@ -221,7 +221,7 @@ namespace littleRunner.GameObjects.Enemies
                         break;
                 }
                 startSmall = DateTime.Now;
-                World.MGO.Move(MoveType.jumpTop, -1, GameInstruction.Nothing);
+                World.MGO.Move(MoveType.jumpTop, -1, false, GameInstruction.Nothing);
 
                 return true;
             }

@@ -76,7 +76,7 @@ namespace littleRunner.GameObjects.MovingElements
 
         private void fillMgoMoveQueue(MoveType type)
         {
-            World.MGO.Move(type, 10, GameInstruction.Nothing);
+            World.MGO.Move(type, 700, true, GameInstruction.Nothing);
         }
 
         public override void onOver(GameEventHandler geventhandler, GameElement who, GameDirection direction)
@@ -88,13 +88,13 @@ namespace littleRunner.GameObjects.MovingElements
                 switch (World.MGO.Direction)
                 {
                     case GameDirection.Left:
-                        for (int i = 0; i < 10; i++)
+                        for (int i = 0; i < Blocks * 2; i++)
                         {
                             fillMgoMoveQueue(MoveType.goLeft);
                         }
                         break;
                     case GameDirection.Right:
-                        for (int i = 0; i < 10; i++)
+                        for (int i = 0; i < Blocks * 2; i++)
                         {
                             fillMgoMoveQueue(MoveType.goRight);
                         }

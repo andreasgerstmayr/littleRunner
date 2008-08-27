@@ -43,7 +43,7 @@ namespace littleRunner.GameObjects.StickyElements
 
         private void fillMgoMoveQueue(MoveType type)
         {
-            World.MGO.Move(type, 10, GameInstruction.Nothing);
+            World.MGO.Move(type, 700, true, GameInstruction.Nothing);
         }
 
         public override void onOver(GameEventHandler geventhandler, GameElement who, GameDirection direction)

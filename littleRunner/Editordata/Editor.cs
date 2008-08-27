@@ -362,7 +362,14 @@ ControlStyles.OptimizedDoubleBuffer, true);
             string oldtext = this.Text;
             this.Text = "littleRunner Level Editor [press ESC to quit game]";
 
-            g.ShowDialog();
+            try
+            {
+                g.ShowDialog();
+            }
+            catch (ObjectDisposedException)
+            {
+                MessageBox.Show("Unknown error, Code #01", "littleRunner Error");
+            }
             g = null;
             AnimateImage.Refresh = false;
 

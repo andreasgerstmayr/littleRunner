@@ -54,7 +54,7 @@ namespace littleRunner
             if (Init)
                 return;
 
-            lock (engine)
+            lock (this)
             {
                 Dictionary<object, object> handlers = (Dictionary<object, object>)engine.Globals["handler"];
                 if (handlers.ContainsKey(name) &&
