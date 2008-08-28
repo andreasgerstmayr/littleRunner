@@ -72,6 +72,7 @@
     <Compile Include="Editordata\EditorUI.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="Files.cs" />
+    <Compile Include="Gamedata\Cheat.cs" />
     <Compile Include="Gamedata\LevelPackSwitcher.cs">
       <SubType>Form</SubType>
     </Compile>

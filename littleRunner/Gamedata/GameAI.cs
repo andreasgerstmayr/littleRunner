@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Threading;
 
 using littleRunner.Drawing;
+using littleRunner.Gamedata;
 using littleRunner.Gamedata.Worlddata;
 using littleRunner.GameObjects;
 
@@ -138,6 +139,8 @@ namespace littleRunner
 
             this.gameControlObj = gameControlObj;
             this.World = world;
+
+            Cheat.Init(this);
         }
         public void InitScript()
         {
@@ -253,7 +256,10 @@ namespace littleRunner
         public void Interact(Keys key, bool pressed)
         {
             if (pressed && !curkeys.Contains(key))
+            {
                 curkeys.Add(key);
+                Cheat.Pressed(key);
+            }
             else if (!pressed)
                 curkeys.Remove(key);
 
