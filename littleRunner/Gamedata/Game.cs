@@ -50,6 +50,10 @@ namespace littleRunner
 
             StartGame(filename, playMode);
         }
+        public Game(string filename, PlayMode playMode)
+            : this(filename, playMode, 0, 0)
+        {
+        }
         public Game(string levelpack, string filename)
             : this("Data/Levelpacks/" + levelpack + "/" + filename, PlayMode.Game, 0, 0)
         {
@@ -64,15 +68,6 @@ namespace littleRunner
             this.FormBorderStyle = FormBorderStyle.None;
         }
 
-
-
-        private void setCurrentViewport()
-        {
-            world.MGO.Left += mgoChangeLeft;
-            world.MGO.Top += mgoChangeTop;
-            world.Viewport.X -= mgoChangeLeft;
-            world.Viewport.Y -= mgoChangeTop;
-        }
 
         private void Game_Shown(object sender, EventArgs e)
         {
@@ -142,18 +137,23 @@ namespace littleRunner
 
             // Main game object
             f.Message("Creating MGO");
-            Tux tux = new Tux(Globals.Scroll.Top, Globals.Scroll.X);
+            Tux tux = new Tux(
+                mgoChangeTop  == 0 ? Globals.Scroll.Top : Globals.Scroll.Top + mgoChangeTop,
+                mgoChangeLeft == 0 ? Globals.Scroll.X   : Globals.Scroll.X   + mgoChangeLeft
+            );
             tux.Init(world, ai.getEvent); // can init
+
+            // set viewport if need
+            if (mgoChangeTop != 0 || mgoChangeLeft != 0)
+            {
+                world.Viewport.Y -= mgoChangeTop;
+                world.Viewport.X -= mgoChangeLeft;
+            }
 
 
             // got MGO!
             f.Message("Initializing World");
             world.Init(tux);
-
-
-            // change MGO if needed
-            if (mgoChangeTop != 0 || mgoChangeLeft != 0)
-                setCurrentViewport();
 
 
             // change window size
@@ -261,13 +261,10 @@ namespace littleRunner
                         lastModeIsNull = false; // it's set to the last mode
 
                         ai = null;
-                        int nextLevelStartAt = (int)args[GameEventArg.nextLevelStartAt];
+
+                        mgoChangeTop = 0;
+                        mgoChangeLeft = (int)args[GameEventArg.nextLevelStartAt];
                         StartGame("Data/Levelpacks/" + levelpack + nextLevel, world.PlayMode);
-                        if (ai != null)
-                        {
-                            ai.World.MGO.Left += nextLevelStartAt;
-                            ai.World.Viewport.X -= nextLevelStartAt;
-                        }
                     }
                     else
                     {
