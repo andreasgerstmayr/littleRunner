@@ -226,7 +226,7 @@ namespace littleRunner.GameObjects.MainGameObjects
             float newleftBefore = newleft;
             GamePhysics.CrashDetection(this, World.StickyElements, World.MovingElements, getEvent, ref newtop, ref newleft);
 
-            
+
             // current: falling. with correcture: not falling. and: NO crash -> create crash (to fire onOver)!
             if (falling && !GamePhysics.Falling(World.StickyElements, World.MovingElements, World.Enemies, newtop, newleft, this) &&
                 Math.Abs(newtop  - newtopBefore ) < Globals.Approximation &&

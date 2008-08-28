@@ -328,7 +328,7 @@ ControlStyles.OptimizedDoubleBuffer, true);
         {
             tmpHandler.updateTMP();
 
-            g = new Game(tmpHandler.TmpFilename, PlayMode.Game, 0, 0);
+            g = new Game(tmpHandler.TmpFilename, PlayMode.Game);
 
             g.ShowDialog();
             g = null;
