@@ -30,7 +30,7 @@ lr.createFlyingCircle(Spika2, 100)
 lr.createFlyingCircle(Spika3, 100)
 
 
-lr.createMovingPlatform(Plat1, 500, speed=500, startDirection=GameDirection.Right)
+lr.createMovingPlatform(Plat1, 480, speed=500, startDirection=GameDirection.Right)
 
 
 # special level effects
@@ -54,6 +54,11 @@ def gumbaDead():
    global deadGumbas
 
    deadGumbas += 1
+
+   pointsArgs = Dictionary[GameEventArg, object]()
+   pointsArgs [GameEventArg.points] = 4
+   lr.AiEventHandler(GameEvent.gotPoints, pointsArgs)
+
 
    if deadGumbas >= 12:
       lr.createMovingPlatform(ArenaMainPlat, 450, startDirection=GameDirection.Right)

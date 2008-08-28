@@ -40,7 +40,7 @@ if Session.Get('bonuslevel1.lrl', 'gotLvl') == True:
    levelFinishArgs = Dictionary[GameEventArg, object]()
    levelFinishArgs[GameEventArg.nextLevel] = House.NextLevel
    levelFinishArgs[GameEventArg.nextLevelStartAt] = House.StartAt
-   AiEventHandler(GameEvent.finishedLevel, levelFinishArgs)
+   lr.AiEventHandler(GameEvent.finishedLevel, levelFinishArgs)
 else:
    Session.Set('bonuslevel1.lrl', 'gotLvl', True)]]></value>
     </Script>
@@ -1718,7 +1718,7 @@ else:
         </Height>
         <Color>
           <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
-          <value>Blue</value>
+          <value>Invisible</value>
         </Color>
         <Blocks>
           <type>System.Int32</type>

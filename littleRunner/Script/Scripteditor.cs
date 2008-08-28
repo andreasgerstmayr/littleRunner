@@ -44,7 +44,7 @@ namespace littleRunner
 
 
             script.Highl.Add(new Syntax(SyntaxCategory.MainKeyword, @"(import|from|^\s*class|^\s*def|^\s*if|^\s*elif|^\s*else|^\s*for|^\s*while)"));
-            script.Highl.Add(new Syntax(SyntaxCategory.Builtin, @"((x|)range|float|int)"));
+            script.Highl.Add(new Syntax(SyntaxCategory.Builtin, @"(?<h>(x|)range|float|int)( |)\("));
             script.Highl.Add(new Syntax(SyntaxCategory.ImporantVariableName, @"class (?<h>\w+)((\(\w+\))|):"));
             script.Highl.Add(new Syntax(SyntaxCategory.ImporantVariableName, @"class (\w+)((\((?<h>\w+)\))|):"));
             script.Highl.Add(new Syntax(SyntaxCategory.ImporantVariableName, @"from (?<h>\w+) "));
