@@ -13,17 +13,26 @@ namespace littleRunner.Gamedata
         static GameAI ai;
         static Dictionary<GameEventArg, object> eventArgs;
 
+        public static bool Activated
+        {
+            get { return activated; }
+        }
+        public static void Reset()
+        {
+            curText = "";
+            activated = false;
+        }
+
+
         public static void Init(GameAI _ai)
         {
-            activated = false;
             ai = _ai;
             eventArgs = new Dictionary<GameEventArg, object>();
         }
 
-
         public static void Pressed(Keys key)
         {
-            if (key != Keys.Escape && curText.Length < 20)
+            if (key != Keys.Tab && curText.Length < 20)
                 curText += Char.ToLower((char)key); 
             else
                 curText = "";

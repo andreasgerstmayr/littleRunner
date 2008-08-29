@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Drawing;
 
 using littleRunner.Drawing;
+using littleRunner.Gamedata;
 using littleRunner.GameObjects;
 
 
@@ -85,7 +86,7 @@ namespace littleRunner
             dColor color = new dColor(System.Drawing.Color.Black);
 
             d.DrawString("Lives:", f1, color, Left, Top);
-            d.DrawString(lives.ToString(), f2, color, Left + 115, Top);
+            d.DrawString((Cheat.Activated?"-":"") + lives.ToString(), f2, color, Left + 115, Top);
         }
 
         public int Lives

@@ -200,9 +200,14 @@ namespace littleRunner
 
         private void CloseGame(bool closeForm)
         {
-            ai.Quit();
-            ai.Dispose(true);
-            ai = null;
+            if (ai != null)
+            {
+                ai.Quit();
+                ai.Dispose(true);
+                ai = null;
+            }
+            Cheat.Reset();
+
             if (closeForm)
                 Close();
         }
@@ -229,7 +234,7 @@ namespace littleRunner
                     if (world.PlayMode == PlayMode.Game || world.PlayMode == PlayMode.Editor)
                         StartGame(lastFileName, world.PlayMode);
                     else if (world.PlayMode == PlayMode.GameInEditor)
-                        Close();
+                        CloseGame();
                 }
                 else
                 {
@@ -249,6 +254,7 @@ namespace littleRunner
                             ai = null;
                             gameControlObjs = null; // set new points+sound!
                             session = null; // new session
+                            Cheat.Reset();
 
                             started = DateTime.Now;
                             StartGame("Data/Levelpacks/" + levelpack + LevelPackSwitcher.GetStartLevelName(levelpack, true), world.PlayMode);
@@ -282,6 +288,7 @@ namespace littleRunner
                         int gotScore = ai.FullScore;
                         ai.Quit();
                         ai = null;
+                        Cheat.Reset();
                         lastModeIsNull = true;
 
                         MessageBox.Show("Congratulations!\nYou 've played all predefined littleRunner levels.\n\nNow start making your own level with the level-editor :-).", "Congratulations", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -289,7 +296,7 @@ namespace littleRunner
                         HighscoreForm hForm = new HighscoreForm(gotScore, started);
                         hForm.ShowDialog();
 
-                        Close();
+                        CloseGame();
                     }
                 }
                 else if (world.PlayMode == PlayMode.GameInEditor)
