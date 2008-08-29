@@ -45,7 +45,11 @@ namespace littleRunner
 
         public static float FrameFactor
         {
-            get { return Thread.CurrentThread.Name == null ? (float)watch.Elapsed.TotalSeconds : (float)tempwatch.Elapsed.TotalSeconds; }
+            get
+            {
+                return Thread.CurrentThread.Name == null ?
+                    (float)watch.Elapsed.TotalSeconds : (float)tempwatch.Elapsed.TotalSeconds;
+            }
         }
         public delegate float GetFrameFactorDelegate();
         public static float GetFrameFactor()
@@ -62,11 +66,22 @@ namespace littleRunner
         }
 
 
+        public void AllFinished()
+        {
+            mainTimer.Enabled = true;
+        }
         void IDisposable.Dispose()
         {
-            if (checkThread.ThreadState == System.Threading.ThreadState.Running ||
-                checkThread.ThreadState == System.Threading.ThreadState.WaitSleepJoin)
-                checkThread.Abort();
+            Dispose(true);
+        }
+        public void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (checkThread.ThreadState == System.Threading.ThreadState.Running ||
+               checkThread.ThreadState == System.Threading.ThreadState.WaitSleepJoin)
+                    checkThread.Abort();
+            }
         }
 
         public void Pause(bool start)
@@ -135,8 +150,6 @@ namespace littleRunner
 
         public void Init(World world, GameControlObjects gameControlObj)
         {
-            mainTimer.Enabled = true;
-
             this.gameControlObj = gameControlObj;
             this.World = world;
 

@@ -18,18 +18,28 @@ namespace littleRunner
         {
             public string Name;
             public int Points;
+            public string Time;
 
-            public static Data New(string name, int points)
+            public static Data New(string name, int points, string time)
             {
                 Data d = new Data();
                 d.Name = name;
                 d.Points = points;
+                d.Time = time;
                 return d;
             }
         }
 
         class HighscoreSort : IComparer<Data>
         {
+            private TimeSpan makeTS(string s)
+            {
+                string[] pieces = s.Split(' ');
+                int minutes = Convert.ToInt32(pieces[0].Substring(0, pieces[0].Length - 1));
+                int seconds = Convert.ToInt32(pieces[1].Substring(0, pieces[1].Length - 1));
+                return new TimeSpan(0, minutes, seconds);
+            }
+
             public int Compare(Data a, Data b)
             {
                 if (a.Points > b.Points)
@@ -37,7 +47,17 @@ namespace littleRunner
                 else if (a.Points < b.Points)
                     return 1;
                 else
-                    return 0;
+                {
+                    TimeSpan ts_a = makeTS(a.Time);
+                    TimeSpan ts_b = makeTS(b.Time);
+
+                    if (ts_a > ts_b)
+                        return -1;
+                    else if (ts_a < ts_b)
+                        return 1;
+                    else
+                        return 0;
+                }
             }
         }
 
@@ -96,8 +116,10 @@ namespace littleRunner
                     int sep = line.IndexOf(' ');
 
                     Data data = new Data();
-                    data.Points = Convert.ToInt32(line.Substring(0, sep));
-                    data.Name = line.Substring(sep + 1, line.Length - sep - 1);
+                    string[] pieces = line.Split(new char[] { '|' }, 3);
+                    data.Name = pieces[2];
+                    data.Points = Convert.ToInt32(pieces[1]);
+                    data.Time = pieces[0];
 
                     list.Add(data);
                 }
@@ -116,9 +138,9 @@ namespace littleRunner
         #endregion
 
         #region write
-        public static void Write(string name, int points)
+        public static void Write(string name, int points, string time)
         {
-            Write(Data.New(name, points));
+            Write(Data.New(name, points, time));
         }
         public static void Write(Data data)
         {
@@ -131,7 +153,7 @@ namespace littleRunner
             string text = "";
             foreach (Data d in list)
             {
-                text += d.Points.ToString() + " " + d.Name + "\n";
+                text += d.Time+"|"+d.Points.ToString() + "|" + d.Name + "\n";
             }
 
             WriteFile(text);

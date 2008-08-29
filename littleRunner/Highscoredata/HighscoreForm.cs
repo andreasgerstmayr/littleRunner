@@ -12,12 +12,15 @@ namespace littleRunner.Highscoredata
     {
         bool opened;
 
-        public HighscoreForm(int score)
+        public HighscoreForm(int score, DateTime started)
         {
             InitializeComponent();
             opened = false;
 
             this.score.Text = score.ToString();
+
+            TimeSpan duration = DateTime.Now-started;
+            this.time.Text = String.Format("{0:00}m {1:00}s", duration.TotalMinutes, duration.Seconds);
         }
 
         private void bSave_Click(object sender, EventArgs e)
@@ -36,7 +39,7 @@ namespace littleRunner.Highscoredata
             else
                 errProv.SetError(name, null);
 
-            Highscore.Write(name.Text, Convert.ToInt32(score.Text));
+            Highscore.Write(name.Text, Convert.ToInt32(score.Text), time.Text);
             name.Enabled = false;
             bButton.Enabled = false;
 
@@ -66,6 +69,10 @@ namespace littleRunner.Highscoredata
                 scoreLabel.TextAlign = ContentAlignment.MiddleRight;
                 highscores.Controls.Add(scoreLabel, 2, row);
 
+                durationToolTip.SetToolTip(nameLabel, data.Time);
+                durationToolTip.SetToolTip(scoreLabel, data.Time);
+
+
                 row++;
             }
 
@@ -75,7 +82,7 @@ namespace littleRunner.Highscoredata
         private void stretchForm_Tick(object sender, EventArgs e)
         {
             Height += 20;
-            if (Height > 495)
+            if (Height > 485)
             {
                 stretchForm.Enabled = false;
 
