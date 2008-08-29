@@ -42,7 +42,7 @@ def openCloseArena(geventhandler, who, direction):
 
    if (not arenaClosed) and who == GameElement.MGO and direction == GameDirection.Top:
       ArenaLeftCloser.Top = 374
-      ArenaTopCloser.Top += 50
+      ArenaTopCloser.Top += 32
       arenaClosed = True
 
 handler.ArenaMainPlat.onOver += openCloseArena

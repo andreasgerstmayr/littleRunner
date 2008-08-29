@@ -15,6 +15,7 @@ namespace littleRunner.Gamedata
 
         public static void Init(GameAI _ai)
         {
+            activated = false;
             ai = _ai;
             eventArgs = new Dictionary<GameEventArg, object>();
         }
