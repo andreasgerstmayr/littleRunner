@@ -31,6 +31,7 @@ namespace littleRunner
         bool ignoreSizeChange;
         int top, left;
         int mgoChangeTop, mgoChangeLeft;
+        DateTime started;
 
 
         public Game(string filename, PlayMode playMode, int mgotop, int mgoleft)
@@ -48,6 +49,7 @@ namespace littleRunner
             mgoChangeTop = mgotop;
             mgoChangeLeft = mgoleft;
 
+            started = DateTime.Now;
             StartGame(filename, playMode);
         }
         public Game(string filename, PlayMode playMode)
@@ -191,14 +193,22 @@ namespace littleRunner
 
             f.Message("Initializing Sound");
             gameControlObjs.Sound.Start();
+
+            ai.AllFinished();
             f.Close();
         }
 
-        private void CloseGame()
+        private void CloseGame(bool closeForm)
         {
             ai.Quit();
+            ai.Dispose(true);
             ai = null;
-            Close();
+            if (closeForm)
+                Close();
+        }
+        private void CloseGame()
+        {
+            CloseGame(true);
         }
 
         private void GameAIInteract(GameEvent gevent, Dictionary<GameEventArg, object> args)
@@ -227,7 +237,7 @@ namespace littleRunner
                     {
                         MessageBox.Show("Game Over.", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        HighscoreForm hForm = new HighscoreForm(ai.FullScore);
+                        HighscoreForm hForm = new HighscoreForm(ai.FullScore, started);
                         hForm.ShowDialog();
 
                         DialogResult dr = MessageBox.Show("Play again?", "Game Over", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
@@ -240,6 +250,7 @@ namespace littleRunner
                             gameControlObjs = null; // set new points+sound!
                             session = null; // new session
 
+                            started = DateTime.Now;
                             StartGame("Data/Levelpacks/" + levelpack + LevelPackSwitcher.GetStartLevelName(levelpack, true), world.PlayMode);
                         }
                         else if (dr == DialogResult.No)
@@ -275,7 +286,7 @@ namespace littleRunner
 
                         MessageBox.Show("Congratulations!\nYou 've played all predefined littleRunner levels.\n\nNow start making your own level with the level-editor :-).", "Congratulations", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        HighscoreForm hForm = new HighscoreForm(gotScore);
+                        HighscoreForm hForm = new HighscoreForm(gotScore, started);
                         hForm.ShowDialog();
 
                         Close();
@@ -312,7 +323,7 @@ namespace littleRunner
             {
                 if (world.PlayMode == PlayMode.GameInEditor
                 && e.KeyChar == (char)Keys.Escape)
-                    Close();
+                    CloseGame();
 
                 if (e.KeyChar == (char)Keys.Return)
                 {
@@ -337,7 +348,7 @@ namespace littleRunner
         private void Game_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (ai != null)
-                ai.Quit();
+                CloseGame(false);
 
             if (gameControlObjs != null)
                 gameControlObjs.Sound.Stop();

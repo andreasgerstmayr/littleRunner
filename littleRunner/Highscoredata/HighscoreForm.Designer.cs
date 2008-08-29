@@ -38,6 +38,9 @@
             this.stretchForm = new System.Windows.Forms.Timer(this.components);
             this.highscores = new System.Windows.Forms.TableLayoutPanel();
             this.errProv = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lTime = new System.Windows.Forms.Label();
+            this.time = new System.Windows.Forms.Label();
+            this.durationToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errProv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,7 +49,7 @@
             this.lName.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lName.AutoSize = true;
             this.lName.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lName.Location = new System.Drawing.Point(66, 85);
+            this.lName.Location = new System.Drawing.Point(62, 85);
             this.lName.Name = "lName";
             this.lName.Size = new System.Drawing.Size(84, 16);
             this.lName.TabIndex = 0;
@@ -56,7 +59,7 @@
             // 
             this.name.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.name.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.name.Location = new System.Drawing.Point(170, 85);
+            this.name.Location = new System.Drawing.Point(166, 85);
             this.name.Name = "name";
             this.name.Size = new System.Drawing.Size(115, 23);
             this.name.TabIndex = 1;
@@ -66,7 +69,7 @@
             this.lScore.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lScore.AutoSize = true;
             this.lScore.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lScore.Location = new System.Drawing.Point(65, 116);
+            this.lScore.Location = new System.Drawing.Point(61, 116);
             this.lScore.Name = "lScore";
             this.lScore.Size = new System.Drawing.Size(85, 16);
             this.lScore.TabIndex = 2;
@@ -76,7 +79,7 @@
             // 
             this.score.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.score.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.score.Location = new System.Drawing.Point(170, 116);
+            this.score.Location = new System.Drawing.Point(166, 116);
             this.score.Name = "score";
             this.score.Size = new System.Drawing.Size(115, 20);
             this.score.TabIndex = 3;
@@ -87,7 +90,7 @@
             // 
             this.bButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.bButton.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bButton.Location = new System.Drawing.Point(109, 160);
+            this.bButton.Location = new System.Drawing.Point(104, 198);
             this.bButton.Name = "bButton";
             this.bButton.Size = new System.Drawing.Size(135, 29);
             this.bButton.TabIndex = 4;
@@ -100,7 +103,7 @@
             this.lHighscores.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lHighscores.AutoSize = true;
             this.lHighscores.Font = new System.Drawing.Font("Bitstream Vera Sans", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lHighscores.Location = new System.Drawing.Point(93, 20);
+            this.lHighscores.Location = new System.Drawing.Point(89, 20);
             this.lHighscores.Name = "lHighscores";
             this.lHighscores.Size = new System.Drawing.Size(164, 31);
             this.lHighscores.TabIndex = 5;
@@ -119,23 +122,48 @@
             this.highscores.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.highscores.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
             this.highscores.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.highscores.Location = new System.Drawing.Point(26, 222);
+            this.highscores.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.highscores.Location = new System.Drawing.Point(22, 260);
             this.highscores.Name = "highscores";
             this.highscores.RowCount = 1;
-            this.highscores.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 177F));
-            this.highscores.Size = new System.Drawing.Size(301, 0);
+            this.highscores.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 359F));
+            this.highscores.Size = new System.Drawing.Size(301, 44);
             this.highscores.TabIndex = 6;
             // 
             // errProv
             // 
             this.errProv.ContainerControl = this;
             // 
+            // lTime
+            // 
+            this.lTime.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lTime.AutoSize = true;
+            this.lTime.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lTime.Location = new System.Drawing.Point(61, 147);
+            this.lTime.Name = "lTime";
+            this.lTime.Size = new System.Drawing.Size(77, 16);
+            this.lTime.TabIndex = 7;
+            this.lTime.Text = "Your time:";
+            // 
+            // time
+            // 
+            this.time.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.time.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.time.Location = new System.Drawing.Point(166, 143);
+            this.time.Name = "time";
+            this.time.Size = new System.Drawing.Size(115, 20);
+            this.time.TabIndex = 8;
+            this.time.Text = "00m 00s";
+            this.time.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // HighscoreForm
             // 
             this.AcceptButton = this.bButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(352, 201);
+            this.ClientSize = new System.Drawing.Size(344, 245);
+            this.Controls.Add(this.time);
+            this.Controls.Add(this.lTime);
             this.Controls.Add(this.highscores);
             this.Controls.Add(this.lHighscores);
             this.Controls.Add(this.bButton);
@@ -163,5 +191,8 @@
         private System.Windows.Forms.Timer stretchForm;
         private System.Windows.Forms.TableLayoutPanel highscores;
         private System.Windows.Forms.ErrorProvider errProv;
+        private System.Windows.Forms.Label time;
+        private System.Windows.Forms.Label lTime;
+        private System.Windows.Forms.ToolTip durationToolTip;
     }
 }
