@@ -6,6 +6,9 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
+using littleRunner.Gamedata;
+
+
 namespace littleRunner.Highscoredata
 {
     public partial class HighscoreForm : Form
@@ -19,7 +22,7 @@ namespace littleRunner.Highscoredata
 
             this.score.Text = score.ToString();
 
-            TimeSpan duration = DateTime.Now-started;
+            TimeSpan duration = DateTime.Now - started;
             this.time.Text = String.Format("{0:00}m {1:00}s", duration.TotalMinutes, duration.Seconds);
         }
 
@@ -31,6 +34,7 @@ namespace littleRunner.Highscoredata
                 return;
             }
 
+
             if (name.Text.Length == 0)
             {
                 errProv.SetError(name, "Please enter a name.");
@@ -38,8 +42,14 @@ namespace littleRunner.Highscoredata
             }
             else
                 errProv.SetError(name, null);
+            
 
-            Highscore.Write(name.Text, Convert.ToInt32(score.Text), time.Text);
+            if (Cheat.Activated)
+                MessageBox.Show("Cheaters can't save highscores!", "Cheater alert [littleRunner]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                Highscore.Write(name.Text, Convert.ToInt32(score.Text), time.Text);
+
+
             name.Enabled = false;
             bButton.Enabled = false;
 
