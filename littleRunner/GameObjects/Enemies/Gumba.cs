@@ -104,9 +104,6 @@ namespace littleRunner.GameObjects.Enemies
             if (falling)
                 newtop += Globals.ObjFalling * GameAI.FrameFactor;
 
-            if (direction == GameDirection.None)
-            {
-            }
 
             // direction
             if (!falling)

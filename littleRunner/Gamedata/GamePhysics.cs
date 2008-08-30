@@ -17,8 +17,10 @@ namespace littleRunner
             {
                 bool falling = true;
 
-                foreach (T el in list)
+                for (int i=0; i<list.Count; i++)
                 {
+                    T el = list[i];
+
                     if (el.canStandOn)
                     {
                         if (go.Right+newleft > el.Left && go.Left+newleft < el.Right && // left+right ok?
@@ -210,8 +212,10 @@ namespace littleRunner
         {
             Enemy crashedIn = null;
 
-            foreach (Enemy enemie in enemies)
+            for (int i=0; i<enemies.Count; i++)
             {
+                Enemy enemie = enemies[i];
+
                 if (enemie != go)
                 {
                     GameDirection direction;
@@ -241,8 +245,10 @@ namespace littleRunner
             public static T SimpleCrashDetections(GameObject my, List<T> list,
                 bool onlyWhenCanStandOn, float newtop, float newleft)
             {
-                foreach (T el in list)
+                for (int i=0; i<list.Count; i++)
                 {
+                    T el = list[i];
+
                     if ((onlyWhenCanStandOn && el.canStandOn) || !onlyWhenCanStandOn)
                     {
                         if (SimpleCrashDetection(my, el, newtop, newleft))

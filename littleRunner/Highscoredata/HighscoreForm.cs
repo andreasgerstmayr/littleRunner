@@ -56,7 +56,7 @@ namespace littleRunner.Highscoredata
             // load highscores in panel
             highscores.RowStyles.Clear();
             int row = 0;
-            foreach (Highscore.Data data in Highscore.ReadTop10())
+            foreach (Highscore.Data data in Highscore.Read())
             {
                 highscores.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
@@ -85,14 +85,16 @@ namespace littleRunner.Highscoredata
 
                 row++;
             }
+            Application.DoEvents();
 
             stretchForm.Enabled = true;
+            highscorePanel.Visible = true;
         }
 
         private void stretchForm_Tick(object sender, EventArgs e)
         {
             Height += 20;
-            if (Height > 485)
+            if (Height >= 485)
             {
                 stretchForm.Enabled = false;
 

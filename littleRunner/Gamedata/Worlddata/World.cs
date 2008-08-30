@@ -203,17 +203,17 @@ namespace littleRunner.Gamedata.Worlddata
             {
                 List<GameObject> ret = new List<GameObject>();
 
-                foreach (StickyElement se in stickyelements)
+                for (int i=0; i<stickyelements.Count; i++)
                 {
-                    ret.Add(se);
+                    ret.Add(stickyelements[i]);
                 }
-                foreach (MovingElement me in movingelements)
+                for (int i = 0; i < movingelements.Count; i++)
                 {
-                    ret.Add(me);
+                    ret.Add(movingelements[i]);
                 }
-                foreach (Enemy e in enemies)
+                for (int i = 0; i < enemies.Count; i++)
                 {
-                    ret.Add(e);
+                    ret.Add(enemies[i]);
                 }
 
                 return ret;

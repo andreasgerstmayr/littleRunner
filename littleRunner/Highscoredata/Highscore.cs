@@ -127,10 +127,6 @@ namespace littleRunner
 
             return list;
         }
-        public static List<Highscore.Data> ReadTop10()
-        {
-            return Read(10);
-        }
         public static List<Highscore.Data> Read()
         {
             return Read(-1);

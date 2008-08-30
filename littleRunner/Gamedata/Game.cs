@@ -294,7 +294,6 @@ namespace littleRunner
                         int gotScore = ai.FullScore;
                         ai.Quit();
                         ai = null;
-                        Cheat.Reset();
                         lastModeIsNull = true;
 
                         MessageBox.Show("Congratulations!\nYou 've played all predefined littleRunner levels.\n\nNow start making your own level with the level-editor :-).", "Congratulations", MessageBoxButtons.OK, MessageBoxIcon.Information);
