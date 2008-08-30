@@ -320,11 +320,11 @@
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>375</value>
+          <value>377</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>949</value>
+          <value>953</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -346,11 +346,11 @@
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>417</value>
+          <value>425</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>949</value>
+          <value>953</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -891,6 +891,58 @@
           <value>Red</value>
         </Color>
       </Brick>
+      <Star>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>425</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>1001</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <StarStyle>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
+          <value>Yellow</value>
+        </StarStyle>
+      </Star>
+      <Star>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>377</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>1001</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <StarStyle>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
+          <value>Yellow</value>
+        </StarStyle>
+      </Star>
     </StickyElements>
     <MovingElements />
     <Enemies>

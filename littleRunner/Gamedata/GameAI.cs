@@ -65,11 +65,6 @@ namespace littleRunner
             get { return gameControlObj.Score + gameControlObj.Lives * 100; }
         }
 
-
-        public void AllFinished()
-        {
-            mainTimer.Enabled = true;
-        }
         void IDisposable.Dispose()
         {
             Dispose(true);
