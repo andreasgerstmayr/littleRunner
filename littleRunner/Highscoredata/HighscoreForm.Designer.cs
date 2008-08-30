@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HighscoreForm));
             this.lName = new System.Windows.Forms.Label();
             this.name = new System.Windows.Forms.TextBox();
             this.lScore = new System.Windows.Forms.Label();
@@ -41,7 +42,9 @@
             this.lTime = new System.Windows.Forms.Label();
             this.time = new System.Windows.Forms.Label();
             this.durationToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.highscorePanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.errProv)).BeginInit();
+            this.highscorePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // lName
@@ -116,18 +119,18 @@
             // 
             // highscores
             // 
-            this.highscores.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.highscores.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.highscores.AutoSize = true;
             this.highscores.BackColor = System.Drawing.SystemColors.Control;
             this.highscores.ColumnCount = 3;
             this.highscores.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.highscores.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
             this.highscores.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.highscores.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.highscores.Location = new System.Drawing.Point(22, 260);
+            this.highscores.Location = new System.Drawing.Point(7, 3);
             this.highscores.Name = "highscores";
             this.highscores.RowCount = 1;
-            this.highscores.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 359F));
-            this.highscores.Size = new System.Drawing.Size(301, 44);
+            this.highscores.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.highscores.Size = new System.Drawing.Size(291, 100);
             this.highscores.TabIndex = 6;
             // 
             // errProv
@@ -156,25 +159,39 @@
             this.time.Text = "00m 00s";
             this.time.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // highscorePanel
+            // 
+            this.highscorePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.highscorePanel.AutoScroll = true;
+            this.highscorePanel.Controls.Add(this.highscores);
+            this.highscorePanel.Location = new System.Drawing.Point(12, 248);
+            this.highscorePanel.Name = "highscorePanel";
+            this.highscorePanel.Size = new System.Drawing.Size(320, 5);
+            this.highscorePanel.TabIndex = 9;
+            this.highscorePanel.Visible = false;
+            // 
             // HighscoreForm
             // 
             this.AcceptButton = this.bButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(344, 245);
+            this.ClientSize = new System.Drawing.Size(344, 268);
+            this.Controls.Add(this.highscorePanel);
             this.Controls.Add(this.time);
             this.Controls.Add(this.lTime);
-            this.Controls.Add(this.highscores);
             this.Controls.Add(this.lHighscores);
             this.Controls.Add(this.bButton);
             this.Controls.Add(this.score);
             this.Controls.Add(this.lScore);
             this.Controls.Add(this.name);
             this.Controls.Add(this.lName);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HighscoreForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Highscore";
             ((System.ComponentModel.ISupportInitialize)(this.errProv)).EndInit();
+            this.highscorePanel.ResumeLayout(false);
+            this.highscorePanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,5 +211,6 @@
         private System.Windows.Forms.Label time;
         private System.Windows.Forms.Label lTime;
         private System.Windows.Forms.ToolTip durationToolTip;
+        private System.Windows.Forms.Panel highscorePanel;
     }
 }
