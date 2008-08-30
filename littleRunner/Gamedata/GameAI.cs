@@ -74,7 +74,7 @@ namespace littleRunner
             if (disposing)
             {
                 if (checkThread.ThreadState == System.Threading.ThreadState.Running ||
-               checkThread.ThreadState == System.Threading.ThreadState.WaitSleepJoin)
+                    checkThread.ThreadState == System.Threading.ThreadState.WaitSleepJoin)
                     checkThread.Abort();
             }
         }

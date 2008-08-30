@@ -4,7 +4,7 @@
   <LevelSettings>
     <Background>
       <type>littleRunner.Gamedata.Worlddata.Backgrounds</type>
-      <value>None</value>
+      <value>Blue_Hills</value>
     </Background>
     <gameWindowHeight>
       <type>System.Int32</type>
@@ -45,7 +45,7 @@ def openCloseArena(geventhandler, who, direction):
       ArenaTopCloser.Top += 32
       arenaClosed = True
 
-handler.ArenaMainPlat.onOver += openCloseArena
+lr.Handler.ArenaMainPlat.onOver += openCloseArena
 
 
 # drive bottom-platform away when all gumbas are dead
@@ -62,14 +62,14 @@ def gumbaDead():
 
    if deadGumbas >= 12:
       lr.createMovingPlatform(ArenaMainPlat, 450, startDirection=GameDirection.Right)
-      handler.ArenaMainPlat.onOver -= openCloseArena
+      lr.Handler.ArenaMainPlat.onOver -= openCloseArena
       ArenaMainPlat.Top += 50
 
 
 # register Dead-handlers
 for i in range(1, 13):
    x = 'G' + str(i)
-   handler[x].Dead += gumbaDead]]></value>
+   lr.Handler[x].Dead += gumbaDead]]></value>
     </Script>
   </LevelSettings>
   <Data>
@@ -936,8 +936,8 @@ for i in range(1, 13):
           <value>128</value>
         </Height>
         <NextLevel>
-          <type>NULL</type>
-          <value>null</value>
+          <type>System.String</type>
+          <value>level14.lrl</value>
         </NextLevel>
         <StartAt>
           <type>System.Int32</type>

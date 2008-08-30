@@ -64,6 +64,7 @@ namespace littleRunner.GameObjects.Enemies
             Height = curimg.Height; 
         }
 
+
         public override bool getCrashEvent(GameObject go, GameDirection cidirection)
         {
             return false;

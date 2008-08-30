@@ -4,7 +4,7 @@
   <LevelSettings>
     <Background>
       <type>littleRunner.Gamedata.Worlddata.Backgrounds</type>
-      <value>None</value>
+      <value>Blue_Mountains</value>
     </Background>
     <gameWindowHeight>
       <type>System.Int32</type>
