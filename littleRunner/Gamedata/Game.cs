@@ -194,7 +194,7 @@ namespace littleRunner
             f.Message("Initializing Sound");
             gameControlObjs.Sound.Start();
 
-            ai.AllFinished();
+            ai.Pause(true);
             f.Close();
         }
 
