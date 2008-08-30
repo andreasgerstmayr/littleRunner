@@ -109,7 +109,7 @@ namespace littleRunner.Gamedata.Worlddata
 
         public string InitScript()
         {
-            Script = new Script(this);
+            Script = new Script();
 
             if (Settings.Script.Length > 0)
             {

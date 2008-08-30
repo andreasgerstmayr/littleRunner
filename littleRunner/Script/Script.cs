@@ -14,7 +14,6 @@ namespace littleRunner
         private static PythonEngine mainEngine;
         private static List<string> savedGlobals;
         private PythonEngine engine;
-        private World world;
         public bool Init;
 
 
@@ -48,42 +47,51 @@ namespace littleRunner
             engine.Execute(command);
         }
 
-        public Script(World world)
+        public Script()
         {
             this.Init = true;
             InitializePythonEngine();
-
-            this.world = world;
         }
 
 
         public void callFunction(string name, string function, params object[] args)
         {
-            if (Init)
-                return;
-
-            lock (this)
+            try
             {
-                if (!engine.Globals.ContainsKey("handler"))
+
+                if (Init)
                     return;
 
-
-                Dictionary<object, object> handlers = (Dictionary<object, object>)engine.Globals["handler"];
-                if (handlers.ContainsKey(name) &&
-                    ((Dictionary<object, object>)handlers[name]).ContainsKey(function))
+                lock (this)
                 {
-                    engine.Globals["args"] = args;
-                    try
+                    if (!engine.Globals.ContainsKey("handler"))
+                        return;
+
+
+                    Dictionary<object, object> handlers = (Dictionary<object, object>)engine.Globals["handler"];
+                    if (handlers.ContainsKey(name) &&
+                        ((Dictionary<object, object>)handlers[name]).ContainsKey(function))
                     {
-                        engine.Execute("handler." + name + "." + function + "(*args)");
+                        engine.Globals["args"] = args;
+                        try
+                        {
+                            engine.Execute("handler." + name + "." + function + "(*args)");
+                        }
+                        catch (System.Threading.ThreadAbortException)
+                        {
+                        }
+                        catch (Exception e)
+                        {
+                            DebugInfo.WriteException(e);
+                            throw new littleRunnerScriptFunctionException("Error calling '" + name + "." + function + "' handler");
+                        }
                     }
-                    catch (Exception e)
-                    {
-                        DebugInfo.WriteException(e);
-                        throw new littleRunnerScriptFunctionException("Error calling '" + name + "." + function + "' handler");
-                    }
+
                 }
 
+            }
+            catch (System.Threading.ThreadAbortException)
+            {
             }
         }
 

@@ -104,6 +104,7 @@
             this.hScroll = new System.Windows.Forms.HScrollBar();
             this.vScroll = new System.Windows.Forms.VScrollBar();
             this.backup = new System.Windows.Forms.Timer(this.components);
+            this.gameEditorBeginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.level = new littleRunner.Editordata.DoubleBufferPanel();
             this.menubar.SuspendLayout();
             this.menu.SuspendLayout();
@@ -621,6 +622,7 @@
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gameEditorBeginToolStripMenuItem,
             this.gameLevelbeginToolStripMenuItem,
             this.gameWindowToolStripMenuItem,
             this.editScriptToolStripMenuItem,
@@ -632,24 +634,24 @@
             // gameLevelbeginToolStripMenuItem
             // 
             this.gameLevelbeginToolStripMenuItem.Name = "gameLevelbeginToolStripMenuItem";
-            this.gameLevelbeginToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
-            this.gameLevelbeginToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.gameLevelbeginToolStripMenuItem.Text = "&Game (Levelbegin)";
+            this.gameLevelbeginToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
+            this.gameLevelbeginToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.gameLevelbeginToolStripMenuItem.Text = "Game (Window/&Begin)";
             this.gameLevelbeginToolStripMenuItem.Click += new System.EventHandler(this.gameLevelbeginToolStripMenuItem_Click);
             // 
             // gameWindowToolStripMenuItem
             // 
             this.gameWindowToolStripMenuItem.Name = "gameWindowToolStripMenuItem";
-            this.gameWindowToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
-            this.gameWindowToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.gameWindowToolStripMenuItem.Text = "Game (&Window)";
+            this.gameWindowToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8;
+            this.gameWindowToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.gameWindowToolStripMenuItem.Text = "Game (Window/&Current)";
             this.gameWindowToolStripMenuItem.Click += new System.EventHandler(this.gameWindowToolStripMenuItem_Click);
             // 
             // editScriptToolStripMenuItem
             // 
             this.editScriptToolStripMenuItem.Image = global::littleRunner.Properties.Resources.text_x_generic;
             this.editScriptToolStripMenuItem.Name = "editScriptToolStripMenuItem";
-            this.editScriptToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.editScriptToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
             this.editScriptToolStripMenuItem.Text = "&Edit script";
             this.editScriptToolStripMenuItem.Click += new System.EventHandler(this.editScriptToolStripMenuItem_Click);
             // 
@@ -657,8 +659,8 @@
             // 
             this.checkScriptToolStripMenuItem.Image = global::littleRunner.Properties.Resources.text_x_script;
             this.checkScriptToolStripMenuItem.Name = "checkScriptToolStripMenuItem";
-            this.checkScriptToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.checkScriptToolStripMenuItem.Text = "&Check script";
+            this.checkScriptToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.checkScriptToolStripMenuItem.Text = "Check &script";
             this.checkScriptToolStripMenuItem.Click += new System.EventHandler(this.checkScriptToolStripMenuItem_Click);
             // 
             // startGameCurrentToolStripMenuItem
@@ -800,6 +802,14 @@
             this.backup.Interval = 300000;
             this.backup.Tick += new System.EventHandler(this.backup_Tick);
             // 
+            // gameEditorBeginToolStripMenuItem
+            // 
+            this.gameEditorBeginToolStripMenuItem.Name = "gameEditorBeginToolStripMenuItem";
+            this.gameEditorBeginToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
+            this.gameEditorBeginToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.gameEditorBeginToolStripMenuItem.Text = "Game (E&ditor/Begin)";
+            this.gameEditorBeginToolStripMenuItem.Click += new System.EventHandler(this.gameEditorBeginToolStripMenuItem_Click);
+            // 
             // level
             // 
             this.level.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -923,5 +933,6 @@
         private System.Windows.Forms.ToolStripButton horizSpaceAlignToolStripButton;
         private System.Windows.Forms.ToolStripButton vertSpaceAlignToolStripButton;
         private System.Windows.Forms.Timer backup;
+        private System.Windows.Forms.ToolStripMenuItem gameEditorBeginToolStripMenuItem;
     }
 }

@@ -194,6 +194,8 @@ namespace littleRunner
             f.Message("Initializing Sound");
             gameControlObjs.Sound.Start();
 
+
+            Cursor.Hide();
             ai.Pause(true);
             f.Close();
         }
@@ -207,6 +209,7 @@ namespace littleRunner
                 ai = null;
             }
             Cheat.Reset();
+            Cursor.Show();
 
             if (closeForm)
                 Close();
@@ -220,6 +223,9 @@ namespace littleRunner
         {
             if (ai == null)
                 return;
+
+            Cursor.Show();
+
 
             if (gevent == GameEvent.dead || gevent == GameEvent.outOfRange)
             {

@@ -348,15 +348,15 @@ ControlStyles.OptimizedDoubleBuffer, true);
             AnimateImage.Refresh = false;
         }
 
-        private void startGamecurrentToolStripMenuItem_Click(object sender, EventArgs e)
+        private void startGameInEditor(int mgotop, int mgoleft)
         {
             tmpHandler.updateTMP();
 
             int levelTop = this.Top + SystemInformation.CaptionHeight + SystemInformation.FrameBorderSize.Height + tableLayout.Top + level.Top;
             int levelLeft = this.Left + SystemInformation.FrameBorderSize.Width + tableLayout.Left + level.Left;
             g = new Game(tmpHandler.TmpFilename, PlayMode.GameInEditor, levelTop, levelLeft,
-                vScroll.Value - vScroll.Minimum,
-                hScroll.Value - hScroll.Minimum);
+                mgotop,
+                mgoleft);
 
 
             string oldtext = this.Text;
@@ -376,6 +376,15 @@ ControlStyles.OptimizedDoubleBuffer, true);
             this.Text = oldtext;
         }
 
+
+        private void startGamecurrentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            startGameInEditor(vScroll.Value - vScroll.Minimum, hScroll.Value - hScroll.Minimum);
+        }
+        private void gameEditorBeginToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            startGameInEditor(0, 0);
+        }
 
 
         private void editScriptToolStripMenuItem_Click(object sender, EventArgs e)
