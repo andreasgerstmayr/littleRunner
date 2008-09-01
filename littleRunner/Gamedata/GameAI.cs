@@ -48,7 +48,14 @@ namespace littleRunner
             get
             {
                 return Thread.CurrentThread.Name == null ?
-                    (float)watch.Elapsed.TotalSeconds : (float)tempwatch.Elapsed.TotalSeconds;
+                       (float)watch.Elapsed.TotalSeconds : (float)tempwatch.Elapsed.TotalSeconds;
+            }
+        }
+        public static Stopwatch CurWatch
+        {
+            get
+            {
+                return Thread.CurrentThread.Name == null ? watch : tempwatch;
             }
         }
         public delegate float GetFrameFactorDelegate();
@@ -167,6 +174,9 @@ namespace littleRunner
 
         public void Check(object sender, EventArgs e)
         {
+            if (FrameFactor > Globals.NeedFPS)
+                CurWatch.Reset();
+
             Dictionary<string, float> newMGOpos = World.MGO.Check(pressedKeys);
             float changeY = Math.Abs(newMGOpos["newtop"]);
             float changeX = Math.Abs(newMGOpos["newleft"]);
@@ -215,14 +225,14 @@ namespace littleRunner
                 checkThread.Name = "Checker2";
                 checkThread.Start();
             }
-
+            
 
             // Repaint
             World.DrawHandler.Update();
 
 
             if (FrameFactor != 0.0)
-                gameControlObj.FPS = (int)(1.0 / FrameFactor);
+                gameControlObj.FPS = (int)(1.0F / FrameFactor);
 
             watch.Reset(); // reset current
             watch.Start(); // current frame calculating finished. now, start counting.
@@ -232,6 +242,10 @@ namespace littleRunner
         {
             try
             {
+                if (FrameFactor > Globals.NeedFPS)
+                    CurWatch.Reset();
+
+               
                 if (World.Script != null)
                     World.Script.callFunction("AI", "Check");
 
