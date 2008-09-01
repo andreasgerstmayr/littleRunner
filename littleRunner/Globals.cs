@@ -71,6 +71,8 @@ namespace littleRunner
     {
         public static VideoRenderMode VideoRenderMode;
         public static float Approximation = 0.5F;
+        public static double NeedFPS = 1.0 / 10.0; // 10 FPS min. - slower? Reset & try again
+
 
         public struct MGOMove
         {
