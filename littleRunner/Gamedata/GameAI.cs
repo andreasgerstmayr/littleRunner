@@ -25,8 +25,8 @@ namespace littleRunner
         private List<Keys> curkeys;
         private List<GameKey> pressedKeys;
         float scrollTop;
-        private static Stopwatch watch;
-        private static Stopwatch tempwatch;
+        private static StopwatchExtended watch;
+        private static StopwatchExtended tempwatch;
         private Thread checkThread;
 
 
@@ -48,10 +48,11 @@ namespace littleRunner
             get
             {
                 return Thread.CurrentThread.Name == null ?
-                       (float)watch.Elapsed.TotalSeconds : (float)tempwatch.Elapsed.TotalSeconds;
+                       (float)watch.Elapsed.TotalSeconds :
+                       (float)tempwatch.Elapsed.TotalSeconds;
             }
         }
-        public static Stopwatch CurWatch
+        public static StopwatchExtended CurWatch
         {
             get
             {
@@ -111,8 +112,8 @@ namespace littleRunner
                 guiContext = new SynchronizationContext();
 
 
-            watch = new Stopwatch();
-            tempwatch = new Stopwatch();
+            watch = new StopwatchExtended();
+            tempwatch = new StopwatchExtended();
 
             scrollTop = 0;
             this.guiinteract = forminteract;
@@ -172,10 +173,12 @@ namespace littleRunner
             }
         }
 
+
         public void Check(object sender, EventArgs e)
         {
-            if (FrameFactor > Globals.NeedFPS)
-                CurWatch.Reset();
+            if (FrameFactor > Globals.MaxCycleDuration)
+                CurWatch.Elapsed = new TimeSpan(0, 0, 0, 0, 1); // don't reset, otherwise eg gumbas will change direction
+
 
             Dictionary<string, float> newMGOpos = World.MGO.Check(pressedKeys);
             float changeY = Math.Abs(newMGOpos["newtop"]);
@@ -242,8 +245,8 @@ namespace littleRunner
         {
             try
             {
-                if (FrameFactor > Globals.NeedFPS)
-                    CurWatch.Reset();
+                if (FrameFactor > Globals.MaxCycleDuration)
+                    CurWatch.Elapsed = new TimeSpan(0, 0, 0, 0, 1); // see above
 
                
                 if (World.Script != null)
