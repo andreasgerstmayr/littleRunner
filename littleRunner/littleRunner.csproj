@@ -186,6 +186,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Editordata\TmpFileHandler.cs" />
+    <Compile Include="StopwatchExtended.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Images\GameElement\tree.png">
