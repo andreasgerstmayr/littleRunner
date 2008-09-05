@@ -155,7 +155,7 @@ namespace littleRunner.Editordata
         }
 
 
-        static public void FetchElementsInRectangle(Rectangle curRectangle, ref World world, ref PropertyGrid properties)
+        static public void FetchElementsInRectangle(Rectangle curRectangle, ref World world, ref PropertyGrid properties, bool ctrlPressed)
         {
             List<object> selected = new List<object>();
 
@@ -164,6 +164,10 @@ namespace littleRunner.Editordata
                 if (go.InRectangle(curRectangle))
                     selected.Add(go);
             }
+
+
+            if (ctrlPressed)
+                selected.AddRange(new List<object>(properties.SelectedObjects));
 
             properties.SelectedObjects = selected.ToArray();
         }

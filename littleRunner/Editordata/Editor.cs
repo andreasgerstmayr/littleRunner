@@ -164,7 +164,7 @@ ControlStyles.OptimizedDoubleBuffer, true);
                     properties.SelectedObjects = selected.ToArray();
                 }
             }
-            else
+            else if (!pressedKeys.Contains(Keys.ControlKey))
             {
                 focus = null;
                 properties.SelectedObjects = new object[] { };
@@ -178,7 +178,7 @@ ControlStyles.OptimizedDoubleBuffer, true);
 
             if (endRectangle != null)
             {
-                EditorUI.FetchElementsInRectangle(curRectangle, ref world, ref properties);
+                EditorUI.FetchElementsInRectangle(curRectangle, ref world, ref properties, pressedKeys.Contains(Keys.ControlKey));
 
                 startRectangle = null;
                 endRectangle = null;
