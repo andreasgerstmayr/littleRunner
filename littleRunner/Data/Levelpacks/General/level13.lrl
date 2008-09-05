@@ -30,15 +30,20 @@ lr.createFlyingCircle(Spika2, 100)
 lr.createFlyingCircle(Spika3, 100)
 
 
-lr.createMovingPlatform(Plat1, 480, speed=500, startDirection=GameDirection.Right)
+lr.createMovingPlatform(Plat1, 480, speed=500, startDirection=GameDirection.Right, moveBack=False)
 
 
-# special level effects
+#############################################
+#          special level effects            #
+#############################################
+
+
 
 # close area on enter
+
 arenaClosed = False
 def openCloseArena(geventhandler, who, direction):
-   global arenaClosed
+   global arenaClosed, gumbasOnBottom
 
    if (not arenaClosed) and who == GameElement.MGO and direction == GameDirection.Top:
       ArenaLeftCloser.Top = 374
@@ -48,7 +53,11 @@ def openCloseArena(geventhandler, who, direction):
 lr.Handler.ArenaMainPlat.onOver += openCloseArena
 
 
+
+
+
 # drive bottom-platform away when all gumbas are dead
+
 deadGumbas = 0
 def gumbaDead():
    global deadGumbas
@@ -1517,7 +1526,7 @@ for i in range(1, 13):
         </Color>
         <Direction>
           <type>littleRunner.GameDirection</type>
-          <value>Right</value>
+          <value>Left</value>
         </Direction>
       </Gumba>
       <Gumba>
@@ -1585,7 +1594,7 @@ for i in range(1, 13):
         </Color>
         <Direction>
           <type>littleRunner.GameDirection</type>
-          <value>Right</value>
+          <value>Left</value>
         </Direction>
       </Gumba>
       <Gumba>
@@ -1653,7 +1662,7 @@ for i in range(1, 13):
         </Color>
         <Direction>
           <type>littleRunner.GameDirection</type>
-          <value>Right</value>
+          <value>Left</value>
         </Direction>
       </Gumba>
       <Gumba>
@@ -1721,7 +1730,7 @@ for i in range(1, 13):
         </Color>
         <Direction>
           <type>littleRunner.GameDirection</type>
-          <value>Right</value>
+          <value>Left</value>
         </Direction>
       </Gumba>
       <Gumba>
@@ -1789,7 +1798,7 @@ for i in range(1, 13):
         </Color>
         <Direction>
           <type>littleRunner.GameDirection</type>
-          <value>Right</value>
+          <value>Left</value>
         </Direction>
       </Gumba>
       <Gumba>
@@ -1857,7 +1866,7 @@ for i in range(1, 13):
         </Color>
         <Direction>
           <type>littleRunner.GameDirection</type>
-          <value>Right</value>
+          <value>Left</value>
         </Direction>
       </Gumba>
       <Gumba>

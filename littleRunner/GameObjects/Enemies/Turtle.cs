@@ -85,9 +85,12 @@ namespace littleRunner.GameObjects.Enemies
                 }
                 else if (value == TurtleMode.Small || value == TurtleMode.SmallRunning)
                 {
-                    curimg = imgShell;
-                    Width = curimg.CurImage(GameDirection.None).Width;
-                    Height = curimg.CurImage(GameDirection.None).Height;
+                    if (curimg != imgShell)
+                    {
+                        curimg = imgShell;
+                        Width = curimg.CurImage(GameDirection.None).Width;
+                        Height = curimg.CurImage(GameDirection.None).Height;
+                    }
                 }
 
                 turtleMode = value;
