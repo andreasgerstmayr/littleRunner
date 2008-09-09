@@ -43,11 +43,14 @@ ControlStyles.OptimizedDoubleBuffer, true);
             EditorUI.drawHandler = drawHandler;
             EditorUI.level = level;
             EditorUI.properties = properties;
+            TmpFileHandler.BackupFilename = "backup.lrl";
 
 
             World defaultWorld = new World();
             tmpHandler = new TmpFileHandler(openFile, saveFile, defaultWorld.Serialize, 5);
             defaultWorld = null;
+            
+
             defaultContextMenuItems = objectContext.Items.Count;
             curRectangle = Rectangle.Empty;
 
@@ -106,7 +109,13 @@ ControlStyles.OptimizedDoubleBuffer, true);
         }
         private void Editor_Shown(object sender, EventArgs e)
         {
-            newToolStripMenuItem_Click(new object(), new EventArgs());
+            if (!tmpHandler.BackupAvailable)
+                newToolStripMenuItem_Click(new object(), new EventArgs());
+            else
+            {
+                tmpHandler.OpenBackup();
+                openLevel(tmpHandler.OrigFilename);
+            }
         }
 
         #region Drag 'n' Drop Events
@@ -289,20 +298,25 @@ ControlStyles.OptimizedDoubleBuffer, true);
             }
         }
 
+        private void openLevel(string filename)
+        {
+            this.Text = "littleRunner Level Editor - " + filename;
+            hScroll.Value = hScroll.Minimum;
+            vScroll.Value = vScroll.Minimum;
+
+            world = new World(tmpHandler.TmpFilename, drawHandler, new GameSession(), PlayMode.Editor);
+            tmpHandler.SaveHandler = world.Serialize;
+            setDelegateHandlers();
+
+            showlevelSettings_Click(new object(), new EventArgs());
+            drawHandler.Update();
+        }
+
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (tmpHandler.Open())
             {
-                this.Text = "littleRunner Level Editor - " + tmpHandler.OrigFilename;
-                hScroll.Value = hScroll.Minimum;
-                vScroll.Value = vScroll.Minimum;
-
-                world = new World(tmpHandler.TmpFilename, drawHandler, new GameSession(), PlayMode.Editor);
-                tmpHandler.SaveHandler = world.Serialize;
-                setDelegateHandlers();
-
-                showlevelSettings_Click(sender, e);
-                drawHandler.Update();
+                openLevel(tmpHandler.OrigFilename);
             }
         }
 
@@ -339,7 +353,7 @@ ControlStyles.OptimizedDoubleBuffer, true);
         {
             tmpHandler.updateTMP();
 
-            g = new Game(tmpHandler.TmpFilename, PlayMode.Game, 
+            g = new Game(tmpHandler.TmpFilename, PlayMode.Game,
                 vScroll.Value - vScroll.Minimum,
                 hScroll.Value - hScroll.Minimum);
 
@@ -812,12 +826,6 @@ ControlStyles.OptimizedDoubleBuffer, true);
         {
             string name = sender.Name == null || sender.Name.Length == 0 ? "" : " (" + sender.Name + ")";
             MessageBox.Show(message, "Editor error - " + sender.GetType().Name + name, MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-
-        private void backup_Tick(object sender, EventArgs e)
-        {
-            tmpHandler.SaveBackup();
         }
 
     }

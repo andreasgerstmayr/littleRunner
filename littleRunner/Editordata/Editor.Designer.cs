@@ -87,6 +87,7 @@
             this.moveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moveToolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gameEditorBeginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gameLevelbeginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gameWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -103,8 +104,6 @@
             this.tableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.hScroll = new System.Windows.Forms.HScrollBar();
             this.vScroll = new System.Windows.Forms.VScrollBar();
-            this.backup = new System.Windows.Forms.Timer(this.components);
-            this.gameEditorBeginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.level = new littleRunner.Editordata.DoubleBufferPanel();
             this.menubar.SuspendLayout();
             this.menu.SuspendLayout();
@@ -631,6 +630,14 @@
             this.testToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.testToolStripMenuItem.Text = "&Script/Test";
             // 
+            // gameEditorBeginToolStripMenuItem
+            // 
+            this.gameEditorBeginToolStripMenuItem.Name = "gameEditorBeginToolStripMenuItem";
+            this.gameEditorBeginToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
+            this.gameEditorBeginToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.gameEditorBeginToolStripMenuItem.Text = "Game (E&ditor/Begin)";
+            this.gameEditorBeginToolStripMenuItem.Click += new System.EventHandler(this.gameEditorBeginToolStripMenuItem_Click);
+            // 
             // gameLevelbeginToolStripMenuItem
             // 
             this.gameLevelbeginToolStripMenuItem.Name = "gameLevelbeginToolStripMenuItem";
@@ -796,20 +803,6 @@
             this.vScroll.Value = 550;
             this.vScroll.ValueChanged += new System.EventHandler(this.vScroll_ValueChanged);
             // 
-            // backup
-            // 
-            this.backup.Enabled = true;
-            this.backup.Interval = 300000;
-            this.backup.Tick += new System.EventHandler(this.backup_Tick);
-            // 
-            // gameEditorBeginToolStripMenuItem
-            // 
-            this.gameEditorBeginToolStripMenuItem.Name = "gameEditorBeginToolStripMenuItem";
-            this.gameEditorBeginToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
-            this.gameEditorBeginToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
-            this.gameEditorBeginToolStripMenuItem.Text = "Game (E&ditor/Begin)";
-            this.gameEditorBeginToolStripMenuItem.Click += new System.EventHandler(this.gameEditorBeginToolStripMenuItem_Click);
-            // 
             // level
             // 
             this.level.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -932,7 +925,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton horizSpaceAlignToolStripButton;
         private System.Windows.Forms.ToolStripButton vertSpaceAlignToolStripButton;
-        private System.Windows.Forms.Timer backup;
         private System.Windows.Forms.ToolStripMenuItem gameEditorBeginToolStripMenuItem;
     }
 }

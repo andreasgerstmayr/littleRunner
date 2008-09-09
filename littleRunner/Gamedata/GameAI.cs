@@ -25,9 +25,9 @@ namespace littleRunner
         private List<Keys> curkeys;
         private List<GameKey> pressedKeys;
         float scrollTop;
-        private static StopwatchExtended watch;
-        private static StopwatchExtended tempwatch;
-        private Thread checkThread;
+        private static Dictionary<string, StopwatchExtended> watch;
+        private Dictionary<string, Thread> thread;
+        private Dictionary<string, ThreadStart> threadDelegate;
 
 
         public void Update(Draw d)
@@ -47,16 +47,16 @@ namespace littleRunner
         {
             get
             {
-                return Thread.CurrentThread.Name == null ?
-                       (float)watch.Elapsed.TotalSeconds :
-                       (float)tempwatch.Elapsed.TotalSeconds;
+                return (float)watch[Thread.CurrentThread.Name == null ? "" :
+                                    Thread.CurrentThread.Name                ].Elapsed.TotalSeconds;
             }
         }
         public static StopwatchExtended CurWatch
         {
             get
             {
-                return Thread.CurrentThread.Name == null ? watch : tempwatch;
+                return watch[Thread.CurrentThread.Name == null ? "" :
+                             Thread.CurrentThread.Name                ];
             }
         }
         public delegate float GetFrameFactorDelegate();
@@ -81,9 +81,12 @@ namespace littleRunner
         {
             if (disposing)
             {
-                if (checkThread.ThreadState == System.Threading.ThreadState.Running ||
-                    checkThread.ThreadState == System.Threading.ThreadState.WaitSleepJoin)
-                    checkThread.Abort();
+                foreach (Thread t in thread.Values)
+                {
+                    if (t.ThreadState == System.Threading.ThreadState.Running ||
+                        t.ThreadState == System.Threading.ThreadState.WaitSleepJoin)
+                        t.Abort();
+                }
             }
         }
 
@@ -94,8 +97,10 @@ namespace littleRunner
             else
             {
                 mainTimer.Enabled = false;
-                watch.Reset();
-                tempwatch.Reset();
+                foreach (StopwatchExtended w in watch.Values)
+                {
+                    w.Reset();
+                }
             }
         }
         public void Quit()
@@ -112,8 +117,22 @@ namespace littleRunner
                 guiContext = new SynchronizationContext();
 
 
-            watch = new StopwatchExtended();
-            tempwatch = new StopwatchExtended();
+            // threads
+            threadDelegate = new Dictionary<string, ThreadStart>();
+            threadDelegate.Add("Checker1", Checker1_Thread);
+            threadDelegate.Add("Checker2", Checker2_Thread);
+            threadDelegate.Add("Checker3", Checker3_Thread);
+
+
+            watch = new Dictionary<string, StopwatchExtended>();
+            watch[""] = new StopwatchExtended(); // GUI-Thread
+            thread = new Dictionary<string, Thread>();
+            foreach (string s in threadDelegate.Keys)
+            {
+                watch[s] = new StopwatchExtended();
+                thread[s] = null;
+            }
+
 
             scrollTop = 0;
             this.guiinteract = forminteract;
@@ -222,13 +241,16 @@ namespace littleRunner
             #endregion
 
 
-            if (checkThread == null || checkThread.ThreadState == System.Threading.ThreadState.Stopped)
+            foreach (KeyValuePair<string, ThreadStart> t in threadDelegate)
             {
-                checkThread = new Thread(CheckThread);
-                checkThread.Name = "Checker2";
-                checkThread.Start();
+                if (thread[t.Key] == null || thread[t.Key].ThreadState == System.Threading.ThreadState.Stopped)
+                {
+                    thread[t.Key] = new Thread(t.Value);
+                    thread[t.Key].Name = t.Key;
+                    thread[t.Key].Start();
+                }
             }
-            
+
 
             // Repaint
             World.DrawHandler.Update();
@@ -237,11 +259,12 @@ namespace littleRunner
             if (FrameFactor != 0.0)
                 gameControlObj.FPS = (int)(1.0F / FrameFactor);
 
-            watch.Reset(); // reset current
-            watch.Start(); // current frame calculating finished. now, start counting.
+            CurWatch.Reset(); // reset current
+            CurWatch.Start(); // current frame calculating finished. now, start counting.
         }
 
-        private void CheckThread()
+        #region Threads
+        private void Checker1_Thread()
         {
             try
             {
@@ -253,6 +276,21 @@ namespace littleRunner
                     World.Script.callFunction("AI", "Check");
 
 
+                CurWatch.Reset(); // reset current
+                CurWatch.Start(); // reset current
+            }
+            catch (ThreadAbortException)
+            {
+            }
+        }
+        private void Checker2_Thread()
+        {
+            try
+            {
+                if (FrameFactor > Globals.MaxCycleDuration)
+                    CurWatch.Elapsed = new TimeSpan(0, 0, 0, 0, 1); // see above
+
+
                 // check of all enemies
                 for (int i = 0; i < World.Enemies.Count; i++)
                 {
@@ -262,6 +300,23 @@ namespace littleRunner
                         World.Enemies[i].Check(out newpos);
                     }
                 }
+
+
+                CurWatch.Reset(); // reset current
+                CurWatch.Start(); // reset current
+            }
+            catch (ThreadAbortException)
+            {
+            }
+        }
+        private void Checker3_Thread()
+        {
+            try
+            {
+                if (FrameFactor > Globals.MaxCycleDuration)
+                    CurWatch.Elapsed = new TimeSpan(0, 0, 0, 0, 1); // see above
+
+
                 // check of all moving elements
                 for (int i = 0; i < World.MovingElements.Count; i++)
                 {
@@ -269,13 +324,15 @@ namespace littleRunner
                     World.MovingElements[i].Check(out newpos);
                 }
 
-                tempwatch.Reset(); // reset current
-                tempwatch.Start(); // reset current
+
+                CurWatch.Reset(); // reset current
+                CurWatch.Start(); // reset current
             }
             catch (ThreadAbortException)
             {
             }
         }
+        #endregion
 
 
         public void Interact(Keys key, bool pressed)
