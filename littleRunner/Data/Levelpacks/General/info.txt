@@ -1,2 +1,2 @@
-Start: level14.lrl
+Start: level1.lrl
 Copyright: andihit <Andreas G.>
