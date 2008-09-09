@@ -4,7 +4,7 @@
   <LevelSettings>
     <Background>
       <type>littleRunner.Gamedata.Worlddata.Backgrounds</type>
-      <value>Blue_Hills</value>
+      <value>Green_Hills2</value>
     </Background>
     <gameWindowHeight>
       <type>System.Int32</type>
@@ -20,493 +20,26 @@
     </levelHeight>
     <levelWidth>
       <type>System.Int32</type>
-      <value>4000</value>
+      <value>3000</value>
     </levelWidth>
     <Script>
       <type>System.String</type>
       <value><![CDATA[
 
-def moveSpika():
-   for i in range(1, 12):
-      x = 'G' + str(i)
-      globals()[x].Left += 200 * lr.FrameFactor
+lr.createMovingPlatform(Plat1, 300, startDirection=GameDirection.Top, startOnOver=False)
+
+lr.createMovingPlatform(Plat2, 300, startDirection=GameDirection.Right, startOnOver=False)
+lr.createMovingPlatform(Plat3, 200, startDirection=GameDirection.Left, startOnOver=False)
+lr.createMovingPlatform(Plat4, 750, startDirection=GameDirection.Right, startOnOver=False)
 
 
-lr.Handler.AI.Check += moveSpika]]></value>
+
+lr.createFlyingCircle(Spika1, 130, speed=400, dockObj=Plat5)
+lr.createMovingPlatform(Plat5, 500, startDirection=GameDirection.Right, startOnOver=False)]]></value>
     </Script>
   </LevelSettings>
   <Data>
     <StickyElements>
-      <Floor>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>464</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>5</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>756</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>64</value>
-        </Height>
-        <FloorStyle>
-          <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
-          <value>Green</value>
-        </FloorStyle>
-        <Blocks>
-          <type>System.Int32</type>
-          <value>10</value>
-        </Blocks>
-      </Floor>
-      <Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>347</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>686</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>228</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>819</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>176</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>1021</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>95</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>1190</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <Brick>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>199</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>1503</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
-          <value>Red</value>
-        </Color>
-      </Brick>
-      <Brick>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>198</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>1659</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
-          <value>Yellow</value>
-        </Color>
-      </Brick>
-      <Pipe>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>377</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>1850</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>64</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>128</value>
-        </Height>
-        <PipeColor>
-          <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
-          <value>Green</value>
-        </PipeColor>
-        <Blocks>
-          <type>System.Int32</type>
-          <value>3</value>
-        </Blocks>
-      </Pipe>
-      <Pipe>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>313</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>1964</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>64</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>192</value>
-        </Height>
-        <PipeColor>
-          <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
-          <value>Green</value>
-        </PipeColor>
-        <Blocks>
-          <type>System.Int32</type>
-          <value>5</value>
-        </Blocks>
-      </Pipe>
-      <Pipe>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>249</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>2079</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>64</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>256</value>
-        </Height>
-        <PipeColor>
-          <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
-          <value>Green</value>
-        </PipeColor>
-        <Blocks>
-          <type>System.Int32</type>
-          <value>7</value>
-        </Blocks>
-      </Pipe>
-      <Pipe>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>121</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>2163</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>64</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>384</value>
-        </Height>
-        <PipeColor>
-          <type>littleRunner.GameObjects.StickyElements.PipeColor</type>
-          <value>Green</value>
-        </PipeColor>
-        <Blocks>
-          <type>System.Int32</type>
-          <value>11</value>
-        </Blocks>
-      </Pipe>
-      <Floor>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>234</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>2275</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>189</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>64</value>
-        </Height>
-        <FloorStyle>
-          <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
-          <value>Green</value>
-        </FloorStyle>
-        <Blocks>
-          <type>System.Int32</type>
-          <value>1</value>
-        </Blocks>
-      </Floor>
-      <Floor>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>424</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>2735</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>315</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>64</value>
-        </Height>
-        <FloorStyle>
-          <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
-          <value>Green</value>
-        </FloorStyle>
-        <Blocks>
-          <type>System.Int32</type>
-          <value>3</value>
-        </Blocks>
-      </Floor>
-      <Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>80</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>2434</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>129</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>2558</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>205</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>2676</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <Star>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>293</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>2803</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
       <DesignElements>
         <Name>
           <type>NULL</type>
@@ -514,11 +47,11 @@ lr.Handler.AI.Check += moveSpika]]></value>
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>223</value>
+          <value>154</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>2922</value>
+          <value>260</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -533,18 +66,564 @@ lr.Handler.AI.Check += moveSpika]]></value>
           <value>Tree</value>
         </Element>
       </DesignElements>
-      <Star>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>347</value>
+          <value>147</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>3109</value>
+          <value>113</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>3</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>449</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>38,33333</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>449</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>73,66666</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>449</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>109</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>449</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>144,3333</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>449</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>179,6667</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>449</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>215</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>449</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>249</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>449</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>284,3333</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>449</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>319,6667</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>449</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>355</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>450</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>429,3333</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>12</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>464,6667</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>12</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>500</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>13</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>216,9994</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>12</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>252,3333</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>12</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>287,6667</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>12</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>323</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>12</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>358,3333</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>12</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>393,6667</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>12</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Box>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>345</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>138</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -554,37 +633,227 @@ lr.Handler.AI.Check += moveSpika]]></value>
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
+        <BoxType>
+          <type>littleRunner.GameObjects.StickyElements.BoxType</type>
+          <value>ModeDependent</value>
+        </BoxType>
+        <BoxStyle>
+          <type>littleRunner.GameObjects.StickyElements.BoxStyle</type>
           <value>Yellow</value>
-        </StarStyle>
-      </Star>
-      <Star>
+        </BoxStyle>
+        <Content>
+          <type>System.Int32</type>
+          <value>1</value>
+        </Content>
+      </Box>
+      <Brick>
         <Name>
           <type>NULL</type>
           <value>null</value>
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>423</value>
+          <value>355</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>3185</value>
+          <value>489</value>
         </Left>
         <Width>
           <type>System.Int32</type>
-          <value>42</value>
+          <value>32</value>
         </Width>
         <Height>
           <type>System.Int32</type>
-          <value>42</value>
+          <value>32</value>
         </Height>
-        <StarStyle>
-          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
-          <value>Yellow</value>
-        </StarStyle>
-      </Star>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>275</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>675</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>338</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>675</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>401</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>675</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>464</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>675</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>144</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>485</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>50</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>675</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>56</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>869</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+      </Brick>
       <Star>
         <Name>
           <type>NULL</type>
@@ -592,11 +861,11 @@ lr.Handler.AI.Check += moveSpika]]></value>
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>0</value>
+          <value>427</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>2876</value>
+          <value>150</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -622,7 +891,85 @@ lr.Handler.AI.Check += moveSpika]]></value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>3283</value>
+          <value>230,25</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <StarStyle>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
+          <value>Yellow</value>
+        </StarStyle>
+      </Star>
+      <Star>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>427</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>310,5</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <StarStyle>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
+          <value>Yellow</value>
+        </StarStyle>
+      </Star>
+      <Star>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>427</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>390,75</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <StarStyle>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
+          <value>Yellow</value>
+        </StarStyle>
+      </Star>
+      <Star>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>427</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>471</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -644,11 +991,93 @@ lr.Handler.AI.Check += moveSpika]]></value>
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>385</value>
+          <value>476</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>3459</value>
+          <value>907</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>441</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>64</value>
+        </Height>
+        <FloorStyle>
+          <type>littleRunner.GameObjects.StickyElements.FloorColor</type>
+          <value>Green</value>
+        </FloorStyle>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>5</value>
+        </Blocks>
+      </Floor>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>316</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>1300</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Ice</value>
+        </Color>
+      </Brick>
+      <Brick>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>316</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>1345</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Blue</value>
+        </Color>
+      </Brick>
+      <Floor>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>389</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>2442</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -674,11 +1103,11 @@ lr.Handler.AI.Check += moveSpika]]></value>
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>324</value>
+          <value>297</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>3354</value>
+          <value>1426</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -700,11 +1129,11 @@ lr.Handler.AI.Check += moveSpika]]></value>
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>278</value>
+          <value>238,5</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>3479</value>
+          <value>1426</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -719,18 +1148,18 @@ lr.Handler.AI.Check += moveSpika]]></value>
           <value>Yellow</value>
         </StarStyle>
       </Star>
-      <Box>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>229</value>
+          <value>121,5</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>3784</value>
+          <value>1426</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -740,31 +1169,23 @@ lr.Handler.AI.Check += moveSpika]]></value>
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <BoxType>
-          <type>littleRunner.GameObjects.StickyElements.BoxType</type>
-          <value>GoodMushroom</value>
-        </BoxType>
-        <BoxStyle>
-          <type>littleRunner.GameObjects.StickyElements.BoxStyle</type>
+        <StarStyle>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
-        </BoxStyle>
-        <Content>
-          <type>System.Int32</type>
-          <value>1</value>
-        </Content>
-      </Box>
-      <Box>
+        </StarStyle>
+      </Star>
+      <Star>
         <Name>
           <type>NULL</type>
           <value>null</value>
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>174</value>
+          <value>63</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>3957</value>
+          <value>1426</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -774,19 +1195,37 @@ lr.Handler.AI.Check += moveSpika]]></value>
           <type>System.Int32</type>
           <value>42</value>
         </Height>
-        <BoxType>
-          <type>littleRunner.GameObjects.StickyElements.BoxType</type>
-          <value>GoodMushroom</value>
-        </BoxType>
-        <BoxStyle>
-          <type>littleRunner.GameObjects.StickyElements.BoxStyle</type>
+        <StarStyle>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
           <value>Yellow</value>
-        </BoxStyle>
-        <Content>
+        </StarStyle>
+      </Star>
+      <Star>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>180</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>1426</value>
+        </Left>
+        <Width>
           <type>System.Int32</type>
-          <value>1</value>
-        </Content>
-      </Box>
+          <value>42</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <StarStyle>
+          <type>littleRunner.GameObjects.StickyElements.StarStyle</type>
+          <value>Yellow</value>
+        </StarStyle>
+      </Star>
       <Floor>
         <Name>
           <type>NULL</type>
@@ -794,15 +1233,15 @@ lr.Handler.AI.Check += moveSpika]]></value>
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>325</value>
+          <value>153</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>4065</value>
+          <value>3438</value>
         </Left>
         <Width>
           <type>System.Int32</type>
-          <value>189</value>
+          <value>252</value>
         </Width>
         <Height>
           <type>System.Int32</type>
@@ -814,7 +1253,7 @@ lr.Handler.AI.Check += moveSpika]]></value>
         </FloorStyle>
         <Blocks>
           <type>System.Int32</type>
-          <value>1</value>
+          <value>2</value>
         </Blocks>
       </Floor>
       <LevelEnd>
@@ -824,11 +1263,11 @@ lr.Handler.AI.Check += moveSpika]]></value>
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>354</value>
+          <value>25</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>4568</value>
+          <value>3587</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -839,8 +1278,8 @@ lr.Handler.AI.Check += moveSpika]]></value>
           <value>128</value>
         </Height>
         <NextLevel>
-          <type>NULL</type>
-          <value>null</value>
+          <type>System.String</type>
+          <value>level15.lrl</value>
         </NextLevel>
         <StartAt>
           <type>System.Int32</type>
@@ -860,75 +1299,15 @@ lr.Handler.AI.Check += moveSpika]]></value>
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>334</value>
+          <value>181</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>847</value>
+          <value>13</value>
         </Left>
         <Width>
           <type>System.Int32</type>
-          <value>214</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
-          <value>Ice</value>
-        </Color>
-        <Blocks>
-          <type>System.Int32</type>
-          <value>5</value>
-        </Blocks>
-      </Bricks>
-      <Bricks>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>200</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>1127</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>214</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>42</value>
-        </Height>
-        <Color>
-          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
-          <value>Blue</value>
-        </Color>
-        <Blocks>
-          <type>System.Int32</type>
-          <value>5</value>
-        </Blocks>
-      </Bricks>
-      <Bricks>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>512</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>3173</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>164</value>
+          <value>329</value>
         </Width>
         <Height>
           <type>System.Int32</type>
@@ -940,7 +1319,7 @@ lr.Handler.AI.Check += moveSpika]]></value>
         </Color>
         <Blocks>
           <type>System.Int32</type>
-          <value>5</value>
+          <value>10</value>
         </Blocks>
       </Bricks>
       <Bricks>
@@ -950,15 +1329,105 @@ lr.Handler.AI.Check += moveSpika]]></value>
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>484</value>
+          <value>355</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>4371</value>
+          <value>184</value>
         </Left>
         <Width>
           <type>System.Int32</type>
-          <value>300</value>
+          <value>263</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>8</value>
+        </Blocks>
+      </Bricks>
+      <Bricks>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>500</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>48</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>659</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Brown</value>
+        </Color>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>20</value>
+        </Blocks>
+      </Bricks>
+      <Bricks>
+        <Name>
+          <type>System.String</type>
+          <value>Plat1</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>360</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>1399</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>85</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Red</value>
+        </Color>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>2</value>
+        </Blocks>
+      </Bricks>
+      <Bricks>
+        <Name>
+          <type>System.String</type>
+          <value>Plat2</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>46</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>1538</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>128</value>
         </Width>
         <Height>
           <type>System.Int32</type>
@@ -970,387 +1439,113 @@ lr.Handler.AI.Check += moveSpika]]></value>
         </Color>
         <Blocks>
           <type>System.Int32</type>
-          <value>7</value>
+          <value>3</value>
+        </Blocks>
+      </Bricks>
+      <Bricks>
+        <Name>
+          <type>System.String</type>
+          <value>Plat3</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>254</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>2036</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>128</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Ice</value>
+        </Color>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>3</value>
+        </Blocks>
+      </Bricks>
+      <Bricks>
+        <Name>
+          <type>System.String</type>
+          <value>Plat4</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>444</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>1538</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>128</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Ice</value>
+        </Color>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>3</value>
+        </Blocks>
+      </Bricks>
+      <Bricks>
+        <Name>
+          <type>System.String</type>
+          <value>Plat5</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>264</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>2737</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>214</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>42</value>
+        </Height>
+        <Color>
+          <type>littleRunner.GameObjects.StickyElements.BrickColor</type>
+          <value>Yellow</value>
+        </Color>
+        <Blocks>
+          <type>System.Int32</type>
+          <value>5</value>
         </Blocks>
       </Bricks>
     </MovingElements>
     <Enemies>
       <Spika>
         <Name>
-          <type>System.String</type>
-          <value>G1</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>20</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>27</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>False</value>
-        </StartAtViewpoint>
-        <Color>
-          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
-          <value>Green</value>
-        </Color>
-      </Spika>
-      <Spika>
-        <Name>
-          <type>System.String</type>
-          <value>G2</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>59,96667</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>27</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>False</value>
-        </StartAtViewpoint>
-        <Color>
-          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
-          <value>Orange</value>
-        </Color>
-      </Spika>
-      <Spika>
-        <Name>
-          <type>System.String</type>
-          <value>G3</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>99,93334</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>27</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>False</value>
-        </StartAtViewpoint>
-        <Color>
-          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
-          <value>Grey</value>
-        </Color>
-      </Spika>
-      <Spika>
-        <Name>
-          <type>System.String</type>
-          <value>G4</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>139,9</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>27</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>False</value>
-        </StartAtViewpoint>
-        <Color>
-          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
-          <value>Green</value>
-        </Color>
-      </Spika>
-      <Spika>
-        <Name>
-          <type>System.String</type>
-          <value>G5</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>179,8667</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>27</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>False</value>
-        </StartAtViewpoint>
-        <Color>
-          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
-          <value>Orange</value>
-        </Color>
-      </Spika>
-      <Spika>
-        <Name>
-          <type>System.String</type>
-          <value>G6</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>219,8334</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>27</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>False</value>
-        </StartAtViewpoint>
-        <Color>
-          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
-          <value>Grey</value>
-        </Color>
-      </Spika>
-      <Spika>
-        <Name>
-          <type>System.String</type>
-          <value>G7</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>259,8</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>27</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>False</value>
-        </StartAtViewpoint>
-        <Color>
-          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
-          <value>Green</value>
-        </Color>
-      </Spika>
-      <Spika>
-        <Name>
-          <type>System.String</type>
-          <value>G8</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>299,7667</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>27</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>False</value>
-        </StartAtViewpoint>
-        <Color>
-          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
-          <value>Orange</value>
-        </Color>
-      </Spika>
-      <Spika>
-        <Name>
-          <type>System.String</type>
-          <value>G9</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>339,7334</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>27</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>False</value>
-        </StartAtViewpoint>
-        <Color>
-          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
-          <value>Grey</value>
-        </Color>
-      </Spika>
-      <Spika>
-        <Name>
-          <type>System.String</type>
-          <value>G10</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>379,7</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>27</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>False</value>
-        </StartAtViewpoint>
-        <Color>
-          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
-          <value>Green</value>
-        </Color>
-      </Spika>
-      <Spika>
-        <Name>
-          <type>System.String</type>
-          <value>G11</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>419,6667</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>27</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>False</value>
-        </StartAtViewpoint>
-        <Color>
-          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
-          <value>Orange</value>
-        </Color>
-      </Spika>
-      <Gumba>
-        <Name>
           <type>NULL</type>
           <value>null</value>
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>427</value>
+          <value>229</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>710</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>True</value>
-        </StartAtViewpoint>
-        <Color>
-          <type>littleRunner.GameObjects.Enemies.GumbaColor</type>
-          <value>Brown</value>
-        </Color>
-        <Direction>
-          <type>littleRunner.GameDirection</type>
-          <value>Left</value>
-        </Direction>
-      </Gumba>
-      <Spika>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>105</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>1981</value>
+          <value>415</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -1376,11 +1571,11 @@ lr.Handler.AI.Check += moveSpika]]></value>
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>263</value>
+          <value>-8</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>2960</value>
+          <value>302</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -1406,203 +1601,11 @@ lr.Handler.AI.Check += moveSpika]]></value>
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>246</value>
+          <value>-2</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>3011</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>True</value>
-        </StartAtViewpoint>
-        <Color>
-          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
-          <value>Green</value>
-        </Color>
-      </Spika>
-      <Spika>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>280</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>3054</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>True</value>
-        </StartAtViewpoint>
-        <Color>
-          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
-          <value>Green</value>
-        </Color>
-      </Spika>
-      <Spika>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>476</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>3304</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>True</value>
-        </StartAtViewpoint>
-        <Color>
-          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
-          <value>Grey</value>
-        </Color>
-      </Spika>
-      <Gumba>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>351</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>3670</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>True</value>
-        </StartAtViewpoint>
-        <Color>
-          <type>littleRunner.GameObjects.Enemies.GumbaColor</type>
-          <value>Brown</value>
-        </Color>
-        <Direction>
-          <type>littleRunner.GameDirection</type>
-          <value>Left</value>
-        </Direction>
-      </Gumba>
-      <Gumba>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>351</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>3631,5</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>True</value>
-        </StartAtViewpoint>
-        <Color>
-          <type>littleRunner.GameObjects.Enemies.GumbaColor</type>
-          <value>Brown</value>
-        </Color>
-        <Direction>
-          <type>littleRunner.GameDirection</type>
-          <value>Left</value>
-        </Direction>
-      </Gumba>
-      <Gumba>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>351</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>3593</value>
-        </Left>
-        <Width>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Width>
-        <Height>
-          <type>System.Int32</type>
-          <value>32</value>
-        </Height>
-        <StartAtViewpoint>
-          <type>System.Boolean</type>
-          <value>True</value>
-        </StartAtViewpoint>
-        <Color>
-          <type>littleRunner.GameObjects.Enemies.GumbaColor</type>
-          <value>Brown</value>
-        </Color>
-        <Direction>
-          <type>littleRunner.GameDirection</type>
-          <value>Left</value>
-        </Direction>
-      </Gumba>
-      <Spika>
-        <Name>
-          <type>NULL</type>
-          <value>null</value>
-        </Name>
-        <Top>
-          <type>System.Single</type>
-          <value>163</value>
-        </Top>
-        <Left>
-          <type>System.Single</type>
-          <value>4121</value>
+          <value>343</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -1628,11 +1631,11 @@ lr.Handler.AI.Check += moveSpika]]></value>
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>11</value>
+          <value>24</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>4283</value>
+          <value>382</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -1648,7 +1651,7 @@ lr.Handler.AI.Check += moveSpika]]></value>
         </StartAtViewpoint>
         <Color>
           <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
-          <value>Orange</value>
+          <value>Grey</value>
         </Color>
       </Spika>
       <Gumba>
@@ -1658,11 +1661,11 @@ lr.Handler.AI.Check += moveSpika]]></value>
         </Name>
         <Top>
           <type>System.Single</type>
-          <value>214</value>
+          <value>320</value>
         </Top>
         <Left>
           <type>System.Single</type>
-          <value>2108</value>
+          <value>209</value>
         </Left>
         <Width>
           <type>System.Int32</type>
@@ -1682,9 +1685,479 @@ lr.Handler.AI.Check += moveSpika]]></value>
         </Color>
         <Direction>
           <type>littleRunner.GameDirection</type>
-          <value>Left</value>
+          <value>Right</value>
         </Direction>
       </Gumba>
+      <Gumba>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>320</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>260</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>True</value>
+        </StartAtViewpoint>
+        <Color>
+          <type>littleRunner.GameObjects.Enemies.GumbaColor</type>
+          <value>Brown</value>
+        </Color>
+        <Direction>
+          <type>littleRunner.GameDirection</type>
+          <value>Right</value>
+        </Direction>
+      </Gumba>
+      <Gumba>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>320</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>311</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>True</value>
+        </StartAtViewpoint>
+        <Color>
+          <type>littleRunner.GameObjects.Enemies.GumbaColor</type>
+          <value>Brown</value>
+        </Color>
+        <Direction>
+          <type>littleRunner.GameDirection</type>
+          <value>Right</value>
+        </Direction>
+      </Gumba>
+      <Spika>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>349</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>616</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>True</value>
+        </StartAtViewpoint>
+        <Color>
+          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
+          <value>Green</value>
+        </Color>
+      </Spika>
+      <Spika>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>181</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>486</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>True</value>
+        </StartAtViewpoint>
+        <Color>
+          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
+          <value>Grey</value>
+        </Color>
+      </Spika>
+      <Turtle>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>407</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>1277</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>57</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>64</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>True</value>
+        </StartAtViewpoint>
+        <TurtleStyle>
+          <type>littleRunner.GameObjects.Enemies.TurtleStyle</type>
+          <value>Green</value>
+        </TurtleStyle>
+        <Direction>
+          <type>littleRunner.GameDirection</type>
+          <value>Left</value>
+        </Direction>
+      </Turtle>
+      <Turtle>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>407</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>1177</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>57</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>64</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>True</value>
+        </StartAtViewpoint>
+        <TurtleStyle>
+          <type>littleRunner.GameObjects.Enemies.TurtleStyle</type>
+          <value>Green</value>
+        </TurtleStyle>
+        <Direction>
+          <type>littleRunner.GameDirection</type>
+          <value>Left</value>
+        </Direction>
+      </Turtle>
+      <Turtle>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>407</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>1077</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>57</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>64</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>True</value>
+        </StartAtViewpoint>
+        <TurtleStyle>
+          <type>littleRunner.GameObjects.Enemies.TurtleStyle</type>
+          <value>Green</value>
+        </TurtleStyle>
+        <Direction>
+          <type>littleRunner.GameDirection</type>
+          <value>Left</value>
+        </Direction>
+      </Turtle>
+      <Spika>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>109</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>1501</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>True</value>
+        </StartAtViewpoint>
+        <Color>
+          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
+          <value>Green</value>
+        </Color>
+      </Spika>
+      <Spika>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>157,8333</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>1501</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>True</value>
+        </StartAtViewpoint>
+        <Color>
+          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
+          <value>Orange</value>
+        </Color>
+      </Spika>
+      <Spika>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>206,6667</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>1501</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>True</value>
+        </StartAtViewpoint>
+        <Color>
+          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
+          <value>Green</value>
+        </Color>
+      </Spika>
+      <Spika>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>255,5</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>1501</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>True</value>
+        </StartAtViewpoint>
+        <Color>
+          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
+          <value>Grey</value>
+        </Color>
+      </Spika>
+      <Spika>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>304,3333</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>1501</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>True</value>
+        </StartAtViewpoint>
+        <Color>
+          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
+          <value>Green</value>
+        </Color>
+      </Spika>
+      <Spika>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>353,1667</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>1501</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>True</value>
+        </StartAtViewpoint>
+        <Color>
+          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
+          <value>Orange</value>
+        </Color>
+      </Spika>
+      <Spika>
+        <Name>
+          <type>NULL</type>
+          <value>null</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>402</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>1501</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>True</value>
+        </StartAtViewpoint>
+        <Color>
+          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
+          <value>Green</value>
+        </Color>
+      </Spika>
+      <Spika>
+        <Name>
+          <type>System.String</type>
+          <value>Spika1</value>
+        </Name>
+        <Top>
+          <type>System.Single</type>
+          <value>270</value>
+        </Top>
+        <Left>
+          <type>System.Single</type>
+          <value>2828</value>
+        </Left>
+        <Width>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Width>
+        <Height>
+          <type>System.Int32</type>
+          <value>32</value>
+        </Height>
+        <StartAtViewpoint>
+          <type>System.Boolean</type>
+          <value>False</value>
+        </StartAtViewpoint>
+        <Color>
+          <type>littleRunner.GameObjects.Enemies.SpikaColor</type>
+          <value>Orange</value>
+        </Color>
+      </Spika>
     </Enemies>
   </Data>
 </Level>

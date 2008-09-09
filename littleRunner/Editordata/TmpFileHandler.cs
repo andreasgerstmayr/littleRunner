@@ -14,6 +14,7 @@ namespace littleRunner
 
     class TmpFileHandler : IDisposable
     {
+        public static string BackupFilename;
         private string tmpFilename;
         private string originalFile;
         private Timer autoSaveTimer;
@@ -50,13 +51,14 @@ namespace littleRunner
 
             autoSaveTimer = new Timer();
             autoSaveTimer.Tick += new EventHandler(autoSaveTimer_Tick);
-            autoSaveTimer.Interval = minutes > 0 ? minutes * 60 * 1000 : 1;
+            autoSaveTimer.Interval = 5000; //minutes > 0 ? minutes * 60 * 1000 : 0;
             autoSaveTimer.Enabled = minutes != 0;
         }
 
         void autoSaveTimer_Tick(object sender, EventArgs e)
         {
-            updateTMP();
+            //updateTMP();  --> SaveBackup() calls it
+            SaveBackup();
         }
 
 
@@ -136,6 +138,21 @@ namespace littleRunner
             else
                 return false;
         }
+        public bool BackupAvailable
+        {
+            get { return File.Exists(BackupFilename); }
+        }
+        public bool OpenBackup()
+        {
+            if (BackupAvailable)
+            {
+                originalFile = BackupFilename;
+                File.Copy(originalFile, tmpFilename, true); // tmp -> actual!
+                return true;
+            }
+            else
+                return false;
+        }
 
 
         public void SaveReal()
@@ -151,7 +168,7 @@ namespace littleRunner
         public void SaveBackup()
         {
             updateTMP();
-            File.Copy(tmpFilename, "backup.lrl", true);
+            File.Copy(tmpFilename, BackupFilename, true);
         }
         public bool SaveAsReal()
         {
@@ -171,10 +188,11 @@ namespace littleRunner
 
         public void Dispose()
         {
+            autoSaveTimer.Enabled = false;
             File.Delete(tmpFilename);
 
-            if (File.Exists("backup.lrl"))
-                File.Delete("backup.lrl");
+            if (File.Exists(BackupFilename))
+                File.Delete(BackupFilename);
         }   
     }
 }
