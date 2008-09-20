@@ -12,9 +12,9 @@ using littleRunner.GameObjects;
 
 namespace littleRunner
 {
-    public partial class ProgramSwitcher : Form
+    public partial class StartScreen : Form
     {
-        public ProgramSwitcher()
+        public StartScreen()
         {
             InitializeComponent();
 
@@ -22,7 +22,7 @@ namespace littleRunner
             Highscore.FileName = "Highscore.lhs";
         }
 
-        private void ProgramSwitcher_Shown(object sender, EventArgs e)
+        private void StartScreen_Shown(object sender, EventArgs e)
         {
             Application.DoEvents();
 
@@ -50,10 +50,13 @@ namespace littleRunner
             FormClosingEventHandler progSwitchClosingHandler = new FormClosingEventHandler(childrenFormClosing);
 
             LevelPackSwitcher switcher = new LevelPackSwitcher(progSwitchClosingHandler);
-            switcher.FormClosing += progSwitchClosingHandler; 
-            
+            switcher.FormClosing += progSwitchClosingHandler;
+
             if (!switcher.IsDisposed) // Maybe it's not showed because there is only one levelpack
-                switcher.Show();
+            {
+                switcher.Show(this);
+                switcher.Location = new System.Drawing.Point(switcher.Owner.Location.X + (switcher.Owner.Width - switcher.Width) / 2, switcher.Owner.Location.Y + (switcher.Owner.Height - switcher.Height) / 2);
+            }
 
             Hide();
         }
@@ -78,7 +81,7 @@ namespace littleRunner
         }
 
 
-        private void ProgramSwitcher_SizeChanged(object sender, EventArgs e)
+        private void StartScreen_SizeChanged(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Minimized)
                 Hide();

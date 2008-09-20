@@ -23,5 +23,11 @@ namespace littleRunner
             txt.Text = s;
             Application.DoEvents();
         }
+
+        public new void Close()
+        {
+            base.Close();
+            Application.DoEvents();
+        }
     }
 }

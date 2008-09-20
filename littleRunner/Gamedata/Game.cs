@@ -93,8 +93,13 @@ namespace littleRunner
                 return;
             }
 
+            this.BackColor = Color.DarkSeaGreen;
             LoadingForm f = new LoadingForm();
             f.Show();
+            if (!(Location.X == 0 && Location.Y == 0))
+                f.Location = new System.Drawing.Point(Location.X + (Width - f.Width) / 2, Location.Y + (Height - f.Height) / 2);
+
+            
 
             f.Message("Set title");
             // set form title
@@ -196,8 +201,9 @@ namespace littleRunner
 
 
             Cursor.Hide();
-            ai.Pause(true);
             f.Close();
+            this.BackColor = Color.White;
+            ai.Pause(true);
         }
 
         private void CloseGame(bool closeForm)

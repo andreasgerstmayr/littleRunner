@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 using littleRunner.Drawing;
+using littleRunner.Drawing.Helpers;
 using littleRunner.GameObjects.MovingElements;
 
 
@@ -193,7 +194,7 @@ namespace littleRunner.GameObjects.MainGameObjects
                 if (!firePressed)
                 {
                     firePressed = true;
-                    float startFireLeft = direction == GameDirection.Right ? Right + 5 : Left - 5;
+                    float startFireLeft = direction == GameDirection.Right ? Right + 5 : Left - GetDraw.Image(Files.fire).Width - 5;
 
                     Fire f = new Fire(direction, Top + 20, startFireLeft);
                     f.Init(World, AiEventHandler);

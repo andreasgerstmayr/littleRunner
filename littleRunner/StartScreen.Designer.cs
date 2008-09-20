@@ -1,6 +1,6 @@
 ﻿namespace littleRunner
 {
-    partial class ProgramSwitcher
+    partial class StartScreen
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgramSwitcher));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StartScreen));
             this.startgame = new System.Windows.Forms.Button();
             this.starteditor = new System.Windows.Forms.Button();
             this.closelittleRunner = new System.Windows.Forms.Button();
@@ -109,7 +109,7 @@
             this.homepage.Text = "http://littlerunner.andihit.net";
             this.homepage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.homepage_LinkClicked);
             // 
-            // ProgramSwitcher
+            // StartScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -122,11 +122,11 @@
             this.Controls.Add(this.startgame);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "ProgramSwitcher";
+            this.Name = "StartScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "littleRunner";
-            this.SizeChanged += new System.EventHandler(this.ProgramSwitcher_SizeChanged);
-            this.Shown += new System.EventHandler(this.ProgramSwitcher_Shown);
+            this.SizeChanged += new System.EventHandler(this.StartScreen_SizeChanged);
+            this.Shown += new System.EventHandler(this.StartScreen_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

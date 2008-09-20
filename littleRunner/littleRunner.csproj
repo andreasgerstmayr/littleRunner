@@ -140,11 +140,11 @@
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="ProgramSwitcher.cs">
+    <Compile Include="StartScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProgramSwitcher.Designer.cs">
-      <DependentUpon>ProgramSwitcher.cs</DependentUpon>
+    <Compile Include="StartScreen.Designer.cs">
+      <DependentUpon>StartScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Gamedata\Game.resx">
@@ -209,9 +209,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ProgramSwitcher.resx">
+    <EmbeddedResource Include="StartScreen.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>ProgramSwitcher.cs</DependentUpon>
+      <DependentUpon>StartScreen.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Data\Images\GameItem\star.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -808,6 +808,7 @@
             this.level.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.level.BackColor = System.Drawing.Color.White;
             this.level.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.level.Location = new System.Drawing.Point(3, 3);
             this.level.Name = "level";
