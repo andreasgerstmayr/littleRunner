@@ -191,7 +191,7 @@ namespace littleRunner
             autoSaveTimer.Enabled = false;
             File.Delete(tmpFilename);
 
-            if (File.Exists(BackupFilename))
+            if (BackupAvailable)
                 File.Delete(BackupFilename);
         }   
     }
