@@ -34,7 +34,7 @@ lr.createMovingPlatform(Plat4, 750, startDirection=GameDirection.Right, startOnO
 
 
 
-lr.createFlyingCircle(Spika1, 130, speed=400, dockObj=Plat5)
+lr.createFlyingCircle(Spika1, 130, speed=320, dockObj=Plat5)
 lr.createMovingPlatform(Plat5, 500, startDirection=GameDirection.Right, startOnOver=False)]]></value>
     </Script>
   </LevelSettings>

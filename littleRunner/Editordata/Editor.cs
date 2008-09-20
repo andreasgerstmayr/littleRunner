@@ -43,7 +43,7 @@ ControlStyles.OptimizedDoubleBuffer, true);
             EditorUI.drawHandler = drawHandler;
             EditorUI.level = level;
             EditorUI.properties = properties;
-            TmpFileHandler.BackupFilename = "backup.lrl";
+            TmpFileHandler.BackupFilename = Environment.CurrentDirectory + "\\backup.lrl";
 
 
             World defaultWorld = new World();
