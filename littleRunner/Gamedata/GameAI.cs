@@ -119,6 +119,8 @@ namespace littleRunner
 
             // threads
             threadDelegate = new Dictionary<string, ThreadStart>();
+            threadDelegate.Add("MGO", MGO_Thread);
+            threadDelegate.Add("Paint", Paint_Thread);
             threadDelegate.Add("Checker1", Checker1_Thread);
             threadDelegate.Add("Checker2", Checker2_Thread);
             threadDelegate.Add("Checker3", Checker3_Thread);
@@ -126,6 +128,7 @@ namespace littleRunner
 
             watch = new Dictionary<string, StopwatchExtended>();
             watch[""] = new StopwatchExtended(); // GUI-Thread
+
             thread = new Dictionary<string, Thread>();
             foreach (string s in threadDelegate.Keys)
             {
@@ -195,50 +198,7 @@ namespace littleRunner
 
         public void Check(object sender, EventArgs e)
         {
-            if (FrameFactor > Globals.MaxCycleDuration)
-                CurWatch.Elapsed = new TimeSpan(0, 0, 0, 0, 1); // don't reset, otherwise eg gumbas will change direction
-
-
-            Dictionary<string, float> newMGOpos = World.MGO.Check(pressedKeys);
-            float changeY = Math.Abs(newMGOpos["newtop"]);
-            float changeX = Math.Abs(newMGOpos["newleft"]);
-
-
-            #region Scrolling
-            bool scrolled = false;
-
-            // scrolling Top/Bottom
-            if (World.Viewport.Y + World.MGO.Top < Globals.Scroll.Top)
-            {
-                World.Viewport.Y += changeY; // scroll top
-                scrollTop += changeY;
-                scrolled = true;
-            }
-            else if (World.Settings.GameWindowHeight - World.Viewport.Y - World.MGO.Bottom < Globals.Scroll.Bottom)
-            {
-                World.Viewport.Y -= changeY; // scroll bottom
-                scrolled = true;
-            }
-
-            // scrolling Left/Right
-            if (World.Viewport.X + World.MGO.Left < Globals.Scroll.X)
-                World.Viewport.X += changeX; // scroll left
-            else if (World.Settings.GameWindowWidth - World.Viewport.X - World.MGO.Right < Globals.Scroll.X)
-                World.Viewport.X -= changeX; // scroll right
-
-            // if not scrolled
-            //    and need to scroll bottom
-            //    and don't need to scroll top
-            //    and when scroll down don't need to scroll top
-            // scroll down in pieces (SCROLL_CHANGE_Y).
-            if (!scrolled && scrollTop > 0 &&
-                !(World.Viewport.Y + World.MGO.Top < Globals.Scroll.Top) &&
-                !(World.Viewport.Y - changeY + World.MGO.Top < Globals.Scroll.Top))
-            {
-                World.Viewport.Y -= changeY;
-                scrollTop -= changeY;
-            }
-            #endregion
+            StartThreadCycle();
 
 
             foreach (KeyValuePair<string, ThreadStart> t in threadDelegate)
@@ -252,32 +212,101 @@ namespace littleRunner
             }
 
 
-            // Repaint
-            World.DrawHandler.Update();
-
-
             if (FrameFactor != 0.0)
                 gameControlObj.FPS = (int)(1.0F / FrameFactor);
 
-            CurWatch.Reset(); // reset current
-            CurWatch.Start(); // current frame calculating finished. now, start counting.
+
+            EndThreadCycle();
         }
 
         #region Threads
+        private void StartThreadCycle()
+        {
+            if (FrameFactor > Globals.MaxCycleDuration)
+                CurWatch.Elapsed = new TimeSpan(0, 0, 0, 0, 1); // don't reset, otherwise eg gumbas
+                                                                // will change direction
+        }
+        private void EndThreadCycle()
+        {
+            CurWatch.Reset(); // reset current
+            CurWatch.Start(); // start current
+        }
+        private void MGO_Thread()
+        {
+            try
+            {
+                StartThreadCycle();
+
+
+                Dictionary<string, float> newMGOpos = World.MGO.Check(pressedKeys);
+                float changeY = Math.Abs(newMGOpos["newtop"]);
+                float changeX = Math.Abs(newMGOpos["newleft"]);
+
+                #region Scrolling
+                bool scrolled = false;
+
+                // scrolling Top/Bottom
+                if (World.Viewport.Y + World.MGO.Top < Globals.Scroll.Top)
+                {
+                    World.Viewport.Y += changeY; // scroll top
+                    scrollTop += changeY;
+                    scrolled = true;
+                }
+                else if (World.Settings.GameWindowHeight - World.Viewport.Y - World.MGO.Bottom < Globals.Scroll.Bottom)
+                {
+                    World.Viewport.Y -= changeY; // scroll bottom
+                    scrolled = true;
+                }
+
+                // scrolling Left/Right
+                if (World.Viewport.X + World.MGO.Left < Globals.Scroll.X)
+                    World.Viewport.X += changeX; // scroll left
+                else if (World.Settings.GameWindowWidth - World.Viewport.X - World.MGO.Right < Globals.Scroll.X)
+                    World.Viewport.X -= changeX; // scroll right
+
+                // if not scrolled
+                //    and need to scroll bottom
+                //    and don't need to scroll top
+                //    and when scroll down don't need to scroll top
+                // scroll down in pieces (SCROLL_CHANGE_Y).
+                if (!scrolled && scrollTop > 0 &&
+                    !(World.Viewport.Y + World.MGO.Top < Globals.Scroll.Top) &&
+                    !(World.Viewport.Y - changeY + World.MGO.Top < Globals.Scroll.Top))
+                {
+                    World.Viewport.Y -= changeY;
+                    scrollTop -= changeY;
+                }
+                #endregion
+
+
+                EndThreadCycle();
+            }
+            catch (ThreadAbortException)
+            {
+            }
+        }
+        private void Paint_Thread()
+        {
+            try
+            {
+                World.DrawHandler.Update();
+            }
+            catch (ThreadAbortException)
+            {
+            }
+        }
         private void Checker1_Thread()
         {
             try
             {
-                if (FrameFactor > Globals.MaxCycleDuration)
-                    CurWatch.Elapsed = new TimeSpan(0, 0, 0, 0, 1); // see above
+                StartThreadCycle();
 
                
                 if (World.Script != null)
                     World.Script.callFunction("AI", "Check");
 
 
-                CurWatch.Reset(); // reset current
-                CurWatch.Start(); // reset current
+                EndThreadCycle();
             }
             catch (ThreadAbortException)
             {
@@ -287,8 +316,7 @@ namespace littleRunner
         {
             try
             {
-                if (FrameFactor > Globals.MaxCycleDuration)
-                    CurWatch.Elapsed = new TimeSpan(0, 0, 0, 0, 1); // see above
+                StartThreadCycle();
 
 
                 // check of all enemies
@@ -302,8 +330,7 @@ namespace littleRunner
                 }
 
 
-                CurWatch.Reset(); // reset current
-                CurWatch.Start(); // reset current
+                EndThreadCycle();
             }
             catch (ThreadAbortException)
             {
@@ -313,8 +340,7 @@ namespace littleRunner
         {
             try
             {
-                if (FrameFactor > Globals.MaxCycleDuration)
-                    CurWatch.Elapsed = new TimeSpan(0, 0, 0, 0, 1); // see above
+                StartThreadCycle();
 
 
                 // check of all moving elements
@@ -325,8 +351,7 @@ namespace littleRunner
                 }
 
 
-                CurWatch.Reset(); // reset current
-                CurWatch.Start(); // reset current
+                EndThreadCycle();
             }
             catch (ThreadAbortException)
             {

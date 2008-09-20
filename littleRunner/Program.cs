@@ -19,7 +19,7 @@ namespace littleRunner
             Application.SetCompatibleTextRenderingDefault(false);
 
             Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
-            Application.Run(new ProgramSwitcher());
+            Application.Run(new StartScreen());
         }
 
         static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
