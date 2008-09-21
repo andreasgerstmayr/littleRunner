@@ -343,7 +343,7 @@ namespace littleRunner
                 && e.KeyChar == (char)Keys.Escape)
                     CloseGame();
 
-                if (e.KeyChar == (char)Keys.Return)
+                if (e.KeyChar == 'p')
                 {
                     if (ai.IsRunning)
                         ai.Pause(false);
