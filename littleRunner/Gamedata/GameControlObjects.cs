@@ -13,16 +13,17 @@ namespace littleRunner
 {
     public class GameControl_Score : GameObject
     {
+        dFont f1;
+        dFont f2;
+        dColor color = new dColor(System.Drawing.Color.Black);
+
         int score;
         string font;
         float size;
 
+
         public override void Update(Draw d)
         {
-            dFont f1 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Left));
-            dFont f2 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Right));
-            dColor color = new dColor(System.Drawing.Color.Black);
-
             d.DrawString("Score:", f1, color, Left, Top);
             d.DrawString(score.ToString(), f2, color, Left+115, Top);
         }
@@ -40,20 +41,24 @@ namespace littleRunner
             Left = left;
             this.font = font;
             this.size = size;
+
+            f1 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Left));
+            f2 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Right));
         }
     }
     public class GameControl_Points : GameObject
     {
+        dFont f1;
+        dFont f2;
+        dColor color = new dColor(System.Drawing.Color.Black);
+
         int points;
         string font;
         float size;
 
+
         public override void Update(Draw d)
         {
-            dFont f1 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Left));
-            dFont f2 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Right));
-            dColor color = new dColor(System.Drawing.Color.Black);
-
             d.DrawString("Points:", f1, color, Left, Top);
             d.DrawString(points.ToString(), f2, color, Left + 115, Top);
         }
@@ -71,20 +76,24 @@ namespace littleRunner
             Left = left;
             this.font = font;
             this.size = size;
+
+            f1 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Left));
+            f2 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Right));
         }
     }
     public class GameControl_Lives : GameObject
     {
+        dFont f1;
+        dFont f2;
+        dColor color = new dColor(System.Drawing.Color.Black);
+
         int lives;
         string font;
         float size;
 
+
         public override void Update(Draw d)
         {
-            dFont f1 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Left));
-            dFont f2 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Right));
-            dColor color = new dColor(System.Drawing.Color.Black);
-
             d.DrawString("Lives:", f1, color, Left, Top);
             d.DrawString((Cheat.Activated?"-":"") + lives.ToString(), f2, color, Left + 115, Top);
         }
@@ -102,24 +111,28 @@ namespace littleRunner
             Left = left;
             this.font = font;
             this.size = size;
+
+            f1 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Left));
+            f2 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Right));
         }
     }
     public class GameControl_FPS : GameObject
     {
+        dFont f1;
+        dFont f2;
+        dColor color = new dColor(System.Drawing.Color.Black);
+
         public bool Visible;
         List<int> fps;
         int average;
         string font;
         float size;
 
+
         public override void Update(Draw d)
         {
             if (Visible)
             {
-                dFont f1 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Left));
-                dFont f2 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Right));
-                dColor color = new dColor(System.Drawing.Color.Black);
-
                 d.DrawString("FPS:", f1, color, Left, Top);
                 d.DrawString(average.ToString(), f2, color, Left + 115, Top);
             }
@@ -152,6 +165,36 @@ namespace littleRunner
             Left = left;
             this.font = font;
             this.size = size;
+
+            f1 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Left));
+            f2 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Right));
+        }
+    }
+    public class GameControl_Debug : GameObject
+    {
+        dFont f1;
+        dColor color = new dColor(System.Drawing.Color.Black);
+
+        public bool Visible;
+        string font;
+        float size;
+
+
+        public override void Update(Draw d)
+        {
+            if (Visible)
+                d.DrawString(".NET v"+Environment.Version.ToString(), f1, color, Left, Top);
+        }
+
+        public GameControl_Debug(int top, int left, string font, float size)
+        {
+            Visible = false;
+            Top = top;
+            Left = left;
+            this.font = font;
+            this.size = size;
+
+            f1 = new dFont(font, size, new dFontStyle(dFontWeight.Bold), new dFontFormat(dFontAligment.Right));
         }
     }
     public class GameControl_Sound
@@ -212,6 +255,7 @@ namespace littleRunner
         private GameControl_Points points;
         private GameControl_Lives lives;
         private GameControl_FPS fps;
+        private GameControl_Debug debug;
         private GameControl_Sound sound;
 
         public void Update(Draw d)
@@ -220,6 +264,7 @@ namespace littleRunner
             points.Update(d);
             lives.Update(d);
             fps.Update(d);
+            debug.Update(d);
         }
 
         public int Score
@@ -252,12 +297,14 @@ namespace littleRunner
             GameControl_Points points,
             GameControl_Lives lives,
             GameControl_FPS fps,
+            GameControl_Debug debug,
             GameControl_Sound sound)
         {
             this.score = score;
             this.points = points;
             this.lives = lives;
             this.fps = fps;
+            this.debug = debug;
             this.sound = sound;
         }
 
@@ -268,12 +315,10 @@ namespace littleRunner
                 sound.Stop();
             else if (c == 'p')
                 sound.Start();
-
             else if (c == 'f')
-            {
                 fps.Visible = !fps.Visible;
-                //System.Threading.Thread.Sleep(3000);
-            }
+            else if (c == 'l')
+                debug.Visible = !debug.Visible;
         }
     }
 }

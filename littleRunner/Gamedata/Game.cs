@@ -178,9 +178,10 @@ namespace littleRunner
                 GameControl_Points gameControlObjPoints = new GameControl_Points(15, Width / 2 - 120 / 2, "Verdana", 12);
                 GameControl_Lives gameControlObjLives = new GameControl_Lives(15, Width - 140, 4, "Verdana", 12);
                 GameControl_FPS gameControlObjFPS = new GameControl_FPS(40, Width - 140, "Verdana", 12);
+                GameControl_Debug gameControlObjDebug = new GameControl_Debug(65, Width - 25, "Verdana", 12);
                 GameControl_Sound gameControlObjSound = new GameControl_Sound();
 
-                gameControlObjs = new GameControlObjects(gameControlObjScore, gameControlObjPoints, gameControlObjLives, gameControlObjFPS, gameControlObjSound);
+                gameControlObjs = new GameControlObjects(gameControlObjScore, gameControlObjPoints, gameControlObjLives, gameControlObjFPS, gameControlObjDebug, gameControlObjSound);
             }
 
 

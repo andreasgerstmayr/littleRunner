@@ -14,6 +14,7 @@ namespace littleRunner.Gamedata
     public partial class LevelPackSwitcher : Form
     {
         FormClosingEventHandler progSwitchHandler;
+        public static bool DefafultLevelpack = true;
 
         public static string GetStartLevelName(string levelpack, bool slashed)
         {
@@ -48,7 +49,10 @@ namespace littleRunner.Gamedata
             this.FormClosing -= progSwitchHandler;
             Close();
 
+
             string selectedLevelPack = levelpacks.SelectedItem.ToString();
+            LevelPackSwitcher.DefafultLevelpack = selectedLevelPack=="General"?true:false;
+
             Game game = new Game(selectedLevelPack, GetStartLevelName(selectedLevelPack, false));
             game.FormClosing += new FormClosingEventHandler(progSwitchHandler);
             game.Show();
