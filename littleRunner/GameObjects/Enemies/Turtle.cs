@@ -62,8 +62,8 @@ namespace littleRunner.GameObjects.Enemies
             get { return direction; }
             set
             {
-                if (value == GameDirection.None)
-                    Editor.ShowErrorBox(this, "Can't set direction = None!");
+                if (value == GameDirection.None || value == GameDirection.Top || value == GameDirection.Bottom)
+                    Editor.ShowErrorBox(this, "Can't set this direction!");
                 else
                     direction = value;
             }

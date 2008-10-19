@@ -42,10 +42,12 @@ namespace littleRunner.Highscoredata
             }
             else
                 errProv.SetError(name, null);
-            
+
 
             if (Cheat.Activated)
                 MessageBox.Show("Cheaters can't save highscores!", "Cheater alert [littleRunner]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else if (!LevelPackSwitcher.DefafultLevelpack)
+                MessageBox.Show("Highscore can only be saved when playing the default levelpack!", "Levelpack alert [littleRunner]");
             else
                 Highscore.Write(name.Text, Convert.ToInt32(score.Text), time.Text);
 
